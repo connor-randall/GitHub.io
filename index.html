@@ -1,32 +1,241 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connor Randall</title>
   <style>
+    :root {
+      --bg: #000080;
+      --panel: #00005a;
+      --text: #ffffff;
+      --accent: #00ffff;
+      --accent-2: #ff66cc;
+      --border: #c0c0c0;
+      --shadow: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Courier New", Courier, monospace;
+      overflow-x: hidden;
+    }
+
     body {
-      font-family: Arial;
-      max-width: 700px;
-      margin: 60px auto;
-      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .window {
+      background: var(--panel);
+      border: 3px solid var(--border);
+      box-shadow: 8px 8px 0 var(--shadow);
+      padding: 18px 14px 28px;
+    }
+
+    .title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #b000ff 0%, #0080ff 100%);
+      color: #fff;
+      border: 2px solid var(--border);
+      padding: 6px 10px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      background: #000;
+    }
+
+    pre.logo {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(9px, 1.5vw, 16px);
+      line-height: 1.05;
+      white-space: pre;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      color: var(--text);
+      font-size: clamp(18px, 2vw, 24px);
+      letter-spacing: 1px;
+      text-transform: none;
+    }
+
+    .blink {
+      animation: blink 1s steps(1) infinite;
+      color: var(--accent-2);
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .divider {
+      margin: 26px auto 20px;
+      width: min(720px, 100%);
+      color: var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .marquee-box {
+      margin: 0 auto 22px;
+      max-width: 720px;
+      border: 2px solid var(--border);
+      background: #000;
+      padding: 8px 10px;
+      color: #ffff00;
+      font-size: 15px;
+    }
+
+    marquee {
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 14px;
+      border: 2px dashed var(--border);
+      background: rgba(0, 0, 0, 0.35);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .counter {
+      margin-top: 26px;
+      color: #00ff00;
+      font-size: 14px;
+    }
+
+    .under-construction {
+      margin-top: 18px;
+      color: #ffff00;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stars {
+      margin-top: 22px;
+      color: var(--accent-2);
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .window {
+        padding: 12px 10px 22px;
+      }
+
+      .title-bar {
+        font-size: 12px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .intro {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="window">
+      <div class="title-bar">
+        <span>conradrandy.com</span>
+        <div class="buttons">
+          <span class="btn"></span>
+          <span class="btn"></span>
+          <span class="btn"></span>
+        </div>
+      </div>
 
-<h1>Connor Randall God of IT</h1>
-<p>IT Support • Homelab Enthusiast • Builder</p>
+      <pre class="logo">
+   _________   _   __   _   __   ____   ____  __________
+  / ____/   | | | / /  / | / /  / __ \ / __ \/ ____/ __ \
+ / /   / /| | | |/ /  /  |/ /  / /_/ // /_/ / /   / / / /
+/ /___/ ___ | |   /  / /|  /  / _, _// __  / /___/ /_/ /
+\____/_/  |_| |_/_/  /_/ |_/  /_/ |_/_/ /_/ \____/\____/
 
-<h2>Projects</h2>
-<ul>
-<li>Local AI server</li>
-<li>Raspberry Pi builds</li>
-<li>Automation tools</li>
-</ul>
+   ____  ___    _   __   ____    ___    __    __
+  / __ \/   |  / | / /  / __ \  /   |  / /   / /
+ / /_/ / /| | /  |/ /  / / / / / /| | / /   / /
+/ _, _/ ___ |/ /|  /  / /_/ / / ___ |/ /___/ /___
+/_/ |_/_/  |_/_/ |_/  /_____/ /_/  |_/_____/_____/
+      </pre>
 
-<h2>Links</h2>
-<p>
-<a href="https://github.com">GitHub</a>
-</p>
+      <div class="subtitle">&lt;IT professional&gt;<span class="blink">_</span></div>
 
+      <div class="divider">
+        ========================================================================
+      </div>
+
+      <div class="marquee-box">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+          WELCOME TO MY WEBSITE . . . IT SUPPORT • WEB DEV • HOMELAB BUILDER • COLORADO • STILL UNDER CONSTRUCTION
+        </marquee>
+      </div>
+
+      <div class="intro">
+        Welcome to the digital headquarters of Connor Randall.
+        <br /><br />
+        Building websites, solving tech problems, and making weird little projects on purpose.
+      </div>
+
+      <div class="under-construction">
+        [ under construction ]
+      </div>
+
+      <div class="stars">
+        * * * * * * * * * *
+      </div>
+
+      <div class="counter">
+        visitor count: 000001
+      </div>
+    </div>
+  </div>
 </body>
 </html>
