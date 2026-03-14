@@ -92,13 +92,15 @@ async function loadStats() {
 
 // Recalculate duration on resize so speed stays consistent at any window width
 let resizeTimer;
+let lastWidth = window.innerWidth;
 window.addEventListener("resize", () => {
+  const newWidth = window.innerWidth;
+  if (newWidth === lastWidth) return;
+  lastWidth = newWidth;
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
     const track = document.getElementById("osrs-ticker-track");
-    if (track && track.scrollWidth > 0) {
-      applyTickerAnimation(track);
-    }
+    if (track && track.scrollWidth > 0) applyTickerAnimation(track);
     buildLabelTrack();
   }, 150);
 });
