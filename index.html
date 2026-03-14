@@ -69,10 +69,16 @@ body {
   white-space:nowrap;
   display:inline-block;
   padding-left:20px;
+  animation: ticker-scroll 40s linear infinite;
 }
 
 #osrs-ticker-track span {
   margin-right:40px;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .osrs-label-scroll {
