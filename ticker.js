@@ -1,68 +1,48 @@
 const skillNames = [
-  "Overall",
-  "Attack",
-  "Defence",
-  "Strength",
-  "Hitpoints",
-  "Ranged",
-  "Prayer",
-  "Magic",
-  "Cooking",
-  "Woodcutting",
-  "Fletching",
-  "Fishing",
-  "Firemaking",
-  "Crafting",
-  "Smithing",
-  "Mining",
-  "Herblore",
-  "Agility",
-  "Thieving",
-  "Slayer",
-  "Farming",
-  "Runecraft",
-  "Hunter",
-  "Construction"
+  "Overall","Attack","Defence","Strength","Hitpoints","Ranged","Prayer","Magic",
+  "Cooking","Woodcutting","Fletching","Fishing","Firemaking","Crafting",
+  "Smithing","Mining","Herblore","Agility","Thieving","Slayer",
+  "Farming","Runecraft","Hunter","Construction"
 ];
 
-async function loadOsrsTicker() {
+async function loadStats() {
   try {
-    const response = await fetch("/api/osrs");
-    const text = await response.text();
+    const res = await fetch("/api/osrs");
+    const text = await res.text();
 
-    const lines = text.trim().split("\n");
-    const skillLines = lines.slice(0, 24);
+    console.log("OSRS response:", text);
 
-    const stats = skillLines.map((line, index) => {
+    const lines = text.trim().split("\n").slice(0, 24);
+
+    let ticker = "";
+
+    lines.forEach((line, i) => {
       const parts = line.split(",");
 
-      return {
-        name: skillNames[index],
-        rank: parts[0],
-        level: parts[1],
-        xp: parts[2] || null
-      };
+      if (parts.length < 2) {
+        return;
+      }
+
+      const level = parts[1];
+      ticker += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
     });
 
-    const tickerTrack = document.getElementById("osrs-ticker-track");
+    const track = document.getElementById("osrs-ticker-track");
 
-    const html = stats
-      .map(stat => {
-        if (stat.name === "Overall") {
-          return `<span>[ ${stat.name}: ${stat.level} ]</span>`;
-        }
-        return `<span>[ ${stat.name}: ${stat.level} ]</span>`;
-      })
-      .join("");
+    if (!ticker) {
+      track.innerHTML = `<span>[ OSRS STATS UNAVAILABLE ]</span>`;
+      return;
+    }
 
-    // duplicate content so it loops more smoothly
-    tickerTrack.innerHTML = html + html;
-  } catch (error) {
-    console.error("Failed to load OSRS stats:", error);
-    document.getElementById("osrs-ticker-track").innerHTML =
-      "<span>[ OSRS STATS OFFLINE ]</span>";
+    track.innerHTML = ticker + ticker;
+  } catch (err) {
+    console.error("Ticker error:", err);
+    const track = document.getElementById("osrs-ticker-track");
+    if (track) {
+      track.innerHTML = `<span>[ OSRS STATS OFFLINE ]</span>`;
+    }
   }
 }
 
-loadOsrsTicker();
-setInterval(loadOsrsTicker, 1000 * 60 * 10);
+loadStats();
+setInterval(loadStats, 600000);
