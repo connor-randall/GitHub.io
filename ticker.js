@@ -39,7 +39,7 @@ async function loadStats() {
 
       const level = parts[1].trim();
       if (level === "99") {
-        html += `<span class="osrs-99">[ ⭐${skillNames[i]}: ${level}⭐ ]</span>`;
+        html += `<span class="osrs-99">[ ${skillNames[i]}: ${level} ]</span>`;
       } else {
         html += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
       }
