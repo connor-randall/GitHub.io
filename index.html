@@ -56,24 +56,38 @@ body {
 
 #osrs-ticker {
   width:100%;
-  height:32px;
+  height:22px;
   color:#00ff00;
   display:flex;
   align-items:center;
   overflow:hidden;
   border-bottom:1px solid #00aa00;
   padding:0 12px;
+  font-size:11px;
 }
 
 #osrs-ticker-track {
   white-space:nowrap;
   display:inline-block;
   padding-left:20px;
-  animation: ticker-scroll 40s linear infinite;
+  /* duration set dynamically by JS based on content width */
+  animation: ticker-scroll linear infinite;
 }
 
 #osrs-ticker-track span {
   margin-right:40px;
+}
+
+.osrs-99 {
+  color: #ffd700;
+  text-shadow: 0 0 6px #ffaa00, 0 0 12px #ff8800;
+  animation: gold-shimmer 2s ease-in-out infinite, ticker-scroll linear infinite;
+  animation-duration: inherit, inherit;
+}
+
+@keyframes gold-shimmer {
+  0%, 100% { color: #ffd700; text-shadow: 0 0 6px #ffaa00, 0 0 12px #ff8800; }
+  50%       { color: #fff0a0; text-shadow: 0 0 10px #ffd700, 0 0 20px #ffaa00; }
 }
 
 @keyframes ticker-scroll {
@@ -82,19 +96,25 @@ body {
 }
 
 .osrs-label-scroll {
-  height:28px;
+  height:22px;
   display:flex;
   align-items:center;
-  justify-content:center;
   color:#ffff00;
   background:#111;
   text-transform:uppercase;
   letter-spacing:2px;
-  font-size:16px;
+  font-size:11px;
+  overflow:hidden;
 }
 
-.osrs-label-scroll marquee {
-  width:100%;
+#osrs-label-track {
+  white-space:nowrap;
+  display:inline-block;
+  animation: ticker-scroll 18s linear infinite;
+}
+
+#osrs-label-track span {
+  margin-right:60px;
 }
 
 /* ===== MAIN WINDOW ===== */
@@ -240,9 +260,20 @@ pre.logo {
     <div id="osrs-ticker-track">loading stats...</div>
   </div>
   <div class="osrs-label-scroll">
-    <marquee behavior="alternate" direction="left" scrollamount="4">
-      &gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;
-    </marquee>
+    <div id="osrs-label-track">
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
+    </div>
   </div>
 </div>
 
