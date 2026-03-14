@@ -7,7 +7,7 @@ const skillNames = [
 
 async function loadStats() {
   try {
-    const res = await fetch("/api/osrs");
+    const res = await fetch("https://osrs-stat-bot.c-m-randall.workers.dev/");
     const text = await res.text();
 
     console.log("OSRS response:", text);
