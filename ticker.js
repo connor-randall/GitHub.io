@@ -9,6 +9,19 @@ const skillNames = [
 
 const WORKER_URL = "https://osrs-stat-bot.c-m-randall.workers.dev/";
 
+// Pixels per second — tune this to taste
+const SCROLL_SPEED = 64;
+
+function applyTickerAnimation(track) {
+  // scrollWidth is the full doubled content; half of that is one loop
+  const halfWidth = track.scrollWidth / 2;
+  const duration = halfWidth / SCROLL_SPEED;
+
+  track.style.animation = "none";
+  track.offsetHeight; // force reflow so the reset takes effect
+  track.style.animation = `ticker-scroll ${duration}s linear infinite`;
+}
+
 async function loadStats() {
   try {
     const res = await fetch(WORKER_URL, { cache: "no-store" });
@@ -25,18 +38,24 @@ async function loadStats() {
       if (parts.length < 2) continue;
 
       const level = parts[1].trim();
-      html += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
+      if (level === "99") {
+        html += `<span class="osrs-99">[ ⭐${skillNames[i]}: ${level}⭐ ]</span>`;
+      } else {
+        html += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
+      }
     }
 
     const track = document.getElementById("osrs-ticker-track");
     if (!track) return;
 
+    // Set content (doubled for seamless loop)
     track.innerHTML = html + html;
 
-    // Restart the CSS animation so it resets cleanly after each reload
-    track.style.animation = "none";
-    track.offsetHeight; // force reflow
-    track.style.animation = "";
+    // Wait one frame so the browser has rendered and scrollWidth is accurate
+    requestAnimationFrame(() => {
+      applyTickerAnimation(track);
+    });
+
   } catch (err) {
     console.error("Ticker error:", err);
     const track = document.getElementById("osrs-ticker-track");
@@ -45,6 +64,18 @@ async function loadStats() {
     }
   }
 }
+
+// Recalculate duration on resize so speed stays consistent at any window width
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const track = document.getElementById("osrs-ticker-track");
+    if (track && track.scrollWidth > 0) {
+      applyTickerAnimation(track);
+    }
+  }, 150);
+});
 
 window.addEventListener("load", loadStats);
 setInterval(loadStats, 600000);
