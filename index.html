@@ -1,240 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Connor Randall</title>
-  <style>
-    :root {
-      --bg: #000080;
-      --panel: #00005a;
-      --text: #ffffff;
-      --accent: #00ffff;
-      --accent-2: #ff66cc;
-      --border: #c0c0c0;
-      --shadow: #000000;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connor Randall</title>
 
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Courier New", Courier, monospace;
-      overflow-x: hidden;
-    }
-
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .wrap {
-      width: 100%;
-      max-width: 900px;
-      text-align: center;
-    }
-
-    .window {
-      background: var(--panel);
-      border: 3px solid var(--border);
-      box-shadow: 8px 8px 0 var(--shadow);
-      padding: 18px 14px 28px;
-    }
-
-    .title-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(90deg, #b000ff 0%, #0080ff 100%);
-      color: #fff;
-      border: 2px solid var(--border);
-      padding: 6px 10px;
-      margin-bottom: 22px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 6px;
-    }
-
-    .btn {
-      width: 16px;
-      height: 16px;
-      border: 2px solid #fff;
-      background: #000;
-    }
-
-    pre.logo {
-      margin: 0;
-      color: var(--accent);
-      font-size: clamp(9px, 1.5vw, 16px);
-      line-height: 1.05;
-      white-space: pre;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
-    }
-
-    .subtitle {
-      margin-top: 14px;
-      color: var(--text);
-      font-size: clamp(18px, 2vw, 24px);
-      letter-spacing: 1px;
-      text-transform: none;
-    }
-
-    .blink {
-      animation: blink 1s steps(1) infinite;
-      color: var(--accent-2);
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    .divider {
-      margin: 26px auto 20px;
-      width: min(720px, 100%);
-      color: var(--border);
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 14px;
-    }
-
-    .marquee-box {
-      margin: 0 auto 22px;
-      max-width: 720px;
-      border: 2px solid var(--border);
-      background: #000;
-      padding: 8px 10px;
-      color: #ffff00;
-      font-size: 15px;
-    }
-
-    marquee {
-      font-family: "Courier New", Courier, monospace;
-    }
-
-    .intro {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 14px;
-      border: 2px dashed var(--border);
-      background: rgba(0, 0, 0, 0.35);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .counter {
-      margin-top: 26px;
-      color: #00ff00;
-      font-size: 14px;
-    }
-
-    .under-construction {
-      margin-top: 18px;
-      color: #ffff00;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .stars {
-      margin-top: 22px;
-      color: var(--accent-2);
-      font-size: 18px;
-      letter-spacing: 4px;
-    }
-
-    @media (max-width: 640px) {
-      .window {
-        padding: 12px 10px 22px;
-      }
-
-      .title-bar {
-        font-size: 12px;
-      }
-
-      .subtitle {
-        font-size: 18px;
-      }
-
-      .intro {
-        font-size: 14px;
-      }
-    }
-    #osrs-ticker {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 32px;
-  overflow: hidden;
-  background: black;
-  color: lime;
-  font-family: monospace;
-  border-bottom: 1px solid lime;
-  display: flex;
-  align-items: center;
-  z-index: 99999;
+:root {
+  --bg:#000080;
+  --panel:#00005a;
+  --text:#ffffff;
+  --accent:#00ffff;
+  --accent-2:#ff66cc;
+  --border:#c0c0c0;
+  --shadow:#000000;
 }
 
-#osrs-ticker-track {
-  white-space: nowrap;
-  display: inline-block;
-  min-width: max-content;
-  padding-left: 20px;
-  color: lime;
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Courier New",monospace;
 }
 
-#osrs-ticker-track span {
-  display: inline-block;
-  margin-right: 40px;
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:64px 16px 32px;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.06) 1px,transparent 1px);
+  background-size:20px 20px;
 }
 
-@keyframes osrs-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+/* ===== OSRS TICKER ===== */
+
+#osrs-ticker{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:32px;
+  background:black;
+  color:#00ff00;
+  font-family:monospace;
+  border-bottom:1px solid lime;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  z-index:9999;
 }
 
-/* so your page content doesn't get hidden behind the fixed ticker */
-body {
-  padding-top: 40px;
+#osrs-ticker-track{
+  white-space:nowrap;
+  display:inline-block;
+  padding-left:20px;
 }
-  </style>
+
+#osrs-ticker-track span{
+  margin-right:40px;
+}
+
+/* ===== MAIN WINDOW ===== */
+
+.wrap{
+  width:100%;
+  max-width:900px;
+  text-align:center;
+}
+
+.window{
+  background:var(--panel);
+  border:3px solid var(--border);
+  box-shadow:8px 8px 0 var(--shadow);
+  padding:18px 14px 28px;
+}
+
+.title-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(90deg,#b000ff 0%,#0080ff 100%);
+  border:2px solid var(--border);
+  padding:6px 10px;
+  margin-bottom:22px;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+.buttons{
+  display:flex;
+  gap:6px;
+}
+
+.btn{
+  width:16px;
+  height:16px;
+  border:2px solid #fff;
+  background:#000;
+}
+
+pre.logo{
+  margin:0;
+  color:var(--accent);
+  font-size:clamp(9px,1.5vw,16px);
+  line-height:1.05;
+  text-shadow:0 0 8px rgba(0,255,255,0.35);
+}
+
+.subtitle{
+  margin-top:14px;
+  font-size:22px;
+}
+
+.blink{
+  animation:blink 1s steps(1) infinite;
+  color:var(--accent-2);
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+.divider{
+  margin:26px auto 20px;
+  width:min(720px,100%);
+  color:var(--border);
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.marquee-box{
+  margin:0 auto 22px;
+  max-width:720px;
+  border:2px solid var(--border);
+  background:#000;
+  padding:8px 10px;
+  color:#ffff00;
+}
+
+.intro{
+  max-width:680px;
+  margin:0 auto;
+  padding:14px;
+  border:2px dashed var(--border);
+  background:rgba(0,0,0,0.35);
+  line-height:1.7;
+}
+
+.under-construction{
+  margin-top:18px;
+  color:#ffff00;
+  text-transform:uppercase;
+}
+
+.stars{
+  margin-top:22px;
+  color:var(--accent-2);
+  font-size:18px;
+  letter-spacing:4px;
+}
+
+.counter{
+  margin-top:26px;
+  color:#00ff00;
+}
+
+</style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="window">
-      <div class="title-bar">
-        <span>conradrandy.com</span>
-        <div class="buttons">
-          <span class="btn"></span>
-          <span class="btn"></span>
-          <span class="btn"></span>
-        </div>
-      </div>
 
-      <pre class="logo">
+<body>
+
+<!-- OSRS TICKER -->
+<div id="osrs-ticker">
+  <div id="osrs-ticker-track">loading stats...</div>
+</div>
+
+<div class="wrap">
+
+<div class="window">
+
+<div class="title-bar">
+<span>conradrandy.com</span>
+<div class="buttons">
+<span class="btn"></span>
+<span class="btn"></span>
+<span class="btn"></span>
+</div>
+</div>
+
+<pre class="logo">
   ██████╗ ██████╗ ███╗   ██╗███╗   ██╗ ██████╗ ██████╗ 
  ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔═══██╗██╔══██╗
  ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║██║   ██║██████╔╝
@@ -242,49 +203,49 @@ body {
  ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║╚██████╔╝██║  ██║
   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝
 
-    ██████╗  █████╗ ███╗   ██╗██████╗  █████╗ ██╗     ██╗     
-    ██╔══██╗██╔══██╗████╗  ██║██╔══██╗██╔══██╗██║     ██║     
-    ██████╔╝███████║██╔██╗ ██║██║  ██║███████║██║     ██║     
-    ██╔══██╗██╔══██║██║╚██╗██║██║  ██║██╔══██║██║     ██║     
-    ██║  ██║██║  ██║██║ ╚████║██████╔╝██║  ██║███████╗███████╗
-    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
-      </pre>
+ ██████╗  █████╗ ███╗   ██╗██████╗  █████╗ ██╗     ██╗     
+ ██╔══██╗██╔══██╗████╗  ██║██╔══██╗██╔══██╗██║     ██║     
+ ██████╔╝███████║██╔██╗ ██║██║  ██║███████║██║     ██║     
+ ██╔══██╗██╔══██║██║╚██╗██║██║  ██║██╔══██║██║     ██║     
+ ██║  ██║██║  ██║██║ ╚████║██████╔╝██║  ██║███████╗███████╗
+ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+</pre>
 
-      <div class="subtitle">&lt;IT professional&gt;<span class="blink">_</span></div>
+<div class="subtitle">
+&lt;IT professional&gt;<span class="blink">_</span>
+</div>
 
-      <div class="divider">
-        ========================================================================
-      </div>
+<div class="divider">
+========================================================================
+</div>
 
-      <div class="marquee-box">
-        <marquee behavior="scroll" direction="left" scrollamount="5">
-          WELCOME TO MY WEBSITE . . . IT SUPPORT • WEB DEV • HOMELAB BUILDER • COLORADO • STILL UNDER CONSTRUCTION
-        </marquee>
-      </div>
+<div class="marquee-box">
+<marquee behavior="scroll" direction="left" scrollamount="5">
+WELCOME TO MY WEBSITE . . . IT SUPPORT • WEB DEV • HOMELAB BUILDER • COLORADO • STILL UNDER CONSTRUCTION
+</marquee>
+</div>
 
-      <div class="intro">
-        Welcome!
-        <br /><br />
-        Building websites, solving tech problems, and making weird little projects.
-      </div>
+<div class="intro">
+Welcome!<br><br>
+Building websites, solving tech problems, and making weird little projects.
+</div>
 
-      <div class="under-construction">
-        [ under construction ]
-      </div>
+<div class="under-construction">
+[ under construction ]
+</div>
 
-      <div class="stars">
-        * * * * * * * * * *
-      </div>
+<div class="stars">
+* * * * * * * * * *
+</div>
 
-      <div class="counter">
-        visitor count: 9999999
-      </div>
-      
-      <div id="osrs-ticker">
-        <div id="osrs-ticker-track"></div>
-      </div>
-    </div>
-  </div>
-  <script src="ticker.js"></script>
+<div class="counter">
+visitor count: 9999999
+</div>
+
+</div>
+</div>
+
+<script src="ticker.js?v=3"></script>
+
 </body>
 </html>
