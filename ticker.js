@@ -22,7 +22,32 @@ function applyTickerAnimation(track) {
   track.style.animation = `ticker-scroll ${duration}s linear infinite`;
 }
 
-async function loadStats() {
+const LABEL_TEXT = ">>> OSRS STATS <<<";
+const LABEL_SPEED = 40; // px/s, slower than the stats ticker
+
+function buildLabelTrack() {
+  const label = document.getElementById("osrs-label-track");
+  if (!label) return;
+
+  // Fill with enough copies to be at least 3x the screen width, then double for seamless loop
+  const singleSpan = `<span>${LABEL_TEXT}</span>`;
+  // Temporarily set one copy to measure its width
+  label.innerHTML = singleSpan;
+  const singleWidth = label.scrollWidth;
+  const needed = Math.ceil((window.innerWidth * 3) / singleWidth) + 2;
+  const half = Array(needed).fill(singleSpan).join("");
+  label.innerHTML = half + half;
+
+  requestAnimationFrame(() => {
+    const halfWidth = label.scrollWidth / 2;
+    const duration = halfWidth / LABEL_SPEED;
+    label.style.animation = "none";
+    label.offsetHeight;
+    label.style.animation = `ticker-scroll ${duration}s linear infinite`;
+  });
+}
+
+
   try {
     const res = await fetch(WORKER_URL, { cache: "no-store" });
     const text = await res.text();
@@ -39,7 +64,7 @@ async function loadStats() {
 
       const level = parts[1].trim();
       if (level === "99") {
-        html += `<span class="osrs-99">[ ${skillNames[i]}: ${level} ]</span>`;
+        html += `<span class="osrs-99">[ ⭐${skillNames[i]}: ${level}⭐ ]</span>`;
       } else {
         html += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
       }
@@ -74,8 +99,12 @@ window.addEventListener("resize", () => {
     if (track && track.scrollWidth > 0) {
       applyTickerAnimation(track);
     }
+    buildLabelTrack();
   }, 150);
 });
 
-window.addEventListener("load", loadStats);
+window.addEventListener("load", () => {
+  loadStats();
+  buildLabelTrack();
+});
 setInterval(loadStats, 600000);
