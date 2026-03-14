@@ -178,6 +178,47 @@
         font-size: 14px;
       }
     }
+    #osrs-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  overflow: hidden;
+  background: #000;
+  color: #00ff66;
+  border-bottom: 1px solid #00ff66;
+  z-index: 9999;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+}
+
+#osrs-ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: osrs-scroll 90s linear infinite;
+}
+
+#osrs-ticker-track span {
+  display: inline-block;
+  margin-right: 40px;
+}
+
+@keyframes osrs-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* so your page content doesn't get hidden behind the fixed ticker */
+body {
+  padding-top: 40px;
+}
   </style>
 </head>
 <body>
@@ -236,6 +277,10 @@
 
       <div class="counter">
         visitor count: 9999999
+      </div>
+      
+      <div id="osrs-ticker">
+        <div id="osrs-ticker-track"></div>
       </div>
     </div>
   </div>
