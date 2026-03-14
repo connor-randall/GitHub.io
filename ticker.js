@@ -1,48 +1,45 @@
+console.log("NEW TICKER LOADED");
+
 const skillNames = [
-  "Overall","Attack","Defence","Strength","Hitpoints","Ranged","Prayer","Magic",
-  "Cooking","Woodcutting","Fletching","Fishing","Firemaking","Crafting",
-  "Smithing","Mining","Herblore","Agility","Thieving","Slayer",
-  "Farming","Runecraft","Hunter","Construction"
+  "Overall", "Attack", "Defence", "Strength", "Hitpoints", "Ranged", "Prayer", "Magic",
+  "Cooking", "Woodcutting", "Fletching", "Fishing", "Firemaking", "Crafting",
+  "Smithing", "Mining", "Herblore", "Agility", "Thieving", "Slayer",
+  "Farming", "Runecraft", "Hunter", "Construction"
 ];
+
+const WORKER_URL = "https://osrs-stat-bot.c-m-randall.workers.dev/";
 
 async function loadStats() {
   try {
-    const res = await fetch("https://osrs-stat-bot.c-m-randall.workers.dev/");
+    const res = await fetch(WORKER_URL, { cache: "no-store" });
     const text = await res.text();
 
-    console.log("OSRS response:", text);
+    console.log("RAW RESPONSE:", text.split("\n").slice(0, 5));
 
     const lines = text.trim().split("\n").slice(0, 24);
 
-    let ticker = "";
+    let html = "";
 
-    lines.forEach((line, i) => {
-      const parts = line.split(",");
+    for (let i = 0; i < lines.length; i++) {
+      const parts = lines[i].trim().split(",");
+      if (parts.length < 2) continue;
 
-      if (parts.length < 2) {
-        return;
-      }
-
-      const level = parts[1];
-      ticker += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
-    });
-
-    const track = document.getElementById("osrs-ticker-track");
-
-    if (!ticker) {
-      track.innerHTML = `<span>[ OSRS STATS UNAVAILABLE ]</span>`;
-      return;
+      const level = parts[1].trim();
+      html += `<span>[ ${skillNames[i]}: ${level} ]</span>`;
     }
 
-    track.innerHTML = ticker + ticker;
+    const track = document.getElementById("osrs-ticker-track");
+    if (track) {
+      track.innerHTML = html + html;
+    }
   } catch (err) {
     console.error("Ticker error:", err);
     const track = document.getElementById("osrs-ticker-track");
     if (track) {
-      track.innerHTML = `<span>[ OSRS STATS OFFLINE ]</span>`;
+      track.textContent = "[ OSRS STATS OFFLINE ]";
     }
   }
 }
 
-loadStats();
+window.addEventListener("load", loadStats);
 setInterval(loadStats, 600000);
