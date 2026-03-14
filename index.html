@@ -6,7 +6,6 @@
 <title>Connor Randall</title>
 
 <style>
-
 :root {
   --bg:#000080;
   --panel:#00005a;
@@ -17,72 +16,97 @@
   --shadow:#000000;
 }
 
-*{box-sizing:border-box;}
+* {
+  box-sizing:border-box;
+}
 
-html,body{
+html, body {
   margin:0;
   padding:0;
   min-height:100%;
   background:var(--bg);
   color:var(--text);
-  font-family:"Courier New",monospace;
+  font-family:"Courier New", monospace;
+  overflow-x:hidden;
 }
 
-body{
+body {
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:64px 16px 32px;
+  padding:120px 16px 32px;
   background-image:
     linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,0.06) 1px,transparent 1px);
   background-size:20px 20px;
 }
 
-/* ===== OSRS TICKER ===== */
+/* ===== TOP OSRS AREA ===== */
 
-#osrs-ticker{
+#osrs-header {
   position:fixed;
   top:0;
   left:0;
   width:100%;
+  z-index:9999;
+  background:#000;
+  border-bottom:2px solid lime;
+  box-shadow:0 2px 0 #003300;
+}
+
+#osrs-ticker {
+  width:100%;
   height:32px;
-  background:black;
   color:#00ff00;
-  font-family:monospace;
-  border-bottom:1px solid lime;
   display:flex;
   align-items:center;
   overflow:hidden;
-  z-index:9999;
+  border-bottom:1px solid #00aa00;
+  padding:0 12px;
 }
 
-#osrs-ticker-track{
+#osrs-ticker-track {
   white-space:nowrap;
   display:inline-block;
   padding-left:20px;
 }
 
-#osrs-ticker-track span{
+#osrs-ticker-track span {
   margin-right:40px;
+}
+
+.osrs-label-scroll {
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffff00;
+  background:#111;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:16px;
+}
+
+.osrs-label-scroll marquee {
+  width:100%;
 }
 
 /* ===== MAIN WINDOW ===== */
 
-.wrap{
+.wrap {
   width:100%;
   max-width:900px;
   text-align:center;
 }
 
-.window{
+.window {
   background:var(--panel);
   border:3px solid var(--border);
   box-shadow:8px 8px 0 var(--shadow);
   padding:18px 14px 28px;
 }
 
-.title-bar{
+.title-bar {
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -94,41 +118,42 @@ body{
   text-transform:uppercase;
 }
 
-.buttons{
+.buttons {
   display:flex;
   gap:6px;
 }
 
-.btn{
+.btn {
   width:16px;
   height:16px;
   border:2px solid #fff;
   background:#000;
 }
 
-pre.logo{
+pre.logo {
   margin:0;
   color:var(--accent);
   font-size:clamp(9px,1.5vw,16px);
   line-height:1.05;
+  white-space:pre;
   text-shadow:0 0 8px rgba(0,255,255,0.35);
 }
 
-.subtitle{
+.subtitle {
   margin-top:14px;
   font-size:22px;
 }
 
-.blink{
+.blink {
   animation:blink 1s steps(1) infinite;
   color:var(--accent-2);
 }
 
-@keyframes blink{
-  50%{opacity:0;}
+@keyframes blink {
+  50% { opacity:0; }
 }
 
-.divider{
+.divider {
   margin:26px auto 20px;
   width:min(720px,100%);
   color:var(--border);
@@ -136,7 +161,7 @@ pre.logo{
   white-space:nowrap;
 }
 
-.marquee-box{
+.marquee-box {
   margin:0 auto 22px;
   max-width:720px;
   border:2px solid var(--border);
@@ -145,7 +170,7 @@ pre.logo{
   color:#ffff00;
 }
 
-.intro{
+.intro {
   max-width:680px;
   margin:0 auto;
   padding:14px;
@@ -154,46 +179,78 @@ pre.logo{
   line-height:1.7;
 }
 
-.under-construction{
+.under-construction {
   margin-top:18px;
   color:#ffff00;
   text-transform:uppercase;
 }
 
-.stars{
+.stars {
   margin-top:22px;
   color:var(--accent-2);
   font-size:18px;
   letter-spacing:4px;
 }
 
-.counter{
+.counter {
   margin-top:26px;
   color:#00ff00;
 }
 
+@media (max-width:640px) {
+  body {
+    padding-top:126px;
+  }
+
+  .window {
+    padding:12px 10px 22px;
+  }
+
+  .title-bar {
+    font-size:12px;
+  }
+
+  .subtitle {
+    font-size:18px;
+  }
+
+  .intro {
+    font-size:14px;
+  }
+
+  .osrs-label-scroll {
+    font-size:14px;
+    letter-spacing:1px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- OSRS TICKER -->
-<div id="osrs-ticker">
-  <div id="osrs-ticker-track">loading stats...</div>
+<!-- TOP OSRS AREA -->
+<div id="osrs-header">
+  <div id="osrs-ticker">
+    <div id="osrs-ticker-track">loading stats...</div>
+  </div>
+  <div class="osrs-label-scroll">
+    <marquee behavior="alternate" direction="left" scrollamount="4">
+      &gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;
+    </marquee>
+  </div>
 </div>
 
 <div class="wrap">
+  <div class="window">
 
-<div class="window">
-
-<div class="title-bar">
-<span>conradrandy.com</span>
-<div class="buttons">
-<span class="btn"></span>
-<span class="btn"></span>
-<span class="btn"></span>
-</div>
-</div>
+    <div class="title-bar">
+      <span>conradrandy.com</span>
+      <div class="buttons">
+        <span class="btn"></span>
+        <span class="btn"></span>
+        <span class="btn"></span>
+      </div>
+    </div>
 
 <pre class="logo">
   ██████╗ ██████╗ ███╗   ██╗███╗   ██╗ ██████╗ ██████╗ 
@@ -211,38 +268,38 @@ pre.logo{
  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
 </pre>
 
-<div class="subtitle">
-&lt;IT professional&gt;<span class="blink">_</span>
-</div>
+    <div class="subtitle">
+      &lt;IT professional&gt;<span class="blink">_</span>
+    </div>
 
-<div class="divider">
-========================================================================
-</div>
+    <div class="divider">
+      ========================================================================
+    </div>
 
-<div class="marquee-box">
-<marquee behavior="scroll" direction="left" scrollamount="5">
-WELCOME TO MY WEBSITE . . . IT SUPPORT • WEB DEV • HOMELAB BUILDER • COLORADO • STILL UNDER CONSTRUCTION
-</marquee>
-</div>
+    <div class="marquee-box">
+      <marquee behavior="scroll" direction="left" scrollamount="5">
+        WELCOME TO MY WEBSITE . . . IT SUPPORT • WEB DEV • HOMELAB BUILDER • COLORADO • STILL UNDER CONSTRUCTION
+      </marquee>
+    </div>
 
-<div class="intro">
-Welcome!<br><br>
-Building websites, solving tech problems, and making weird little projects.
-</div>
+    <div class="intro">
+      Welcome!<br><br>
+      Building websites, solving tech problems, and making weird little projects.
+    </div>
 
-<div class="under-construction">
-[ under construction ]
-</div>
+    <div class="under-construction">
+      [ under construction ]
+    </div>
 
-<div class="stars">
-* * * * * * * * * *
-</div>
+    <div class="stars">
+      * * * * * * * * * *
+    </div>
 
-<div class="counter">
-visitor count: 9999999
-</div>
+    <div class="counter">
+      visitor count: 9999999
+    </div>
 
-</div>
+  </div>
 </div>
 
 <script src="ticker.js?v=3"></script>
