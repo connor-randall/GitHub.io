@@ -109,7 +109,7 @@ body {
 #osrs-label-track {
   white-space:nowrap;
   display:inline-block;
-  animation: ticker-scroll 18s linear infinite;
+  /* duration and content set dynamically by JS */
 }
 
 #osrs-label-track span {
@@ -259,20 +259,7 @@ pre.logo {
     <div id="osrs-ticker-track">loading stats...</div>
   </div>
   <div class="osrs-label-scroll">
-    <div id="osrs-label-track">
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-      <span>&gt;&gt;&gt; OSRS STATS &lt;&lt;&lt;</span>
-    </div>
+    <div id="osrs-label-track"></div>
   </div>
 </div>
 
@@ -338,7 +325,7 @@ pre.logo {
   </div>
 </div>
 
-<script src="ticker.js?v=5"></script>
+<script src="ticker.js?v=6"></script>
 
 </body>
 </html>
