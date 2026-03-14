@@ -1,4 +1,4 @@
-console.log("NEW TICKER LOADED");
+console.log("TICKER FILE LOADED");
 
 const skillNames = [
   "Overall", "Attack", "Defence", "Strength", "Hitpoints", "Ranged", "Prayer", "Magic",
@@ -14,7 +14,7 @@ async function loadStats() {
     const res = await fetch(WORKER_URL, { cache: "no-store" });
     const text = await res.text();
 
-    console.log("RAW RESPONSE:", text.split("\n").slice(0, 5));
+    console.log("RAW FIRST LINES:", text.split("\n").slice(0, 5));
 
     const lines = text.trim().split("\n").slice(0, 24);
 
@@ -29,9 +29,9 @@ async function loadStats() {
     }
 
     const track = document.getElementById("osrs-ticker-track");
-    if (track) {
-      track.innerHTML = html + html;
-    }
+    if (!track) return;
+
+    track.innerHTML = html + html;
   } catch (err) {
     console.error("Ticker error:", err);
     const track = document.getElementById("osrs-ticker-track");
