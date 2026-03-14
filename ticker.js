@@ -32,6 +32,11 @@ async function loadStats() {
     if (!track) return;
 
     track.innerHTML = html + html;
+
+    // Restart the CSS animation so it resets cleanly after each reload
+    track.style.animation = "none";
+    track.offsetHeight; // force reflow
+    track.style.animation = "";
   } catch (err) {
     console.error("Ticker error:", err);
     const track = document.getElementById("osrs-ticker-track");
