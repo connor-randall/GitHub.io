@@ -11,7 +11,7 @@
 // and return the response text. Then paste your Worker URL below.
 // =====================================================================
 
-const MOOD_WORKER_URL = "https://moodbot.c-m-randall.workers.dev/";
+const MOOD_WORKER_URL = "https://YOUR-MOOD-WORKER.workers.dev/";
 
 const MOOD_LABELS = { 1:"awful", 2:"bad", 3:"okay", 4:"good", 5:"great" };
 const STAR_COUNT  = { 1:"★", 2:"★★", 3:"★★★", 4:"★★★★", 5:"★★★★★" };
@@ -22,9 +22,12 @@ async function loadMood() {
     const text = await res.text();
     const rows = text.trim().split("\n").filter(r => r.trim());
 
+    // Skip header row
+    const dataRows = rows.filter(r => !r.toLowerCase().startsWith("timestamp"));
+
     // Parse into { dateKey: rating } — keep last entry per day
     const byDay = {};
-    for (const row of rows) {
+    for (const row of dataRows) {
       const parts = row.trim().split(",");
       if (parts.length < 2) continue;
       const rating = parseInt(parts[1].trim(), 10);
@@ -38,6 +41,17 @@ async function loadMood() {
       byDay[key] = rating;
     }
 
+    // Most recent entry is "today" regardless of exact date
+    const lastRow = dataRows[dataRows.length - 1];
+    let todayRating = 0;
+    if (lastRow) {
+      const parts = lastRow.trim().split(",");
+      if (parts.length >= 2) {
+        const r = parseInt(parts[1].trim(), 10);
+        if (r >= 1 && r <= 5) todayRating = r;
+      }
+    }
+
     // Build last 30 days array ending today
     const today = new Date();
     const days = [];
@@ -49,7 +63,7 @@ async function loadMood() {
     }
 
     renderChart(days);
-    renderToday(days[days.length - 1].rating);
+    renderToday(todayRating);
 
   } catch (err) {
     console.error("Mood error:", err);
