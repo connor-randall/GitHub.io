@@ -246,6 +246,110 @@ pre.logo {
     letter-spacing:1px;
   }
 }
+/* ===== MOOD TRACKER ===== */
+
+.mood-section {
+  margin-top:26px;
+  padding:14px;
+  border:2px solid var(--border);
+  background:rgba(0,0,0,0.35);
+}
+
+.mood-title {
+  color:var(--accent);
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:14px;
+  text-shadow:0 0 8px rgba(0,255,255,0.4);
+}
+
+.mood-today {
+  margin-bottom:18px;
+  font-size:14px;
+  color:var(--text);
+}
+
+.mood-today-label {
+  color:var(--accent-2);
+  margin-right:8px;
+}
+
+#mood-today-value {
+  font-size:22px;
+  font-weight:bold;
+  margin-right:6px;
+}
+
+#mood-today-stars {
+  color:#ffd700;
+  letter-spacing:2px;
+}
+
+.mood-chart-wrap {
+  margin:0 auto;
+}
+
+.mood-chart-label {
+  font-size:10px;
+  color:#888;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+
+#mood-chart {
+  display:flex;
+  align-items:flex-end;
+  gap:3px;
+  height:80px;
+  padding:4px 0;
+}
+
+.mood-bar {
+  flex:1;
+  min-width:4px;
+  border-top:2px solid;
+  position:relative;
+  cursor:default;
+  transition:opacity 0.15s;
+}
+
+.mood-bar:hover { opacity:0.75; }
+
+.mood-bar[data-r="1"] { background:#ff2222; border-color:#ff6666; }
+.mood-bar[data-r="2"] { background:#ff8800; border-color:#ffaa44; }
+.mood-bar[data-r="3"] { background:#ffff00; border-color:#ffff88; }
+.mood-bar[data-r="4"] { background:#00cc44; border-color:#44ff88; }
+.mood-bar[data-r="5"] { background:#00ffff; border-color:#88ffff; }
+.mood-bar[data-r="0"] { background:#333;    border-color:#555;    }
+
+.mood-chart-dates {
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  color:#666;
+  margin-top:4px;
+}
+
+.mood-legend {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+.ml {
+  font-size:10px;
+  padding:2px 6px;
+  border:1px solid;
+}
+
+.ml-1 { color:#ff6666; border-color:#ff2222; }
+.ml-2 { color:#ffaa44; border-color:#ff8800; }
+.ml-3 { color:#ffff88; border-color:#ffff00; }
+.ml-4 { color:#44ff88; border-color:#00cc44; }
+.ml-5 { color:#88ffff; border-color:#00ffff; }
+
 </style>
 </head>
 
@@ -316,6 +420,37 @@ pre.logo {
       * * * * * * * * * *
     </div>
 
+    <div class="divider">
+      ========================================================================
+    </div>
+
+    <div class="mood-section">
+      <div class="mood-title">&gt;&gt; DAILY MOOD LOG &lt;&lt;</div>
+
+      <div class="mood-today">
+        <span class="mood-today-label">TODAY:</span>
+        <span id="mood-today-value">--</span>
+        <span id="mood-today-stars"></span>
+      </div>
+
+      <div class="mood-chart-wrap">
+        <div class="mood-chart-label">LAST 30 DAYS</div>
+        <div id="mood-chart"></div>
+        <div class="mood-chart-dates">
+          <span id="mood-date-start"></span>
+          <span id="mood-date-end"></span>
+        </div>
+      </div>
+
+      <div class="mood-legend">
+        <span class="ml ml-1">1 awful</span>
+        <span class="ml ml-2">2 bad</span>
+        <span class="ml ml-3">3 okay</span>
+        <span class="ml ml-4">4 good</span>
+        <span class="ml ml-5">5 great</span>
+      </div>
+    </div>
+
     <div class="counter">
       visitor count: 9999999
     </div>
@@ -323,7 +458,8 @@ pre.logo {
   </div>
 </div>
 
-<script src="ticker.js?v=9"></script>
+<script src="ticker.js?v=8"></script>
+<script src="mood.js?v=1"></script>
 
 </body>
 </html>
