@@ -11,7 +11,7 @@
 // and return the response text. Then paste your Worker URL below.
 // =====================================================================
 
-const MOOD_WORKER_URL = "https://YOUR-MOOD-WORKER.workers.dev/";
+const MOOD_WORKER_URL = "https://moodbot.c-m-randall.workers.dev/";
 
 const MOOD_LABELS = { 1:"awful", 2:"bad", 3:"okay", 4:"good", 5:"great" };
 const STAR_COUNT  = { 1:"★", 2:"★★", 3:"★★★", 4:"★★★★", 5:"★★★★★" };
