@@ -452,14 +452,26 @@ pre.logo {
     </div>
 
     <div class="counter">
-      visitor count: 9999999
+      visitor count: <span id="visitor-count">...</span>
     </div>
 
   </div>
 </div>
 
 <script src="ticker.js?v=8"></script>
-<script src="mood.js?v=4"></script>
+<script src="mood.js?v=1"></script>
+<script>
+fetch("https://visitorcount.c-m-randall.workers.dev/")
+  .then(r => r.text())
+  .then(n => {
+    const el = document.getElementById("visitor-count");
+    if (el) el.textContent = parseInt(n).toLocaleString();
+  })
+  .catch(() => {
+    const el = document.getElementById("visitor-count");
+    if (el) el.textContent = "???";
+  });
+</script>
 
 </body>
 </html>
