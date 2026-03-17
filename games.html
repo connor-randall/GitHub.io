@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connor Randall | Projects</title>
-<meta name="description" content="Connor Randall — Raspberry Pi, homelab, and web dev projects.">
+<title>Connor Randall | Games</title>
+<meta name="description" content="Connor Randall — little dumb games I've made.">
 <meta name="author" content="Connor Randall">
 <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -84,8 +84,8 @@ body {
 #site-nav a {
   color:#ffff00; text-decoration:none;
   font-family:"Courier New", monospace;
-  font-size:12px; text-transform:uppercase; letter-spacing:1px;
-  padding:6px 18px; border-right:1px solid var(--border);
+  font-size:14px; text-transform:uppercase; letter-spacing:2px;
+  padding:10px 24px; border-right:1px solid var(--border);
   transition:background 0.1s, color 0.1s;
 }
 #site-nav a:first-child { border-left:1px solid var(--border); }
@@ -110,11 +110,9 @@ body {
 .btn { width:16px; height:16px; border:2px solid #fff; background:#000; }
 
 .page-heading {
-  text-align:center;
-  color:var(--accent);
+  text-align:center; color:var(--accent);
   font-size:clamp(14px, 2.5vw, 22px);
-  letter-spacing:4px;
-  text-transform:uppercase;
+  letter-spacing:4px; text-transform:uppercase;
   text-shadow:0 0 10px rgba(0,255,255,0.5);
   margin-bottom:6px;
 }
@@ -127,104 +125,139 @@ body {
   color:var(--border); overflow:hidden; white-space:nowrap; text-align:center;
 }
 
-/* ===== FILTER TABS ===== */
-.filter-bar {
-  display:flex; justify-content:center; gap:8px;
-  flex-wrap:wrap; margin-bottom:24px;
+/* ===== ARCADE MARQUEE ===== */
+.arcade-marquee {
+  text-align:center;
+  margin-bottom:24px;
+  border:2px solid var(--accent-2);
+  background:#000;
+  padding:8px;
+  color:var(--accent-2);
+  font-size:12px;
+  letter-spacing:2px;
+  animation:pulse-border 2s ease-in-out infinite;
 }
-.filter-btn {
-  background:#000; border:1px solid var(--border);
-  color:#888; font-family:"Courier New", monospace;
-  font-size:11px; letter-spacing:1px; text-transform:uppercase;
-  padding:4px 12px; cursor:pointer;
-  transition:all 0.15s;
-}
-.filter-btn:hover, .filter-btn.on {
-  border-color:var(--accent); color:var(--accent);
-  background:#001a1a;
+@keyframes pulse-border {
+  0%,100% { border-color:var(--accent-2); box-shadow:0 0 4px var(--accent-2); }
+  50%      { border-color:#ff99dd; box-shadow:0 0 12px var(--accent-2); }
 }
 
-/* ===== PROJECT GRID ===== */
-.projects-grid {
+/* ===== GAME GRID ===== */
+.games-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
   gap:16px;
   max-width:860px;
   margin:0 auto;
 }
 
-.project-card {
-  background:rgba(0,0,0,0.45);
+.game-card {
+  background:rgba(0,0,0,0.5);
   border:2px solid var(--border);
   padding:16px;
+  text-align:center;
   transition:border-color 0.2s, transform 0.15s;
-  cursor:default;
+  position:relative;
+  overflow:hidden;
 }
-.project-card:hover {
-  border-color:var(--accent);
+.game-card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,255,255,0.04) 0%, transparent 60%);
+  pointer-events:none;
+}
+.game-card:hover {
+  border-color:var(--accent-2);
   transform:translate(-2px,-2px);
-  box-shadow:4px 4px 0 var(--accent);
+  box-shadow:4px 4px 0 var(--accent-2);
 }
-.project-card[data-cat="pi"] { border-left:3px solid #00ff88; }
-.project-card[data-cat="web"] { border-left:3px solid var(--accent-2); }
+.game-card.coming-soon {
+  opacity:0.55;
+  cursor:not-allowed;
+}
+.game-card.coming-soon:hover {
+  transform:none;
+  box-shadow:none;
+  border-color:var(--border);
+}
 
-.project-icon {
-  font-size:24px;
-  margin-bottom:10px;
+.game-icon {
+  font-size:36px;
+  margin-bottom:12px;
+  display:block;
+  filter:drop-shadow(0 0 6px rgba(255,102,204,0.5));
 }
-.project-name {
+.game-name {
   color:#ffff00;
-  font-size:13px;
+  font-size:14px;
   font-weight:bold;
   letter-spacing:1px;
   text-transform:uppercase;
-  margin-bottom:6px;
+  margin-bottom:8px;
 }
-.project-cat {
-  display:inline-block;
-  font-size:9px;
-  letter-spacing:2px;
-  padding:2px 6px;
-  border:1px solid;
-  margin-bottom:10px;
-  text-transform:uppercase;
-}
-.project-cat.pi  { color:#00ff88; border-color:#00ff88; }
-.project-cat.web { color:var(--accent-2); border-color:var(--accent-2); }
-
-.project-desc {
+.game-desc {
   color:#aaa;
   font-size:12px;
-  line-height:1.7;
-  margin-bottom:12px;
+  line-height:1.6;
+  margin-bottom:14px;
 }
-.project-status {
-  font-size:10px;
-  letter-spacing:1px;
-}
-.project-status.done    { color:#00ff88; }
-.project-status.wip     { color:#ffff00; }
-.project-status.planned { color:#888; }
-
-.project-link {
+.game-badge {
   display:inline-block;
-  margin-top:10px;
-  color:var(--accent);
-  font-size:11px;
-  text-decoration:none;
-  border-bottom:1px solid transparent;
-  transition:border-color 0.15s;
+  font-size:10px;
+  letter-spacing:2px;
+  padding:3px 8px;
+  border:1px solid;
+  text-transform:uppercase;
+  margin-bottom:14px;
 }
-.project-link:hover { border-color:var(--accent); }
+.game-badge.playable { color:#00ff88; border-color:#00ff88; }
+.game-badge.soon     { color:#888;    border-color:#555;    }
+.game-badge.wip      { color:#ffff00; border-color:#ffaa00; }
+
+.play-btn {
+  display:inline-block;
+  background:#000;
+  border:2px solid var(--accent);
+  color:var(--accent);
+  font-family:"Courier New", monospace;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:6px 18px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background 0.15s, color 0.15s;
+}
+.play-btn:hover { background:var(--accent); color:#000; }
+
+.coming-soon-label {
+  color:#555;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-top:8px;
+}
 
 .placeholder-note {
   text-align:center; color:#555;
   font-size:11px; margin-top:16px; letter-spacing:2px;
 }
 
+/* ===== INSERT COIN ===== */
+.insert-coin {
+  text-align:center;
+  margin-top:30px;
+  color:#ffd700;
+  font-size:14px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  animation:blink 1.2s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity:0; } }
+
 @media (max-width:640px) {
   body { padding-top:108px; }
-  .projects-grid { grid-template-columns:1fr; }
+  .games-grid { grid-template-columns:1fr; }
   #site-nav a { font-size:11px; padding:5px 10px; }
 }
 </style>
@@ -241,107 +274,86 @@ body {
   <nav id="site-nav">
     <a href="index.html">[ home ]</a>
     <a href="experience.html">[ experience ]</a>
-    <a href="projects.html" class="active">[ projects ]</a>
-    <a href="games.html">[ games ]</a>
+    <a href="projects.html">[ projects ]</a>
+    <a href="games.html" class="active">[ games ]</a>
   </nav>
 </div>
 
 <div class="wrap">
   <div class="window">
     <div class="title-bar">
-      <span>projects.exe</span>
+      <span>games.exe</span>
       <div class="buttons">
         <span class="btn"></span><span class="btn"></span><span class="btn"></span>
       </div>
     </div>
 
-    <div class="page-heading">&gt;&gt; projects &lt;&lt;</div>
-    <div class="page-sub">// things i've built or broken //</div>
+    <div class="page-heading">&gt;&gt; the arcade &lt;&lt;</div>
+    <div class="page-sub">// little dumb things i made //</div>
 
     <div class="divider">========================================================================</div>
 
-    <div class="filter-bar">
-      <button class="filter-btn on" data-filter="all">[ all ]</button>
-      <button class="filter-btn" data-filter="pi">[ raspberry pi ]</button>
-      <button class="filter-btn" data-filter="web">[ web dev ]</button>
+    <div class="arcade-marquee">
+      <marquee behavior="scroll" direction="left" scrollamount="3">
+        ★ WARNING: GAMES MAY BE EXTREMELY DUMB ★ PLAY AT YOUR OWN RISK ★ NO REFUNDS ★ HIGH SCORES NOT SAVED ★ BUGS ARE FEATURES ★
+      </marquee>
     </div>
 
-    <div class="projects-grid" id="projects-grid">
+    <div class="games-grid">
 
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">🍓</div>
-        <div class="project-name">Placeholder Pi Project</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          A placeholder for a cool Raspberry Pi homelab project. Add your real description here.
+      <!-- Placeholder: playable game -->
+      <div class="game-card">
+        <span class="game-icon">🕹️</span>
+        <div class="game-name">Placeholder Game</div>
+        <span class="game-badge playable">playable</span>
+        <div class="game-desc">
+          A placeholder for a real game you've made. Drop a link or embed it here.
         </div>
-        <div class="project-status wip">[ status: wip ]</div>
+        <a class="play-btn" href="#">[ play ]</a>
       </div>
 
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">📺</div>
-        <div class="project-name">Placeholder Pi Project 2</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          Another Raspberry Pi project placeholder. Swap this out with something real.
+      <!-- Placeholder: WIP game -->
+      <div class="game-card">
+        <span class="game-icon">🔧</span>
+        <div class="game-name">Work In Progress</div>
+        <span class="game-badge wip">in progress</span>
+        <div class="game-desc">
+          Something being built right now. Swap this out when it's ready.
         </div>
-        <div class="project-status done">[ status: complete ]</div>
+        <div class="coming-soon-label">// check back later //</div>
       </div>
 
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">🌡️</div>
-        <div class="project-name">Placeholder Pi Project 3</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          Yet another placeholder. You've got plenty of real Pi projects to fill this with.
+      <!-- Placeholder: coming soon -->
+      <div class="game-card coming-soon">
+        <span class="game-icon">❓</span>
+        <div class="game-name">???</div>
+        <span class="game-badge soon">coming soon</span>
+        <div class="game-desc">
+          Something is brewing. No idea what yet.
         </div>
-        <div class="project-status planned">[ status: planned ]</div>
+        <div class="coming-soon-label">// unknown //</div>
       </div>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">🌐</div>
-        <div class="project-name">This Website</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          conradrandy.com — retro personal site with OSRS stats ticker, mood tracker, and visitor counter. Built with vanilla HTML/CSS/JS and Cloudflare Workers.
+      <!-- Placeholder: coming soon 2 -->
+      <div class="game-card coming-soon">
+        <span class="game-icon">💡</span>
+        <div class="game-name">Idea TBD</div>
+        <span class="game-badge soon">coming soon</span>
+        <div class="game-desc">
+          Had an idea at 2am. We'll see if it survives until morning.
         </div>
-        <div class="project-status wip">[ status: wip ]</div>
-        <a class="project-link" href="https://github.com/connor-randall/GitHub.io" target="_blank">&gt; github &rarr;</a>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">💻</div>
-        <div class="project-name">Placeholder Web Project</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          A placeholder for another web dev project. Add a real one here.
-        </div>
-        <div class="project-status planned">[ status: planned ]</div>
+        <div class="coming-soon-label">// maybe //</div>
       </div>
 
     </div>
 
-    <p class="placeholder-note">// replace placeholder cards with real projects //</p>
+    <p class="placeholder-note">// replace placeholders with real games when they exist //</p>
+
+    <div class="insert-coin">★ insert coin to continue ★</div>
 
   </div>
 </div>
 
 <script src="ticker.js?v=8"></script>
-<script>
-// Filter buttons
-const filterBtns = document.querySelectorAll(".filter-btn");
-const cards = document.querySelectorAll(".project-card");
-
-filterBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterBtns.forEach(b => b.classList.remove("on"));
-    btn.classList.add("on");
-    const f = btn.dataset.filter;
-    cards.forEach(c => {
-      c.style.display = (f === "all" || c.dataset.cat === f) ? "" : "none";
-    });
-  });
-});
-</script>
 </body>
 </html>
