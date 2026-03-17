@@ -157,6 +157,7 @@ body {
   background:rgba(0,0,0,0.45);
   border:2px solid var(--border);
   padding:16px;
+  text-align:center;
   transition:border-color 0.2s, transform 0.15s;
   cursor:default;
 }
@@ -169,8 +170,14 @@ body {
 .project-card[data-cat="web"] { border-left:3px solid var(--accent-2); }
 
 .project-icon {
-  font-size:24px;
-  margin-bottom:10px;
+  font-size:11px;
+  line-height:1.3;
+  margin-bottom:12px;
+  color:var(--accent);
+  text-shadow:0 0 8px rgba(0,255,255,0.5);
+  white-space:pre;
+  font-family:"Courier New",monospace;
+  display:inline-block;
 }
 .project-name {
   color:#ffff00;
@@ -222,11 +229,226 @@ body {
   font-size:11px; margin-top:16px; letter-spacing:2px;
 }
 
+/* ===== VIDEO PLAYER DEMO MODAL ===== */
+#demo-modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(0,0,0,0.85);
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+#demo-modal.open { display:flex; }
+
+#demo-window {
+  background:#000;
+  border:3px solid #33ff33;
+  box-shadow:0 0 40px rgba(51,255,51,0.25);
+  width:100%;
+  max-width:700px;
+  font-family:"Courier New", monospace;
+  color:#33ff33;
+  position:relative;
+  max-height:90vh;
+  display:flex;
+  flex-direction:column;
+}
+
+#demo-titlebar {
+  background:#33ff33;
+  color:#000;
+  padding:5px 10px;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-shrink:0;
+}
+#demo-close {
+  cursor:pointer;
+  background:#000;
+  color:#33ff33;
+  border:none;
+  font-family:"Courier New",monospace;
+  font-size:12px;
+  padding:2px 8px;
+  letter-spacing:1px;
+}
+#demo-close:hover { background:#33ff33; color:#000; }
+
+#demo-body {
+  display:flex;
+  flex:1;
+  overflow:hidden;
+  min-height:0;
+}
+
+/* file tree panel */
+#demo-tree {
+  width:200px;
+  flex-shrink:0;
+  border-right:1px solid #1a6600;
+  padding:8px 0;
+  overflow-y:auto;
+  font-size:12px;
+}
+.tree-folder {
+  padding:4px 10px;
+  cursor:pointer;
+  color:#33ff33;
+  user-select:none;
+  white-space:nowrap;
+}
+.tree-folder:hover { background:#001a00; }
+.tree-folder.open { color:#66ff66; }
+.tree-file {
+  padding:3px 10px 3px 22px;
+  cursor:pointer;
+  color:#22bb22;
+  font-size:11px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.tree-file:hover { background:#001a00; color:#33ff33; }
+.tree-file.playing { color:#ffff00; }
+.tree-children { display:none; }
+.tree-children.open { display:block; }
+
+/* main panel */
+#demo-main {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:10px;
+  min-width:0;
+}
+
+#demo-screen {
+  background:#000;
+  border:1px solid #1a6600;
+  flex:1;
+  min-height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+#demo-screen-text {
+  color:#1a6600;
+  font-size:11px;
+  letter-spacing:2px;
+  text-align:center;
+}
+#demo-now-playing {
+  position:absolute;
+  bottom:6px;
+  left:8px;
+  color:#33ff33;
+  font-size:10px;
+  letter-spacing:1px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:calc(100% - 16px);
+}
+#demo-cpu {
+  position:absolute;
+  top:6px;
+  right:8px;
+  color:#1a6600;
+  font-size:10px;
+}
+
+/* scanline effect */
+#demo-screen::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.18) 3px,
+    rgba(0,0,0,0.18) 4px
+  );
+  pointer-events:none;
+}
+
+/* progress bar */
+#demo-progress-wrap {
+  height:16px;
+  background:#001a00;
+  border:1px solid #1a6600;
+  margin-bottom:6px;
+  cursor:pointer;
+  position:relative;
+}
+#demo-progress-fill {
+  height:100%;
+  background:#33ff33;
+  width:0%;
+  transition:width 0.25s linear;
+}
+#demo-time {
+  position:absolute;
+  right:4px;
+  top:0;
+  line-height:16px;
+  font-size:9px;
+  color:#33ff33;
+  pointer-events:none;
+}
+
+/* controls */
+#demo-controls {
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:6px;
+}
+.demo-btn {
+  background:#000;
+  border:1px solid #33ff33;
+  color:#33ff33;
+  font-family:"Courier New",monospace;
+  font-size:10px;
+  letter-spacing:1px;
+  padding:4px 8px;
+  cursor:pointer;
+  text-transform:uppercase;
+  transition:background 0.1s, color 0.1s;
+}
+.demo-btn:hover { background:#33ff33; color:#000; }
+.demo-btn:disabled { border-color:#1a6600; color:#1a6600; cursor:default; }
+.demo-btn:disabled:hover { background:#000; color:#1a6600; }
+
+#demo-vol-label {
+  font-size:10px;
+  color:#33ff33;
+  margin-left:auto;
+  letter-spacing:1px;
+}
+#demo-status {
+  font-size:10px;
+  color:#888;
+  letter-spacing:1px;
+  min-height:14px;
+}
+
 @media (max-width:640px) {
   body { padding-top:108px; }
   .projects-grid { grid-template-columns:1fr; }
   #site-nav a { font-size:11px; padding:5px 10px; }
 }
+
 </style>
 </head>
 <body>
@@ -268,61 +490,82 @@ body {
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">🍓</div>
-        <div class="project-name">Placeholder Pi Project</div>
+      <div class="project-card" data-cat="pi" style="grid-column: span 2; border-left:3px solid #00ff88; cursor:pointer;" onclick="openDemo()">
+        <div class="project-icon">.=============.
+|  .-------.  |
+|  | > RPi |  |
+|  '-------'  |
+'===[_____]==='</div>
+        <div class="project-name">Pi Video Player</div>
         <span class="project-cat pi">raspberry pi</span>
         <div class="project-desc">
-          A placeholder for a cool Raspberry Pi homelab project. Add your real description here.
-        </div>
-        <div class="project-status wip">[ status: wip ]</div>
-      </div>
-
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">📺</div>
-        <div class="project-name">Placeholder Pi Project 2</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          Another Raspberry Pi project placeholder. Swap this out with something real.
+          A full-screen video player built for Raspberry Pi 5 with a HyperPixel 4" touchscreen and HDMI output. Green-on-black terminal UI built in Python/Tkinter, MPV-powered playback via Unix socket, folder tree navigation, dual-display management, volume control, seek bar, playlist autoplay, and CPU temp readout.
         </div>
         <div class="project-status done">[ status: complete ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <div style="margin-top:12px;">
+          <span style="background:#000;border:2px solid #33ff33;color:#33ff33;font-family:'Courier New',monospace;font-size:11px;letter-spacing:2px;padding:5px 14px;cursor:pointer;">[ click to demo &rarr; ]</span>
+        </div>
       </div>
 
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">🌡️</div>
-        <div class="project-name">Placeholder Pi Project 3</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          Yet another placeholder. You've got plenty of real Pi projects to fill this with.
-        </div>
-        <div class="project-status planned">[ status: planned ]</div>
-      </div>
+
+
 
       <div class="project-card" data-cat="web">
-        <div class="project-icon">🌐</div>
+        <div class="project-icon">  .-----.
+ /  * *  \
+| -- | -- |
+ \ . * . /
+  '-----'</div>
         <div class="project-name">This Website</div>
         <span class="project-cat web">web dev</span>
         <div class="project-desc">
           conradrandy.com — retro personal site with OSRS stats ticker, mood tracker, and visitor counter. Built with vanilla HTML/CSS/JS and Cloudflare Workers.
         </div>
         <div class="project-status wip">[ status: wip ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
         <a class="project-link" href="https://github.com/connor-randall/GitHub.io" target="_blank">&gt; github &rarr;</a>
       </div>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">💻</div>
-        <div class="project-name">Placeholder Web Project</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          A placeholder for another web dev project. Add a real one here.
-        </div>
-        <div class="project-status planned">[ status: planned ]</div>
-      </div>
 
     </div>
 
-    <p class="placeholder-note">// replace placeholder cards with real projects //</p>
+  </div>
+</div>
 
+<!-- VIDEO PLAYER DEMO MODAL -->
+<div id="demo-modal">
+  <div id="demo-window">
+    <div id="demo-titlebar">
+      <span>VIDEO PLAYER — RandallPi [720x720]</span>
+      <button id="demo-close" onclick="closeDemo()">[ X ]</button>
+    </div>
+    <div id="demo-body">
+      <div id="demo-tree" id="file-tree"></div>
+      <div id="demo-main">
+        <div id="demo-screen">
+          <div id="demo-screen-text">■ HDMI OUTPUT ■<br><br>select a file to play</div>
+          <div id="demo-now-playing"></div>
+          <div id="demo-cpu">CPU: --°C</div>
+        </div>
+        <div id="demo-progress-wrap" onclick="demoSeek(event)">
+          <div id="demo-progress-fill"></div>
+          <span id="demo-time">00:00 / 00:00</span>
+        </div>
+        <div id="demo-controls">
+          <button class="demo-btn" id="btn-rew" onclick="demoRewind()" disabled>« -10s</button>
+          <button class="demo-btn" id="btn-pp"  onclick="demoPlayPause()" disabled>PLAY</button>
+          <button class="demo-btn" id="btn-ff"  onclick="demoFF()" disabled>+10s »</button>
+          <button class="demo-btn" id="btn-stop" onclick="demoStop()" disabled>■ STOP</button>
+          <button class="demo-btn" id="btn-next" onclick="demoNext()" disabled>NEXT ▶</button>
+          <button class="demo-btn" id="btn-vd"  onclick="demoVolDown()">VOL -</button>
+          <button class="demo-btn" id="btn-vu"  onclick="demoVolUp()">VOL +</button>
+          <button class="demo-btn" id="btn-mute" onclick="demoMute()">MUTE</button>
+          <span id="demo-vol-label">VOL: 120</span>
+        </div>
+        <div id="demo-status">Ready — select a file from the tree</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -331,7 +574,6 @@ body {
 // Filter buttons
 const filterBtns = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".project-card");
-
 filterBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     filterBtns.forEach(b => b.classList.remove("on"));
@@ -342,6 +584,225 @@ filterBtns.forEach(btn => {
     });
   });
 });
+
+// ===== DEMO STATE =====
+const demoFiles = {
+  "Movies": [
+    { name: "blade_runner_2049.mp4", dur: 9720 },
+    { name: "the_thing_1982.mkv",    dur: 6600 },
+    { name: "alien_1979.mkv",        dur: 6960 },
+  ],
+  "TV Shows": [
+    { name: "sopranos_s01e01.mp4",   dur: 3900 },
+    { name: "sopranos_s01e02.mp4",   dur: 3720 },
+    { name: "bb_s01e01.mkv",         dur: 3480 },
+  ],
+  "Misc": [
+    { name: "timelapse_denver.mp4",  dur: 420  },
+    { name: "test_4k_sample.mkv",    dur: 60   },
+  ]
+};
+
+let demoState = {
+  playing: false,
+  paused: false,
+  muted: false,
+  volume: 120,
+  pos: 0,
+  dur: 0,
+  file: null,
+  folder: null,
+  interval: null,
+  cpuInterval: null,
+  openFolders: new Set(),
+  playlist: [],
+  playlistIndex: -1,
+};
+
+function openDemo() {
+  document.getElementById("demo-modal").classList.add("open");
+  buildTree();
+  startCpuSim();
+}
+function closeDemo() {
+  document.getElementById("demo-modal").classList.remove("open");
+  demoStop();
+  clearInterval(demoState.cpuInterval);
+}
+document.getElementById("demo-modal").addEventListener("click", function(e) {
+  if (e.target === this) closeDemo();
+});
+
+function buildTree() {
+  const tree = document.getElementById("demo-tree");
+  tree.innerHTML = "";
+  for (const [folder, files] of Object.entries(demoFiles)) {
+    const folderEl = document.createElement("div");
+    folderEl.className = "tree-folder" + (demoState.openFolders.has(folder) ? " open" : "");
+    folderEl.textContent = (demoState.openFolders.has(folder) ? "▼ " : "▶ ") + folder + "/";
+    folderEl.onclick = () => toggleFolder(folder);
+    tree.appendChild(folderEl);
+
+    const childEl = document.createElement("div");
+    childEl.className = "tree-children" + (demoState.openFolders.has(folder) ? " open" : "");
+    files.forEach((f, i) => {
+      const fileEl = document.createElement("div");
+      fileEl.className = "tree-file" + (demoState.file === f.name ? " playing" : "");
+      fileEl.textContent = f.name;
+      fileEl.title = f.name;
+      fileEl.onclick = () => demoPlay(folder, i);
+      childEl.appendChild(fileEl);
+    });
+    tree.appendChild(childEl);
+  }
+}
+
+function toggleFolder(folder) {
+  if (demoState.openFolders.has(folder)) {
+    demoState.openFolders.delete(folder);
+  } else {
+    demoState.openFolders.add(folder);
+  }
+  buildTree();
+}
+
+function demoPlay(folder, index) {
+  demoStop();
+  const file = demoFiles[folder][index];
+  demoState.playing = true;
+  demoState.paused = false;
+  demoState.file = file.name;
+  demoState.folder = folder;
+  demoState.dur = file.dur;
+  demoState.pos = 0;
+
+  // build flat playlist from same folder
+  demoState.playlist = demoFiles[folder].map((f, i) => ({ ...f, folder, idx: i }));
+  demoState.playlistIndex = index;
+
+  setStatus("Playing: " + file.name);
+  document.getElementById("demo-screen-text").style.display = "none";
+  document.getElementById("demo-now-playing").textContent = "▶ " + file.name;
+  setControlsEnabled(true);
+  document.getElementById("btn-pp").textContent = "PAUSE";
+
+  demoState.interval = setInterval(() => {
+    if (!demoState.paused) {
+      demoState.pos += 0.25;
+      if (demoState.pos >= demoState.dur) {
+        demoAutoNext();
+        return;
+      }
+      updateProgress();
+    }
+  }, 250);
+
+  buildTree();
+}
+
+function demoAutoNext() {
+  const next = demoState.playlistIndex + 1;
+  if (next < demoState.playlist.length) {
+    demoPlay(demoState.folder, next);
+  } else {
+    demoStop();
+    setStatus("End of playlist.");
+  }
+}
+
+function demoNext() {
+  demoAutoNext();
+}
+
+function demoPlayPause() {
+  if (!demoState.playing) return;
+  demoState.paused = !demoState.paused;
+  document.getElementById("btn-pp").textContent = demoState.paused ? "PLAY" : "PAUSE";
+  setStatus(demoState.paused ? "Paused: " + demoState.file : "Playing: " + demoState.file);
+}
+
+function demoStop() {
+  clearInterval(demoState.interval);
+  demoState.playing = false;
+  demoState.paused = false;
+  demoState.file = null;
+  demoState.pos = 0;
+  demoState.dur = 0;
+  document.getElementById("demo-progress-fill").style.width = "0%";
+  document.getElementById("demo-time").textContent = "00:00 / 00:00";
+  document.getElementById("demo-screen-text").style.display = "";
+  document.getElementById("demo-now-playing").textContent = "";
+  setControlsEnabled(false);
+  setStatus("Ready — select a file from the tree");
+  buildTree();
+}
+
+function demoRewind() {
+  if (!demoState.playing) return;
+  demoState.pos = Math.max(0, demoState.pos - 10);
+  updateProgress();
+}
+function demoFF() {
+  if (!demoState.playing) return;
+  demoState.pos = Math.min(demoState.dur - 1, demoState.pos + 10);
+  updateProgress();
+}
+
+function demoVolUp() {
+  demoState.volume = Math.min(200, demoState.volume + 5);
+  updateVolLabel();
+}
+function demoVolDown() {
+  demoState.volume = Math.max(0, demoState.volume - 5);
+  updateVolLabel();
+}
+function demoMute() {
+  demoState.muted = !demoState.muted;
+  document.getElementById("btn-mute").textContent = demoState.muted ? "UNMUTE" : "MUTE";
+  updateVolLabel();
+}
+function updateVolLabel() {
+  document.getElementById("demo-vol-label").textContent =
+    "VOL: " + demoState.volume + (demoState.muted ? " (M)" : "");
+}
+
+function demoSeek(e) {
+  if (!demoState.playing || !demoState.dur) return;
+  const bar = document.getElementById("demo-progress-wrap");
+  const pct = e.offsetX / bar.offsetWidth;
+  demoState.pos = pct * demoState.dur;
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = demoState.dur > 0 ? (demoState.pos / demoState.dur) * 100 : 0;
+  document.getElementById("demo-progress-fill").style.width = pct + "%";
+  document.getElementById("demo-time").textContent = fmt(demoState.pos) + " / " + fmt(demoState.dur);
+}
+
+function fmt(s) {
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return String(m).padStart(2,"0") + ":" + String(sec).padStart(2,"0");
+}
+
+function setControlsEnabled(on) {
+  ["btn-rew","btn-pp","btn-ff","btn-stop","btn-next"].forEach(id => {
+    document.getElementById(id).disabled = !on;
+  });
+}
+
+function setStatus(msg) {
+  document.getElementById("demo-status").textContent = msg;
+}
+
+function startCpuSim() {
+  let base = 52;
+  demoState.cpuInterval = setInterval(() => {
+    base += (Math.random() - 0.48) * 2;
+    base = Math.max(44, Math.min(72, base));
+    document.getElementById("demo-cpu").textContent = "CPU: " + base.toFixed(1) + "°C";
+  }, 1500);
+}
 </script>
 </body>
 </html>
