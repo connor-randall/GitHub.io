@@ -183,10 +183,14 @@ body {
 }
 
 .game-icon {
-  font-size:36px;
+  font-size:11px;
+  line-height:1.3;
   margin-bottom:12px;
-  display:block;
-  filter:drop-shadow(0 0 6px rgba(255,102,204,0.5));
+  display:inline-block;
+  color:var(--accent-2);
+  text-shadow:0 0 6px rgba(255,102,204,0.5);
+  white-space:pre;
+  font-family:"Courier New",monospace;
 }
 .game-name {
   color:#ffff00;
@@ -293,63 +297,13 @@ body {
 
     <div class="divider">========================================================================</div>
 
-    <div class="arcade-marquee">
-      <marquee behavior="scroll" direction="left" scrollamount="3">
-        ★ WARNING: GAMES MAY BE EXTREMELY DUMB ★ PLAY AT YOUR OWN RISK ★ NO REFUNDS ★ HIGH SCORES NOT SAVED ★ BUGS ARE FEATURES ★
-      </marquee>
-    </div>
-
     <div class="games-grid">
 
-      <!-- Placeholder: playable game -->
-      <div class="game-card">
-        <span class="game-icon">🕹️</span>
-        <div class="game-name">Placeholder Game</div>
-        <span class="game-badge playable">playable</span>
-        <div class="game-desc">
-          A placeholder for a real game you've made. Drop a link or embed it here.
-        </div>
-        <a class="play-btn" href="#">[ play ]</a>
-      </div>
-
-      <!-- Placeholder: WIP game -->
-      <div class="game-card">
-        <span class="game-icon">🔧</span>
-        <div class="game-name">Work In Progress</div>
-        <span class="game-badge wip">in progress</span>
-        <div class="game-desc">
-          Something being built right now. Swap this out when it's ready.
-        </div>
-        <div class="coming-soon-label">// check back later //</div>
-      </div>
-
-      <!-- Placeholder: coming soon -->
-      <div class="game-card coming-soon">
-        <span class="game-icon">❓</span>
-        <div class="game-name">???</div>
-        <span class="game-badge soon">coming soon</span>
-        <div class="game-desc">
-          Something is brewing. No idea what yet.
-        </div>
-        <div class="coming-soon-label">// unknown //</div>
-      </div>
-
-      <!-- Placeholder: coming soon 2 -->
-      <div class="game-card coming-soon">
-        <span class="game-icon">💡</span>
-        <div class="game-name">Idea TBD</div>
-        <span class="game-badge soon">coming soon</span>
-        <div class="game-desc">
-          Had an idea at 2am. We'll see if it survives until morning.
-        </div>
-        <div class="coming-soon-label">// maybe //</div>
+      <div style="grid-column:1/-1;text-align:center;color:#555;font-size:12px;letter-spacing:2px;padding:40px 0;">
+        // no games yet — check back soon //
       </div>
 
     </div>
-
-    <p class="placeholder-note">// replace placeholders with real games when they exist //</p>
-
-    <div class="insert-coin">★ insert coin to continue ★</div>
 
   </div>
 </div>
