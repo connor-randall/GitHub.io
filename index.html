@@ -79,6 +79,14 @@ body {
 #osrs-label-track { white-space:nowrap; display:inline-block; }
 #osrs-label-track span { margin-right:60px; }
 
+/* ===== XP BAR ===== */
+#osrs-xp-bar {
+  height:18px; background:#0a0a0a;
+  border-bottom:1px solid #004400;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; color:#00cc00; letter-spacing:2px;
+}
+
 /* ===== NAV BAR ===== */
 #site-nav {
   background:#000080;
@@ -206,6 +214,9 @@ pre.logo {
   </div>
   <div class="osrs-label-scroll">
     <div id="osrs-label-track"></div>
+  </div>
+  <div id="osrs-xp-bar">
+    <span id="osrs-xp-today">XP TODAY: loading...</span>
   </div>
   <nav id="site-nav">
     <a href="index.html" class="active">[ home ]</a>

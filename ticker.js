@@ -47,6 +47,24 @@ function buildLabelTrack() {
   });
 }
 
+function getTodayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function updateXpBar(currentXp) {
+  const el = document.getElementById("osrs-xp-today");
+  if (!el) return;
+  const todayKey = getTodayKey();
+  const stored = JSON.parse(localStorage.getItem("osrs-xp-snapshot") || "null");
+  if (!stored || stored.date !== todayKey) {
+    localStorage.setItem("osrs-xp-snapshot", JSON.stringify({ date: todayKey, xp: currentXp }));
+    el.textContent = "XP TODAY: +0";
+  } else {
+    const gained = currentXp - stored.xp;
+    el.textContent = "XP TODAY: +" + (gained > 0 ? gained.toLocaleString() : "0");
+  }
+}
+
 async function loadStats() {
   try {
     const res = await fetch(WORKER_URL, { cache: "no-store" });
@@ -55,6 +73,13 @@ async function loadStats() {
     console.log("RAW FIRST LINES:", text.split("\n").slice(0, 5));
 
     const lines = text.trim().split("\n").slice(0, 24);
+
+    // Extract overall XP for the daily gain tracker
+    const overallParts = lines[0] ? lines[0].trim().split(",") : [];
+    if (overallParts.length >= 3) {
+      const xp = parseInt(overallParts[2]);
+      if (!isNaN(xp)) updateXpBar(xp);
+    }
 
     let html = "";
 
