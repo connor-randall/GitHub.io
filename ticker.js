@@ -47,21 +47,40 @@ function buildLabelTrack() {
   });
 }
 
+// Returns "YYYY-MM-DD" in local time (so midnight resets locally)
 function getTodayKey() {
-  return new Date().toISOString().slice(0, 10);
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
 
-function updateXpBar(currentXp) {
+async function loadXpBar() {
   const el = document.getElementById("osrs-xp-today");
   if (!el) return;
-  const todayKey = getTodayKey();
-  const stored = JSON.parse(localStorage.getItem("osrs-xp-snapshot") || "null");
-  if (!stored || stored.date !== todayKey) {
-    localStorage.setItem("osrs-xp-snapshot", JSON.stringify({ date: todayKey, xp: currentXp }));
-    el.textContent = "XP TODAY: +0";
-  } else {
-    const gained = currentXp - stored.xp;
-    el.textContent = "XP TODAY: +" + (gained > 0 ? gained.toLocaleString() : "0");
+  try {
+    const res = await fetch(WORKER_URL, { cache: "no-store" });
+    const text = await res.text();
+    const lines = text.trim().split("\n");
+    const parts = lines[0] ? lines[0].trim().split(",") : [];
+    if (parts.length < 3) return;
+
+    const currentXp = parseInt(parts[2]);
+    if (isNaN(currentXp)) return;
+
+    const todayKey = getTodayKey();
+    const stored = JSON.parse(localStorage.getItem("osrs-xp-baseline") || "null");
+
+    if (!stored || stored.date !== todayKey) {
+      // New day — store first reading as today's baseline
+      localStorage.setItem("osrs-xp-baseline", JSON.stringify({ date: todayKey, xp: currentXp }));
+      el.textContent = "XP TODAY: +0";
+    } else {
+      const gained = Math.max(0, currentXp - stored.xp);
+      el.textContent = "XP TODAY: +" + gained.toLocaleString();
+    }
+  } catch (err) {
+    console.error("XP bar error:", err);
+    const el2 = document.getElementById("osrs-xp-today");
+    if (el2) el2.textContent = "XP TODAY: unavailable";
   }
 }
 
@@ -73,13 +92,6 @@ async function loadStats() {
     console.log("RAW FIRST LINES:", text.split("\n").slice(0, 5));
 
     const lines = text.trim().split("\n").slice(0, 24);
-
-    // Extract overall XP for the daily gain tracker
-    const overallParts = lines[0] ? lines[0].trim().split(",") : [];
-    if (overallParts.length >= 3) {
-      const xp = parseInt(overallParts[2]);
-      if (!isNaN(xp)) updateXpBar(xp);
-    }
 
     let html = "";
 
@@ -133,5 +145,7 @@ window.addEventListener("resize", () => {
 window.addEventListener("load", () => {
   loadStats();
   buildLabelTrack();
+  loadXpBar();
 });
 setInterval(loadStats, 600000);
+setInterval(loadXpBar, 60000);
