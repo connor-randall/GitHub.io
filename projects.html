@@ -181,8 +181,9 @@ body {
   transform:translate(-2px,-2px);
   box-shadow:4px 4px 0 var(--accent);
 }
-.project-card[data-cat="pi"] { border-left:3px solid #00ff88; }
-.project-card[data-cat="web"] { border-left:3px solid var(--accent-2); }
+.project-card[data-cat="pi"]      { border-left:3px solid #00ff88; }
+.project-card[data-cat="web"]     { border-left:3px solid var(--accent-2); }
+.project-card[data-cat="homelab"] { border-left:3px solid #00cfff; }
 
 .project-icon {
   font-size:11px;
@@ -211,8 +212,9 @@ body {
   margin-bottom:10px;
   text-transform:uppercase;
 }
-.project-cat.pi  { color:#00ff88; border-color:#00ff88; }
-.project-cat.web { color:var(--accent-2); border-color:var(--accent-2); }
+.project-cat.pi       { color:#00ff88; border-color:#00ff88; }
+.project-cat.web      { color:var(--accent-2); border-color:var(--accent-2); }
+.project-cat.homelab  { color:#00cfff; border-color:#00cfff; }
 
 .project-desc {
   color:#aaa;
@@ -503,6 +505,7 @@ body {
       <button class="filter-btn on" data-filter="all">[ all ]</button>
       <button class="filter-btn" data-filter="pi">[ raspberry pi ]</button>
       <button class="filter-btn" data-filter="web">[ web dev ]</button>
+      <button class="filter-btn" data-filter="homelab">[ homelab ]</button>
     </div>
 
     <div class="projects-grid" id="projects-grid">
@@ -561,6 +564,93 @@ body {
         <a class="project-link" href="https://www.creeksports.com" target="_blank">&gt; visit site &rarr;</a>
       </div>
 
+
+      <!-- ===== HOMELAB SECTION ===== -->
+      <div class="project-card" data-cat="homelab" style="grid-column: 1 / -1;">
+        <div class="project-name" style="color:#00cfff;">>> homelab infrastructure &lt;&lt;</div>
+        <div class="project-desc" style="margin-top:8px;">
+          Self-hosted stack running on <strong style="color:#00cfff;">Proxmox VE</strong> — virtualization hypervisor managing VMs and LXC containers.
+          All services below run inside isolated containers. Network traffic routed through <strong style="color:#00cfff;">Gluetun</strong> VPN for privacy.
+          Monitoring via <strong style="color:#00cfff;">Grafana</strong> (local dashboard).
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px;">
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">PROXMOX VE</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">PLEX</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">SONARR</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">GLUETUN</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">GRAFANA</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">FOLDING@HOME</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:10px;padding:3px 10px;letter-spacing:1px;">PERFECTLY LEGAL DOWNLOADER</span>
+        </div>
+        <div class="project-status wip" style="margin-top:14px;">[ status: always tinkering ]</div>
+      </div>
+
+      <div class="project-card" data-cat="homelab">
+        <div class="project-icon" style="color:#00cfff;">
+  .-----------.
+  |  PROXMOX  |
+  |  [VM][CT] |
+  |  [VM][CT] |
+  '-----------'</div>
+        <div class="project-name" style="color:#00cfff;">Proxmox VE</div>
+        <span class="project-cat homelab">homelab</span>
+        <div class="project-desc">
+          Bare-metal hypervisor managing all VMs and LXC containers. The backbone of the homelab — handles resource allocation, snapshots, and container isolation.
+        </div>
+        <div class="project-status done">[ status: running ]</div>
+      </div>
+
+      <div class="project-card" data-cat="homelab">
+        <div class="project-icon" style="color:#00cfff;">
+  .-----------.
+  | [>] PLEX  |
+  |  ~~~~~~~~ |
+  |  ~~~~ TV  |
+  '-----------'</div>
+        <div class="project-name" style="color:#00cfff;">Media Server</div>
+        <span class="project-cat homelab">homelab</span>
+        <div class="project-desc">
+          <strong style="color:#00cfff;">Plex</strong> media server streaming movies and TV to any device. Paired with <strong style="color:#00cfff;">Sonarr</strong> for automated TV show management and the <em>perfectly legal downloader</em> for acquisition.
+        </div>
+        <div class="project-status done">[ status: streaming ]</div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;">
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:9px;padding:2px 8px;">PLEX</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:9px;padding:2px 8px;">SONARR</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:9px;padding:2px 8px;">GLUETUN VPN</span>
+          <span style="border:1px solid #00cfff;color:#00cfff;font-size:9px;padding:2px 8px;">LEGAL STUFF</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-cat="homelab">
+        <div class="project-icon" style="color:#00cfff;">
+  .-----------.
+  |  GRAFANA  |
+  | /\_/\__/\ |
+  |/__\/    \ |
+  '-----------'</div>
+        <div class="project-name" style="color:#00cfff;">Monitoring</div>
+        <span class="project-cat homelab">homelab</span>
+        <div class="project-desc">
+          <strong style="color:#00cfff;">Grafana</strong> dashboard tracking CPU, RAM, temps, network throughput, and service health across the whole stack. Local-only — no cloud.
+        </div>
+        <div class="project-status done">[ status: watching ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:8px;">// local only //</div>
+      </div>
+
+      <div class="project-card" data-cat="homelab">
+        <div class="project-icon" style="color:#00cfff;">
+  .-----------.
+  | @home     |
+  |  [####  ] |
+  |  protein  |
+  '-----------'</div>
+        <div class="project-name" style="color:#00cfff;">Folding@Home</div>
+        <span class="project-cat homelab">homelab</span>
+        <div class="project-desc">
+          Contributing spare compute cycles to <strong style="color:#00cfff;">Folding@Home</strong> — distributed protein folding research for disease simulation. Idle CPU goes to science.
+        </div>
+        <div class="project-status done">[ status: folding ]</div>
+      </div>
 
     </div>
 
