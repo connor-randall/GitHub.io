@@ -290,47 +290,19 @@ pre.logo {
 .theme-opt:hover { color:var(--accent); }
 .theme-opt.active { color:var(--accent); }
 
-/* ===== FONT OVERRIDES (non-retro themes) ===== */
-[data-theme="dark"] body,
-[data-theme="light"] body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* ===== THEME HINT ===== */
+#theme-hint {
+  text-align:right; color:var(--accent);
+  font-size:16px; margin-bottom:4px;
+  animation:hint-bounce 0.5s ease-in-out infinite alternate, hint-fade 0.4s ease 7s forwards;
+  pointer-events:none; user-select:none;
 }
-[data-theme="dark"] #site-nav a,
-[data-theme="light"] #site-nav a {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  letter-spacing: 0.5px;
-  text-transform: none;
+@keyframes hint-bounce {
+  0%   { transform:translateY(0); }
+  100% { transform:translateY(5px); }
 }
-[data-theme="dark"] .filter-btn,
-[data-theme="light"] .filter-btn,
-[data-theme="dark"] #theme-toggle,
-[data-theme="light"] #theme-toggle,
-[data-theme="dark"] .theme-opt,
-[data-theme="light"] .theme-opt {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  letter-spacing: 0;
-  text-transform: none;
-}
-[data-theme="dark"] .title-bar,
-[data-theme="light"] .title-bar {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  letter-spacing: 0.5px;
-  text-transform: none;
-}
-[data-theme="dark"] .page-heading,
-[data-theme="light"] .page-heading {
-  letter-spacing: 1px;
-}
-[data-theme="dark"] .subtitle,
-[data-theme="light"] .subtitle {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-}
-/* Keep ASCII art + code monospace always */
-[data-theme="dark"] pre,
-[data-theme="dark"] code,
-[data-theme="light"] pre,
-[data-theme="light"] code {
-  font-family: "Courier New", monospace;
+@keyframes hint-fade {
+  to { opacity:0; visibility:hidden; }
 }
 </style>
 </head>
@@ -431,6 +403,7 @@ pre.logo {
 </div>
 
 <div id="theme-picker">
+  <div id="theme-hint">&#x25BC;</div>
   <button id="theme-toggle" onclick="toggleThemePicker()">[ theme ]</button>
   <div id="theme-options">
     <button class="theme-opt" onclick="setTheme('retro')">[ retro ]</button>
@@ -439,7 +412,12 @@ pre.logo {
   </div>
 </div>
 <script>
+function dismissHint(){
+  var h=document.getElementById('theme-hint');
+  if(h){h.style.display='none';localStorage.setItem('theme-hint-seen','1');}
+}
 function toggleThemePicker(){
+  dismissHint();
   var el=document.getElementById('theme-options');
   el.style.display=el.style.display==='flex'?'none':'flex';
 }
@@ -456,6 +434,12 @@ function setTheme(t){
   document.querySelectorAll('.theme-opt').forEach(function(b){
     b.classList.toggle('active',b.textContent.trim()==='[ '+t+' ]');
   });
+  if(localStorage.getItem('theme-hint-seen')){
+    var h=document.getElementById('theme-hint');
+    if(h) h.style.display='none';
+  } else {
+    setTimeout(function(){ localStorage.setItem('theme-hint-seen','1'); }, 7500);
+  }
 })();
 document.addEventListener('click',function(e){
   var picker=document.getElementById('theme-picker');
