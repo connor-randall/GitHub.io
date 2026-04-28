@@ -531,6 +531,54 @@ body {
 }
 .theme-opt:hover { color:var(--accent); }
 .theme-opt.active { color:var(--accent); }
+
+/* ===== FONT OVERRIDES (non-retro themes) ===== */
+[data-theme="dark"] body,
+[data-theme="light"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+[data-theme="dark"] #site-nav a,
+[data-theme="light"] #site-nav a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+[data-theme="dark"] .filter-btn,
+[data-theme="light"] .filter-btn,
+[data-theme="dark"] #theme-toggle,
+[data-theme="light"] #theme-toggle,
+[data-theme="dark"] .theme-opt,
+[data-theme="light"] .theme-opt {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+[data-theme="dark"] .title-bar,
+[data-theme="light"] .title-bar {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+[data-theme="dark"] .page-heading,
+[data-theme="light"] .page-heading {
+  letter-spacing: 1px;
+}
+[data-theme="dark"] .project-name,
+[data-theme="light"] .project-name {
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+/* Keep demo modal monospace — it's a terminal sim */
+[data-theme="dark"] pre,
+[data-theme="dark"] code,
+[data-theme="dark"] #demo-window,
+[data-theme="dark"] #demo-window *,
+[data-theme="light"] pre,
+[data-theme="light"] code,
+[data-theme="light"] #demo-window,
+[data-theme="light"] #demo-window * {
+  font-family: "Courier New", monospace;
+}
 </style>
 </head>
 <body>
