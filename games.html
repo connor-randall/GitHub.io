@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('site-theme')||'retro');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connor Randall | Games</title>
 <meta name="description" content="Connor Randall — little dumb games I've made.">
@@ -275,6 +276,70 @@ body {
   .games-grid { grid-template-columns:1fr; }
   #site-nav a { font-size:11px; padding:5px 10px; }
 }
+
+/* ===== THEME: DARK ===== */
+[data-theme="dark"] {
+  --bg:#0f1117; --panel:#1c1f2e; --text:#c9d1d9;
+  --accent:#58a6ff; --accent-2:#ffa657; --border:#30363d; --shadow:#010409;
+}
+[data-theme="dark"] #osrs-header     { background:#161b22; border-bottom-color:#58a6ff; box-shadow:0 2px 0 #0d1117; }
+[data-theme="dark"] #osrs-ticker     { color:#58a6ff; border-bottom-color:#21262d; }
+[data-theme="dark"] .osrs-label-scroll { color:#ffa657; background:#0d1117; }
+[data-theme="dark"] .osrs-nav-divider  { background:#0d1117; border-top-color:#58a6ff; }
+[data-theme="dark"] #site-nav        { background:#161b22; }
+[data-theme="dark"] #site-nav a      { color:#ffa657; border-right-color:#30363d; }
+[data-theme="dark"] #site-nav a:first-child { border-left-color:#30363d; }
+[data-theme="dark"] #site-nav a:hover{ background:#58a6ff; color:#0d1117; }
+[data-theme="dark"] #site-nav a.active { background:#1c2128; color:#58a6ff; }
+[data-theme="dark"] .title-bar       { background:#1c2128; }
+[data-theme="dark"] .osrs-99         { color:#ffa657; text-shadow:0 0 6px #c0602a; }
+
+/* ===== THEME: LIGHT ===== */
+[data-theme="light"] {
+  --bg:#f0ede8; --panel:#ffffff; --text:#24292f;
+  --accent:#1a7f37; --accent-2:#953800; --border:#d0d7de; --shadow:#afb8c1;
+}
+[data-theme="light"] #osrs-header    { background:#ffffff; border-bottom-color:#1a7f37; box-shadow:0 2px 0 #d0d7de; }
+[data-theme="light"] #osrs-ticker    { color:#1a7f37; border-bottom-color:#d0d7de; background:#f6f8fa; }
+[data-theme="light"] .osrs-label-scroll { color:#953800; background:#f6f8fa; }
+[data-theme="light"] .osrs-nav-divider  { background:#f6f8fa; border-top-color:#1a7f37; }
+[data-theme="light"] #site-nav       { background:#f6f8fa; }
+[data-theme="light"] #site-nav a     { color:#953800; border-right-color:#d0d7de; }
+[data-theme="light"] #site-nav a:first-child { border-left-color:#d0d7de; }
+[data-theme="light"] #site-nav a:hover { background:#1a7f37; color:#ffffff; }
+[data-theme="light"] #site-nav a.active { background:#e6f4ea; color:#1a7f37; }
+[data-theme="light"] .title-bar      { background:#e6f4ea; }
+[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
+[data-theme="light"] .btn            { background:#f6f8fa; border-color:#d0d7de; }
+
+/* ===== THEME PICKER ===== */
+#theme-picker {
+  position:fixed; bottom:20px; right:20px;
+  z-index:99998; font-family:"Courier New",monospace;
+  font-size:11px; text-align:right;
+}
+#theme-toggle {
+  background:var(--panel); border:1px solid var(--border);
+  color:var(--accent-2); font-family:"Courier New",monospace;
+  font-size:11px; letter-spacing:1px; padding:6px 12px;
+  cursor:pointer; text-transform:uppercase;
+  transition:border-color 0.1s, color 0.1s;
+}
+#theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
+#theme-options {
+  background:var(--panel); border:1px solid var(--border);
+  margin-top:4px; padding:4px;
+  display:none; flex-direction:column; gap:2px;
+}
+.theme-opt {
+  background:transparent; border:none;
+  color:var(--text); font-family:"Courier New",monospace;
+  font-size:11px; letter-spacing:1px; padding:5px 10px;
+  cursor:pointer; text-align:left; text-transform:uppercase;
+  white-space:nowrap; transition:color 0.1s;
+}
+.theme-opt:hover { color:var(--accent); }
+.theme-opt.active { color:var(--accent); }
 </style>
 </head>
 <body>
@@ -321,6 +386,40 @@ body {
   </div>
 </div>
 
+<div id="theme-picker">
+  <button id="theme-toggle" onclick="toggleThemePicker()">[ theme ]</button>
+  <div id="theme-options">
+    <button class="theme-opt" onclick="setTheme('retro')">[ retro ]</button>
+    <button class="theme-opt" onclick="setTheme('dark')">[ dark ]</button>
+    <button class="theme-opt" onclick="setTheme('light')">[ light ]</button>
+  </div>
+</div>
+<script>
+function toggleThemePicker(){
+  var el=document.getElementById('theme-options');
+  el.style.display=el.style.display==='flex'?'none':'flex';
+}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('site-theme',t);
+  document.querySelectorAll('.theme-opt').forEach(function(b){
+    b.classList.toggle('active',b.textContent.trim()==='[ '+t+' ]');
+  });
+  document.getElementById('theme-options').style.display='none';
+}
+(function(){
+  var t=localStorage.getItem('site-theme')||'retro';
+  document.querySelectorAll('.theme-opt').forEach(function(b){
+    b.classList.toggle('active',b.textContent.trim()==='[ '+t+' ]');
+  });
+})();
+document.addEventListener('click',function(e){
+  var picker=document.getElementById('theme-picker');
+  if(picker && !picker.contains(e.target)){
+    document.getElementById('theme-options').style.display='none';
+  }
+});
+</script>
 <script src="ticker.js?v=9"></script>
 </body>
 </html>
