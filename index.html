@@ -236,6 +236,10 @@ pre.logo {
 [data-theme="dark"] .osrs-99         { color:#ffa657; text-shadow:0 0 6px #c0602a; }
 [data-theme="dark"] .mood-section,
 [data-theme="dark"] .intro           { background:rgba(255,255,255,0.03); }
+[data-theme="dark"] .marquee-box     { color:#ffa657; }
+[data-theme="dark"] .mood-title      { color:#58a6ff; text-shadow:none; }
+[data-theme="dark"] [style*="#00cfff"] { color:#58a6ff !important; border-color:#58a6ff !important; }
+[data-theme="dark"] [style*="color:#ffff00"] { color:#ffa657 !important; }
 
 /* ===== THEME: LIGHT ===== */
 [data-theme="light"] {
@@ -253,13 +257,22 @@ pre.logo {
 [data-theme="light"] #site-nav a:hover { background:#1a7f37; color:#ffffff; }
 [data-theme="light"] #site-nav a.active { background:#e6f4ea; color:#1a7f37; }
 [data-theme="light"] .title-bar      { background:#e6f4ea; }
-[data-theme="light"] pre.logo        { text-shadow:none; }
-[data-theme="light"] .marquee-box    { background:#f6f8fa; }
-[data-theme="light"] .mood-section,
-[data-theme="light"] .intro          { background:rgba(0,0,0,0.04); }
-[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
 [data-theme="light"] .btn            { background:#f6f8fa; border-color:#d0d7de; }
-[data-theme="light"] .mood-bar[data-r="0"] { background:#ccc; border-color:#aaa; }
+[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
+[data-theme="light"] pre.logo        { text-shadow:none; }
+[data-theme="light"] .marquee-box    { background:#f6f8fa; color:#953800; }
+[data-theme="light"] .intro,
+[data-theme="light"] .mood-section   { background:rgba(0,0,0,0.04); }
+[data-theme="light"] .counter        { color:#166534; }
+[data-theme="light"] .page-sub       { color:#555; }
+[data-theme="light"] .page-heading   { text-shadow:none; }
+[data-theme="light"] .mood-title     { color:#1a7f37; text-shadow:none; }
+[data-theme="light"] .mood-today-label { color:#953800; }
+[data-theme="light"] #mood-today-stars { color:#92400e; }
+[data-theme="light"] .mood-chart-label { color:#666; }
+[data-theme="light"] .mood-bar[data-r="0"] { background:#ddd; border-color:#bbb; }
+[data-theme="light"] [style*="#00cfff"] { color:#0369a1 !important; border-color:#0369a1 !important; }
+[data-theme="light"] [style*="color:#ffff00"] { color:#953800 !important; }
 
 /* ===== THEME PICKER ===== */
 #theme-picker {

@@ -291,6 +291,12 @@ body {
 [data-theme="dark"] #site-nav a.active { background:#1c2128; color:#58a6ff; }
 [data-theme="dark"] .title-bar       { background:#1c2128; }
 [data-theme="dark"] .osrs-99         { color:#ffa657; text-shadow:0 0 6px #c0602a; }
+[data-theme="dark"] .job-card,
+[data-theme="dark"] .skills-section  { background:rgba(255,255,255,0.03); }
+[data-theme="dark"] .job-title       { color:#ffa657; }
+[data-theme="dark"] .job-desc        { color:#aaa; border-left-color:#30363d; }
+[data-theme="dark"] .skill-tag       { background:#0d1117; color:#ffa657; }
+[data-theme="dark"] [style*="color:#ffff00"] { color:#ffa657 !important; }
 
 /* ===== THEME: LIGHT ===== */
 [data-theme="light"] {
@@ -307,8 +313,18 @@ body {
 [data-theme="light"] #site-nav a:hover { background:#1a7f37; color:#ffffff; }
 [data-theme="light"] #site-nav a.active { background:#e6f4ea; color:#1a7f37; }
 [data-theme="light"] .title-bar      { background:#e6f4ea; }
-[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
 [data-theme="light"] .btn            { background:#f6f8fa; border-color:#d0d7de; }
+[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
+[data-theme="light"] .page-sub       { color:#555; }
+[data-theme="light"] .page-heading   { text-shadow:none; }
+[data-theme="light"] .job-card       { background:rgba(0,0,0,0.04); }
+[data-theme="light"] .skills-section { background:rgba(0,0,0,0.04); }
+[data-theme="light"] .job-title      { color:#953800; }
+[data-theme="light"] .job-dates      { color:#666; }
+[data-theme="light"] .job-desc       { color:#444; border-left-color:#d0d7de; }
+[data-theme="light"] .skill-tag      { background:#f6f8fa; color:#953800; border-color:#d0d7de; }
+[data-theme="light"] .skill-tag:hover { color:#1a7f37; border-color:#1a7f37; }
+[data-theme="light"] [style*="color:#ffff00"] { color:#953800 !important; }
 
 /* ===== THEME PICKER ===== */
 #theme-picker {

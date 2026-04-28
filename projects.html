@@ -480,6 +480,13 @@ body {
 [data-theme="dark"] .title-bar       { background:#1c2128; }
 [data-theme="dark"] .osrs-99         { color:#ffa657; text-shadow:0 0 6px #c0602a; }
 [data-theme="dark"] .project-card    { background:rgba(255,255,255,0.03); }
+[data-theme="dark"] .project-name    { color:#ffa657; }
+[data-theme="dark"] .project-desc    { color:#aaa; }
+[data-theme="dark"] .project-link    { color:#58a6ff; }
+[data-theme="dark"] .project-status.wip { color:#ffa657; }
+[data-theme="dark"] .marquee-box     { color:#ffa657; }
+[data-theme="dark"] [style*="#00cfff"] { color:#58a6ff !important; border-color:#58a6ff !important; }
+[data-theme="dark"] [style*="color:#ffff00"] { color:#ffa657 !important; }
 
 /* ===== THEME: LIGHT ===== */
 [data-theme="light"] {
@@ -496,12 +503,25 @@ body {
 [data-theme="light"] #site-nav a:hover { background:#1a7f37; color:#ffffff; }
 [data-theme="light"] #site-nav a.active { background:#e6f4ea; color:#1a7f37; }
 [data-theme="light"] .title-bar      { background:#e6f4ea; }
-[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
 [data-theme="light"] .btn            { background:#f6f8fa; border-color:#d0d7de; }
+[data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
+[data-theme="light"] .page-sub       { color:#555; }
+[data-theme="light"] .page-heading   { text-shadow:none; }
 [data-theme="light"] .project-card   { background:rgba(0,0,0,0.04); }
+[data-theme="light"] .project-name   { color:#953800; }
+[data-theme="light"] .project-desc   { color:#444; }
+[data-theme="light"] .project-link   { color:#1a7f37; }
+[data-theme="light"] .project-cat.pi { color:#166534; border-color:#166534; }
+[data-theme="light"] .project-cat.web { color:#92400e; border-color:#92400e; }
+[data-theme="light"] .project-cat.homelab { color:#0369a1; border-color:#0369a1; }
+[data-theme="light"] .project-status.done { color:#166534; }
+[data-theme="light"] .project-status.wip  { color:#92400e; }
+[data-theme="light"] .project-status.planned { color:#666; }
 [data-theme="light"] .filter-btn     { background:#f6f8fa; color:#555; border-color:#d0d7de; }
 [data-theme="light"] .filter-btn.on,
 [data-theme="light"] .filter-btn:hover { border-color:#1a7f37; color:#1a7f37; background:#e6f4ea; }
+[data-theme="light"] [style*="#00cfff"] { color:#0369a1 !important; border-color:#0369a1 !important; }
+[data-theme="light"] [style*="color:#ffff00"] { color:#953800 !important; }
 
 /* ===== THEME PICKER ===== */
 #theme-picker {
