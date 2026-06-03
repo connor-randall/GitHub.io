@@ -220,6 +220,7 @@ var conditional_shipping_settings = {"trigger_fields":[]};
     box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+    transform: none !important;
   }
   .elementor-nav-menu--dropdown .elementor-item {
     color: #221E1F !important;
@@ -1177,18 +1178,62 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 </script>
 
 <script>
-document.querySelectorAll('.elementor-menu-toggle').forEach(function(toggle) {
-  toggle.addEventListener('click', function() {
-    var isActive = toggle.classList.toggle('elementor-active');
-    toggle.setAttribute('aria-expanded', isActive);
-    var dropdown = toggle.nextElementSibling;
-    if (dropdown) {
-      dropdown.setAttribute('aria-hidden', !isActive);
+(function() {
+  function initMenu() {
+    var toggle = document.querySelector('.elementor-menu-toggle');
+    var dropdown = toggle && toggle.nextElementSibling;
+    if (!toggle || !dropdown) return;
+
+    // Highlight current page link in dropdown
+    var path = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'index.html';
+    dropdown.querySelectorAll('a.elementor-item').forEach(function(a) {
+      var href = a.getAttribute('href') || '';
+      var hpath = href.replace(/\/$/, '').split('/').pop() || 'index.html';
+      if (hpath === path || (path === '' && hpath === 'index.html')) {
+        a.style.background = '#221E1F';
+        a.style.color = '#93C73F';
+        a.style.fontWeight = '700';
+      }
+    });
+
+    // Intercept in capture phase so Elementor's handler never fires
+    toggle.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      var isOpen = dropdown.dataset.open === '1';
       var header = document.querySelector('.elementor-location-header');
-      if (header) dropdown.style.top = (header.getBoundingClientRect().bottom - 1) + 'px';
-    }
-  });
-});
+      var headerBottom = header ? header.getBoundingClientRect().bottom : 60;
+
+      if (isOpen) {
+        dropdown.dataset.open = '0';
+        dropdown.style.maxHeight = '0';
+        dropdown.style.opacity = '0';
+        toggle.classList.remove('elementor-active');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        dropdown.dataset.open = '1';
+        dropdown.style.top = headerBottom + 'px';
+        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+        dropdown.style.opacity = '1';
+        toggle.classList.add('elementor-active');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    }, true);
+
+    // Init dropdown styles so transition works
+    dropdown.style.transition = 'max-height 0.3s ease, opacity 0.2s ease';
+    dropdown.style.maxHeight = '0';
+    dropdown.style.opacity = '0';
+    dropdown.style.transform = 'none';
+    dropdown.dataset.open = '0';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenu);
+  } else {
+    initMenu();
+  }
+})();
 </script>
 </body>
 </html>
