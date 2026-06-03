@@ -1,0 +1,91 @@
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+
+/**
+ * This file contains the styling for the plugin.
+ *
+ * Please do not make alterations to this file as you
+ * will loose them when updating the plugin.
+ *
+ * This file contents are outlined below.
+ *
+ * 1. Grid system
+ * 2. Containers
+ * 3. Elements
+ * 4. Floatbox
+ * 5. Floating totals box
+ * 6. Validation errors
+ * 7. Lightbox
+ * 8. Datepicker and Timepicker
+ * 9. Checkbox and Radio button
+ * 10. Checkbox and Radio button custom styles
+ * 11. Checkbox and Radio button swatches
+ * 12. Product element
+ * 13. Tooltip
+ * 14. Cart and Order styles
+ * 15. Various styles
+ * 16. Theme fixes
+ *
+ * @package Extra Product Options/CSS
+ * @version 6.0
+ */
+
+/* 1. Grid system */
+
+.tm-responsive .tcwidth {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+.tm-responsive .tm-extra-product-options ul.tmcp-elements:not(.tm-extra-product-options-variations) li.tmcp-field-wrap:not(.tm-per-row) {
+	float: none !important;
+	width: 100% !important;
+}
+
+.tm-responsive .tm-extra-product-options .cpf-type-select ul.tmcp-ul-wrap.fullwidth-ul li.tmcp-field-wrap .tc-field-label-wrap {
+	grid-template-columns: 1fr;
+}
+
+.tm-responsive .tm-extra-product-options .tc-col-auto,
+.tm-responsive .tm-extra-product-options .tc-cell.tc-col-auto,
+.tm-responsive .tc-cell.tc-col-auto,
+.tm-responsive .tc-col-auto {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+
+/* 5. Floating totals box */
+
+.tm-floating-box {
+	display: none !important;
+}
+
+/* 10. Checkbox and Radio button custom styles */
+
+.tm-epo-style:hover::after {
+	opacity: 0;
+}
+
+
+/* 14. Cart and Order styles */
+
+.tm-epo-cart-row .product-remove,
+.tm-epo-cart-row .product-thumbnail,
+.tm-epo-cart-row .product-price,
+.tm-epo-cart-row .product-quantity,
+.tm-epo-cart-row .product-subtotal,
+.tc-epo-cart-row-total .product-remove,
+.tc-epo-cart-row-total .product-thumbnail,
+.tc-epo-cart-row-total .product-name,
+.tc-epo-cart-row-total .product-price {
+	display: none !important;
+}
+
+.tm-epo-cart-option-mobile {
+	display: block;
+}
