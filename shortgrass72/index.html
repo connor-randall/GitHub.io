@@ -202,6 +202,12 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 /* ── Mobile overrides ── */
 @media (max-width: 767px) {
 
+  /* Hero: remove negative top margin so content sits below the header */
+  .elementor-element-5327934 {
+    margin-top: 0 !important;
+    --margin-top: 0 !important;
+  }
+
   /* Hero: swap image for a deep brand green so white text stays readable */
   .elementor-element-5327934 {
     background-image: none !important;
@@ -1142,6 +1148,16 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 //# sourceURL=https://www.conradrandy.com/shortgrass72/wp-includes/js/wp-emoji-loader.min.js
 </script>
 
+<script>
+document.querySelectorAll('.elementor-menu-toggle').forEach(function(toggle) {
+  toggle.addEventListener('click', function() {
+    var isActive = toggle.classList.toggle('elementor-active');
+    toggle.setAttribute('aria-expanded', isActive);
+    var dropdown = toggle.nextElementSibling;
+    if (dropdown) dropdown.setAttribute('aria-hidden', !isActive);
+  });
+});
+</script>
 </body>
 </html>
 
