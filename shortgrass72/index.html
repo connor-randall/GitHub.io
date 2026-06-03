@@ -192,14 +192,58 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 }
 </style>
 <style>
+/* ── Desktop hero background ── */
 .elementor-element-5327934 {
   background-image: url('wp-content/uploads/2026/05/Tabpanel.png') !important;
   background-size: cover !important;
   background-position: center center !important;
 }
+
+/* ── Mobile overrides ── */
 @media (max-width: 767px) {
+
+  /* Hero: swap image for a deep brand green so white text stays readable */
   .elementor-element-5327934 {
     background-image: none !important;
+    background-color: #1C2B0E !important;
+    --padding-top: 30px !important;
+    --padding-bottom: 40px !important;
+    padding-top: 30px !important;
+  }
+
+  /* Hat image: center and size nicely */
+  .elementor-element-7060b7c {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .elementor-element-7060b7c img {
+    max-width: 75% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  /* Hero headline: scale down for mobile */
+  .elementor-element-f19db1c .elementor-heading-title {
+    font-size: 38px !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Give the text block some breathing room */
+  .elementor-element-a84bdc1 {
+    --padding-left: 10px !important;
+    --padding-right: 10px !important;
+  }
+
+  /* Brand description text: dark bg so it's readable */
+  .elementor-element-ce9bf11 {
+    padding: 0 10px !important;
+  }
+
+  /* Buttons: full width on mobile */
+  .elementor-element-cdb909a .elementor-button {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
 }
 </style>
