@@ -287,6 +287,25 @@ var conditional_shipping_settings = {"trigger_fields":[]};
     text-align: center !important;
     box-sizing: border-box !important;
   }
+
+  /* Subtitle text: smaller and centered on mobile */
+  .elementor-element-e5e79f0 .elementor-heading-title,
+  .elementor-element-14a393a .elementor-heading-title {
+    font-size: clamp(14px, 4vw, 18px) !important;
+    text-align: center !important;
+    padding: 0 16px !important;
+  }
+
+  /* Free shipping icon box: centered on mobile */
+  .elementor-element-255314e {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* Button container: centered on mobile */
+  .elementor-element-992ae85 {
+    text-align: center !important;
+  }
 }
 </style>
 <style>
@@ -359,10 +378,63 @@ html { scroll-behavior: smooth; }
   font-size: clamp(52px, 7.5vw, 110px) !important;
   line-height: 1.05 !important;
 }
-/* Push the remaining text content (subtitle, description, button)
-   down far enough to clear the heading */
+/* Text column: full-width, clears the absolute heading */
 .elementor-element-a84bdc1 {
-  padding-top: 260px !important;
+  padding-top: clamp(230px, calc(56px + 16vw), 310px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Subtitle and description: smaller, centered under the heading */
+.elementor-element-e5e79f0,
+.elementor-element-14a393a {
+  text-align: center !important;
+  width: 100% !important;
+}
+.elementor-element-e5e79f0 .elementor-heading-title,
+.elementor-element-14a393a .elementor-heading-title {
+  text-align: center !important;
+  font-size: clamp(16px, 1.7vw, 24px) !important;
+  line-height: 1.5 !important;
+  padding: 0 8% !important;
+}
+
+/* ===== HERO BOTTOM: SHIPPING + BUTTON (desktop) ===== */
+@media (min-width: 768px) {
+  .elementor-element-255314e {
+    position: absolute !important;
+    left: 0 !important; right: 0 !important;
+    bottom: 90px !important;
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 20 !important;
+  }
+  .elementor-element-cdb909a {
+    position: absolute !important;
+    left: 0 !important; right: 0 !important;
+    bottom: 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 20 !important;
+  }
+}
+
+/* Bigger shop now button */
+.elementor-element-992ae85 .elementor-button {
+  font-size: 20px !important;
+  padding: 14px 44px !important;
+}
+
+/* Bigger free shipping icon box */
+.elementor-element-255314e .elementor-icon-box-title span {
+  font-size: 20px !important;
+}
+.elementor-element-255314e .elementor-icon-box-description {
+  font-size: 16px !important;
+}
+.elementor-element-255314e .elementor-icon svg {
+  width: 32px !important;
+  height: 32px !important;
 }
 
 /* ===== MOBILE HERO LAYOUT ===== */
