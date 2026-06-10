@@ -192,9 +192,12 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 }
 </style>
 <style>
-/* ── Desktop hero: no background image, hat shows as an element ── */
+/* ── Desktop hero background ── */
 .elementor-element-5327934 {
-  background-image: none !important;
+  background-image: url('wp-content/uploads/ShortGrass72Hero1.png') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  min-height: 85vh !important;
 }
 
 /* ── Mobile overrides ── */
@@ -356,25 +359,30 @@ html { scroll-behavior: smooth; }
   fill: #ffffff !important;
 }
 
-/* ===== HERO: STACKED COLUMN LAYOUT ===== */
+/* ===== HERO: CONTENT TOP + BOTTOM, HATS IN MIDDLE ===== */
 
-/* Column, centered, full-width; position:static so mobile heading
-   anchors to the hero section (5327934) not this wrapper */
+/* Single full-width column; position:static keeps hero as containing
+   block for the mobile absolute heading */
 .elementor-element-2cc01bc {
   flex-direction: column !important;
-  align-items: center !important;
   width: 100% !important;
   position: static !important;
 }
 
-/* a84bdc1 dissolves its box so its children (heading, subtitle,
-   description, shipping, button) become direct flex siblings of
-   the hat image container — giving us the desired stacking order */
+/* Text column stretches to fill the hero height so shipping/button
+   can be pushed to the bottom via margin-top:auto */
 .elementor-element-a84bdc1 {
-  display: contents !important;
+  position: static !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  min-height: 80vh !important;
+  padding-top: 44px !important;
+  padding-bottom: 28px !important;
 }
 
-/* Heading: full-width, centered, big */
+/* Heading: in normal flow at top, centered, big */
 .elementor-element-f19db1c {
   width: 100% !important;
   text-align: center !important;
@@ -386,7 +394,7 @@ html { scroll-behavior: smooth; }
   line-height: 1.05 !important;
 }
 
-/* Subtitle and description: smaller, centered */
+/* Subtitle and description: smaller, centered, right below heading */
 .elementor-element-e5e79f0,
 .elementor-element-14a393a {
   text-align: center !important;
@@ -400,24 +408,11 @@ html { scroll-behavior: smooth; }
   padding: 0 8% !important;
 }
 
-/* Hat image: show on all breakpoints, full-width, centered */
-.elementor-element-0b7251d {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-}
-.elementor-element-2802b57 {
-  display: block !important;
-}
-.elementor-element-2802b57 img {
-  max-width: min(560px, 85%) !important;
-  height: auto !important;
-  margin: 0 auto !important;
-  display: block !important;
-}
-
-/* Shipping and button: centered in the column */
+/* Shipping: auto top-margin pushes it (and button) to the bottom,
+   hats background shows through the gap in the middle */
 .elementor-element-255314e {
+  margin-top: auto !important;
+  margin-bottom: 12px !important;
   display: flex !important;
   justify-content: center !important;
   width: 100% !important;
@@ -447,13 +442,18 @@ html { scroll-behavior: smooth; }
 
 /* ===== MOBILE HERO LAYOUT ===== */
 @media (max-width: 767px) {
-  /* Restore a84bdc1 as a real flex container on mobile */
+  /* Remove desktop-only stretching; become a normal ordered column item */
   .elementor-element-a84bdc1 {
-    display: flex !important;
-    flex-direction: column !important;
-    position: static !important;
+    min-height: 0 !important;
     order: 2 !important;
-    width: 100% !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  /* Undo the desktop auto-margin so items stack naturally on mobile */
+  .elementor-element-255314e {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 
   /* Heading: absolute at very top of hero on mobile */
