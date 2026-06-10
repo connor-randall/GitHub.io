@@ -142,7 +142,7 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 }
 
 .page-id-19 .header-1 {
-    background: transparent !important;
+    background: #1C2B0E !important;
 }
 
 .square-google-pay-button .gpay-button-text {
@@ -179,7 +179,7 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 
 
 .page-id-19 .header-1 a.elementor-item {
-    color:black !important;
+    color: #ffffff !important;
 }
 
 
@@ -194,7 +194,7 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 <style>
 /* ── Desktop hero background ── */
 .elementor-element-5327934 {
-  background-image: url('wp-content/uploads/2026/05/Tabpanel.png') !important;
+  background-image: url('wp-content/uploads/ShortGrass72Hero1.png') !important;
   background-size: cover !important;
   background-position: center center !important;
 }
@@ -264,10 +264,10 @@ var conditional_shipping_settings = {"trigger_fields":[]};
     margin: 0 auto !important;
   }
 
-  /* Hero headline: scale down for mobile */
+  /* Hero headline: mobile size */
   .elementor-element-f19db1c .elementor-heading-title {
-    font-size: 38px !important;
-    line-height: 1.15 !important;
+    font-size: clamp(36px, 9vw, 56px) !important;
+    line-height: 1.1 !important;
   }
 
   /* Give the text block some breathing room */
@@ -287,6 +287,115 @@ var conditional_shipping_settings = {"trigger_fields":[]};
     text-align: center !important;
     box-sizing: border-box !important;
   }
+}
+</style>
+<style>
+/* ===== SHORTGRASS72 — SCROLL ENHANCEMENTS ===== */
+html { scroll-behavior: smooth; }
+
+/* Scroll progress bar */
+#sg-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: #93C73F;
+  box-shadow: 0 0 10px rgba(147,199,63,0.6);
+  z-index: 100000;
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* Scroll reveal base state */
+.sg-reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1),
+              transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  will-change: opacity, transform;
+}
+.sg-reveal.sg-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile-specific tuning */
+@media (max-width: 767px) {
+  .sg-reveal {
+    transform: translateY(24px);   /* smaller lift on a phone */
+    transition-duration: 0.55s;    /* snappier on mobile */
+    will-change: auto;             /* save GPU memory on low-end devices */
+  }
+}
+
+/* ===== HEADER: SOLID BACKGROUND ===== */
+/* Remove negative top margin that was designed for the transparent header */
+.elementor-element-5327934 {
+  margin-top: 0 !important;
+  --margin-top: 0 !important;
+  position: relative !important;
+}
+/* Hamburger icon: white on dark header */
+.page-id-19 .elementor-menu-toggle svg {
+  fill: #ffffff !important;
+}
+
+/* ===== HERO HEADING: TOP CENTER ===== */
+/* Disable position:relative on the two intermediate wrappers so the
+   heading's absolute position resolves against the hero section (5327934) */
+.elementor-element-2cc01bc,
+.elementor-element-a84bdc1 {
+  position: static !important;
+}
+.elementor-element-f19db1c {
+  position: absolute !important;
+  top: 56px !important;
+  left: 0 !important; right: 0 !important;
+  text-align: center !important;
+  z-index: 20 !important;
+  padding: 0 5% !important;
+}
+.elementor-element-f19db1c .elementor-heading-title {
+  text-align: center !important;
+  font-size: clamp(52px, 7.5vw, 110px) !important;
+  line-height: 1.05 !important;
+}
+/* Push the remaining text content (subtitle, description, button)
+   down far enough to clear the heading */
+.elementor-element-a84bdc1 {
+  padding-top: 260px !important;
+}
+
+/* ===== MOBILE HERO LAYOUT ===== */
+@media (max-width: 767px) {
+  /* Heading: a bit higher on mobile */
+  .elementor-element-f19db1c {
+    top: 20px !important;
+  }
+
+  /* Column layout with space at top for the absolute heading */
+  .elementor-element-2cc01bc {
+    flex-direction: column !important;
+    padding-top: 130px !important;
+  }
+
+  /* Hat image: comes FIRST in the mobile stack */
+  .elementor-element-0b7251d {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  /* Text (subtitle, description, button): comes AFTER the hat image */
+  .elementor-element-a84bdc1 {
+    order: 2 !important;
+    padding-top: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sg-reveal { opacity: 1; transform: none; transition: none; }
+  #sg-progress { display: none; }
 }
 </style>
 </head>
@@ -388,7 +497,7 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 				</div>
 		<div class="elementor-element elementor-element-0b7251d e-con-full e-flex e-con e-child" data-id="0b7251d" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-2802b57 elementor-hidden-desktop elementor-hidden-laptop elementor-hidden-tablet_extra elementor-hidden-tablet elementor-widget elementor-widget-image" data-id="2802b57" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
-															<img fetchpriority="high" decoding="async" width="967" height="812" src="wp-content/uploads/2026/05/image_26.webp" class="attachment-full size-full wp-image-1233" alt="" srcset="wp-content/uploads/2026/05/image_26.webp 967w, wp-content/uploads/2026/05/image_26-300x252.webp 300w, wp-content/uploads/2026/05/image_26-768x645.webp 768w, wp-content/uploads/2026/05/image_26-600x504.webp 600w" sizes="(max-width: 967px) 100vw, 967px" />															</div>
+															<img fetchpriority="high" decoding="async" src="wp-content/uploads/ShortGrassHero2.png" class="attachment-full size-full" alt="Short Grass 72 hats" style="max-width:100%;height:auto;" />															</div>
 				</div>
 					</div>
 				</div>
@@ -1182,6 +1291,50 @@ var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/www.conradrandy.com\/shor
 /*! This file is auto-generated */
 const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
 //# sourceURL=https://www.conradrandy.com/shortgrass72/wp-includes/js/wp-emoji-loader.min.js
+</script>
+
+<script>
+/* ===== SHORTGRASS72 — SCROLL EFFECTS ===== */
+(function() {
+  // Scroll progress bar
+  var bar = document.createElement('div');
+  bar.id = 'sg-progress';
+  document.body.prepend(bar);
+
+  window.addEventListener('scroll', function() {
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      bar.style.width = ((window.scrollY / docHeight) * 100) + '%';
+    }
+  }, { passive: true });
+
+  // Scroll reveal — target all non-hero page sections by their Elementor data-id
+  var revealIds = [
+    'f769475', // About / brand story
+    'cfaab95', // Shop Now
+    'b5ddfff', // Client Feedback carousel
+    '5697159', // Gallery
+    'c3710cf', // FAQs
+    'e085371'  // Footer
+  ];
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('sg-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  revealIds.forEach(function(id) {
+    var el = document.querySelector('[data-id="' + id + '"]');
+    if (el) {
+      el.classList.add('sg-reveal');
+      observer.observe(el);
+    }
+  });
+})();
 </script>
 
 <script>
