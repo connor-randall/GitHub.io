@@ -356,10 +356,31 @@ html { scroll-behavior: smooth; }
   font-size: clamp(52px, 7.5vw, 110px) !important;
   line-height: 1.05 !important;
 }
-/* Push subtitle to sit just below the heading on desktop.
-   Formula: heading top (56px) + 2 lines of heading text + 32px gap */
+/* Hat column hidden everywhere — hat is the CSS background image */
+.elementor-element-0b7251d {
+  display: none !important;
+}
+
+/* Desktop: text column full-width, flex column, centered */
 .elementor-element-a84bdc1 {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   padding-top: calc(88px + clamp(110px, 15.75vw, 231px)) !important;
+}
+
+/* Desktop: subtitle + description centered, smaller than heading */
+.elementor-element-e5e79f0,
+.elementor-element-14a393a {
+  text-align: center !important;
+  width: 100% !important;
+}
+.elementor-element-e5e79f0 .elementor-heading-title,
+.elementor-element-14a393a .elementor-heading-title {
+  font-size: clamp(13px, 1.3vw, 18px) !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
 }
 
 /* ===== MOBILE HERO LAYOUT ===== */
