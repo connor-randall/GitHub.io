@@ -356,10 +356,32 @@ html { scroll-behavior: smooth; }
   font-size: clamp(52px, 7.5vw, 110px) !important;
   line-height: 1.05 !important;
 }
-/* Push subtitle to sit just below the heading on desktop.
-   Formula: heading top (56px) + 2 lines of heading text + 32px gap */
-.elementor-element-a84bdc1 {
-  padding-top: calc(88px + clamp(110px, 15.75vw, 231px)) !important;
+/* Desktop: pin subtitle + description directly below the heading.
+   Both 2cc01bc and a84bdc1 are position:static so these resolve
+   against the hero section (5327934), same as the heading. */
+@media (min-width: 768px) {
+  .elementor-element-e5e79f0,
+  .elementor-element-14a393a {
+    position: absolute !important;
+    left: 8% !important;
+    right: 8% !important;
+    text-align: center !important;
+    z-index: 20 !important;
+  }
+  /* Sits 16px below the bottom of the heading */
+  .elementor-element-e5e79f0 {
+    top: calc(72px + clamp(110px, 15.75vw, 231px)) !important;
+  }
+  /* Sits one line below e5e79f0 */
+  .elementor-element-14a393a {
+    top: calc(112px + clamp(110px, 15.75vw, 231px)) !important;
+  }
+  .elementor-element-e5e79f0 .elementor-heading-title,
+  .elementor-element-14a393a .elementor-heading-title {
+    font-size: clamp(13px, 1.3vw, 18px) !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+  }
 }
 
 /* ===== MOBILE HERO LAYOUT ===== */
