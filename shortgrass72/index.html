@@ -356,10 +356,10 @@ html { scroll-behavior: smooth; }
   font-size: clamp(52px, 7.5vw, 110px) !important;
   line-height: 1.05 !important;
 }
-/* Push the remaining text content (subtitle, description, button)
-   down far enough to clear the heading */
+/* Push subtitle to sit just below the heading on desktop.
+   Formula: heading top (56px) + 2 lines of heading text + 32px gap */
 .elementor-element-a84bdc1 {
-  padding-top: 260px !important;
+  padding-top: calc(88px + clamp(110px, 15.75vw, 231px)) !important;
 }
 
 /* ===== MOBILE HERO LAYOUT ===== */
