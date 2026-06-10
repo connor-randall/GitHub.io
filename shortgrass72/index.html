@@ -361,26 +361,38 @@ html { scroll-behavior: smooth; }
   display: none !important;
 }
 
-/* Desktop: text column full-width, flex column, centered */
-.elementor-element-a84bdc1 {
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding-top: calc(88px + clamp(110px, 15.75vw, 231px)) !important;
-}
-
-/* Desktop: subtitle + description centered, smaller than heading */
-.elementor-element-e5e79f0,
-.elementor-element-14a393a {
-  text-align: center !important;
-  width: 100% !important;
-}
-.elementor-element-e5e79f0 .elementor-heading-title,
-.elementor-element-14a393a .elementor-heading-title {
-  font-size: clamp(13px, 1.3vw, 18px) !important;
-  line-height: 1.5 !important;
-  text-align: center !important;
+/* ===== DESKTOP HERO TEXT LAYOUT ===== */
+/* On desktop, stretch the text column to fill the entire hero so content
+   is horizontally centered and padding-top correctly clears the heading */
+@media (min-width: 768px) {
+  .elementor-element-a84bdc1 {
+    position: absolute !important;
+    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+    width: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-top: calc(88px + clamp(110px, 15.75vw, 231px)) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+  }
+  /* Re-enable pointer events on interactive children */
+  .elementor-element-a84bdc1 * {
+    pointer-events: auto !important;
+  }
+  /* Subtitle and description: centered, smaller than heading */
+  .elementor-element-e5e79f0,
+  .elementor-element-14a393a {
+    text-align: center !important;
+    width: 80% !important;
+    max-width: 720px !important;
+  }
+  .elementor-element-e5e79f0 .elementor-heading-title,
+  .elementor-element-14a393a .elementor-heading-title {
+    font-size: clamp(13px, 1.3vw, 18px) !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+  }
 }
 
 /* ===== MOBILE HERO LAYOUT ===== */
