@@ -195,8 +195,10 @@ var conditional_shipping_settings = {"trigger_fields":[]};
 /* ── Desktop hero background ── */
 .elementor-element-5327934 {
   background-image: url('wp-content/uploads/ShortGrass72Hero1.png') !important;
-  background-size: cover !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
   background-position: center center !important;
+  background-color: #1C2B0E !important;
   min-height: 85vh !important;
 }
 
@@ -365,6 +367,10 @@ html { scroll-behavior: smooth; }
    block for the mobile absolute heading */
 .elementor-element-2cc01bc {
   flex-direction: column !important;
+  justify-content: flex-start !important;
+  --justify-content: flex-start !important;
+  align-items: stretch !important;
+  --align-items: stretch !important;
   width: 100% !important;
   position: static !important;
 }
@@ -377,6 +383,8 @@ html { scroll-behavior: smooth; }
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+  justify-content: flex-start !important;
+  --justify-content: flex-start !important;
   min-height: 80vh !important;
   padding-top: 44px !important;
   padding-bottom: 28px !important;
