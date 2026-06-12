@@ -254,7 +254,7 @@ body {
   font-size:10px; letter-spacing:2px; margin-top:22px;
 }
 .about-note {
-  max-width:680px; margin:24px auto 0; padding:14px;
+  max-width:680px; margin:0 auto 22px; padding:14px;
   border:2px dashed var(--border);
   background:rgba(0,0,0,0.35); line-height:1.7;
   font-size:12px; color:#9c9;
@@ -386,26 +386,24 @@ body {
 
     <div class="divider">========================================================================</div>
 
+    <div class="about-note">
+      This page is fed by a <strong>Raspberry Pi 5</strong> in my backyard running
+      <a href="https://github.com/Nachtzuster/BirdNET-Pi" target="_blank" rel="noopener">BirdNET-Pi</a>.
+      It listens 24/7, identifies bird calls on-device with machine learning, and pushes the latest
+      detections here.
+    </div>
+
     <div class="bird-stats" id="bird-stats" style="display:none">
       <div class="stat-box"><div class="stat-num" id="stat-today">--</div><div class="stat-label">heard today</div></div>
       <div class="stat-box"><div class="stat-num" id="stat-species">--</div><div class="stat-label">species today</div></div>
       <div class="stat-box"><div class="stat-num" id="stat-total">--</div><div class="stat-label">all-time</div></div>
     </div>
 
-    <div class="enviro-strip" id="enviro-strip" style="display:none"></div>
-
     <div class="bird-list" id="bird-list">
       <div class="loading-note">// tuning the antenna... //</div>
     </div>
 
     <div class="updated-note" id="updated-note"></div>
-
-    <div class="about-note">
-      This page is fed by a <strong>Raspberry Pi 5</strong> in my backyard running
-      <a href="https://github.com/Nachtzuster/BirdNET-Pi" target="_blank" rel="noopener">BirdNET-Pi</a>.
-      It listens 24/7, identifies bird calls on-device with machine learning, and pushes the latest
-      detections here. Temperature &amp; conditions come from an Enviro+ sensor on the same Pi.
-    </div>
   </div>
 </div>
 
@@ -510,18 +508,6 @@ document.addEventListener('click',function(e){
       document.getElementById('stat-species').textContent = data.stats.today_species != null ? data.stats.today_species : '--';
       document.getElementById('stat-total').textContent   = data.stats.total != null ? Number(data.stats.total).toLocaleString() : '--';
       document.getElementById('bird-stats').style.display = 'grid';
-    }
-
-    if (data.enviro){
-      var e = data.enviro, parts = [];
-      if (e.temp_f != null) parts.push('\u{1F321} ' + Math.round(e.temp_f) + '°F');
-      if (e.humidity != null) parts.push('\u{1F4A7} ' + Math.round(e.humidity) + '%');
-      if (e.pressure != null) parts.push('\u{1F32A} ' + Math.round(e.pressure) + ' hPa');
-      if (parts.length){
-        var strip = document.getElementById('enviro-strip');
-        strip.textContent = 'BACKYARD NOW:  ' + parts.join('   •   ');
-        strip.style.display = 'block';
-      }
     }
 
     if (!dets.length){
