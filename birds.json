@@ -1,6 +1,79 @@
 {
-  "generated_at": null,
-  "stats": { "today_count": 0, "today_species": 0, "total": 0 },
-  "enviro": null,
-  "detections": []
+  "generated_at": "2026-06-11T21:51:39-0600",
+  "stats": {
+    "today_count": 8,
+    "today_species": 6,
+    "total": 8
+  },
+  "enviro": {
+    "temp_f": 78.2,
+    "humidity": 24.5,
+    "pressure": 831.1
+  },
+  "detections": [
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.6909,
+      "iso": "2026-06-11T21:42:35",
+      "time": "21:42",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "Killdeer",
+      "sci_name": "Charadrius vociferus",
+      "confidence": 0.8831,
+      "iso": "2026-06-11T21:35:28",
+      "time": "21:35",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "Killdeer",
+      "sci_name": "Charadrius vociferus",
+      "confidence": 0.9479,
+      "iso": "2026-06-11T21:35:25",
+      "time": "21:35",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.8984,
+      "iso": "2026-06-11T21:35:16",
+      "time": "21:35",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "Common Grackle",
+      "sci_name": "Quiscalus quiscula",
+      "confidence": 0.923,
+      "iso": "2026-06-11T21:34:46",
+      "time": "21:34",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "Canada Goose",
+      "sci_name": "Branta canadensis",
+      "confidence": 0.8735,
+      "iso": "2026-06-11T21:34:16",
+      "time": "21:34",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.9237,
+      "iso": "2026-06-11T21:20:37",
+      "time": "21:20",
+      "date": "2026-06-11"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.9275,
+      "iso": "2026-06-11T21:16:43",
+      "time": "21:16",
+      "date": "2026-06-11"
+    }
+  ]
 }
