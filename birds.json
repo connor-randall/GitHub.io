@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-06-11T21:51:39-0600",
+  "generated_at": "2026-06-11T21:59:12-0600",
   "stats": {
     "today_count": 8,
     "today_species": 6,
     "total": 8
   },
   "enviro": {
-    "temp_f": 78.2,
-    "humidity": 24.5,
-    "pressure": 831.1
+    "temp_f": 89.5,
+    "humidity": 18.3,
+    "pressure": 831.2
   },
   "detections": [
     {
@@ -17,7 +17,9 @@
       "confidence": 0.6909,
       "iso": "2026-06-11T21:42:35",
       "time": "21:42",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips/Mourning_Dove-69-2026-06-11-birdnet-21.42.35.mp3"
     },
     {
       "com_name": "Killdeer",
@@ -25,7 +27,9 @@
       "confidence": 0.8831,
       "iso": "2026-06-11T21:35:28",
       "time": "21:35",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Killdeer_Heislerville.png/330px-Killdeer_Heislerville.png",
+      "audio": "bird-clips/Killdeer-88-2026-06-11-birdnet-21.35.28.mp3"
     },
     {
       "com_name": "Killdeer",
@@ -33,7 +37,9 @@
       "confidence": 0.9479,
       "iso": "2026-06-11T21:35:25",
       "time": "21:35",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Killdeer_Heislerville.png/330px-Killdeer_Heislerville.png",
+      "audio": "bird-clips/Killdeer-95-2026-06-11-birdnet-21.35.25.mp3"
     },
     {
       "com_name": "American Goldfinch",
@@ -41,7 +47,9 @@
       "confidence": 0.8984,
       "iso": "2026-06-11T21:35:16",
       "time": "21:35",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-90-2026-06-11-birdnet-21.35.16.mp3"
     },
     {
       "com_name": "Common Grackle",
@@ -49,7 +57,9 @@
       "confidence": 0.923,
       "iso": "2026-06-11T21:34:46",
       "time": "21:34",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Common_grackle_in_PP_%2836732%29.jpg/330px-Common_grackle_in_PP_%2836732%29.jpg",
+      "audio": "bird-clips/Common_Grackle-92-2026-06-11-birdnet-21.34.46.mp3"
     },
     {
       "com_name": "Canada Goose",
@@ -57,7 +67,9 @@
       "confidence": 0.8735,
       "iso": "2026-06-11T21:34:16",
       "time": "21:34",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Canada_goose.jpg/330px-Canada_goose.jpg",
+      "audio": "bird-clips/Canada_Goose-87-2026-06-11-birdnet-21.34.16.mp3"
     },
     {
       "com_name": "American Crow",
@@ -65,7 +77,9 @@
       "confidence": 0.9237,
       "iso": "2026-06-11T21:20:37",
       "time": "21:20",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-92-2026-06-11-birdnet-21.20.37.mp3"
     },
     {
       "com_name": "Mourning Dove",
@@ -73,7 +87,9 @@
       "confidence": 0.9275,
       "iso": "2026-06-11T21:16:43",
       "time": "21:16",
-      "date": "2026-06-11"
+      "date": "2026-06-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips/Mourning_Dove-93-2026-06-11-birdnet-21.16.43.mp3"
     }
   ]
 }
