@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('site-theme')||'retro');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connor Randall | Games</title>
-<meta name="description" content="Connor Randall — little dumb games I've made.">
+<title>Connor Randall | Birds</title>
+<meta name="description" content="Live bird calls heard in my backyard in Colorado, identified in real time by a Raspberry Pi running BirdNET.">
 <meta name="author" content="Connor Randall">
 <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -137,144 +137,116 @@ body {
   color:var(--border); overflow:hidden; white-space:nowrap; text-align:center;
 }
 
-/* ===== ARCADE MARQUEE ===== */
-.arcade-marquee {
+/* ===== STAT STRIP ===== */
+.bird-stats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+  gap:12px;
+  max-width:720px;
+  margin:0 auto 24px;
+}
+.stat-box {
+  border:2px solid var(--border);
+  background:rgba(0,0,0,0.5);
+  padding:12px 8px;
   text-align:center;
-  margin-bottom:24px;
+}
+.stat-num {
+  color:var(--accent-2);
+  font-size:22px; font-weight:bold;
+  text-shadow:0 0 8px rgba(255,255,0,0.4);
+}
+.stat-label {
+  color:#888; font-size:10px;
+  letter-spacing:2px; text-transform:uppercase;
+  margin-top:4px;
+}
+
+/* ===== ENVIRO STRIP ===== */
+.enviro-strip {
+  text-align:center;
   border:2px solid var(--accent-2);
   background:#000;
   padding:8px;
   color:var(--accent-2);
   font-size:12px;
-  letter-spacing:2px;
-  animation:pulse-border 2s ease-in-out infinite;
+  letter-spacing:1px;
+  max-width:720px;
+  margin:0 auto 24px;
+  animation:pulse-border 2.5s ease-in-out infinite;
 }
 @keyframes pulse-border {
   0%,100% { border-color:var(--accent-2); box-shadow:0 0 4px var(--accent-2); }
   50%      { border-color:#ffff88; box-shadow:0 0 12px var(--accent-2); }
 }
 
-/* ===== GAME GRID ===== */
-.games-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-  gap:16px;
-  max-width:860px;
+/* ===== DETECTION LIST ===== */
+.bird-list {
+  max-width:720px;
   margin:0 auto;
+  display:flex; flex-direction:column; gap:10px;
 }
-
-.game-card {
+.bird-card {
   background:rgba(0,0,0,0.5);
   border:2px solid var(--border);
-  padding:16px;
-  text-align:center;
+  padding:12px 14px;
+  display:flex; align-items:center; gap:14px;
+  text-align:left;
   transition:border-color 0.2s, transform 0.15s;
-  position:relative;
-  overflow:hidden;
 }
-.game-card::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(51,255,51,0.04) 0%, transparent 60%);
-  pointer-events:none;
-}
-.game-card:hover {
+.bird-card:hover {
   border-color:var(--accent-2);
   transform:translate(-2px,-2px);
   box-shadow:4px 4px 0 var(--accent-2);
 }
-.game-card.coming-soon {
-  opacity:0.55;
-  cursor:not-allowed;
+.bird-card.latest { border-color:var(--accent); box-shadow:4px 4px 0 rgba(51,255,51,0.4); }
+.bird-glyph {
+  font-size:26px; line-height:1;
+  flex-shrink:0;
 }
-.game-card.coming-soon:hover {
-  transform:none;
-  box-shadow:none;
-  border-color:var(--border);
+.bird-info { flex:1; min-width:0; }
+.bird-name {
+  color:#ffff00; font-size:15px; font-weight:bold;
+  letter-spacing:1px; text-transform:uppercase;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-
-.game-icon {
-  font-size:11px;
-  line-height:1.3;
-  margin-bottom:12px;
-  display:inline-block;
-  color:var(--accent-2);
-  text-shadow:0 0 6px rgba(255,102,204,0.5);
-  white-space:pre;
-  font-family:"Courier New",monospace;
-}
-.game-name {
-  color:#ffff00;
-  font-size:14px;
-  font-weight:bold;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
-.game-desc {
-  color:#aaa;
-  font-size:12px;
-  line-height:1.6;
-  margin-bottom:14px;
-}
-.game-badge {
-  display:inline-block;
-  font-size:10px;
-  letter-spacing:2px;
-  padding:3px 8px;
-  border:1px solid;
-  text-transform:uppercase;
-  margin-bottom:14px;
-}
-.game-badge.playable { color:#00ff88; border-color:#00ff88; }
-.game-badge.soon     { color:#888;    border-color:#555;    }
-.game-badge.wip      { color:#ffff00; border-color:#ffaa00; }
-
-.play-btn {
-  display:inline-block;
-  background:#000;
-  border:2px solid var(--accent);
+.bird-sci { color:#888; font-size:11px; font-style:italic; margin-top:2px; }
+.bird-meta { text-align:right; flex-shrink:0; }
+.bird-time { color:var(--text); font-size:12px; }
+.bird-conf {
+  display:inline-block; margin-top:4px;
+  font-size:10px; letter-spacing:1px;
+  padding:2px 7px; border:1px solid var(--accent);
   color:var(--accent);
-  font-family:"Courier New", monospace;
-  font-size:12px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  padding:6px 18px;
-  text-decoration:none;
-  cursor:pointer;
-  transition:background 0.15s, color 0.15s;
 }
-.play-btn:hover { background:var(--accent); color:#000; }
+.bird-conf.high { border-color:#00ff88; color:#00ff88; }
 
-.coming-soon-label {
-  color:#555;
-  font-size:11px;
-  letter-spacing:2px;
-  margin-top:8px;
+.bird-link {
+  color:inherit; text-decoration:none; display:block;
 }
 
-.placeholder-note {
+.loading-note, .empty-note {
   text-align:center; color:#555;
-  font-size:11px; margin-top:16px; letter-spacing:2px;
+  font-size:12px; letter-spacing:2px; padding:40px 0;
 }
-
-/* ===== INSERT COIN ===== */
-.insert-coin {
-  text-align:center;
-  margin-top:30px;
-  color:#ffd700;
-  font-size:14px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  animation:blink 1.2s steps(1) infinite;
+.updated-note {
+  text-align:center; color:#555;
+  font-size:10px; letter-spacing:2px; margin-top:22px;
 }
-@keyframes blink { 50% { opacity:0; } }
+.about-note {
+  max-width:680px; margin:24px auto 0; padding:14px;
+  border:2px dashed var(--border);
+  background:rgba(0,0,0,0.35); line-height:1.7;
+  font-size:12px; color:#9c9;
+}
+.about-note a { color:var(--accent-2); }
 
 @media (max-width:640px) {
   body { padding-top:108px; }
-  .games-grid { grid-template-columns:1fr; }
   #site-nav a { font-size:11px; padding:5px 10px; }
+  .bird-card { gap:10px; padding:10px; }
+  .bird-glyph { font-size:20px; }
+  .bird-name { font-size:13px; }
 }
 
 /* ===== THEME: DARK ===== */
@@ -313,6 +285,7 @@ body {
 [data-theme="light"] .osrs-99        { color:#953800; text-shadow:none; }
 [data-theme="light"] .btn            { background:#f6f8fa; border-color:#d0d7de; }
 [data-theme="light"] .page-sub       { color:#555; }
+[data-theme="light"] .stat-num       { text-shadow:none; }
 [data-theme="light"] [style*="color:#ffff00"] { color:#953800 !important; }
 
 /* ===== THEME PICKER ===== */
@@ -374,7 +347,7 @@ body {
     <a href="index.html">[ home ]</a>
     <a href="experience.html">[ experience ]</a>
     <a href="projects.html">[ projects ]</a>
-    <a href="games.html" class="active">[ games ]</a>
+    <a href="birds.html" class="active">[ birds ]</a>
   </nav>
   <div class="osrs-nav-divider"></div>
 </div>
@@ -382,25 +355,37 @@ body {
 <div class="wrap">
   <div class="window">
     <div class="title-bar">
-      <span>games.exe</span>
+      <span>birds.live</span>
       <div class="buttons">
         <span class="btn"></span><span class="btn"></span><span class="btn"></span>
       </div>
     </div>
 
-    <div class="page-heading">&gt;&gt; the arcade &lt;&lt;</div>
-    <div class="page-sub">// little dumb things i made //</div>
+    <div class="page-heading">&gt;&gt; backyard birdcam &lt;&lt;</div>
+    <div class="page-sub">// bird calls heard at my house, ID'd live by a raspberry pi //</div>
 
     <div class="divider">========================================================================</div>
 
-    <div class="games-grid">
-
-      <div style="grid-column:1/-1;text-align:center;color:#555;font-size:12px;letter-spacing:2px;padding:40px 0;">
-        // no games yet — check back soon //
-      </div>
-
+    <div class="bird-stats" id="bird-stats" style="display:none">
+      <div class="stat-box"><div class="stat-num" id="stat-today">--</div><div class="stat-label">heard today</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-species">--</div><div class="stat-label">species today</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-total">--</div><div class="stat-label">all-time</div></div>
     </div>
 
+    <div class="enviro-strip" id="enviro-strip" style="display:none"></div>
+
+    <div class="bird-list" id="bird-list">
+      <div class="loading-note">// tuning the antenna... //</div>
+    </div>
+
+    <div class="updated-note" id="updated-note"></div>
+
+    <div class="about-note">
+      This page is fed by a <strong>Raspberry Pi 5</strong> in my backyard running
+      <a href="https://github.com/Nachtzuster/BirdNET-Pi" target="_blank" rel="noopener">BirdNET-Pi</a>.
+      It listens 24/7, identifies bird calls on-device with machine learning, and pushes the latest
+      detections here. Temperature &amp; conditions come from an Enviro+ sensor on the same Pi.
+    </div>
   </div>
 </div>
 
@@ -449,6 +434,97 @@ document.addEventListener('click',function(e){
     document.getElementById('theme-options').style.display='none';
   }
 });
+
+// ===== BIRD FEED =====
+(function(){
+  var GLYPHS = ['\u{1F426}','\u{1F424}','\u{1F425}','\u{1F985}','\u{1F989}','\u{1F99C}','\u{1F54A}'];
+  function glyphFor(name){
+    var s = 0;
+    for (var i=0;i<name.length;i++) s = (s + name.charCodeAt(i)) % GLYPHS.length;
+    return GLYPHS[s];
+  }
+  function esc(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function timeAgo(iso){
+    var then = new Date(iso).getTime();
+    if (isNaN(then)) return '';
+    var sec = Math.floor((Date.now() - then)/1000);
+    if (sec < 60) return 'just now';
+    var min = Math.floor(sec/60);
+    if (min < 60) return min + 'm ago';
+    var hr = Math.floor(min/60);
+    if (hr < 24) return hr + 'h ago';
+    return Math.floor(hr/24) + 'd ago';
+  }
+  function render(data){
+    var list = document.getElementById('bird-list');
+    var dets = (data && data.detections) || [];
+
+    if (data.stats){
+      document.getElementById('stat-today').textContent   = data.stats.today_count != null ? data.stats.today_count : '--';
+      document.getElementById('stat-species').textContent = data.stats.today_species != null ? data.stats.today_species : '--';
+      document.getElementById('stat-total').textContent   = data.stats.total != null ? Number(data.stats.total).toLocaleString() : '--';
+      document.getElementById('bird-stats').style.display = 'grid';
+    }
+
+    if (data.enviro){
+      var e = data.enviro, parts = [];
+      if (e.temp_f != null) parts.push('\u{1F321} ' + Math.round(e.temp_f) + '°F');
+      if (e.humidity != null) parts.push('\u{1F4A7} ' + Math.round(e.humidity) + '%');
+      if (e.pressure != null) parts.push('\u{1F32A} ' + Math.round(e.pressure) + ' hPa');
+      if (parts.length){
+        var strip = document.getElementById('enviro-strip');
+        strip.textContent = 'BACKYARD NOW:  ' + parts.join('   •   ');
+        strip.style.display = 'block';
+      }
+    }
+
+    if (!dets.length){
+      list.innerHTML = '<div class="empty-note">// no birds logged yet — check back soon //</div>';
+      return;
+    }
+
+    list.innerHTML = dets.map(function(d, idx){
+      var conf = Math.round((d.confidence || 0) * 100);
+      var confClass = conf >= 85 ? 'high' : '';
+      var when = d.time_ago || timeAgo(d.iso) || esc(d.time || '');
+      var glyph = glyphFor(d.com_name || '?');
+      var inner =
+        '<div class="bird-glyph">' + glyph + '</div>' +
+        '<div class="bird-info">' +
+          '<div class="bird-name">' + esc(d.com_name || 'Unknown') + '</div>' +
+          '<div class="bird-sci">' + esc(d.sci_name || '') + '</div>' +
+        '</div>' +
+        '<div class="bird-meta">' +
+          '<div class="bird-time">' + esc(when) + '</div>' +
+          '<div class="bird-conf ' + confClass + '">' + conf + '%</div>' +
+        '</div>';
+      var wiki = 'https://en.wikipedia.org/wiki/' + encodeURIComponent((d.com_name||'').replace(/ /g,'_'));
+      return '<div class="bird-card' + (idx===0?' latest':'') + '">' +
+        '<a class="bird-link" href="' + wiki + '" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;width:100%">' +
+        inner + '</a></div>';
+    }).join('');
+
+    if (data.generated_at){
+      document.getElementById('updated-note').textContent =
+        'last updated ' + (timeAgo(data.generated_at) || '') + ' • auto-refreshes';
+    }
+  }
+  function load(){
+    fetch('birds.json?t=' + Date.now())
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(render)
+      .catch(function(){
+        document.getElementById('bird-list').innerHTML =
+          '<div class="empty-note">// feed offline — the pi may be napping //</div>';
+      });
+  }
+  load();
+  setInterval(load, 60000); // refresh every minute
+})();
 </script>
 <script src="ticker.js?v=9"></script>
 </body>
