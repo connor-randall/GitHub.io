@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-06-14T17:30:03-0600",
+  "generated_at": "2026-06-14T17:40:03-0600",
   "stats": {
-    "today_count": 39,
+    "today_count": 41,
     "today_species": 8,
-    "total": 53
+    "total": 55
   },
   "enviro": {
-    "temp_f": 78.7,
-    "humidity": 25.4,
-    "pressure": 833.0
+    "temp_f": 78.4,
+    "humidity": 25.3,
+    "pressure": 833.2
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.968,
+      "iso": "2026-06-14T17:33:57",
+      "time": "17:33",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-97-2026-06-14-birdnet-17.33.57.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6725,
+      "iso": "2026-06-14T17:33:54",
+      "time": "17:33",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-67-2026-06-14-birdnet-17.33.54.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -140,26 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips/Black-capped_Chickadee-70-2026-06-14-birdnet-11.48.17.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7387,
-      "iso": "2026-06-14T11:46:20",
-      "time": "11:46",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-74-2026-06-14-birdnet-11.46.20.mp3"
-    },
-    {
-      "com_name": "American Robin",
-      "sci_name": "Turdus migratorius",
-      "confidence": 0.6792,
-      "iso": "2026-06-14T11:03:20",
-      "time": "11:03",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/American_robin_%2871307%29.jpg/330px-American_robin_%2871307%29.jpg",
-      "audio": "bird-clips/American_Robin-68-2026-06-14-birdnet-11.03.20.mp3"
     }
   ]
 }
