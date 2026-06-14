@@ -1,16 +1,76 @@
 {
-  "generated_at": "2026-06-14T11:50:04-0600",
+  "generated_at": "2026-06-14T12:00:03-0600",
   "stats": {
-    "today_count": 28,
+    "today_count": 34,
     "today_species": 7,
-    "total": 42
+    "total": 48
   },
   "enviro": {
-    "temp_f": 79.7,
-    "humidity": 25.2,
-    "pressure": 834.0
+    "temp_f": 77.5,
+    "humidity": 26.9,
+    "pressure": 833.9
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7147,
+      "iso": "2026-06-14T11:55:38",
+      "time": "11:55",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-71-2026-06-14-birdnet-11.55.38.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.821,
+      "iso": "2026-06-14T11:53:53",
+      "time": "11:53",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-82-2026-06-14-birdnet-11.53.53.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.8269,
+      "iso": "2026-06-14T11:53:05",
+      "time": "11:53",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-83-2026-06-14-birdnet-11.53.05.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7812,
+      "iso": "2026-06-14T11:51:14",
+      "time": "11:51",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-78-2026-06-14-birdnet-11.51.14.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.9314,
+      "iso": "2026-06-14T11:50:20",
+      "time": "11:50",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-93-2026-06-14-birdnet-11.50.20.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.841,
+      "iso": "2026-06-14T11:50:08",
+      "time": "11:50",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-84-2026-06-14-birdnet-11.50.08.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -100,66 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-77-2026-06-14-birdnet-08.54.53.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9783,
-      "iso": "2026-06-14T08:53:20",
-      "time": "08:53",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-98-2026-06-14-birdnet-08.53.20.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9858,
-      "iso": "2026-06-14T08:53:08",
-      "time": "08:53",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-99-2026-06-14-birdnet-08.53.08.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7909,
-      "iso": "2026-06-14T08:48:44",
-      "time": "08:48",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-79-2026-06-14-birdnet-08.48.44.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9237,
-      "iso": "2026-06-14T08:46:50",
-      "time": "08:46",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-92-2026-06-14-birdnet-08.46.50.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6936,
-      "iso": "2026-06-14T08:46:05",
-      "time": "08:46",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-69-2026-06-14-birdnet-08.46.05.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7159,
-      "iso": "2026-06-14T08:45:47",
-      "time": "08:45",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-72-2026-06-14-birdnet-08.45.47.mp3"
     }
   ]
 }
