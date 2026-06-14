@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-14T06:50:03-0600",
+  "generated_at": "2026-06-14T07:00:03-0600",
   "stats": {
-    "today_count": 10,
+    "today_count": 11,
     "today_species": 5,
-    "total": 24
+    "total": 25
   },
   "enviro": {
-    "temp_f": 67.4,
-    "humidity": 31.1,
-    "pressure": 837.0
+    "temp_f": 66.4,
+    "humidity": 32.2,
+    "pressure": 836.9
   },
   "detections": [
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.9221,
+      "iso": "2026-06-14T06:50:13",
+      "time": "06:50",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-92-2026-06-14-birdnet-06.50.13.mp3"
+    },
     {
       "com_name": "American Goldfinch",
       "sci_name": "Spinus tristis",
@@ -150,16 +160,6 @@
       "date": "2026-06-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
       "audio": "bird-clips/Mourning_Dove-90-2026-06-13-birdnet-19.26.50.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.8255,
-      "iso": "2026-06-11T22:43:51",
-      "time": "22:43",
-      "date": "2026-06-11",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-83-2026-06-11-birdnet-22.43.51.mp3"
     }
   ]
 }
