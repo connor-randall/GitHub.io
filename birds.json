@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-06-14T11:40:03-0600",
+  "generated_at": "2026-06-14T11:50:04-0600",
   "stats": {
-    "today_count": 25,
-    "today_species": 6,
-    "total": 39
+    "today_count": 28,
+    "today_species": 7,
+    "total": 42
   },
   "enviro": {
-    "temp_f": 77.7,
-    "humidity": 26.9,
+    "temp_f": 79.7,
+    "humidity": 25.2,
     "pressure": 834.0
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.8782,
+      "iso": "2026-06-14T11:49:05",
+      "time": "11:49",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-88-2026-06-14-birdnet-11.49.05.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6966,
+      "iso": "2026-06-14T11:48:17",
+      "time": "11:48",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-70-2026-06-14-birdnet-11.48.17.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7387,
+      "iso": "2026-06-14T11:46:20",
+      "time": "11:46",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-74-2026-06-14-birdnet-11.46.20.mp3"
+    },
     {
       "com_name": "American Robin",
       "sci_name": "Turdus migratorius",
@@ -130,36 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-72-2026-06-14-birdnet-08.45.47.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6566,
-      "iso": "2026-06-14T08:23:41",
-      "time": "08:23",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-66-2026-06-14-birdnet-08.23.41.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8646,
-      "iso": "2026-06-14T07:02:58",
-      "time": "07:02",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-86-2026-06-14-birdnet-07.02.58.mp3"
-    },
-    {
-      "com_name": "American Goldfinch",
-      "sci_name": "Spinus tristis",
-      "confidence": 0.9221,
-      "iso": "2026-06-14T06:50:13",
-      "time": "06:50",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
-      "audio": "bird-clips/American_Goldfinch-92-2026-06-14-birdnet-06.50.13.mp3"
     }
   ]
 }
