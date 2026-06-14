@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-14T08:20:03-0600",
+  "generated_at": "2026-06-14T08:30:03-0600",
   "stats": {
-    "today_count": 12,
+    "today_count": 13,
     "today_species": 5,
-    "total": 26
+    "total": 27
   },
   "enviro": {
-    "temp_f": 61.7,
-    "humidity": 39.5,
-    "pressure": 836.3
+    "temp_f": 59.6,
+    "humidity": 41.7,
+    "pressure": 836.2
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6566,
+      "iso": "2026-06-14T08:23:41",
+      "time": "08:23",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-66-2026-06-14-birdnet-08.23.41.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-06-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
       "audio": "bird-clips/Mourning_Dove-82-2026-06-13-birdnet-19.26.59.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.764,
-      "iso": "2026-06-13T19:26:53",
-      "time": "19:26",
-      "date": "2026-06-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-76-2026-06-13-birdnet-19.26.53.mp3"
     }
   ]
 }
