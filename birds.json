@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-14T06:30:03-0600",
+  "generated_at": "2026-06-14T06:40:03-0600",
   "stats": {
-    "today_count": 9,
-    "today_species": 4,
-    "total": 23
+    "today_count": 10,
+    "today_species": 5,
+    "total": 24
   },
   "enviro": {
-    "temp_f": 65.6,
-    "humidity": 32.6,
-    "pressure": 837.2
+    "temp_f": 65.0,
+    "humidity": 33.7,
+    "pressure": 837.1
   },
   "detections": [
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.7419,
+      "iso": "2026-06-14T06:36:07",
+      "time": "06:36",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-74-2026-06-14-birdnet-06.36.07.mp3"
+    },
     {
       "com_name": "Common Grackle",
       "sci_name": "Quiscalus quiscula",
@@ -150,16 +160,6 @@
       "date": "2026-06-11",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
       "audio": "bird-clips/Mourning_Dove-83-2026-06-11-birdnet-22.43.51.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9565,
-      "iso": "2026-06-11T22:43:48",
-      "time": "22:43",
-      "date": "2026-06-11",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-96-2026-06-11-birdnet-22.43.48.mp3"
     }
   ]
 }
