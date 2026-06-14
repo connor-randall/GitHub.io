@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-06-14T08:40:03-0600",
+  "generated_at": "2026-06-14T08:50:03-0600",
   "stats": {
-    "today_count": 13,
+    "today_count": 17,
     "today_species": 5,
-    "total": 27
+    "total": 31
   },
   "enviro": {
-    "temp_f": 64.0,
-    "humidity": 37.1,
-    "pressure": 836.0
+    "temp_f": 62.4,
+    "humidity": 39.0,
+    "pressure": 835.9
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7909,
+      "iso": "2026-06-14T08:48:44",
+      "time": "08:48",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-79-2026-06-14-birdnet-08.48.44.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9237,
+      "iso": "2026-06-14T08:46:50",
+      "time": "08:46",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-92-2026-06-14-birdnet-08.46.50.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6936,
+      "iso": "2026-06-14T08:46:05",
+      "time": "08:46",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-69-2026-06-14-birdnet-08.46.05.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7159,
+      "iso": "2026-06-14T08:45:47",
+      "time": "08:45",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-72-2026-06-14-birdnet-08.45.47.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -120,46 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-75-2026-06-14-birdnet-05.23.22.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.9214,
-      "iso": "2026-06-14T05:21:37",
-      "time": "05:21",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-92-2026-06-14-birdnet-05.21.37.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.8941,
-      "iso": "2026-06-14T05:21:34",
-      "time": "05:21",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-89-2026-06-14-birdnet-05.21.34.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.7386,
-      "iso": "2026-06-13T19:27:02",
-      "time": "19:27",
-      "date": "2026-06-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-74-2026-06-13-birdnet-19.27.02.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.8177,
-      "iso": "2026-06-13T19:26:59",
-      "time": "19:26",
-      "date": "2026-06-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-82-2026-06-13-birdnet-19.26.59.mp3"
     }
   ]
 }
