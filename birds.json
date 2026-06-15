@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-06-15T06:00:04-0600",
+  "generated_at": "2026-06-15T06:10:05-0600",
   "stats": {
-    "today_count": 38,
+    "today_count": 61,
     "today_species": 4,
-    "total": 95
+    "total": 118
   },
   "enviro": {
-    "temp_f": 67.4,
-    "humidity": 31.5,
-    "pressure": 832.9
+    "temp_f": 65.2,
+    "humidity": 33.4,
+    "pressure": 833.0
   },
   "detections": [
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7468,
-      "iso": "2026-06-15T05:59:02",
-      "time": "05:59",
+      "confidence": 0.9379,
+      "iso": "2026-06-15T06:06:23",
+      "time": "06:06",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-75-2026-06-15-birdnet-05.59.02.mp3"
+      "audio": "bird-clips/House_Finch-94-2026-06-15-birdnet-06.06.23.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7766,
-      "iso": "2026-06-15T05:58:56",
-      "time": "05:58",
+      "confidence": 0.8554,
+      "iso": "2026-06-15T06:06:02",
+      "time": "06:06",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-78-2026-06-15-birdnet-05.58.56.mp3"
+      "audio": "bird-clips/House_Finch-86-2026-06-15-birdnet-06.06.02.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7724,
-      "iso": "2026-06-15T05:58:17",
-      "time": "05:58",
+      "confidence": 0.8948,
+      "iso": "2026-06-15T06:05:59",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-77-2026-06-15-birdnet-05.58.17.mp3"
+      "audio": "bird-clips/House_Finch-89-2026-06-15-birdnet-06.05.59.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8671,
-      "iso": "2026-06-15T05:58:14",
-      "time": "05:58",
+      "confidence": 0.7617,
+      "iso": "2026-06-15T06:05:56",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-87-2026-06-15-birdnet-05.58.14.mp3"
+      "audio": "bird-clips/House_Finch-76-2026-06-15-birdnet-06.05.56.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8469,
-      "iso": "2026-06-15T05:58:11",
-      "time": "05:58",
+      "confidence": 0.9506,
+      "iso": "2026-06-15T06:05:53",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-85-2026-06-15-birdnet-05.58.11.mp3"
+      "audio": "bird-clips/House_Finch-95-2026-06-15-birdnet-06.05.53.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8493,
-      "iso": "2026-06-15T05:57:41",
-      "time": "05:57",
+      "confidence": 0.8627,
+      "iso": "2026-06-15T06:05:50",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-85-2026-06-15-birdnet-05.57.41.mp3"
+      "audio": "bird-clips/House_Finch-86-2026-06-15-birdnet-06.05.50.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7522,
-      "iso": "2026-06-15T05:49:53",
-      "time": "05:49",
+      "confidence": 0.8109,
+      "iso": "2026-06-15T06:05:47",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-75-2026-06-15-birdnet-05.49.53.mp3"
+      "audio": "bird-clips/House_Finch-81-2026-06-15-birdnet-06.05.47.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6566,
-      "iso": "2026-06-15T05:49:50",
-      "time": "05:49",
+      "confidence": 0.9569,
+      "iso": "2026-06-15T06:05:44",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-66-2026-06-15-birdnet-05.49.50.mp3"
+      "audio": "bird-clips/House_Finch-96-2026-06-15-birdnet-06.05.44.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8777,
-      "iso": "2026-06-15T05:49:47",
-      "time": "05:49",
+      "confidence": 0.8757,
+      "iso": "2026-06-15T06:05:41",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-88-2026-06-15-birdnet-05.49.47.mp3"
+      "audio": "bird-clips/House_Finch-88-2026-06-15-birdnet-06.05.41.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8733,
-      "iso": "2026-06-15T05:49:29",
-      "time": "05:49",
+      "confidence": 0.8416,
+      "iso": "2026-06-15T06:05:29",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-87-2026-06-15-birdnet-05.49.29.mp3"
-    },
-    {
-      "com_name": "Say's Phoebe",
-      "sci_name": "Sayornis saya",
-      "confidence": 0.8467,
-      "iso": "2026-06-15T05:46:38",
-      "time": "05:46",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Sayornis_saya_GNP_01.jpg/330px-Sayornis_saya_GNP_01.jpg",
-      "audio": null
+      "audio": "bird-clips/House_Finch-84-2026-06-15-birdnet-06.05.29.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6632,
-      "iso": "2026-06-15T05:46:17",
-      "time": "05:46",
+      "confidence": 0.7998,
+      "iso": "2026-06-15T06:05:26",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-66-2026-06-15-birdnet-05.46.17.mp3"
+      "audio": "bird-clips/House_Finch-80-2026-06-15-birdnet-06.05.26.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6811,
-      "iso": "2026-06-15T05:45:29",
-      "time": "05:45",
+      "confidence": 0.7878,
+      "iso": "2026-06-15T06:05:14",
+      "time": "06:05",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-68-2026-06-15-birdnet-05.45.29.mp3"
+      "audio": "bird-clips/House_Finch-79-2026-06-15-birdnet-06.05.14.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8242,
-      "iso": "2026-06-15T05:45:23",
-      "time": "05:45",
+      "confidence": 0.7467,
+      "iso": "2026-06-15T06:03:14",
+      "time": "06:03",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-82-2026-06-15-birdnet-05.45.23.mp3"
+      "audio": "bird-clips/House_Finch-75-2026-06-15-birdnet-06.03.14.mp3"
     },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8284,
-      "iso": "2026-06-15T05:44:53",
-      "time": "05:44",
+      "confidence": 0.8411,
+      "iso": "2026-06-15T06:03:02",
+      "time": "06:03",
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-83-2026-06-15-birdnet-05.44.53.mp3"
+      "audio": "bird-clips/House_Finch-84-2026-06-15-birdnet-06.03.02.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.8726,
+      "iso": "2026-06-15T06:02:56",
+      "time": "06:02",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-87-2026-06-15-birdnet-06.02.56.mp3"
     }
   ]
 }
