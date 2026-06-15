@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-14T17:50:03-0600",
+  "generated_at": "2026-06-14T18:00:03-0600",
   "stats": {
-    "today_count": 41,
+    "today_count": 42,
     "today_species": 8,
-    "total": 55
+    "total": 56
   },
   "enviro": {
-    "temp_f": 81.1,
-    "humidity": 23.6,
+    "temp_f": 80.1,
+    "humidity": 24.5,
     "pressure": 833.4
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7845,
+      "iso": "2026-06-14T17:50:06",
+      "time": "17:50",
+      "date": "2026-06-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-78-2026-06-14-birdnet-17.50.06.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-88-2026-06-14-birdnet-11.49.05.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6966,
-      "iso": "2026-06-14T11:48:17",
-      "time": "11:48",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-70-2026-06-14-birdnet-11.48.17.mp3"
     }
   ]
 }
