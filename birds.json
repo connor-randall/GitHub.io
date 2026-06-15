@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-06-15T05:00:03-0600",
+  "generated_at": "2026-06-15T05:10:03-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 57
+    "today_count": 4,
+    "today_species": 1,
+    "total": 61
   },
   "enviro": {
-    "temp_f": 61.9,
-    "humidity": 36.9,
+    "temp_f": 66.5,
+    "humidity": 32.3,
     "pressure": 833.1
   },
   "detections": [
+    {
+      "com_name": "Violet-green Swallow",
+      "sci_name": "Tachycineta thalassina",
+      "confidence": 0.9618,
+      "iso": "2026-06-15T05:08:44",
+      "time": "05:08",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
+      "audio": "bird-clips/Violet-green_Swallow-96-2026-06-15-birdnet-05.08.44.mp3"
+    },
+    {
+      "com_name": "Violet-green Swallow",
+      "sci_name": "Tachycineta thalassina",
+      "confidence": 0.7784,
+      "iso": "2026-06-15T05:08:32",
+      "time": "05:08",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
+      "audio": "bird-clips/Violet-green_Swallow-78-2026-06-15-birdnet-05.08.32.mp3"
+    },
+    {
+      "com_name": "Violet-green Swallow",
+      "sci_name": "Tachycineta thalassina",
+      "confidence": 0.8473,
+      "iso": "2026-06-15T05:08:29",
+      "time": "05:08",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
+      "audio": "bird-clips/Violet-green_Swallow-85-2026-06-15-birdnet-05.08.29.mp3"
+    },
+    {
+      "com_name": "Violet-green Swallow",
+      "sci_name": "Tachycineta thalassina",
+      "confidence": 0.9176,
+      "iso": "2026-06-15T05:08:23",
+      "time": "05:08",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
+      "audio": "bird-clips/Violet-green_Swallow-92-2026-06-15-birdnet-05.08.23.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -120,46 +160,6 @@
       "date": "2026-06-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-82-2026-06-14-birdnet-11.53.53.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8269,
-      "iso": "2026-06-14T11:53:05",
-      "time": "11:53",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-83-2026-06-14-birdnet-11.53.05.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7812,
-      "iso": "2026-06-14T11:51:14",
-      "time": "11:51",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-78-2026-06-14-birdnet-11.51.14.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.9314,
-      "iso": "2026-06-14T11:50:20",
-      "time": "11:50",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-93-2026-06-14-birdnet-11.50.20.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.841,
-      "iso": "2026-06-14T11:50:08",
-      "time": "11:50",
-      "date": "2026-06-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-84-2026-06-14-birdnet-11.50.08.mp3"
     }
   ]
 }
