@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-15T08:40:03-0600",
+  "generated_at": "2026-06-15T08:50:04-0600",
   "stats": {
-    "today_count": 128,
+    "today_count": 129,
     "today_species": 5,
-    "total": 185
+    "total": 186
   },
   "enviro": {
-    "temp_f": 84.7,
-    "humidity": 22.2,
+    "temp_f": 81.4,
+    "humidity": 24.2,
     "pressure": 832.6
   },
   "detections": [
+    {
+      "com_name": "Violet-green Swallow",
+      "sci_name": "Tachycineta thalassina",
+      "confidence": 0.9627,
+      "iso": "2026-06-15T08:49:48",
+      "time": "08:49",
+      "date": "2026-06-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
+      "audio": "bird-clips/Violet-green_Swallow-96-2026-06-15-birdnet-08.49.48.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-68-2026-06-15-birdnet-06.31.38.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8345,
-      "iso": "2026-06-15T06:30:35",
-      "time": "06:30",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-83-2026-06-15-birdnet-06.30.35.mp3"
     }
   ]
 }
