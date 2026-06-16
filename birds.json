@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-16T09:20:04-0600",
+  "generated_at": "2026-06-16T09:30:07-0600",
   "stats": {
-    "today_count": 1,
-    "today_species": 1,
-    "total": 191
+    "today_count": 2,
+    "today_species": 2,
+    "total": 192
   },
   "enviro": {
-    "temp_f": 88.6,
-    "humidity": 16.8,
-    "pressure": 827.7
+    "temp_f": 86.9,
+    "humidity": 17.1,
+    "pressure": 827.5
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7455,
+      "iso": "2026-06-16T09:29:20",
+      "time": "09:29",
+      "date": "2026-06-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-75-2026-06-16-birdnet-09.29.20.mp3"
+    },
     {
       "com_name": "Violet-green Swallow",
       "sci_name": "Tachycineta thalassina",
@@ -150,16 +160,6 @@
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-90-2026-06-15-birdnet-06.51.41.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7083,
-      "iso": "2026-06-15T06:39:38",
-      "time": "06:39",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-71-2026-06-15-birdnet-06.39.38.mp3"
     }
   ]
 }
