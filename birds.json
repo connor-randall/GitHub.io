@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-06-18T20:10:03-0600",
+  "generated_at": "2026-06-18T20:20:03-0600",
   "stats": {
-    "today_count": 6,
-    "today_species": 3,
-    "total": 198
+    "today_count": 9,
+    "today_species": 5,
+    "total": 201
   },
   "enviro": {
-    "temp_f": 84.3,
-    "humidity": 19.8,
-    "pressure": 825.6
+    "temp_f": 85.5,
+    "humidity": 18.1,
+    "pressure": 825.7
   },
   "detections": [
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.8678,
+      "iso": "2026-06-18T20:12:01",
+      "time": "20:12",
+      "date": "2026-06-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips/Mourning_Dove-87-2026-06-18-birdnet-20.12.01.mp3"
+    },
+    {
+      "com_name": "American Robin",
+      "sci_name": "Turdus migratorius",
+      "confidence": 0.9104,
+      "iso": "2026-06-18T20:11:55",
+      "time": "20:11",
+      "date": "2026-06-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/American_robin_%2871307%29.jpg/330px-American_robin_%2871307%29.jpg",
+      "audio": "bird-clips/American_Robin-91-2026-06-18-birdnet-20.11.55.mp3"
+    },
+    {
+      "com_name": "American Robin",
+      "sci_name": "Turdus migratorius",
+      "confidence": 0.9757,
+      "iso": "2026-06-18T20:11:49",
+      "time": "20:11",
+      "date": "2026-06-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/American_robin_%2871307%29.jpg/330px-American_robin_%2871307%29.jpg",
+      "audio": "bird-clips/American_Robin-98-2026-06-18-birdnet-20.11.49.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -130,36 +160,6 @@
       "date": "2026-06-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-71-2026-06-15-birdnet-10.12.15.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.9627,
-      "iso": "2026-06-15T08:49:48",
-      "time": "08:49",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-96-2026-06-15-birdnet-08.49.48.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.749,
-      "iso": "2026-06-15T07:14:44",
-      "time": "07:14",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-75-2026-06-15-birdnet-07.14.44.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.9392,
-      "iso": "2026-06-15T07:11:08",
-      "time": "07:11",
-      "date": "2026-06-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-94-2026-06-15-birdnet-07.11.08.mp3"
     }
   ]
 }
