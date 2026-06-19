@@ -10,7 +10,7 @@
  * and bakes an opaque colour palette so the per-frame draw stays cheap. Honors
  * prefers-reduced-motion.
  *
- * Self-contained: every page just needs <script src="ascii-bg.js?v=2"></script>
+ * Self-contained: every page just needs <script src="ascii-bg.js?v=3"></script>
  * ==========================================================================*/
 (function () {
   "use strict";
