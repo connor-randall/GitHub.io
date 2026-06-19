@@ -109,11 +109,8 @@ body { padding:86px 16px 64px; }
 }
 
 /* ===== LOGO ===== */
-pre.logo {
-  margin:0; color:var(--accent);
-  font-size:clamp(6px,1.5vw,13px); line-height:1.05;
-  white-space:pre; overflow-x:auto;
-}
+.logo { margin:4px auto 0; min-height:70px; width:100%; }
+.logo canvas { display:block; }
 
 /* ===== TEXT ELEMENTS ===== */
 .subtitle { margin-top:18px; font-size:18px; letter-spacing:1px; color:var(--text); }
@@ -241,23 +238,7 @@ pre.logo {
         </div>
       </div>
 
-<pre class="logo anim-1">
-      ######   #######  ##    ## ##    ##  #######  ########
-     ##    ## ##     ## ###   ## ###   ## ##     ## ##     ##
-     ##       ##     ## ####  ## ####  ## ##     ## ##     ##
-     ##       ##     ## ## ## ## ## ## ## ##     ## ########
-     ##       ##     ## ##  #### ##  #### ##     ## ##   ##
-     ##    ## ##     ## ##   ### ##   ### ##     ## ##    ##
-      ######   #######  ##    ## ##    ##  #######  ##     ##
-
-########     ###    ##    ## ########     ###    ##       ##
-##     ##   ## ##   ###   ## ##     ##   ## ##   ##       ##
-##     ##  ##   ##  ####  ## ##     ##  ##   ##  ##       ##
-########  ##     ## ## ## ## ##     ## ##     ## ##       ##
-##   ##   ######### ##  #### ##     ## ######### ##       ##
-##    ##  ##     ## ##   ### ##     ## ##     ## ##       ##
-##     ## ##     ## ##    ## ########  ##     ## ######## ########
-</pre>
+<div class="logo anim-1" id="logo"></div>
 
       <div class="subtitle anim-2">
         IT professional &amp; homelab tinkerer<span class="blink">_</span>
@@ -449,5 +430,6 @@ fetch("https://visitorcount.c-m-randall.workers.dev/")
   });
 </script>
 <script src="ascii-bg.js?v=4"></script>
+<script src="logo-ascii.js?v=1"></script>
 </body>
 </html>
