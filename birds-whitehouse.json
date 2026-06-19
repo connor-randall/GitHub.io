@@ -1,111 +1,161 @@
 {
-  "generated_at": "2026-06-19T16:59:04-0600",
+  "generated_at": "2026-06-19T17:05:19-0600",
   "stats": {
-    "today_count": 10,
-    "today_species": 2,
-    "total": 10
+    "today_count": 36,
+    "today_species": 3,
+    "total": 36
   },
   "enviro": null,
   "detections": [
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9225,
-      "iso": "2026-06-19T16:37:24",
-      "time": "16:37",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9195,
+      "iso": "2026-06-19T17:02:09",
+      "time": "17:02",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-92-2026-06-19-birdnet-16.37.24.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-92-2026-06-19-birdnet-17.02.09.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9681,
-      "iso": "2026-06-19T16:37:21",
-      "time": "16:37",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9116,
+      "iso": "2026-06-19T17:02:06",
+      "time": "17:02",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-97-2026-06-19-birdnet-16.37.21.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-91-2026-06-19-birdnet-17.02.06.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.7321,
-      "iso": "2026-06-19T16:37:10",
-      "time": "16:37",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9438,
+      "iso": "2026-06-19T17:02:00",
+      "time": "17:02",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-73-2026-06-19-birdnet-16.37.10.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-94-2026-06-19-birdnet-17.02.00.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.93,
-      "iso": "2026-06-19T16:37:07",
-      "time": "16:37",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9544,
+      "iso": "2026-06-19T17:01:54",
+      "time": "17:01",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-93-2026-06-19-birdnet-16.37.07.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-95-2026-06-19-birdnet-17.01.54.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.916,
-      "iso": "2026-06-19T16:37:04",
-      "time": "16:37",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9516,
+      "iso": "2026-06-19T17:01:48",
+      "time": "17:01",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-92-2026-06-19-birdnet-16.37.04.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-95-2026-06-19-birdnet-17.01.48.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9607,
-      "iso": "2026-06-19T16:36:58",
-      "time": "16:36",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9399,
+      "iso": "2026-06-19T17:01:42",
+      "time": "17:01",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-96-2026-06-19-birdnet-16.36.58.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-94-2026-06-19-birdnet-17.01.42.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9414,
-      "iso": "2026-06-19T16:36:55",
-      "time": "16:36",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7065,
+      "iso": "2026-06-19T16:59:03",
+      "time": "16:59",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-94-2026-06-19-birdnet-16.36.55.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-71-2026-06-19-birdnet-16.59.03.mp3"
     },
     {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.9271,
-      "iso": "2026-06-19T16:36:28",
-      "time": "16:36",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9122,
+      "iso": "2026-06-19T16:54:15",
+      "time": "16:54",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips-wh/Mourning_Dove-93-2026-06-19-birdnet-16.36.28.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-91-2026-06-19-birdnet-16.54.15.mp3"
     },
     {
-      "com_name": "Cedar Waxwing",
-      "sci_name": "Bombycilla cedrorum",
-      "confidence": 0.7717,
-      "iso": "2026-06-19T02:50:45",
-      "time": "02:50",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8811,
+      "iso": "2026-06-19T16:54:12",
+      "time": "16:54",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg/330px-Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg",
-      "audio": "bird-clips-wh/Cedar_Waxwing-77-2026-06-19-birdnet-02.50.45.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-88-2026-06-19-birdnet-16.54.12.mp3"
     },
     {
-      "com_name": "Cedar Waxwing",
-      "sci_name": "Bombycilla cedrorum",
-      "confidence": 0.8127,
-      "iso": "2026-06-19T00:40:35",
-      "time": "00:40",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9029,
+      "iso": "2026-06-19T16:54:09",
+      "time": "16:54",
       "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg/330px-Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg",
-      "audio": "bird-clips-wh/Cedar_Waxwing-81-2026-06-19-birdnet-00.40.35.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-90-2026-06-19-birdnet-16.54.09.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.778,
+      "iso": "2026-06-19T16:54:06",
+      "time": "16:54",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-78-2026-06-19-birdnet-16.54.06.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.863,
+      "iso": "2026-06-19T16:54:03",
+      "time": "16:54",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-86-2026-06-19-birdnet-16.54.03.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8908,
+      "iso": "2026-06-19T16:53:57",
+      "time": "16:53",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-89-2026-06-19-birdnet-16.53.57.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8011,
+      "iso": "2026-06-19T16:53:51",
+      "time": "16:53",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-80-2026-06-19-birdnet-16.53.51.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.866,
+      "iso": "2026-06-19T16:53:48",
+      "time": "16:53",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-87-2026-06-19-birdnet-16.53.48.mp3"
     }
   ]
 }
