@@ -1,12 +1,82 @@
 {
-  "generated_at": "2026-06-19T16:45:14-0600",
+  "generated_at": "2026-06-19T16:55:07-0600",
   "stats": {
-    "today_count": 3,
+    "today_count": 10,
     "today_species": 2,
-    "total": 3
+    "total": 10
   },
   "enviro": null,
   "detections": [
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.9225,
+      "iso": "2026-06-19T16:37:24",
+      "time": "16:37",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-92-2026-06-19-birdnet-16.37.24.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.9681,
+      "iso": "2026-06-19T16:37:21",
+      "time": "16:37",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-97-2026-06-19-birdnet-16.37.21.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.7321,
+      "iso": "2026-06-19T16:37:10",
+      "time": "16:37",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-73-2026-06-19-birdnet-16.37.10.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.93,
+      "iso": "2026-06-19T16:37:07",
+      "time": "16:37",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-93-2026-06-19-birdnet-16.37.07.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.916,
+      "iso": "2026-06-19T16:37:04",
+      "time": "16:37",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-92-2026-06-19-birdnet-16.37.04.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.9607,
+      "iso": "2026-06-19T16:36:58",
+      "time": "16:36",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-96-2026-06-19-birdnet-16.36.58.mp3"
+    },
+    {
+      "com_name": "Mourning Dove",
+      "sci_name": "Zenaida macroura",
+      "confidence": 0.9414,
+      "iso": "2026-06-19T16:36:55",
+      "time": "16:36",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
+      "audio": "bird-clips-wh/Mourning_Dove-94-2026-06-19-birdnet-16.36.55.mp3"
+    },
     {
       "com_name": "Mourning Dove",
       "sci_name": "Zenaida macroura",
