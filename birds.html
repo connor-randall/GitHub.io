@@ -136,6 +136,24 @@ body {
   color:var(--border); overflow:hidden; white-space:nowrap; text-align:center;
 }
 
+/* ===== FEED TABS ===== */
+.feed-tabs {
+  display:flex; justify-content:center; flex-wrap:wrap;
+  max-width:720px; margin:0 auto 22px;
+}
+.feed-tab {
+  background:rgba(0,0,0,0.4);
+  border:2px solid var(--border);
+  color:var(--text);
+  font-family:"Courier New", monospace;
+  font-size:13px; letter-spacing:2px; text-transform:uppercase;
+  padding:9px 22px; cursor:pointer;
+  transition:background 0.12s, color 0.12s, border-color 0.12s;
+}
+.feed-tab + .feed-tab { border-left:none; }
+.feed-tab:hover { border-color:var(--accent-2); color:var(--accent-2); }
+.feed-tab.active { background:var(--accent); color:#000; border-color:var(--accent); }
+
 /* ===== STAT STRIP ===== */
 .bird-stats {
   display:grid;
@@ -363,7 +381,12 @@ body {
 
     <div class="divider">========================================================================</div>
 
-    <div class="about-note">
+    <div class="feed-tabs" id="feed-tabs">
+      <button class="feed-tab active" data-feed="backyard">Backyard</button>
+      <button class="feed-tab" data-feed="whitehouse">White House</button>
+    </div>
+
+    <div class="about-note" id="about-note">
       This page is fed by a <strong>Raspberry Pi 5</strong> in my backyard.
       It listens 24/7, identifies bird calls on-device with machine learning, and pushes the latest
       detections here.
@@ -484,15 +507,51 @@ body {
         'last updated ' + (timeAgo(data.generated_at) || '') + ' • auto-refreshes';
     }
   }
+  var FEEDS = {
+    backyard: {
+      json: 'birds.json',
+      about: 'This page is fed by a <strong>Raspberry Pi 5</strong> in my backyard. ' +
+             'It listens 24/7, identifies bird calls on-device with machine learning, and pushes the latest detections here.'
+    },
+    whitehouse: {
+      json: 'birds-whitehouse.json',
+      about: 'This feed comes from a <strong>Raspberry Pi</strong> listening at the White House. ' +
+             'Same on-device machine-learning bird ID, a different patch of sky.'
+    }
+  };
+  var current = 'backyard';
+
   function load(){
-    fetch('birds.json?t=' + Date.now())
+    var feed = FEEDS[current];
+    var want = current; // guard against a slow response landing after a tab switch
+    fetch(feed.json + '?t=' + Date.now())
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-      .then(render)
+      .then(function(data){ if (want === current) render(data); })
       .catch(function(){
+        if (want !== current) return;
         document.getElementById('bird-list').innerHTML =
           '<div class="empty-note">// feed offline — the pi may be napping //</div>';
       });
   }
+
+  function switchFeed(name){
+    if (!FEEDS[name] || name === current) return;
+    current = name;
+    document.querySelectorAll('.feed-tab').forEach(function(t){
+      t.classList.toggle('active', t.getAttribute('data-feed') === name);
+    });
+    document.getElementById('about-note').innerHTML = FEEDS[name].about;
+    document.getElementById('bird-stats').style.display = 'none';
+    document.getElementById('bird-list').innerHTML =
+      '<div class="loading-note">// tuning the antenna... //</div>';
+    document.getElementById('updated-note').textContent = '';
+    load();
+  }
+
+  document.querySelectorAll('.feed-tab').forEach(function(t){
+    t.addEventListener('click', function(){ switchFeed(t.getAttribute('data-feed')); });
+  });
+
   load();
   setInterval(load, 60000); // refresh every minute
 })();
