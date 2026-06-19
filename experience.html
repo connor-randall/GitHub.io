@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('site-theme')||'retro');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connor Randall | Experience</title>
 <meta name="description" content="Connor Randall — work experience and career history.">
@@ -370,25 +369,21 @@ body {
   to { opacity:0; visibility:hidden; }
 }
 </style>
+<link rel="stylesheet" href="site.css?v=1">
 </head>
 <body>
 
-<div id="osrs-header">
-  <div id="osrs-ticker">
-    <div id="osrs-ticker-track">loading stats...</div>
+<header id="site-top">
+  <div class="top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">CR</span> connor randall</a>
+    <nav id="site-nav">
+      <a href="index.html">home</a>
+      <a href="experience.html" class="active">experience</a>
+      <a href="projects.html">projects</a>
+      <a href="birds.html">birds</a>
+    </nav>
   </div>
-  <div class="osrs-label-scroll">
-    <div id="osrs-label-track"></div>
-  </div>
-  <div class="osrs-nav-divider"></div>
-  <nav id="site-nav">
-    <a href="index.html">[ home ]</a>
-    <a href="experience.html" class="active">[ experience ]</a>
-    <a href="projects.html">[ projects ]</a>
-    <a href="birds.html">[ birds ]</a>
-  </nav>
-  <div class="osrs-nav-divider"></div>
-</div>
+</header>
 
 <div class="wrap">
   <div class="window">
@@ -494,53 +489,6 @@ body {
   </div>
 </div>
 
-<div id="theme-picker">
-  <div id="theme-hint">&#x25BC;</div>
-  <button id="theme-toggle" onclick="toggleThemePicker()">[ theme ]</button>
-  <div id="theme-options">
-    <button class="theme-opt" onclick="setTheme('retro')">[ retro ]</button>
-    <button class="theme-opt" onclick="setTheme('dark')">[ dark ]</button>
-    <button class="theme-opt" onclick="setTheme('light')">[ light ]</button>
-  </div>
-</div>
-<script>
-function dismissHint(){
-  var h=document.getElementById('theme-hint');
-  if(h){h.style.display='none';localStorage.setItem('theme-hint-seen','1');}
-}
-function toggleThemePicker(){
-  dismissHint();
-  var el=document.getElementById('theme-options');
-  el.style.display=el.style.display==='flex'?'none':'flex';
-}
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  localStorage.setItem('site-theme',t);
-  document.querySelectorAll('.theme-opt').forEach(function(b){
-    b.classList.toggle('active',b.textContent.trim()==='[ '+t+' ]');
-  });
-  document.getElementById('theme-options').style.display='none';
-}
-(function(){
-  var t=localStorage.getItem('site-theme')||'retro';
-  document.querySelectorAll('.theme-opt').forEach(function(b){
-    b.classList.toggle('active',b.textContent.trim()==='[ '+t+' ]');
-  });
-  if(localStorage.getItem('theme-hint-seen')){
-    var h=document.getElementById('theme-hint');
-    if(h) h.style.display='none';
-  } else {
-    setTimeout(function(){ localStorage.setItem('theme-hint-seen','1'); }, 7500);
-  }
-})();
-document.addEventListener('click',function(e){
-  var picker=document.getElementById('theme-picker');
-  if(picker && !picker.contains(e.target)){
-    document.getElementById('theme-options').style.display='none';
-  }
-});
-</script>
-<script src="ticker.js?v=9"></script>
-<script src="ascii-bg.js?v=3"></script>
+<script src="ascii-bg.js?v=4"></script>
 </body>
 </html>

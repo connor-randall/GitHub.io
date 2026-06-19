@@ -1,0 +1,138 @@
+/* ============================================================================
+ * site.css — shared design layer for conradrandy.com
+ * ----------------------------------------------------------------------------
+ * Loaded LAST in <head> on every page so it overrides the older per-page inline
+ * styles. Replaces the three retro/dark/light themes with a single polished
+ * "graphite + steel" palette, neutralises the old neon-green chrome, and styles
+ * the clean fixed header that replaced the OSRS stat ticker. Keeps the
+ * monospace / ASCII character of the site while reading as professional.
+ * ==========================================================================*/
+
+:root {
+  --bg:      #0b0e13;   /* deep graphite */
+  --bg2:     #11151d;   /* raised surface */
+  --panel:   #0e121a;   /* card / window */
+  --text:    #d4dbe6;   /* primary text */
+  --dim:     #828d9e;   /* secondary text */
+  --accent:  #7fa8cc;   /* soft steel blue */
+  --accent-2:#aac6de;   /* lighter cool highlight */
+  --border:  #1e2530;   /* hairline borders */
+  --shadow:  rgba(0,0,0,0.55);
+}
+
+/* ---- base / de-retro ----------------------------------------------------- */
+html, body { background: var(--bg); color: var(--text); }
+body { padding-top: 86px !important; }
+
+/* Strip the neon glows from the old theme. */
+.page-heading, .mood-title, .skills-title, pre.logo,
+.subtitle, .counter, .osrs-99, .project-name, .job-title {
+  text-shadow: none !important;
+}
+
+/* Soften the chunky retro windows into clean cards. */
+.window {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 18px 40px -24px var(--shadow) !important;
+  border-radius: 6px;
+}
+.title-bar {
+  background: var(--bg2) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--dim) !important;
+  letter-spacing: 1px;
+  border-radius: 4px;
+}
+.btn { border-color: var(--border) !important; background: var(--bg) !important; }
+
+/* ---- fixed header -------------------------------------------------------- */
+#site-top {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 9999;
+  background: rgba(11,14,19,0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.top-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; padding: 13px 22px; flex-wrap: wrap;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 11px;
+  color: var(--text); text-decoration: none;
+  font-size: 14px; letter-spacing: 3px; text-transform: lowercase;
+}
+.brand-mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 27px; height: 27px;
+  border: 1px solid var(--accent); color: var(--accent);
+  font-size: 12px; letter-spacing: 1px; border-radius: 4px;
+}
+.brand:hover .brand-mark { background: var(--accent); color: var(--bg); }
+
+#site-nav {
+  display: flex; gap: 4px;
+  background: none !important; border: none !important; padding: 0 !important;
+}
+#site-nav a {
+  color: var(--dim) !important; text-decoration: none;
+  font-size: 13px !important; letter-spacing: 1px !important;
+  text-transform: lowercase !important;
+  padding: 6px 13px !important;
+  border: 1px solid transparent !important; border-radius: 4px;
+  transition: color .15s, border-color .15s, background .15s;
+}
+#site-nav a:hover {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  background: var(--bg2) !important;
+}
+#site-nav a.active {
+  color: var(--accent) !important;
+  border-color: var(--border) !important;
+  background: var(--bg2) !important;
+}
+
+/* ---- recolour leftover hardcoded retro accents --------------------------- */
+.marquee-box { background: var(--bg2) !important; color: var(--dim) !important; border-color: var(--border) !important; }
+.job-title, .skill-tag, .project-name { color: var(--accent) !important; }
+.job-company { color: var(--dim) !important; }
+.skill-tag, .job-card, .project-card, .skills-section,
+.intro, .mood-section {
+  border-color: var(--border) !important;
+  background: rgba(255,255,255,0.015) !important;
+}
+.skill-tag:hover, .job-card:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+.counter { color: var(--dim) !important; }
+.page-heading, .mood-title, .skills-title { color: var(--accent) !important; }
+
+/* Inline-style overrides (projects/experience use inline retro hexes). */
+[style*="#ffff00"], [style*="#FFFF00"] { color: var(--accent) !important; }
+[style*="#ffd700"] { color: var(--accent) !important; }
+[style*="#00cfff"] { color: var(--accent) !important; border-color: var(--accent) !important; }
+[style*="#00ff00"], [style*="#00cc00"] { color: var(--accent) !important; }
+
+/* ---- birds page polish --------------------------------------------------- */
+.bird-name { color: var(--text) !important; }
+.bird-sci  { color: var(--dim) !important; }
+.bird-conf, .bird-conf.high { color: var(--accent) !important; border-color: var(--accent) !important; }
+.bird-thumb, .stat-box, .bird-play { background: #11151d !important; }
+.bird-thumb, .stat-box { border-color: var(--border) !important; }
+.bird-card { background: rgba(255,255,255,0.015) !important; border-color: var(--border) !important; }
+.bird-card:hover { border-color: var(--accent) !important; transform: none !important; box-shadow: 0 8px 24px -14px var(--shadow) !important; }
+.bird-card.latest { border-color: var(--accent) !important; box-shadow: 0 8px 24px -16px var(--shadow) !important; }
+.bird-play { border-color: var(--accent) !important; color: var(--accent) !important; }
+.bird-play:hover, .bird-play.playing { background: var(--accent) !important; color: var(--bg) !important; border-color: var(--accent) !important; }
+.stat-num { color: var(--accent-2) !important; text-shadow: none !important; }
+.about-note { border-color: var(--border) !important; background: rgba(255,255,255,0.015) !important; color: var(--dim) !important; }
+.about-note a, .bird-conf { color: var(--accent) !important; }
+
+/* ---- mobile -------------------------------------------------------------- */
+@media (max-width: 640px) {
+  body { padding-top: 104px !important; }
+  .top-inner { justify-content: center; padding: 10px 14px; }
+  #site-nav { flex-wrap: wrap; justify-content: center; }
+}

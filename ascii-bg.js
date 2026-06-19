@@ -6,11 +6,11 @@
  * (a flow field), so the whole background reads as one organic, living texture.
  * The cursor REPELS the field: characters near the pointer thin out, dim, and
  * flow outward, leaving a soft bubble that follows the mouse. Reads the page's
- * theme CSS variables (retro/dark/light) so it always matches the active theme,
- * and bakes an opaque colour palette so the per-frame draw stays cheap. Honors
- * prefers-reduced-motion.
+ * theme CSS variables (--bg / --accent / --accent-2) so it matches the site's
+ * palette, and bakes an opaque colour palette so the per-frame draw stays cheap.
+ * Honors prefers-reduced-motion.
  *
- * Self-contained: every page just needs <script src="ascii-bg.js?v=3"></script>
+ * Self-contained: every page just needs <script src="ascii-bg.js?v=4"></script>
  * ==========================================================================*/
 (function () {
   "use strict";
@@ -27,9 +27,9 @@
   var FLOW_SPEED = 0.22;    // how fast the field morphs/drifts
   var AMB_MIN = 0.05;       // dimmest ambient brightness
   var AMB_MAX = 0.30;       // brightest ambient brightness
-  var REPEL_RADIUS = 165;   // px radius the cursor pushes characters away
+  var REPEL_RADIUS = 270;   // px radius the cursor pushes characters away
   var REPEL_STRENGTH = 0.9; // how strongly the bubble dims (0..1)
-  var PUSH = 0.65;          // how far the field flows around the cursor
+  var PUSH = 0.8;           // how far the field flows around the cursor
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
