@@ -1,10 +1,31 @@
 {
-  "generated_at": "2026-06-18T00:00:00-0600",
+  "generated_at": "2026-06-19T16:42:30-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 0
+    "today_count": 2,
+    "today_species": 1,
+    "total": 2
   },
   "enviro": null,
-  "detections": []
+  "detections": [
+    {
+      "com_name": "Cedar Waxwing",
+      "sci_name": "Bombycilla cedrorum",
+      "confidence": 0.7717,
+      "iso": "2026-06-19T02:50:45",
+      "time": "02:50",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg/330px-Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg",
+      "audio": "bird-clips-wh/Cedar_Waxwing-77-2026-06-19-birdnet-02.50.45.mp3"
+    },
+    {
+      "com_name": "Cedar Waxwing",
+      "sci_name": "Bombycilla cedrorum",
+      "confidence": 0.8127,
+      "iso": "2026-06-19T00:40:35",
+      "time": "00:40",
+      "date": "2026-06-19",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg/330px-Cedar_Waxwing_-_Bombycilla_cedrorum%2C_George_Washington%27s_Birthplace_National_Monument%2C_Colonial_Beach%2C_Virginia_%2839997434862%29.jpg",
+      "audio": "bird-clips-wh/Cedar_Waxwing-81-2026-06-19-birdnet-00.40.35.mp3"
+    }
+  ]
 }
