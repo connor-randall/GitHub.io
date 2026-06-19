@@ -126,10 +126,11 @@
   //      that briefly turns the swept stripe into ASCII and back. ------------
   var t0 = performance.now();
   var SLOPE = 1.8;                              // diagonal angle (cols per row)
-  var BAND = 6;                                 // thin wipe band half-width
+  var BAND = 9;                                 // wipe band half-width (thicker)
   var DMAX = (COLS - 1) + (ROWS - 1) * SLOPE;   // diagonal span to sweep
 
-  var phase = "rest", phaseStart = 0, phaseDur = 0, inited = false, variant = 0;
+  // Fixed right-to-left diagonal (variant 1 = down-left sweep).
+  var phase = "rest", phaseStart = 0, phaseDur = 0, inited = false, variant = 1;
   function rand(a, b) { return a + Math.random() * (b - a); }
   function setPhase(p, now, dur) { phase = p; phaseStart = now; phaseDur = dur; }
   function diagVal(c, r) {
@@ -142,15 +143,12 @@
   }
 
   function solidCell(c, r, time, y) {
-    // Textured, gently shimmering block fill so the letters have character
-    // (mostly full blocks with occasional lighter shades / hashes).
-    var hs = fbm(c * 0.28 + time * 0.06, r * 0.42);
-    var g = hs < 0.60 ? "█" : (hs < 0.85 ? "▓" : "#");
-    var hb = 0.70 + 0.30 * fbm(c * 0.33 - time * 0.05, r * 0.5 + 3.0);
+    // Solid full blocks with a gentle brightness shimmer for a little life.
+    var hb = 0.80 + 0.20 * fbm(c * 0.33 - time * 0.05, r * 0.5 + 3.0);
     var lv = (hb * (LEVELS - 1)) | 0;
     if (lv < 0) { lv = 0; } else if (lv > LEVELS - 1) { lv = LEVELS - 1; }
     ctx.fillStyle = palette[lv];
-    ctx.fillText(g, c * cellW, y);
+    ctx.fillText("█", c * cellW, y);
   }
   function asciiCell(c, r, time, y) {
     // Funky churn glyph for cells inside the wipe band (biased brighter so the
@@ -169,7 +167,7 @@
     if (!inited) { inited = true; setPhase("rest", now, rand(2600, 6000)); }
     var prog = phaseDur > 0 ? (now - phaseStart) / phaseDur : 1;
     if (prog >= 1) {
-      if (phase === "rest") { variant = (Math.random() * 4) | 0; setPhase("wipe", now, rand(850, 1100)); }
+      if (phase === "rest") { setPhase("wipe", now, rand(1500, 1900)); }
       else { setPhase("rest", now, rand(2600, 6000)); }
       prog = 0;
     }
