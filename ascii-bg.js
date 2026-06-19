@@ -1,23 +1,35 @@
 /* ============================================================================
- * ascii-bg.js — interactive ASCII mosaic background for conradrandy.com
+ * ascii-bg.js — organic interactive ASCII background for conradrandy.com
  * ----------------------------------------------------------------------------
- * Injects a fixed, full-viewport <canvas> behind all page content and paints a
- * randomized field of ASCII glyphs. The field shimmers gently on its own; as
- * the cursor moves it lights up into a dense, glowing pool of characters that
- * trails the pointer. Reads the page's theme CSS variables (retro/dark/light)
- * so it always matches the active theme, and bakes an opaque colour palette so
- * the per-frame draw stays cheap. Honors prefers-reduced-motion.
+ * Injects a fixed, full-viewport <canvas> behind all page content and fills it
+ * with a slowly morphing field of ASCII glyphs driven by animated value noise
+ * (a flow field), so the whole background reads as one organic, living texture.
+ * The cursor REPELS the field: characters near the pointer thin out, dim, and
+ * flow outward, leaving a soft bubble that follows the mouse. Reads the page's
+ * theme CSS variables (retro/dark/light) so it always matches the active theme,
+ * and bakes an opaque colour palette so the per-frame draw stays cheap. Honors
+ * prefers-reduced-motion.
  *
- * Self-contained: every page just needs <script src="ascii-bg.js?v=1"></script>
+ * Self-contained: every page just needs <script src="ascii-bg.js?v=2"></script>
  * ==========================================================================*/
 (function () {
   "use strict";
 
-  // Sparse -> dense ramp. Cursor brightness indexes into this, so the hot
-  // centre fills with heavy glyphs and the edges fade to dots and spaces.
+  // Sparse -> dense ramp. The organic field indexes into this by local density,
+  // so bright regions of the flow field fill with heavy glyphs and faint
+  // regions thin out to dots and spaces.
   var RAMP = " .'`^\",:;Il!i~+_-?][}{1)|/rnvcz*XYUJCLQ0OZmwqpdbkhao#MW&8%B@$";
-  // Glyphs used for the ambient (away-from-cursor) mosaic — a calm mix.
-  var MOSAIC = "01<>[]{}/\\|=+-*:;.~^abcdef#%@$&XO";
+
+  // ---- tunables ------------------------------------------------------------
+  var NOISE_FREQ = 0.052;   // flow-field scale (smaller = larger organic blobs)
+  var ASPECT = 1.8;         // vertical freq multiplier so blobs read round
+  var WARP = 1.1;           // domain-warp amount (organic swirl vs. plain blobs)
+  var FLOW_SPEED = 0.22;    // how fast the field morphs/drifts
+  var AMB_MIN = 0.05;       // dimmest ambient brightness
+  var AMB_MAX = 0.30;       // brightest ambient brightness
+  var REPEL_RADIUS = 165;   // px radius the cursor pushes characters away
+  var REPEL_STRENGTH = 0.9; // how strongly the bubble dims (0..1)
+  var PUSH = 0.65;          // how far the field flows around the cursor
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,10 +53,28 @@
   if (document.body) { mount(); }
   else { document.addEventListener("DOMContentLoaded", mount); }
 
+  // ---- value noise + fbm (the organic flow field) -------------------------
+  function hash(ix, iy) {
+    var h = Math.imul(ix, 374761393) + Math.imul(iy, 668265263);
+    h = (h ^ (h >>> 13)) >>> 0;
+    h = Math.imul(h, 1274126177);
+    h = (h ^ (h >>> 16)) >>> 0;
+    return h / 4294967295;
+  }
+  function vnoise(x, y) {
+    var ix = Math.floor(x), iy = Math.floor(y);
+    var fx = x - ix, fy = y - iy;
+    var ux = fx * fx * (3 - 2 * fx);
+    var uy = fy * fy * (3 - 2 * fy);
+    var a = hash(ix, iy), b = hash(ix + 1, iy);
+    var c = hash(ix, iy + 1), d = hash(ix + 1, iy + 1);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+  function fbm(x, y) {
+    return vnoise(x, y) * 0.65 + vnoise(x * 2.03 + 5.2, y * 2.03 + 1.7) * 0.35;
+  }
+
   // ---- theme-aware palette -------------------------------------------------
-  // Read --bg / --accent / --accent-2 from the document and pre-blend an
-  // opaque colour for each brightness level, so the draw loop never builds
-  // rgba strings or does alpha compositing.
   var LEVELS = 28;
   var palette = [];
   var bgColor = "#080d08";
@@ -82,10 +112,10 @@
     palette = [];
     for (var i = 0; i < LEVELS; i++) {
       var t = i / (LEVELS - 1);
-      // Glyph colour shifts from the accent toward the hot accent as it brightens.
+      // Glyph colour eases from the accent toward the hot accent as it brightens.
       var col = mix(dim, hot, t * t);
-      // Alpha: very faint at ambient, opaque under the cursor. Pre-blend over bg.
-      var a = 0.05 + Math.pow(t, 1.6) * 0.95;
+      // Alpha rises with brightness; pre-blend over bg so the draw is opaque.
+      var a = 0.05 + Math.pow(t, 1.5) * 0.95;
       var r = Math.round(lerp(bg[0], col[0], a));
       var g = Math.round(lerp(bg[1], col[1], a));
       var b = Math.round(lerp(bg[2], col[2], a));
@@ -94,14 +124,13 @@
   }
   buildPalette();
 
-  // Rebuild palette when the theme attribute changes.
   new MutationObserver(buildPalette).observe(document.documentElement,
     { attributes: true, attributeFilter: ["data-theme"] });
 
   // ---- grid ----------------------------------------------------------------
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W = 0, H = 0, cols = 0, rows = 0, cellW = 0, cellH = 0, fontSize = 16;
-  var mosaicGrid; // per-cell ambient glyph index into MOSAIC
+  var jitter; // small per-cell glyph randomness so contours aren't too smooth
 
   function setup() {
     W = window.innerWidth;
@@ -120,17 +149,13 @@
     ctx.font = fontSize + "px 'Courier New', monospace";
     ctx.textBaseline = "top";
 
-    mosaicGrid = new Uint8Array(cols * rows);
-    for (var i = 0; i < mosaicGrid.length; i++) {
-      mosaicGrid[i] = (Math.random() * MOSAIC.length) | 0;
-    }
+    jitter = new Float32Array(cols * rows);
+    for (var i = 0; i < jitter.length; i++) { jitter[i] = Math.random(); }
   }
 
   // ---- pointer (eased trail) ----------------------------------------------
   var tx = -9999, ty = -9999;   // raw target
   var px = -9999, py = -9999;   // smoothed
-  var RADIUS = 170;
-
   function move(x, y) { tx = x; ty = y; }
   window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); }, { passive: true });
   window.addEventListener("touchmove", function (e) {
@@ -140,68 +165,65 @@
 
   // ---- draw ----------------------------------------------------------------
   var t0 = performance.now();
+  var RAMPN = RAMP.length - 1;
 
   function draw(now) {
-    var time = (now - t0) / 1000;
+    var time = (now - t0) / 1000 * FLOW_SPEED;
 
     // Ease the pointer for a trailing, liquid feel.
     if (tx < -9000) { px = tx; py = ty; }
     else {
       if (px < -9000) { px = tx; py = ty; }
-      px += (tx - px) * 0.12;
-      py += (ty - py) * 0.12;
+      px += (tx - px) * 0.14;
+      py += (ty - py) * 0.14;
     }
+    var active = px > -9000;
+    var R2 = REPEL_RADIUS * REPEL_RADIUS;
 
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, W, H);
 
-    var rad2 = RADIUS * RADIUS;
     var lastLevel = -1;
     for (var r = 0; r < rows; r++) {
       var y = r * cellH;
       var cy = y + cellH * 0.5;
+      var fyBase = r * NOISE_FREQ * ASPECT;
       for (var c = 0; c < cols; c++) {
         var x = c * cellW;
+        var fx = c * NOISE_FREQ;
+        var fy = fyBase;
+        var dim = 1;
 
-        // Gentle diagonal shimmer so the field is alive without the mouse.
-        var amb = 0.045 + 0.03 * Math.sin(time * 0.9 + c * 0.35 + r * 0.22);
-
-        // Cursor influence: soft falloff inside RADIUS.
-        var inf = 0;
-        if (px > -9000) {
-          var dx = x - px, dy = cy - py;
+        // Cursor repulsion: thin/dim the field and push it outward.
+        if (active) {
+          var dx = x + cellW * 0.5 - px;
+          var dy = cy - py;
           var d2 = dx * dx + dy * dy;
-          if (d2 < rad2) {
-            inf = 1 - Math.sqrt(d2) / RADIUS;
-            inf *= inf; // ease
+          if (d2 < R2) {
+            var d = Math.sqrt(d2);
+            var rep = 1 - d / REPEL_RADIUS;
+            rep *= rep;
+            dim = 1 - REPEL_STRENGTH * rep;
+            if (d > 0.001) {
+              var inv = (rep * PUSH) / d;
+              fx += dx * inv;       // sample further "out" -> field flows around
+              fy += dy * inv * ASPECT;
+            }
           }
         }
 
-        var bright = amb + inf;
-        if (bright < 0.05) { continue; } // cull near-invisible cells
+        // Animated domain-warped value noise -> organic, morphing density.
+        var w = vnoise(fx * 0.6 + time, fy * 0.6 - time * 0.5);
+        var n = fbm(fx + w * WARP - time * 0.5, fy + w * WARP * 0.5);
+
+        var bright = (AMB_MIN + n * (AMB_MAX - AMB_MIN)) * dim;
+        if (bright < 0.045) { continue; }
         if (bright > 1) { bright = 1; }
 
-        var ch;
-        if (inf > 0.07) {
-          // Near the cursor: index the dense ramp -> glowing blob of glyphs.
-          var ri = (Math.pow(inf, 0.7) * (RAMP.length - 1)) | 0;
-          ch = RAMP.charAt(ri);
-        } else {
-          // Ambient: the static randomized mosaic.
-          ch = MOSAIC.charAt(mosaicGrid[r * cols + c]);
-        }
-
+        var gi = ((n * 0.85 + jitter[r * cols + c] * 0.15) * RAMPN) | 0;
         var level = (bright * (LEVELS - 1)) | 0;
         if (level !== lastLevel) { ctx.fillStyle = palette[level]; lastLevel = level; }
-        ctx.fillText(ch, x, y);
-      }
-    }
-
-    // Occasionally mutate a few ambient cells for a subtle flicker of life.
-    if (mosaicGrid) {
-      for (var m = 0; m < 6; m++) {
-        var idx = (Math.random() * mosaicGrid.length) | 0;
-        mosaicGrid[idx] = (Math.random() * MOSAIC.length) | 0;
+        ctx.fillText(RAMP.charAt(gi), x, y);
       }
     }
   }
@@ -220,20 +242,17 @@
   function start() {
     setup();
     if (reduceMotion) {
-      // Single static frame, no animation, no pointer reaction.
       px = -9999; py = -9999;
-      draw(performance.now());
+      draw(performance.now()); // single static frame, no animation
       return;
     }
     requestAnimationFrame(loop);
   }
 
-  // Pause work when the tab is hidden.
   document.addEventListener("visibilitychange", function () {
     running = !document.hidden;
   });
 
-  // Debounced resize.
   var rzTimer;
   window.addEventListener("resize", function () {
     clearTimeout(rzTimer);
