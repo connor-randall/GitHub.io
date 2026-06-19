@@ -34,7 +34,6 @@
   // resolves to SOLID blocks and freezes, so churn legibility matters less.
   var GLYPHS = "#%@&8B$WMObdpqkhoaeznxsw*+=<>?/\\|()[]{}!7ZX0";
   var GN = GLYPHS.length - 1;
-  var SOLID = "█"; // full block — the "solid name appears" glyph
 
   var host = document.getElementById("logo");
   if (!host) { return; }
@@ -45,11 +44,6 @@
   var ROWS = MASK.length;
   var COLS = 0;
   for (var i = 0; i < ROWS; i++) { if (MASK[i].length > COLS) { COLS = MASK[i].length; } }
-
-  // Per-cell resolve threshold: as the "solid" front sweeps 0->1, a cell turns
-  // solid once its threshold is crossed, so the name materialises with sparkle.
-  var thresh = new Float32Array(ROWS * COLS);
-  for (var ti = 0; ti < thresh.length; ti++) { thresh[ti] = Math.random(); }
 
   var canvas = document.createElement("canvas");
   canvas.style.display = "block";
@@ -128,64 +122,88 @@
     ctx.textBaseline = "top";
   }
 
-  // ---- draw ---------------------------------------------------------------
+  // ---- draw: rest on textured solid block letters, with a thin diagonal wipe
+  //      that briefly turns the swept stripe into ASCII and back. ------------
   var t0 = performance.now();
+  var SLOPE = 1.8;                              // diagonal angle (cols per row)
+  var BAND = 6;                                 // thin wipe band half-width
+  var DMAX = (COLS - 1) + (ROWS - 1) * SLOPE;   // diagonal span to sweep
 
-  // Phase machine: churn (funky morph) -> resolve (sweep to solid) ->
-  // hold (frozen solid: "the name appears") -> dissolve (melt back) -> churn.
-  var phase = "churn", phaseStart = 0, phaseDur = 0, inited = false;
+  var phase = "rest", phaseStart = 0, phaseDur = 0, inited = false, variant = 0;
   function rand(a, b) { return a + Math.random() * (b - a); }
   function setPhase(p, now, dur) { phase = p; phaseStart = now; phaseDur = dur; }
+  function diagVal(c, r) {
+    switch (variant) {
+      case 0:  return c + r * SLOPE;                            // down-right
+      case 1:  return (COLS - 1 - c) + r * SLOPE;                // down-left
+      case 2:  return c + (ROWS - 1 - r) * SLOPE;                // up-right
+      default: return (COLS - 1 - c) + (ROWS - 1 - r) * SLOPE;   // up-left
+    }
+  }
+
+  function solidCell(c, r, time, y) {
+    // Textured, gently shimmering block fill so the letters have character
+    // (mostly full blocks with occasional lighter shades / hashes).
+    var hs = fbm(c * 0.28 + time * 0.06, r * 0.42);
+    var g = hs < 0.60 ? "█" : (hs < 0.85 ? "▓" : "#");
+    var hb = 0.70 + 0.30 * fbm(c * 0.33 - time * 0.05, r * 0.5 + 3.0);
+    var lv = (hb * (LEVELS - 1)) | 0;
+    if (lv < 0) { lv = 0; } else if (lv > LEVELS - 1) { lv = LEVELS - 1; }
+    ctx.fillStyle = palette[lv];
+    ctx.fillText(g, c * cellW, y);
+  }
+  function asciiCell(c, r, time, y) {
+    // Funky churn glyph for cells inside the wipe band (biased brighter so the
+    // stripe reads clearly against the solid letters).
+    var nb = fbm(c * 0.17 + time, r * 0.30 - time * 0.4);
+    var ng = fbm(c * 0.62 - time * 1.7, r * 0.66 + 9.0);
+    var lvl = ((0.45 + nb * 0.55) * (LEVELS - 1)) | 0;
+    if (lvl < 0) { lvl = 0; } else if (lvl > LEVELS - 1) { lvl = LEVELS - 1; }
+    var gi = (ng * GN) | 0;
+    if (gi < 0) { gi = 0; } else if (gi > GN) { gi = GN; }
+    ctx.fillStyle = palette[lvl];
+    ctx.fillText(GLYPHS.charAt(gi), c * cellW, y);
+  }
 
   function draw(now) {
-    if (!inited) { inited = true; setPhase("churn", now, rand(4500, 9000)); }
+    if (!inited) { inited = true; setPhase("rest", now, rand(2600, 6000)); }
     var prog = phaseDur > 0 ? (now - phaseStart) / phaseDur : 1;
     if (prog >= 1) {
-      if (phase === "churn")        { setPhase("resolve",  now, 430); }
-      else if (phase === "resolve") { setPhase("hold",     now, rand(1700, 3200)); }
-      else if (phase === "hold")    { setPhase("dissolve", now, 820); }
-      else                          { setPhase("churn",    now, rand(4500, 9000)); }
+      if (phase === "rest") { variant = (Math.random() * 4) | 0; setPhase("wipe", now, rand(850, 1100)); }
+      else { setPhase("rest", now, rand(2600, 6000)); }
       prog = 0;
     }
-    // Fraction of (threshold-sorted) cells currently shown solid.
-    var solidP = phase === "churn" ? 0
-               : phase === "resolve" ? prog
-               : phase === "hold" ? 1
-               : 1 - prog; // dissolve
+    var time = (now - t0) / 1000;
+    var inWipe = phase === "wipe";
+    var W = inWipe ? (-BAND + prog * (DMAX + 2 * BAND)) : 0;  // wipe front
 
-    var time = (now - t0) / 1000 * 0.6;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var r = 0; r < ROWS; r++) {
       var line = MASK[r];
       var y = r * cellH;
       for (var c = 0; c < line.length; c++) {
         if (line.charCodeAt(c) === 32) { continue; } // space = off
-        if (solidP > 0 && thresh[r * COLS + c] < solidP) {
-          ctx.fillStyle = palette[LEVELS - 1];        // bright, solid
-          ctx.fillText(SOLID, c * cellW, y);
-          continue;
+        if (inWipe) {
+          var d = diagVal(c, r) - W;
+          if (Math.abs(d) < BAND) { asciiCell(c, r, time * 0.6, y); continue; }
+          if (d > 0 && d < 1.7) {                 // crisp bright leading edge
+            ctx.fillStyle = palette[LEVELS - 1];
+            ctx.fillText("█", c * cellW, y);
+            continue;
+          }
         }
-        // Funky churn: colour and glyph morph on separate, faster noise fields.
-        var nb = fbm(c * 0.17 + time, r * 0.30 - time * 0.4);
-        var ng = fbm(c * 0.62 - time * 1.7, r * 0.66 + 9.0);
-        var lvl = (nb * (LEVELS - 1)) | 0;
-        if (lvl < 0) { lvl = 0; } else if (lvl > LEVELS - 1) { lvl = LEVELS - 1; }
-        var gi = (ng * GN) | 0;
-        if (gi < 0) { gi = 0; } else if (gi > GN) { gi = GN; }
-        ctx.fillStyle = palette[lvl];
-        ctx.fillText(GLYPHS.charAt(gi), c * cellW, y);
+        solidCell(c, r, time, y);
       }
     }
   }
 
-  // Static solid render for reduced-motion (the resolved name, no animation).
+  // Static textured solid for reduced-motion (the resting block name).
   function drawSolid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = palette[LEVELS - 1];
     for (var r = 0; r < ROWS; r++) {
       var line = MASK[r];
       for (var c = 0; c < line.length; c++) {
-        if (line.charCodeAt(c) !== 32) { ctx.fillText(SOLID, c * cellW, r * cellH); }
+        if (line.charCodeAt(c) !== 32) { solidCell(c, r, 0, r * cellH); }
       }
     }
   }
