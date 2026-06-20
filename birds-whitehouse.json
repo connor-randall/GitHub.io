@@ -1,12 +1,42 @@
 {
-  "generated_at": "2026-06-20T08:25:15-0600",
+  "generated_at": "2026-06-20T08:45:05-0600",
   "stats": {
-    "today_count": 5,
+    "today_count": 8,
     "today_species": 1,
-    "total": 41
+    "total": 44
   },
   "enviro": null,
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.9052,
+      "iso": "2026-06-20T08:26:54",
+      "time": "08:26",
+      "date": "2026-06-20",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-91-2026-06-20-birdnet-08.26.54.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7166,
+      "iso": "2026-06-20T08:26:51",
+      "time": "08:26",
+      "date": "2026-06-20",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-72-2026-06-20-birdnet-08.26.51.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7339,
+      "iso": "2026-06-20T08:25:23",
+      "time": "08:25",
+      "date": "2026-06-20",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips-wh/Black-capped_Chickadee-73-2026-06-20-birdnet-08.25.23.mp3"
+    },
     {
       "com_name": "Black-capped Chickadee",
       "sci_name": "Poecile atricapillus",
@@ -126,36 +156,6 @@
       "date": "2026-06-19",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips-wh/Black-capped_Chickadee-71-2026-06-19-birdnet-16.59.03.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.9122,
-      "iso": "2026-06-19T16:54:15",
-      "time": "16:54",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips-wh/Black-capped_Chickadee-91-2026-06-19-birdnet-16.54.15.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.8811,
-      "iso": "2026-06-19T16:54:12",
-      "time": "16:54",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips-wh/Black-capped_Chickadee-88-2026-06-19-birdnet-16.54.12.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.9029,
-      "iso": "2026-06-19T16:54:09",
-      "time": "16:54",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips-wh/Black-capped_Chickadee-90-2026-06-19-birdnet-16.54.09.mp3"
     }
   ]
 }
