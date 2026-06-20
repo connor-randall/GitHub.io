@@ -1,12 +1,22 @@
 {
-  "generated_at": "2026-06-20T09:55:11-0600",
+  "generated_at": "2026-06-20T10:05:09-0600",
   "stats": {
-    "today_count": 12,
-    "today_species": 4,
-    "total": 48
+    "today_count": 13,
+    "today_species": 5,
+    "total": 49
   },
   "enviro": null,
   "detections": [
+    {
+      "com_name": "Common Grackle",
+      "sci_name": "Quiscalus quiscula",
+      "confidence": 0.7278,
+      "iso": "2026-06-20T09:55:22",
+      "time": "09:55",
+      "date": "2026-06-20",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Common_grackle_in_PP_%2836732%29.jpg/330px-Common_grackle_in_PP_%2836732%29.jpg",
+      "audio": "bird-clips-wh/Common_Grackle-73-2026-06-20-birdnet-09.55.22.mp3"
+    },
     {
       "com_name": "American Robin",
       "sci_name": "Turdus migratorius",
@@ -146,16 +156,6 @@
       "date": "2026-06-19",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips-wh/Black-capped_Chickadee-91-2026-06-19-birdnet-17.02.06.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.9438,
-      "iso": "2026-06-19T17:02:00",
-      "time": "17:02",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips-wh/Black-capped_Chickadee-94-2026-06-19-birdnet-17.02.00.mp3"
     }
   ]
 }
