@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-06-22T05:40:04-0600",
+  "generated_at": "2026-06-22T05:50:03-0600",
   "stats": {
-    "today_count": 7,
+    "today_count": 11,
     "today_species": 1,
-    "total": 248
+    "total": 252
   },
   "enviro": {
-    "temp_f": 76.4,
-    "humidity": 35.7,
-    "pressure": 830.5
+    "temp_f": 77.2,
+    "humidity": 35.3,
+    "pressure": 830.8
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.711,
+      "iso": "2026-06-22T05:42:17",
+      "time": "05:42",
+      "date": "2026-06-22",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-71-2026-06-22-birdnet-05.42.17.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.8921,
+      "iso": "2026-06-22T05:40:53",
+      "time": "05:40",
+      "date": "2026-06-22",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-89-2026-06-22-birdnet-05.40.53.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7626,
+      "iso": "2026-06-22T05:40:23",
+      "time": "05:40",
+      "date": "2026-06-22",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-76-2026-06-22-birdnet-05.40.23.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6801,
+      "iso": "2026-06-22T05:40:20",
+      "time": "05:40",
+      "date": "2026-06-22",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-68-2026-06-22-birdnet-05.40.20.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -120,46 +160,6 @@
       "date": "2026-06-20",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-79-2026-06-20-birdnet-10.16.32.mp3"
-    },
-    {
-      "com_name": "Mourning Dove",
-      "sci_name": "Zenaida macroura",
-      "confidence": 0.8692,
-      "iso": "2026-06-20T07:35:30",
-      "time": "07:35",
-      "date": "2026-06-20",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Av_Mourning_Dove_JG.jpg/330px-Av_Mourning_Dove_JG.jpg",
-      "audio": "bird-clips/Mourning_Dove-87-2026-06-20-birdnet-07.35.30.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.8433,
-      "iso": "2026-06-19T16:58:51",
-      "time": "16:58",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-84-2026-06-19-birdnet-16.58.51.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.9486,
-      "iso": "2026-06-19T16:58:48",
-      "time": "16:58",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-95-2026-06-19-birdnet-16.58.48.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.9108,
-      "iso": "2026-06-19T16:58:42",
-      "time": "16:58",
-      "date": "2026-06-19",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-91-2026-06-19-birdnet-16.58.42.mp3"
     }
   ]
 }
