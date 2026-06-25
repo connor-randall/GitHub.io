@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-25T07:00:04-0600",
+  "generated_at": "2026-06-25T07:10:04-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 258
+    "today_count": 1,
+    "today_species": 1,
+    "total": 259
   },
   "enviro": {
-    "temp_f": 75.7,
-    "humidity": 41.3,
-    "pressure": 829.5
+    "temp_f": 75.6,
+    "humidity": 41.8,
+    "pressure": 829.4
   },
   "detections": [
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.8016,
+      "iso": "2026-06-25T07:03:17",
+      "time": "07:03",
+      "date": "2026-06-25",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-80-2026-06-25-birdnet-07.03.17.mp3"
+    },
     {
       "com_name": "Violet-green Swallow",
       "sci_name": "Tachycineta thalassina",
@@ -150,16 +160,6 @@
       "date": "2026-06-22",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-74-2026-06-22-birdnet-05.37.08.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7599,
-      "iso": "2026-06-22T05:37:02",
-      "time": "05:37",
-      "date": "2026-06-22",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-76-2026-06-22-birdnet-05.37.02.mp3"
     }
   ]
 }
