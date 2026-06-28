@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-06-28T06:00:04-0600",
+  "generated_at": "2026-06-28T06:10:03-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 279
+    "today_count": 1,
+    "today_species": 1,
+    "total": 280
   },
   "enviro": {
-    "temp_f": 78.0,
-    "humidity": 23.5,
-    "pressure": 822.0
+    "temp_f": 78.3,
+    "humidity": 23.4,
+    "pressure": 822.1
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6752,
+      "iso": "2026-06-28T06:07:59",
+      "time": "06:07",
+      "date": "2026-06-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-68-2026-06-28-birdnet-06.07.59.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-06-27",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-67-2026-06-27-birdnet-07.55.46.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8795,
-      "iso": "2026-06-27T07:55:34",
-      "time": "07:55",
-      "date": "2026-06-27",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-88-2026-06-27-birdnet-07.55.34.mp3"
     }
   ]
 }
