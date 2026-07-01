@@ -1,16 +1,96 @@
 {
-  "generated_at": "2026-07-01T09:50:03-0600",
+  "generated_at": "2026-07-01T10:00:07-0600",
   "stats": {
-    "today_count": 26,
+    "today_count": 34,
     "today_species": 4,
-    "total": 324
+    "total": 332
   },
   "enviro": {
-    "temp_f": 95.8,
-    "humidity": 13.8,
+    "temp_f": 88.1,
+    "humidity": 16.6,
     "pressure": 827.6
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8263,
+      "iso": "2026-07-01T09:58:35",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-83-2026-07-01-birdnet-09.58.35.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.891,
+      "iso": "2026-07-01T09:58:32",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-89-2026-07-01-birdnet-09.58.32.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8253,
+      "iso": "2026-07-01T09:58:26",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-83-2026-07-01-birdnet-09.58.26.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7026,
+      "iso": "2026-07-01T09:58:20",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-07-01-birdnet-09.58.20.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8071,
+      "iso": "2026-07-01T09:58:17",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-81-2026-07-01-birdnet-09.58.17.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6935,
+      "iso": "2026-07-01T09:58:14",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-69-2026-07-01-birdnet-09.58.14.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9415,
+      "iso": "2026-07-01T09:58:11",
+      "time": "09:58",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-94-2026-07-01-birdnet-09.58.11.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8973,
+      "iso": "2026-07-01T09:57:56",
+      "time": "09:57",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-90-2026-07-01-birdnet-09.57.56.mp3"
+    },
     {
       "com_name": "Violet-green Swallow",
       "sci_name": "Tachycineta thalassina",
@@ -80,86 +160,6 @@
       "date": "2026-07-01",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips/Black-capped_Chickadee-83-2026-07-01-birdnet-05.58.39.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6958,
-      "iso": "2026-07-01T05:58:36",
-      "time": "05:58",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-70-2026-07-01-birdnet-05.58.36.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7366,
-      "iso": "2026-07-01T05:54:51",
-      "time": "05:54",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-74-2026-07-01-birdnet-05.54.51.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6587,
-      "iso": "2026-07-01T05:54:48",
-      "time": "05:54",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-66-2026-07-01-birdnet-05.54.48.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.6818,
-      "iso": "2026-07-01T05:41:46",
-      "time": "05:41",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-68-2026-07-01-birdnet-05.41.46.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.9592,
-      "iso": "2026-07-01T05:41:34",
-      "time": "05:41",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-96-2026-07-01-birdnet-05.41.34.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.798,
-      "iso": "2026-07-01T05:41:31",
-      "time": "05:41",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-80-2026-07-01-birdnet-05.41.31.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.7836,
-      "iso": "2026-07-01T05:41:28",
-      "time": "05:41",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-78-2026-07-01-birdnet-05.41.28.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.8083,
-      "iso": "2026-07-01T05:40:52",
-      "time": "05:40",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-81-2026-07-01-birdnet-05.40.52.mp3"
     }
   ]
 }
