@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-07-01T13:00:03-0600",
+  "generated_at": "2026-07-01T13:10:03-0600",
   "stats": {
-    "today_count": 38,
+    "today_count": 39,
     "today_species": 5,
-    "total": 336
+    "total": 337
   },
   "enviro": {
-    "temp_f": 93.8,
-    "humidity": 9.0,
-    "pressure": 826.3
+    "temp_f": 93.3,
+    "humidity": 9.6,
+    "pressure": 826.2
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7014,
+      "iso": "2026-07-01T13:09:18",
+      "time": "13:09",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-70-2026-07-01-birdnet-13.09.18.mp3"
+    },
     {
       "com_name": "Plumbeous Vireo",
       "sci_name": "Vireo plumbeus",
@@ -150,16 +160,6 @@
       "date": "2026-07-01",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Male_Broad-tailed_Hummingbird_1.jpg/330px-Male_Broad-tailed_Hummingbird_1.jpg",
       "audio": "bird-clips/Broad-tailed_Hummingbird-70-2026-07-01-birdnet-07.26.28.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.65,
-      "iso": "2026-07-01T07:17:33",
-      "time": "07:17",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-65-2026-07-01-birdnet-07.17.33.mp3"
     }
   ]
 }
