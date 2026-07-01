@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-07-01T07:20:04-0600",
+  "generated_at": "2026-07-01T07:30:03-0600",
   "stats": {
-    "today_count": 24,
+    "today_count": 25,
     "today_species": 4,
-    "total": 322
+    "total": 323
   },
   "enviro": {
-    "temp_f": 75.6,
-    "humidity": 24.2,
-    "pressure": 827.5
+    "temp_f": 80.7,
+    "humidity": 22.7,
+    "pressure": 827.6
   },
   "detections": [
+    {
+      "com_name": "Broad-tailed Hummingbird",
+      "sci_name": "Selasphorus platycercus",
+      "confidence": 0.7014,
+      "iso": "2026-07-01T07:26:28",
+      "time": "07:26",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Male_Broad-tailed_Hummingbird_1.jpg/330px-Male_Broad-tailed_Hummingbird_1.jpg",
+      "audio": "bird-clips/Broad-tailed_Hummingbird-70-2026-07-01-birdnet-07.26.28.mp3"
+    },
     {
       "com_name": "Violet-green Swallow",
       "sci_name": "Tachycineta thalassina",
@@ -150,16 +160,6 @@
       "date": "2026-07-01",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
       "audio": "bird-clips/Violet-green_Swallow-91-2026-07-01-birdnet-05.40.49.mp3"
-    },
-    {
-      "com_name": "Broad-tailed Hummingbird",
-      "sci_name": "Selasphorus platycercus",
-      "confidence": 0.8586,
-      "iso": "2026-07-01T05:38:12",
-      "time": "05:38",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Male_Broad-tailed_Hummingbird_1.jpg/330px-Male_Broad-tailed_Hummingbird_1.jpg",
-      "audio": "bird-clips/Broad-tailed_Hummingbird-86-2026-07-01-birdnet-05.38.12.mp3"
     }
   ]
 }
