@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-07-01T19:50:03-0600",
+  "generated_at": "2026-07-01T20:00:08-0600",
   "stats": {
-    "today_count": 41,
-    "today_species": 5,
-    "total": 339
+    "today_count": 42,
+    "today_species": 6,
+    "total": 340
   },
   "enviro": {
-    "temp_f": 85.6,
-    "humidity": 19.9,
+    "temp_f": 86.0,
+    "humidity": 20.7,
     "pressure": 824.7
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.6908,
+      "iso": "2026-07-01T19:53:27",
+      "time": "19:53",
+      "date": "2026-07-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-69-2026-07-01-birdnet-19.53.27.mp3"
+    },
     {
       "com_name": "Violet-green Swallow",
       "sci_name": "Tachycineta thalassina",
@@ -150,16 +160,6 @@
       "date": "2026-07-01",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-94-2026-07-01-birdnet-09.58.11.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8973,
-      "iso": "2026-07-01T09:57:56",
-      "time": "09:57",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-90-2026-07-01-birdnet-09.57.56.mp3"
     }
   ]
 }
