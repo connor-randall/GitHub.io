@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-07-04T10:20:03-0600",
+  "generated_at": "2026-07-04T10:30:03-0600",
   "stats": {
-    "today_count": 3,
+    "today_count": 20,
     "today_species": 1,
-    "total": 348
+    "total": 365
   },
   "enviro": {
-    "temp_f": 86.0,
-    "humidity": 23.3,
-    "pressure": 833.8
+    "temp_f": 87.6,
+    "humidity": 22.3,
+    "pressure": 833.7
   },
   "detections": [
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.9549,
-      "iso": "2026-07-04T10:19:40",
-      "time": "10:19",
+      "confidence": 0.8688,
+      "iso": "2026-07-04T10:24:47",
+      "time": "10:24",
       "date": "2026-07-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-95-2026-07-04-birdnet-10.19.40.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-87-2026-07-04-birdnet-10.24.47.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.9427,
-      "iso": "2026-07-04T10:19:37",
-      "time": "10:19",
+      "confidence": 0.6925,
+      "iso": "2026-07-04T10:24:44",
+      "time": "10:24",
       "date": "2026-07-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-94-2026-07-04-birdnet-10.19.37.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-69-2026-07-04-birdnet-10.24.44.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7713,
-      "iso": "2026-07-04T10:19:19",
-      "time": "10:19",
+      "confidence": 0.7768,
+      "iso": "2026-07-04T10:23:32",
+      "time": "10:23",
       "date": "2026-07-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-77-2026-07-04-birdnet-10.19.19.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-78-2026-07-04-birdnet-10.23.32.mp3"
     },
     {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6741,
-      "iso": "2026-07-03T17:08:09",
-      "time": "17:08",
-      "date": "2026-07-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-67-2026-07-03-birdnet-17.08.09.mp3"
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7595,
+      "iso": "2026-07-04T10:22:50",
+      "time": "10:22",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-76-2026-07-04-birdnet-10.22.50.mp3"
     },
     {
-      "com_name": "Common Nighthawk",
-      "sci_name": "Chordeiles minor",
-      "confidence": 0.6831,
-      "iso": "2026-07-03T15:16:29",
-      "time": "15:16",
-      "date": "2026-07-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Common_Nighthawk_%2814428313550%29.jpg/330px-Common_Nighthawk_%2814428313550%29.jpg",
-      "audio": "bird-clips/Common_Nighthawk-68-2026-07-03-birdnet-15.16.29.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7785,
-      "iso": "2026-07-03T15:13:31",
-      "time": "15:13",
-      "date": "2026-07-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-78-2026-07-03-birdnet-15.13.31.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7102,
-      "iso": "2026-07-03T15:12:49",
-      "time": "15:12",
-      "date": "2026-07-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-71-2026-07-03-birdnet-15.12.49.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.9307,
-      "iso": "2026-07-02T14:31:40",
-      "time": "14:31",
-      "date": "2026-07-02",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-93-2026-07-02-birdnet-14.31.40.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6908,
-      "iso": "2026-07-01T19:53:27",
-      "time": "19:53",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-69-2026-07-01-birdnet-19.53.27.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.9609,
-      "iso": "2026-07-01T13:14:13",
-      "time": "13:14",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-96-2026-07-01-birdnet-13.14.13.mp3"
-    },
-    {
-      "com_name": "Violet-green Swallow",
-      "sci_name": "Tachycineta thalassina",
-      "confidence": 0.8412,
-      "iso": "2026-07-01T13:14:10",
-      "time": "13:14",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg/330px-Violet-green_Swallow%2C_Mono_Lake%2C_California.jpg",
-      "audio": "bird-clips/Violet-green_Swallow-84-2026-07-01-birdnet-13.14.10.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7014,
-      "iso": "2026-07-01T13:09:18",
-      "time": "13:09",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-70-2026-07-01-birdnet-13.09.18.mp3"
-    },
-    {
-      "com_name": "Plumbeous Vireo",
-      "sci_name": "Vireo plumbeus",
-      "confidence": 0.677,
-      "iso": "2026-07-01T11:36:11",
-      "time": "11:36",
-      "date": "2026-07-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Vireo_plumbeus2_crop.jpg/330px-Vireo_plumbeus2_crop.jpg",
-      "audio": "bird-clips/Plumbeous_Vireo-68-2026-07-01-birdnet-11.36.11.mp3"
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8313,
+      "iso": "2026-07-04T10:22:47",
+      "time": "10:22",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-83-2026-07-04-birdnet-10.22.47.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
       "confidence": 0.7166,
-      "iso": "2026-07-01T10:06:18",
-      "time": "10:06",
-      "date": "2026-07-01",
+      "iso": "2026-07-04T10:21:34",
+      "time": "10:21",
+      "date": "2026-07-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-72-2026-07-01-birdnet-10.06.18.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-72-2026-07-04-birdnet-10.21.34.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7002,
-      "iso": "2026-07-01T10:06:03",
-      "time": "10:06",
-      "date": "2026-07-01",
+      "confidence": 0.7027,
+      "iso": "2026-07-04T10:21:28",
+      "time": "10:21",
+      "date": "2026-07-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-70-2026-07-01-birdnet-10.06.03.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-07-04-birdnet-10.21.28.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8624,
+      "iso": "2026-07-04T10:21:19",
+      "time": "10:21",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-86-2026-07-04-birdnet-10.21.19.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8849,
+      "iso": "2026-07-04T10:21:10",
+      "time": "10:21",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-88-2026-07-04-birdnet-10.21.10.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9477,
+      "iso": "2026-07-04T10:21:04",
+      "time": "10:21",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-95-2026-07-04-birdnet-10.21.04.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7713,
+      "iso": "2026-07-04T10:20:58",
+      "time": "10:20",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-77-2026-07-04-birdnet-10.20.58.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8554,
+      "iso": "2026-07-04T10:20:55",
+      "time": "10:20",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-86-2026-07-04-birdnet-10.20.55.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6813,
+      "iso": "2026-07-04T10:20:49",
+      "time": "10:20",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-68-2026-07-04-birdnet-10.20.49.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8884,
+      "iso": "2026-07-04T10:20:40",
+      "time": "10:20",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-89-2026-07-04-birdnet-10.20.40.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8791,
+      "iso": "2026-07-04T10:20:19",
+      "time": "10:20",
+      "date": "2026-07-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-88-2026-07-04-birdnet-10.20.19.mp3"
     }
   ]
 }
