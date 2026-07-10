@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-07-10T06:30:03-0600",
+  "generated_at": "2026-07-10T06:40:03-0600",
   "stats": {
-    "today_count": 1,
-    "today_species": 1,
-    "total": 380
+    "today_count": 3,
+    "today_species": 2,
+    "total": 382
   },
   "enviro": {
-    "temp_f": 75.5,
-    "humidity": 28.9,
+    "temp_f": 75.8,
+    "humidity": 27.2,
     "pressure": 830.7
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7542,
+      "iso": "2026-07-10T06:37:14",
+      "time": "06:37",
+      "date": "2026-07-10",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-75-2026-07-10-birdnet-06.37.14.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.712,
+      "iso": "2026-07-10T06:31:11",
+      "time": "06:31",
+      "date": "2026-07-10",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-71-2026-07-10-birdnet-06.31.11.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -140,26 +160,6 @@
       "date": "2026-07-05",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-98-2026-07-05-birdnet-09.02.51.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8824,
-      "iso": "2026-07-05T09:02:48",
-      "time": "09:02",
-      "date": "2026-07-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-88-2026-07-05-birdnet-09.02.48.mp3"
-    },
-    {
-      "com_name": "Barn Swallow",
-      "sci_name": "Hirundo rustica",
-      "confidence": 0.7362,
-      "iso": "2026-07-05T08:23:45",
-      "time": "08:23",
-      "date": "2026-07-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Rauchschwalbe_Hirundo_rustica.jpg/330px-Rauchschwalbe_Hirundo_rustica.jpg",
-      "audio": "bird-clips/Barn_Swallow-74-2026-07-05-birdnet-08.23.45.mp3"
     }
   ]
 }
