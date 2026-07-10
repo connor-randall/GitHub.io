@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-07-10T10:30:03-0600",
+  "generated_at": "2026-07-10T10:40:03-0600",
   "stats": {
-    "today_count": 17,
+    "today_count": 18,
     "today_species": 5,
-    "total": 396
+    "total": 397
   },
   "enviro": {
-    "temp_f": 95.7,
-    "humidity": 15.5,
+    "temp_f": 95.4,
+    "humidity": 15.1,
     "pressure": 830.5
   },
   "detections": [
+    {
+      "com_name": "Northern Rough-winged Swallow",
+      "sci_name": "Stelgidopteryx serripennis",
+      "confidence": 0.8582,
+      "iso": "2026-07-10T10:29:58",
+      "time": "10:29",
+      "date": "2026-07-10",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/20250514_northern_rough_winged_swallow_bolton_notch_state_park_PD200438_crop.jpg/330px-20250514_northern_rough_winged_swallow_bolton_notch_state_park_PD200438_crop.jpg",
+      "audio": "bird-clips/Northern_Rough-winged_Swallow-86-2026-07-10-birdnet-10.29.58.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-07-10",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-75-2026-07-10-birdnet-06.48.04.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7542,
-      "iso": "2026-07-10T06:37:14",
-      "time": "06:37",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-75-2026-07-10-birdnet-06.37.14.mp3"
     }
   ]
 }
