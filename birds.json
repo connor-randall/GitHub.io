@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-07-11T09:00:03-0600",
+  "generated_at": "2026-07-11T09:10:03-0600",
   "stats": {
-    "today_count": 1,
+    "today_count": 2,
     "today_species": 1,
-    "total": 431
+    "total": 432
   },
   "enviro": {
-    "temp_f": 92.3,
-    "humidity": 18.4,
+    "temp_f": 95.6,
+    "humidity": 16.6,
     "pressure": 832.7
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.691,
+      "iso": "2026-07-11T09:01:42",
+      "time": "09:01",
+      "date": "2026-07-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-69-2026-07-11-birdnet-09.01.42.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-07-10",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-81-2026-07-10-birdnet-20.11.59.mp3"
-    },
-    {
-      "com_name": "Common Nighthawk",
-      "sci_name": "Chordeiles minor",
-      "confidence": 0.7023,
-      "iso": "2026-07-10T20:11:11",
-      "time": "20:11",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Common_Nighthawk_%2814428313550%29.jpg/330px-Common_Nighthawk_%2814428313550%29.jpg",
-      "audio": "bird-clips/Common_Nighthawk-70-2026-07-10-birdnet-20.11.11.mp3"
     }
   ]
 }
