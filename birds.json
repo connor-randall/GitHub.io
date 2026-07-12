@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-07-12T12:30:03-0600",
+  "generated_at": "2026-07-12T12:40:03-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 432
+    "today_count": 4,
+    "today_species": 1,
+    "total": 436
   },
   "enviro": {
-    "temp_f": 105.7,
-    "humidity": 8.8,
+    "temp_f": 104.5,
+    "humidity": 11.0,
     "pressure": 834.6
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6958,
+      "iso": "2026-07-12T12:39:40",
+      "time": "12:39",
+      "date": "2026-07-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-07-12-birdnet-12.39.40.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6955,
+      "iso": "2026-07-12T12:39:03",
+      "time": "12:39",
+      "date": "2026-07-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-07-12-birdnet-12.39.03.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6543,
+      "iso": "2026-07-12T12:38:18",
+      "time": "12:38",
+      "date": "2026-07-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-65-2026-07-12-birdnet-12.38.18.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8533,
+      "iso": "2026-07-12T12:37:48",
+      "time": "12:37",
+      "date": "2026-07-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-85-2026-07-12-birdnet-12.37.48.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -120,46 +160,6 @@
       "date": "2026-07-10",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-77-2026-07-10-birdnet-20.16.15.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8386,
-      "iso": "2026-07-10T20:15:54",
-      "time": "20:15",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-84-2026-07-10-birdnet-20.15.54.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6972,
-      "iso": "2026-07-10T20:15:03",
-      "time": "20:15",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-70-2026-07-10-birdnet-20.15.03.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8495,
-      "iso": "2026-07-10T20:12:05",
-      "time": "20:12",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-85-2026-07-10-birdnet-20.12.05.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8107,
-      "iso": "2026-07-10T20:11:59",
-      "time": "20:11",
-      "date": "2026-07-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-81-2026-07-10-birdnet-20.11.59.mp3"
     }
   ]
 }
