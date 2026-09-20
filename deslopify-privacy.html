@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connor Randall | Deslopify Privacy Policy</title>
+<meta name="description" content="Privacy policy for the Deslopify browser extension. No data collection, no telemetry, no network requests.">
+<meta name="author" content="Connor Randall">
+<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<!-- No analytics on this page: it documents a zero-telemetry product. -->
+<style>
+:root {
+  --bg:#0b0e13; --bg2:#11151d; --panel:#0e121a;
+  --text:#d4dbe6; --dim:#828d9e;
+  --accent:#7fa8cc; --accent-2:#aac6de;
+  --border:#1e2530; --shadow:rgba(0,0,0,0.55);
+}
+* { box-sizing:border-box; }
+html, body {
+  margin:0; padding:0; min-height:100%;
+  background:var(--bg); color:var(--text);
+  font-family:"Courier New", monospace;
+  overflow-x:hidden;
+}
+.wrap { max-width:840px; margin:0 auto; padding:26px 20px 80px; }
+.window {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:6px; box-shadow:0 18px 40px -24px var(--shadow);
+  padding:0 0 30px;
+}
+.title-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--bg2); border:1px solid var(--border); border-radius:4px;
+  color:var(--dim); letter-spacing:1px;
+  font-size:12px; padding:7px 12px; margin:10px;
+}
+.buttons { display:flex; gap:6px; }
+.btn {
+  width:11px; height:11px; display:inline-block;
+  border:1px solid var(--border); background:var(--bg); border-radius:2px;
+}
+.doc { padding:8px 30px 0; }
+.page-heading {
+  color:var(--accent); font-size:20px; letter-spacing:2px;
+  margin:14px 0 4px; text-transform:lowercase;
+}
+.updated { color:var(--dim); font-size:12px; letter-spacing:1px; margin-bottom:22px; }
+.scope {
+  border:1px solid var(--border); border-left:3px solid var(--accent);
+  background:rgba(255,255,255,0.015);
+  padding:13px 16px; margin:0 0 26px;
+  font-size:13px; line-height:1.65; color:var(--dim);
+}
+.scope strong { color:var(--text); }
+h2 {
+  color:var(--accent); font-size:14px; letter-spacing:2px;
+  text-transform:lowercase; margin:30px 0 8px;
+  padding-bottom:6px; border-bottom:1px solid var(--border);
+}
+p, li { font-size:13.5px; line-height:1.75; color:var(--text); }
+p { margin:0 0 13px; }
+ul { margin:0 0 14px; padding-left:20px; }
+li { margin-bottom:5px; }
+a { color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
+a:hover { border-bottom-color:var(--accent); }
+.big-no {
+  display:block; color:var(--accent-2); font-size:15px;
+  letter-spacing:3px; margin:4px 0 14px;
+}
+table { width:100%; border-collapse:collapse; margin:0 0 16px; }
+th, td {
+  text-align:left; font-size:12.5px; line-height:1.6;
+  padding:9px 11px; border:1px solid var(--border); vertical-align:top;
+}
+th { color:var(--dim); letter-spacing:1px; text-transform:lowercase; background:var(--bg2); font-weight:normal; }
+td code {
+  color:var(--accent); background:var(--bg2);
+  padding:1px 5px; border-radius:3px; font-size:12px;
+}
+.foot {
+  margin-top:34px; padding-top:16px; border-top:1px solid var(--border);
+  color:var(--dim); font-size:11.5px; letter-spacing:1px;
+}
+@media (max-width:640px) {
+  .doc { padding:8px 16px 0; }
+  table, thead, tbody, th, td, tr { display:block; }
+  th { display:none; }
+  td { border-top:none; }
+  td:first-child { border-top:1px solid var(--border); }
+}
+</style>
+<link rel="stylesheet" href="site.css?v=1">
+</head>
+<body>
+
+<header id="site-top">
+  <div class="top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">CR</span> connor randall</a>
+    <nav id="site-nav">
+      <a href="index.html">home</a>
+      <a href="experience.html">experience</a>
+      <a href="projects.html" class="active">projects</a>
+      <a href="birds.html">birds</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="window">
+    <div class="title-bar">
+      <span>deslopify — privacy.txt</span>
+      <div class="buttons">
+        <span class="btn"></span><span class="btn"></span><span class="btn"></span>
+      </div>
+    </div>
+
+    <div class="doc">
+      <h1 class="page-heading">deslopify — privacy policy</h1>
+      <div class="updated">// last updated: 20 september 2026 //</div>
+
+      <div class="scope">
+        <strong>Scope.</strong> This policy covers the <strong>Deslopify browser extension</strong>.
+        It does not describe conradrandy.com, which is a separate website.
+      </div>
+
+      <h2>the short version</h2>
+      <p>
+        Deslopify does not collect, transmit, store, or sell any personal data. It makes
+        <strong>no network requests of any kind</strong>. Everything it does happens inside your
+        browser.
+      </p>
+
+      <h2>what the extension does</h2>
+      <p>
+        Deslopify reads the text of posts on pages you visit at <code>x.com</code> and
+        <code>twitter.com</code>, scores that text locally against a fixed set of built-in rules,
+        and adds a small label to posts that match. All of this happens in the page, in memory,
+        on your own machine.
+      </p>
+
+      <h2>what is collected</h2>
+      <span class="big-no">&gt; NOTHING</span>
+      <p>
+        There is no analytics, no telemetry, no crash reporting, no advertising identifier, no
+        user account, and no server. The extension contains no code that performs a network
+        request — no <code>fetch</code>, no <code>XMLHttpRequest</code>, no WebSocket, no
+        remotely loaded scripts.
+      </p>
+
+      <h2>what is stored</h2>
+      <p>Only your own settings:</p>
+      <ul>
+        <li>whether the extension is enabled</li>
+        <li>what to do with each verdict tier (badge, blur, hide, or nothing)</li>
+        <li>your AI-ish score cutoff</li>
+        <li>which individual tells are switched on</li>
+        <li>which platforms are enabled</li>
+      </ul>
+      <p>
+        These are saved using Chrome's <code>storage.sync</code> API. If you have Chrome Sync
+        turned on, Chrome itself will sync those preferences between your signed-in Chrome
+        installations, the same way it syncs your bookmarks. That transfer is performed by Google
+        Chrome under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's
+        privacy policy</a>, not by Deslopify, and it contains only the settings listed above. The
+        developer has no access to it. If you would rather it did not happen, turn off extension
+        syncing in Chrome's sync settings.
+      </p>
+
+      <h2>post content</h2>
+      <p>
+        Post text is read into memory to be scored and is <strong>never</strong> transmitted,
+        written to disk, or persisted. The extension keeps a short-lived in-memory record of
+        which posts it has already scored on the current page, so it does not re-score the same
+        post as you scroll. That record is discarded when you navigate away or close the tab. It
+        never leaves the page.
+      </p>
+
+      <h2>permissions, and why each is needed</h2>
+      <table>
+        <thead>
+          <tr><th>permission</th><th>why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>storage</code></td>
+            <td>Save the settings listed above.</td>
+          </tr>
+          <tr>
+            <td><code>https://x.com/*</code><br><code>https://twitter.com/*</code></td>
+            <td>The content script must read post text in the page in order to score it. These are the only sites the extension runs on.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The extension requests no other permissions. It cannot read your browsing history, your
+        bookmarks, your passwords, or any site other than the two listed above.
+      </p>
+
+      <h2>data sharing</h2>
+      <p>
+        There is none. No data is shared with the developer or any third party, because no data
+        is collected in the first place.
+      </p>
+
+      <h2>children</h2>
+      <p>
+        Deslopify is not directed at children and collects no data from anyone, including
+        children.
+      </p>
+
+      <h2>changes</h2>
+      <p>
+        Any future change to this policy will be published on this page, and the date above will
+        change. If a future version ever adds a network feature, that will be disclosed here
+        before release and will be opt-in.
+      </p>
+
+      <h2>contact</h2>
+      <p>
+        Questions: <a href="mailto:connorandall0@gmail.com">connorandall0@gmail.com</a>
+      </p>
+
+      <div class="foot">
+        &gt; deslopify is open source &nbsp;·&nbsp;
+        <a href="projects.html">back to projects</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="ascii-bg.js?v=4"></script>
+</body>
+</html>
