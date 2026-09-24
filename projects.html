@@ -692,20 +692,21 @@ button.tree-folder { font-size:12px; }
         <a class="project-link" href="birds.html">&gt; live feed &rarr;</a>
       </div>
 
-      <div class="project-card" id="pi-video-player" data-cat="pi" style="grid-column: 1 / -1; border-left:3px solid #00ff88;">
-        <div class="project-icon" aria-hidden="true">.=============.
-|  .-------.  |
-|  | > RPi |  |
-|  '-------'  |
-'===[_____]==='</div>
-        <div class="project-name">Pi Video Player</div>
-        <span class="project-cat pi">raspberry pi</span>
+      <div class="project-card" id="deslopify" data-cat="web" style="grid-column: 1 / -1;">
+        <div class="project-icon" aria-hidden="true">.-----------.
+ \  s l o p  /
+  \  ~~~~~  /
+   \  ___  /
+    '--v--'</div>
+        <div class="project-name">Deslopify</div>
+        <span class="project-cat web">web dev</span>
         <div class="project-desc">
-          A full-screen video player built for Raspberry Pi 5 with a HyperPixel 4" touchscreen and HDMI output. Green-on-black terminal UI built in Python/Tkinter, MPV-powered playback via Unix socket, folder tree navigation, dual-display management, volume control, seek bar, playlist autoplay, and CPU temp readout.
+          Chrome extension (Manifest V3) that flags AI-generated and low-quality posts on X. Grades verdicts by evidence: platform labels, author disclosure, then a 0&ndash;100 "AI-ish" score built from 38 individually toggleable tells. Runs entirely offline &mdash; no API key, no network requests. Calibrated against real timeline posts; TypeScript + Vite, 48 tests.
         </div>
-        <div class="project-status done">[ status: complete ]</div>
+        <div class="project-status wip">[ status: wip ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <button type="button" class="demo-launch" onclick="openDemo()" aria-haspopup="dialog">[ try the demo &rarr; ]</button>
+        <a class="project-link" href="deslopify-privacy.html">&gt; privacy policy &rarr;</a>
+        <div class="project-private">// private repository //</div>
       </div>
       </div>
     </section>
@@ -809,23 +810,6 @@ button.tree-folder { font-size:12px; }
       <h2 class="group-heading" id="webapps-h">Web Apps</h2>
       <div class="group-sub">// software people can use //</div>
       <div class="projects-grid">
-      <div class="project-card" id="deslopify" data-cat="web">
-        <div class="project-icon" aria-hidden="true">.-----------.
- \  s l o p  /
-  \  ~~~~~  /
-   \  ___  /
-    '--v--'</div>
-        <div class="project-name">Deslopify</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          Chrome extension (Manifest V3) that flags AI-generated and low-quality posts on X. Grades verdicts by evidence: platform labels, author disclosure, then a 0&ndash;100 "AI-ish" score built from 38 individually toggleable tells. Runs entirely offline &mdash; no API key, no network requests. Calibrated against real timeline posts; TypeScript + Vite, 48 tests.
-        </div>
-        <div class="project-status wip">[ status: wip ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="deslopify-privacy.html">&gt; privacy policy &rarr;</a>
-        <div class="project-private">// private repository //</div>
-      </div>
-
       <div class="project-card" id="gymscheduler" data-cat="web">
         <div class="project-icon" aria-hidden="true"> .-------.
  | M T W |
@@ -933,6 +917,22 @@ button.tree-folder { font-size:12px; }
         <div class="project-status done">[ status: playable ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
         <div class="project-private">// private repository //</div>
+      </div>
+
+      <div class="project-card" id="pi-video-player" data-cat="pi" style="border-left:3px solid #00ff88;">
+        <div class="project-icon" aria-hidden="true">.=============.
+|  .-------.  |
+|  | > RPi |  |
+|  '-------'  |
+'===[_____]==='</div>
+        <div class="project-name">Pi Video Player</div>
+        <span class="project-cat pi">raspberry pi</span>
+        <div class="project-desc">
+          A full-screen video player built for Raspberry Pi 5 with a HyperPixel 4" touchscreen and HDMI output. Green-on-black terminal UI built in Python/Tkinter, MPV-powered playback via Unix socket, folder tree navigation, dual-display management, volume control, seek bar, playlist autoplay, and CPU temp readout.
+        </div>
+        <div class="project-status done">[ status: complete ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <button type="button" class="demo-launch" onclick="openDemo()" aria-haspopup="dialog">[ try the demo &rarr; ]</button>
       </div>
       </div>
     </section>
