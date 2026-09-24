@@ -577,18 +577,58 @@ body {
 @keyframes hint-fade {
   to { opacity:0; visibility:hidden; }
 }
+
+/* ===== PROJECT GROUPS ===== */
+.project-group { max-width:860px; margin:0 auto 34px; }
+.project-group:last-of-type { margin-bottom:0; }
+.group-heading {
+  margin:0 0 4px; font-weight:normal; text-align:left;
+  font-size:13px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--accent);
+}
+.group-heading::before { content:"> "; color:var(--dim, #828d9e); }
+.group-sub { text-align:left; color:var(--dim, #828d9e); font-size:11px; letter-spacing:1px; margin-bottom:14px; }
+.component-label {
+  text-align:left; color:var(--dim, #828d9e); font-size:11px;
+  letter-spacing:1px; margin:14px 0 10px 4px;
+}
+.homelab-components {
+  margin-left:12px; padding-left:14px;
+  border-left:1px dashed var(--border);
+}
+.project-card { scroll-margin-top:110px; }
+.project-card:target { border-color:var(--accent) !important; }
+.project-private { margin-top:10px; color:var(--dim, #828d9e); font-size:11px; letter-spacing:1px; }
+.demo-launch {
+  margin-top:12px; background:transparent;
+  border:1px solid var(--accent); color:var(--accent);
+  font-family:"Courier New",monospace; font-size:11px; letter-spacing:2px;
+  padding:6px 14px; cursor:pointer; border-radius:4px;
+  transition:background .15s, color .15s;
+}
+.demo-launch:hover { background:var(--accent); color:var(--bg); }
+.filter-empty { color:var(--dim, #828d9e); font-size:12px; letter-spacing:1px; text-align:center; }
+button.tree-folder, button.tree-file {
+  display:block; width:100%; text-align:left;
+  background:none; border:none; font-family:inherit;
+}
+button.tree-folder { font-size:12px; }
+@media (max-width:640px) {
+  .projects-grid > .project-card[style*="span 2"] { grid-column:1 / -1 !important; }
+  .homelab-components { margin-left:4px; padding-left:10px; }
+}
 </style>
-<link rel="stylesheet" href="site.css?v=1">
+<link rel="stylesheet" href="site.css?v=2">
 </head>
 <body>
 
 <header id="site-top">
   <div class="top-inner">
     <a class="brand" href="index.html"><span class="brand-mark">CR</span> connor randall</a>
-    <nav id="site-nav">
+    <nav id="site-nav" aria-label="Main">
       <a href="index.html">home</a>
       <a href="experience.html">experience</a>
-      <a href="projects.html" class="active">projects</a>
+      <a href="projects.html" class="active" aria-current="page">projects</a>
       <a href="birds.html">birds</a>
     </nav>
   </div>
@@ -603,12 +643,12 @@ body {
       </div>
     </div>
 
-    <div class="page-heading">&gt;&gt; projects &lt;&lt;</div>
+    <h1 class="page-heading">&gt;&gt; projects &lt;&lt;</h1>
     <div class="page-sub">// things i've built or broken //</div>
 
     <div class="divider">========================================================================</div>
 
-    <div class="filter-bar">
+    <div class="filter-bar" role="group" aria-label="Filter projects by category">
       <button class="filter-btn on" data-filter="all">[ all ]</button>
       <button class="filter-btn" data-filter="pi">[ raspberry pi ]</button>
       <button class="filter-btn" data-filter="web">[ web dev ]</button>
@@ -616,11 +656,67 @@ body {
       <button class="filter-btn" data-filter="hardware">[ hardware ]</button>
     </div>
 
-    <div class="projects-grid" id="projects-grid">
+    <div id="projects-grid">
 
-      <!-- ===== HOMELAB SECTION ===== -->
-      <div class="project-card" data-cat="homelab" style="grid-column: 1 / -1;">
-        <div class="project-name" style="color:#00cfff;">>> homelab infrastructure &lt;&lt;</div>
+    <section class="project-group" aria-labelledby="featured-h">
+      <h2 class="group-heading" id="featured-h">Featured Builds</h2>
+      <div class="group-sub">// the biggest things i&#39;ve built //</div>
+      <div class="projects-grid">
+      <div class="project-card" id="weasley-clock" data-cat="hardware" style="grid-column: span 2; border-left:3px solid #ff9f43;">
+        <div class="project-icon" aria-hidden="true" style="color:#ff9f43;">    .-"""-.
+  /  home   \
+ | work  o--+ peril
+  \ travel  /
+    '-...-'</div>
+        <div class="project-name" style="color:#ff9f43;">Weasley Clock</div>
+        <span class="project-cat hardware">hardware</span>
+        <div class="project-desc">
+          A real version of the clock from Harry Potter, with one hand for each of my brothers pointing to where they are: Home, Work, Traveling, Up to No Good, or Mortal Peril. Each phone reports location changes to a Flask backend through OwnTracks geofences. The backend runs in an LXC container on my Proxmox cluster, reachable over a Cloudflare Tunnel behind Cloudflare Access. An ESP32 polls it every minute and moves each hand with its own 270&deg; servo. The electronics and software work from phone to servo; the clock face is still being built.
+        </div>
+        <div class="project-status wip">[ status: wip ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+      </div>
+
+      <div class="project-card" id="birdnet" data-cat="pi">
+        <div class="project-icon" aria-hidden="true">   __
+ &lt;(o )___
+  ( ._&gt; /
+   `---'  ♪</div>
+        <div class="project-name">BirdNET Detectors</div>
+        <span class="project-cat pi">raspberry pi</span>
+        <div class="project-desc">
+          Two always-on bird-call detectors: a Raspberry Pi 5 in the backyard and a Pi 3 A+ at the White House, each with a USB mic running BirdNET-Pi to identify species by song. The Pi 5 also reads an Enviro+ weather board and sends Telegram alerts. Both Pis push detections, audio clips, and species photos here every 10 minutes. They only push out, with no inbound ports open. The 512MB Pi 3 needed swap, earlyoom, and a hardware watchdog to stay up.
+        </div>
+        <div class="project-status done">[ status: built &middot; currently offline ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <a class="project-link" href="birds.html">&gt; live feed &rarr;</a>
+      </div>
+
+      <div class="project-card" id="pi-video-player" data-cat="pi" style="grid-column: 1 / -1; border-left:3px solid #00ff88;">
+        <div class="project-icon" aria-hidden="true">.=============.
+|  .-------.  |
+|  | > RPi |  |
+|  '-------'  |
+'===[_____]==='</div>
+        <div class="project-name">Pi Video Player</div>
+        <span class="project-cat pi">raspberry pi</span>
+        <div class="project-desc">
+          A full-screen video player built for Raspberry Pi 5 with a HyperPixel 4" touchscreen and HDMI output. Green-on-black terminal UI built in Python/Tkinter, MPV-powered playback via Unix socket, folder tree navigation, dual-display management, volume control, seek bar, playlist autoplay, and CPU temp readout.
+        </div>
+        <div class="project-status done">[ status: complete ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <button type="button" class="demo-launch" onclick="openDemo()" aria-haspopup="dialog">[ try the demo &rarr; ]</button>
+      </div>
+      </div>
+    </section>
+
+    <section class="project-group" aria-labelledby="homelab-h">
+      <h2 class="group-heading" id="homelab-h">Homelab</h2>
+      <div class="group-sub">// one self-hosted stack and the parts that run on it //</div>
+      <div class="projects-grid">
+      <div class="project-card" id="homelab" data-cat="homelab" style="grid-column: 1 / -1;">
+        <div class="project-name" style="color:#00cfff;">&gt;&gt; homelab infrastructure &lt;&lt;</div>
+        <span class="project-cat homelab">homelab</span>
         <div class="project-desc" style="margin-top:8px;">
           Self-hosted stack running on <strong style="color:#00cfff;">Proxmox VE</strong> — virtualization hypervisor managing VMs and LXC containers.
           All services below run inside isolated containers. Network traffic routed through <strong style="color:#00cfff;">Gluetun</strong> VPN for privacy.
@@ -637,9 +733,11 @@ body {
         </div>
         <div class="project-status wip" style="margin-top:14px;">[ status: always tinkering ]</div>
       </div>
-
-      <div class="project-card" data-cat="homelab">
-        <div class="project-icon" style="color:#00cfff;">
+      </div>
+      <div class="component-label" aria-hidden="true">└── components</div>
+      <div class="projects-grid homelab-components" role="list" aria-label="Homelab components">
+      <div class="project-card" role="listitem" id="proxmox" data-cat="homelab">
+        <div class="project-icon" aria-hidden="true" style="color:#00cfff;">
   .-----------.
   |  PROXMOX  |
   |  [VM][CT] |
@@ -653,8 +751,8 @@ body {
         <div class="project-status done">[ status: running ]</div>
       </div>
 
-      <div class="project-card" data-cat="homelab">
-        <div class="project-icon" style="color:#00cfff;">
+      <div class="project-card" role="listitem" id="media-server" data-cat="homelab">
+        <div class="project-icon" aria-hidden="true" style="color:#00cfff;">
   .-----------.
   | [>] PLEX  |
   |  ~~~~~~~~ |
@@ -674,14 +772,14 @@ body {
         </div>
       </div>
 
-      <div class="project-card" data-cat="homelab">
-        <div class="project-icon" style="color:#00cfff;">
+      <div class="project-card" role="listitem" id="grafana-monitoring" data-cat="homelab">
+        <div class="project-icon" aria-hidden="true" style="color:#00cfff;">
   .-----------.
   |  GRAFANA  |
   | /\_/\__/\ |
   |/__\/    \ |
   '-----------'</div>
-        <div class="project-name" style="color:#00cfff;">Monitoring</div>
+        <div class="project-name" style="color:#00cfff;">Grafana Monitoring</div>
         <span class="project-cat homelab">homelab</span>
         <div class="project-desc">
           <strong style="color:#00cfff;">Grafana</strong> dashboard tracking CPU, RAM, temps, network throughput, and service health across the whole stack. Local-only — no cloud.
@@ -690,8 +788,8 @@ body {
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:8px;">// local only //</div>
       </div>
 
-      <div class="project-card" data-cat="homelab">
-        <div class="project-icon" style="color:#00cfff;">
+      <div class="project-card" role="listitem" id="folding-at-home" data-cat="homelab">
+        <div class="project-icon" aria-hidden="true" style="color:#00cfff;">
   .-----------.
   | @home     |
   |  [####  ] |
@@ -704,75 +802,15 @@ body {
         </div>
         <div class="project-status done">[ status: folding ]</div>
       </div>
-
-      <!-- ===== HARDWARE ===== -->
-      <div class="project-card" data-cat="hardware" style="grid-column: span 2; border-left:3px solid #ff9f43;">
-        <div class="project-icon" style="color:#ff9f43;">    .-"""-.
-  /  home   \
- | work  o--+ peril
-  \ travel  /
-    '-...-'</div>
-        <div class="project-name" style="color:#ff9f43;">Weasley Clock</div>
-        <span class="project-cat hardware">hardware</span>
-        <div class="project-desc">
-          A real version of the clock from Harry Potter, with one hand for each of my brothers pointing to where they are: Home, Work, Traveling, Up to No Good, or Mortal Peril. Each phone reports location changes to a Flask backend through OwnTracks geofences. The backend runs in an LXC container on my Proxmox cluster, reachable over a Cloudflare Tunnel behind Cloudflare Access. An ESP32 polls it every minute and moves each hand with its own 270&deg; servo. The electronics and software work from phone to servo; the clock face is still being built.
-        </div>
-        <div class="project-status wip">[ status: wip ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
       </div>
+    </section>
 
-      <!-- ===== OTHER PROJECTS ===== -->
-      <div class="project-card" data-cat="pi" style="grid-column: span 2; border-left:3px solid #00ff88; cursor:pointer;" onclick="openDemo()">
-        <div class="project-icon">.=============.
-|  .-------.  |
-|  | > RPi |  |
-|  '-------'  |
-'===[_____]==='</div>
-        <div class="project-name">Pi Video Player</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          A full-screen video player built for Raspberry Pi 5 with a HyperPixel 4" touchscreen and HDMI output. Green-on-black terminal UI built in Python/Tkinter, MPV-powered playback via Unix socket, folder tree navigation, dual-display management, volume control, seek bar, playlist autoplay, and CPU temp readout.
-        </div>
-        <div class="project-status done">[ status: complete ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <div style="margin-top:12px;">
-          <span style="background:#000;border:2px solid #33ff33;color:#33ff33;font-family:'Courier New',monospace;font-size:11px;letter-spacing:2px;padding:5px 14px;cursor:pointer;">[ click to demo &rarr; ]</span>
-        </div>
-      </div>
-
-      <div class="project-card" data-cat="pi">
-        <div class="project-icon">   __
- &lt;(o )___
-  ( ._&gt; /
-   `---'  ♪</div>
-        <div class="project-name">BirdNET Detectors</div>
-        <span class="project-cat pi">raspberry pi</span>
-        <div class="project-desc">
-          Two always-on bird-call detectors: a Raspberry Pi 5 in the backyard and a Pi 3 A+ at the White House, each with a USB mic running BirdNET-Pi to identify species by song. The Pi 5 also reads an Enviro+ weather board and sends Telegram alerts. Both Pis push detections, audio clips, and species photos here every 10 minutes. They only push out, with no inbound ports open. The 512MB Pi 3 needed swap, earlyoom, and a hardware watchdog to stay up.
-        </div>
-        <div class="project-status done">[ status: listening ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="birds.html">&gt; live feed &rarr;</a>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">  .-----.
- /  * *  \
-| -- | -- |
- \ . * . /
-  '-----'</div>
-        <div class="project-name">This Website</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          conradrandy.com: my personal site, built with plain HTML/CSS/JS and no framework. It has a graphite-and-steel-blue ASCII theme and an animated ASCII background that moves away from your cursor. The birds page shows live detections pushed by two Raspberry Pis, and a Cloudflare Worker runs the visitor counter.
-        </div>
-        <div class="project-status wip">[ status: wip ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="https://github.com/connor-randall/GitHub.io" target="_blank">&gt; github &rarr;</a>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">.-----------.
+    <section class="project-group" aria-labelledby="webapps-h">
+      <h2 class="group-heading" id="webapps-h">Web Apps</h2>
+      <div class="group-sub">// software people can use //</div>
+      <div class="projects-grid">
+      <div class="project-card" id="deslopify" data-cat="web">
+        <div class="project-icon" aria-hidden="true">.-----------.
  \  s l o p  /
   \  ~~~~~  /
    \  ___  /
@@ -785,10 +823,49 @@ body {
         <div class="project-status wip">[ status: wip ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
         <a class="project-link" href="deslopify-privacy.html">&gt; privacy policy &rarr;</a>
+        <div class="project-private">// private repository //</div>
       </div>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">.------.
+      <div class="project-card" id="gymscheduler" data-cat="web">
+        <div class="project-icon" aria-hidden="true"> .-------.
+ | M T W |
+ | [x][ ]|
+ | [ ][x]|
+ '-------'</div>
+        <div class="project-name">GymScheduler</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          Gym-time request app for a youth basketball program. Coaches choose an age group, rank the gyms and weekly time slots they want, and submit a request. Older teams automatically get more priority, and an admin queue sorts all requests by score. Built with React.
+        </div>
+        <div class="project-status done">[ status: complete ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2025 //</div>
+        <div class="project-private">// private repository //</div>
+      </div>
+
+      <div class="project-card" id="budgeting-app" data-cat="web">
+        <div class="project-icon" aria-hidden="true"> .--------.
+ | $ ##   |
+ | ### #  |
+ | #  ### |
+ '--------'</div>
+        <div class="project-name">Budgeting App</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          Shows where your money goes at a glance. You connect a bank through Plaid, and it pulls your accounts and transactions, then draws a treemap of spending broken down by category and merchant. React and Recharts on the front end, with a Node/Express server that talks to the Plaid API.
+        </div>
+        <div class="project-status wip">[ status: wip ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <a class="project-link" href="https://github.com/connor-randall/Budgeting-app" target="_blank" rel="noopener">&gt; github &rarr;</a>
+      </div>
+      </div>
+    </section>
+
+    <section class="project-group" aria-labelledby="client-h">
+      <h2 class="group-heading" id="client-h">Client Work</h2>
+      <div class="group-sub">// sites built for other people //</div>
+      <div class="projects-grid">
+      <div class="project-card" id="creek-sports" data-cat="web">
+        <div class="project-icon" aria-hidden="true">.------.
 |
 |     .------.
 '-----
@@ -801,11 +878,11 @@ body {
         </div>
         <div class="project-status done">[ status: complete ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2021 - present //</div>
-        <a class="project-link" href="https://www.creeksports.com" target="_blank">&gt; visit site &rarr;</a>
+        <a class="project-link" href="https://www.creeksports.com" target="_blank" rel="noopener">&gt; visit site &rarr;</a>
       </div>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon">  _______
+      <div class="project-card" id="short-grass-72" data-cat="web">
+        <div class="project-icon" aria-hidden="true">  _______
  |  ___  |
  | | 72| |
  | |___| |
@@ -817,43 +894,33 @@ body {
         </div>
         <div class="project-status done">[ status: live ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="https://shortgrass72.com" target="_blank">&gt; visit site &rarr;</a>
+        <a class="project-link" href="https://shortgrass72.com" target="_blank" rel="noopener">&gt; visit site &rarr;</a>
       </div>
+      </div>
+    </section>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon"> .-------.
- | M T W |
- | [x][ ]|
- | [ ][x]|
- '-------'</div>
-        <div class="project-name">GymScheduler</div>
+    <section class="project-group" aria-labelledby="small-h">
+      <h2 class="group-heading" id="small-h">Small Builds and Experiments</h2>
+      <div class="group-sub">// side quests //</div>
+      <div class="projects-grid">
+      <div class="project-card" id="this-website" data-cat="web">
+        <div class="project-icon" aria-hidden="true">  .-----.
+ /  * *  \
+| -- | -- |
+ \ . * . /
+  '-----'</div>
+        <div class="project-name">This Website</div>
         <span class="project-cat web">web dev</span>
         <div class="project-desc">
-          Gym-time request app for a youth basketball program. Coaches choose an age group, rank the gyms and weekly time slots they want, and submit a request. Older teams automatically get more priority, and an admin queue sorts all requests by score. Built with React.
-        </div>
-        <div class="project-status done">[ status: complete ]</div>
-        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2025 //</div>
-        <a class="project-link" href="https://github.com/connor-randall/GymScheduler" target="_blank">&gt; github &rarr;</a>
-      </div>
-
-      <div class="project-card" data-cat="web">
-        <div class="project-icon"> .--------.
- | $ ##   |
- | ### #  |
- | #  ### |
- '--------'</div>
-        <div class="project-name">Budgeting App</div>
-        <span class="project-cat web">web dev</span>
-        <div class="project-desc">
-          Shows where your money goes at a glance. You connect a bank through Plaid, and it pulls your accounts and transactions, then draws a treemap of spending broken down by category and merchant. React and Recharts on the front end, with a Node/Express server that talks to the Plaid API.
+          conradrandy.com: my personal site, built with plain HTML/CSS/JS and no framework. It has a graphite-and-steel-blue ASCII theme and an animated ASCII background that moves away from your cursor. The birds page shows live detections pushed by two Raspberry Pis, and a Cloudflare Worker runs the visitor counter.
         </div>
         <div class="project-status wip">[ status: wip ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="https://github.com/connor-randall/Budgeting-app" target="_blank">&gt; github &rarr;</a>
+        <a class="project-link" href="https://github.com/connor-randall/GitHub.io" target="_blank" rel="noopener">&gt; github &rarr;</a>
       </div>
 
-      <div class="project-card" data-cat="web">
-        <div class="project-icon"> ##########
+      <div class="project-card" id="ascii-game" data-cat="web">
+        <div class="project-icon" aria-hidden="true"> ##########
  #  @   * #
  #    ##  #
  # &amp;   [] #
@@ -865,8 +932,12 @@ body {
         </div>
         <div class="project-status done">[ status: playable ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
-        <a class="project-link" href="https://github.com/connor-randall/Game" target="_blank">&gt; github &rarr;</a>
+        <div class="project-private">// private repository //</div>
       </div>
+      </div>
+    </section>
+
+      <p class="filter-empty" id="filter-empty" hidden>// nothing in this category //</p>
 
     </div>
 
@@ -874,21 +945,21 @@ body {
 </div>
 
 <!-- VIDEO PLAYER DEMO MODAL -->
-<div id="demo-modal">
+<div id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-title">
   <div id="demo-window">
     <div id="demo-titlebar">
-      <span>VIDEO PLAYER — RandallPi [720x720]</span>
-      <button id="demo-close" onclick="closeDemo()">[ X ]</button>
+      <span id="demo-title">VIDEO PLAYER — RandallPi [720x720]</span>
+      <button type="button" id="demo-close" onclick="closeDemo()" aria-label="Close video player demo">[ X ]</button>
     </div>
     <div id="demo-body">
-      <div id="demo-tree" id="file-tree"></div>
+      <div id="demo-tree" role="navigation" aria-label="Demo media folders"></div>
       <div id="demo-main">
         <div id="demo-screen">
           <div id="demo-screen-text">■ HDMI OUTPUT ■<br><br>select a file to play</div>
           <div id="demo-now-playing"></div>
           <div id="demo-cpu">CPU: --°C</div>
         </div>
-        <div id="demo-progress-wrap" onclick="demoSeek(event)">
+        <div id="demo-progress-wrap" onclick="demoSeek(event)" aria-hidden="true">
           <div id="demo-progress-fill"></div>
           <span id="demo-time">00:00 / 00:00</span>
         </div>
@@ -903,7 +974,7 @@ body {
           <button class="demo-btn" id="btn-mute" onclick="demoMute()">MUTE</button>
           <span id="demo-vol-label">VOL: 120</span>
         </div>
-        <div id="demo-status">Ready — select a file from the tree</div>
+        <div id="demo-status" role="status">Ready — select a file from the tree</div>
       </div>
     </div>
   </div>
@@ -914,13 +985,30 @@ body {
 const filterBtns = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".project-card");
 filterBtns.forEach(btn => {
+  btn.setAttribute("aria-pressed", btn.classList.contains("on") ? "true" : "false");
   btn.addEventListener("click", () => {
-    filterBtns.forEach(b => b.classList.remove("on"));
+    filterBtns.forEach(b => { b.classList.remove("on"); b.setAttribute("aria-pressed", "false"); });
     btn.classList.add("on");
+    btn.setAttribute("aria-pressed", "true");
     const f = btn.dataset.filter;
     cards.forEach(c => {
       c.style.display = (f === "all" || c.dataset.cat === f) ? "" : "none";
     });
+    // Hide any group (or homelab component list) left with no visible cards
+    const visible = el => [...el.querySelectorAll(".project-card")].some(c => c.style.display !== "none");
+    let any = false;
+    document.querySelectorAll(".project-group").forEach(g => {
+      const show = visible(g);
+      g.hidden = !show;
+      any = any || show;
+    });
+    document.querySelectorAll(".homelab-components").forEach(list => {
+      const show = visible(list);
+      list.hidden = !show;
+      const label = list.previousElementSibling;
+      if (label && label.classList.contains("component-label")) label.hidden = !show;
+    });
+    document.getElementById("filter-empty").hidden = any;
   });
 });
 
@@ -958,16 +1046,23 @@ let demoState = {
   playlistIndex: -1,
 };
 
+let demoOpener = null;
 function openDemo() {
+  demoOpener = document.activeElement;
   document.getElementById("demo-modal").classList.add("open");
   buildTree();
   startCpuSim();
+  document.getElementById("demo-close").focus();
 }
 function closeDemo() {
   document.getElementById("demo-modal").classList.remove("open");
   demoStop();
   clearInterval(demoState.cpuInterval);
+  if (demoOpener && demoOpener.focus) demoOpener.focus();
 }
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape" && document.getElementById("demo-modal").classList.contains("open")) closeDemo();
+});
 document.getElementById("demo-modal").addEventListener("click", function(e) {
   if (e.target === this) closeDemo();
 });
@@ -976,16 +1071,20 @@ function buildTree() {
   const tree = document.getElementById("demo-tree");
   tree.innerHTML = "";
   for (const [folder, files] of Object.entries(demoFiles)) {
-    const folderEl = document.createElement("div");
+    const folderEl = document.createElement("button");
+    folderEl.type = "button";
+    folderEl.setAttribute("aria-expanded", demoState.openFolders.has(folder) ? "true" : "false");
     folderEl.className = "tree-folder" + (demoState.openFolders.has(folder) ? " open" : "");
     folderEl.textContent = (demoState.openFolders.has(folder) ? "▼ " : "▶ ") + folder + "/";
+    folderEl.dataset.folder = folder;
     folderEl.onclick = () => toggleFolder(folder);
     tree.appendChild(folderEl);
 
     const childEl = document.createElement("div");
     childEl.className = "tree-children" + (demoState.openFolders.has(folder) ? " open" : "");
     files.forEach((f, i) => {
-      const fileEl = document.createElement("div");
+      const fileEl = document.createElement("button");
+      fileEl.type = "button";
       fileEl.className = "tree-file" + (demoState.file === f.name ? " playing" : "");
       fileEl.textContent = f.name;
       fileEl.title = f.name;
@@ -1003,6 +1102,9 @@ function toggleFolder(folder) {
     demoState.openFolders.add(folder);
   }
   buildTree();
+  // buildTree re-renders the list, so put keyboard focus back on this folder
+  const again = [...document.querySelectorAll("#demo-tree .tree-folder")].find(el => el.dataset.folder === folder);
+  if (again) again.focus();
 }
 
 function demoPlay(folder, index) {
