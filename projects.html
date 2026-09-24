@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connor Randall | Projects</title>
-<meta name="description" content="Connor Randall — Raspberry Pi, homelab, and web dev projects.">
+<meta name="description" content="Connor Randall — Raspberry Pi, hardware, homelab, and web dev projects.">
 <meta name="author" content="Connor Randall">
 <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -180,6 +180,7 @@ body {
 .project-card[data-cat="pi"]      { border-left:3px solid #00ff88; }
 .project-card[data-cat="web"]     { border-left:3px solid var(--accent-2); }
 .project-card[data-cat="homelab"] { border-left:3px solid #00cfff; }
+.project-card[data-cat="hardware"] { border-left:3px solid #ff9f43; }
 
 .project-icon {
   font-size:11px;
@@ -211,6 +212,7 @@ body {
 .project-cat.pi       { color:#00ff88; border-color:#00ff88; }
 .project-cat.web      { color:var(--accent-2); border-color:var(--accent-2); }
 .project-cat.homelab  { color:#00cfff; border-color:#00cfff; }
+.project-cat.hardware { color:#ff9f43; border-color:#ff9f43; }
 
 .project-desc {
   color:#aaa;
@@ -513,6 +515,7 @@ body {
 [data-theme="light"] .project-cat.pi { color:#166534; border-color:#166534; }
 [data-theme="light"] .project-cat.web { color:#92400e; border-color:#92400e; }
 [data-theme="light"] .project-cat.homelab { color:#0369a1; border-color:#0369a1; }
+[data-theme="light"] .project-cat.hardware { color:#b45309; border-color:#b45309; }
 [data-theme="light"] .project-status.done { color:#166534; }
 [data-theme="light"] .project-status.wip  { color:#92400e; }
 [data-theme="light"] .project-status.planned { color:#666; }
@@ -601,6 +604,7 @@ body {
       <button class="filter-btn" data-filter="pi">[ raspberry pi ]</button>
       <button class="filter-btn" data-filter="web">[ web dev ]</button>
       <button class="filter-btn" data-filter="homelab">[ homelab ]</button>
+      <button class="filter-btn" data-filter="hardware">[ hardware ]</button>
     </div>
 
     <div class="projects-grid" id="projects-grid">
@@ -692,6 +696,22 @@ body {
         <div class="project-status done">[ status: folding ]</div>
       </div>
 
+      <!-- ===== HARDWARE ===== -->
+      <div class="project-card" data-cat="hardware" style="grid-column: span 2; border-left:3px solid #ff9f43;">
+        <div class="project-icon" style="color:#ff9f43;">    .-"""-.
+  /  home   \
+ | work  o--+ peril
+  \ travel  /
+    '-...-'</div>
+        <div class="project-name" style="color:#ff9f43;">Weasley Clock</div>
+        <span class="project-cat hardware">hardware</span>
+        <div class="project-desc">
+          A real version of the clock from Harry Potter, with one hand for each of my brothers pointing to where they are: Home, Work, Traveling, Up to No Good, or Mortal Peril. Each phone reports location changes to a Flask backend through OwnTracks geofences. The backend runs in an LXC container on my Proxmox cluster, reachable over a Cloudflare Tunnel behind Cloudflare Access. An ESP32 polls it every minute and moves each hand with its own 270&deg; servo. The electronics and software work from phone to servo; the clock face is still being built.
+        </div>
+        <div class="project-status wip">[ status: wip ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+      </div>
+
       <!-- ===== OTHER PROJECTS ===== -->
       <div class="project-card" data-cat="pi" style="grid-column: span 2; border-left:3px solid #00ff88; cursor:pointer;" onclick="openDemo()">
         <div class="project-icon">.=============.
@@ -735,7 +755,7 @@ body {
         <div class="project-name">This Website</div>
         <span class="project-cat web">web dev</span>
         <div class="project-desc">
-          conradrandy.com — retro personal site with OSRS stats ticker, mood tracker, and visitor counter. Built with vanilla HTML/CSS/JS and Cloudflare Workers.
+          conradrandy.com: my personal site, built with plain HTML/CSS/JS and no framework. It has a graphite-and-steel-blue ASCII theme and an animated ASCII background that moves away from your cursor. The birds page shows live detections pushed by two Raspberry Pis, and a Cloudflare Worker runs the visitor counter.
         </div>
         <div class="project-status wip">[ status: wip ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
@@ -773,6 +793,70 @@ body {
         <div class="project-status done">[ status: complete ]</div>
         <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2021 - present //</div>
         <a class="project-link" href="https://www.creeksports.com" target="_blank">&gt; visit site &rarr;</a>
+      </div>
+
+      <div class="project-card" data-cat="web">
+        <div class="project-icon">  _______
+ |  ___  |
+ | | 72| |
+ | |___| |
+ |_______|</div>
+        <div class="project-name">Short Grass 72</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          Golf site with a gear shop, blog, and tournament-prep guides. Built on WordPress with WooCommerce and Elementor.
+        </div>
+        <div class="project-status done">[ status: live ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <a class="project-link" href="https://shortgrass72.com" target="_blank">&gt; visit site &rarr;</a>
+      </div>
+
+      <div class="project-card" data-cat="web">
+        <div class="project-icon"> .-------.
+ | M T W |
+ | [x][ ]|
+ | [ ][x]|
+ '-------'</div>
+        <div class="project-name">GymScheduler</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          Gym-time request app for a youth basketball program. Coaches choose an age group, rank the gyms and weekly time slots they want, and submit a request. Older teams automatically get more priority, and an admin queue sorts all requests by score. Built with React.
+        </div>
+        <div class="project-status done">[ status: complete ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2025 //</div>
+        <a class="project-link" href="https://github.com/connor-randall/GymScheduler" target="_blank">&gt; github &rarr;</a>
+      </div>
+
+      <div class="project-card" data-cat="web">
+        <div class="project-icon"> .--------.
+ | $ ##   |
+ | ### #  |
+ | #  ### |
+ '--------'</div>
+        <div class="project-name">Budgeting App</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          Shows where your money goes at a glance. You connect a bank through Plaid, and it pulls your accounts and transactions, then draws a treemap of spending broken down by category and merchant. React and Recharts on the front end, with a Node/Express server that talks to the Plaid API.
+        </div>
+        <div class="project-status wip">[ status: wip ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <a class="project-link" href="https://github.com/connor-randall/Budgeting-app" target="_blank">&gt; github &rarr;</a>
+      </div>
+
+      <div class="project-card" data-cat="web">
+        <div class="project-icon"> ##########
+ #  @   * #
+ #    ##  #
+ # &amp;   [] #
+ ##########</div>
+        <div class="project-name">ASCII Game</div>
+        <span class="project-cat web">web dev</span>
+        <div class="project-desc">
+          A real-time multiplayer ASCII game. Players move around a 300&times;100 map of nine walled rooms, open treasure chests that change their character, and chat with each other. A Node.js WebSocket server keeps every player's state in sync.
+        </div>
+        <div class="project-status done">[ status: playable ]</div>
+        <div style="color:#555;font-size:10px;letter-spacing:2px;margin-top:6px;">// 2026 //</div>
+        <a class="project-link" href="https://github.com/connor-randall/Game" target="_blank">&gt; github &rarr;</a>
       </div>
 
     </div>
