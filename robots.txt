@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /shortgrass72/
+
+Sitemap: https://www.conradrandy.com/sitemap.xml
