@@ -3,17 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connor Randall | Experience</title>
-<meta name="description" content="Connor Randall's work experience: IT support, service desk, and deployment roles in Denver, Colorado.">
+<title>Connor Randall | IT Support &amp; Systems Specialist Experience</title>
+<meta name="description" content="Experience and résumé of Connor Randall, an IT support and systems specialist in Denver, CO: service desk, ServiceNow, Active Directory, Entra ID, Okta, Tanium, Jamf, and device deployment.">
 <link rel="canonical" href="https://www.conradrandy.com/experience.html">
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
 <meta property="og:site_name" content="Connor Randall">
-<meta property="og:title" content="Connor Randall | Experience">
-<meta property="og:description" content="Connor Randall's work experience: IT support, service desk, and deployment roles in Denver, Colorado.">
+<meta property="og:title" content="Connor Randall | IT Support &amp; Systems Specialist Experience">
+<meta property="og:description" content="Experience and résumé of Connor Randall, an IT support and systems specialist in Denver, CO: service desk, ServiceNow, Active Directory, Entra ID, Okta, Tanium, Jamf, and device deployment.">
 <meta property="og:url" content="https://www.conradrandy.com/experience.html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Connor Randall | Experience">
-<meta name="twitter:description" content="Connor Randall's work experience: IT support, service desk, and deployment roles in Denver, Colorado.">
+<meta name="twitter:title" content="Connor Randall | IT Support &amp; Systems Specialist Experience">
+<meta name="twitter:description" content="Experience and résumé of Connor Randall, an IT support and systems specialist in Denver, CO: service desk, ServiceNow, Active Directory, Entra ID, Okta, Tanium, Jamf, and device deployment.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfilePage",
+ "@id": "https://www.conradrandy.com/experience.html",
+ "url": "https://www.conradrandy.com/experience.html",
+ "name": "Connor Randall — Experience",
+ "mainEntity": {
+  "@type": "Person",
+  "@id": "https://www.conradrandy.com/#connor",
+  "name": "Connor Randall",
+  "url": "https://www.conradrandy.com/",
+  "jobTitle": "IT Support and Systems Specialist",
+  "address": {
+   "@type": "PostalAddress",
+   "addressLocality": "Denver",
+   "addressRegion": "CO",
+   "addressCountry": "US"
+  },
+  "worksFor": [
+   {
+    "@type": "Organization",
+    "name": "Modivcare"
+   },
+   {
+    "@type": "Organization",
+    "name": "CR Technologies"
+   }
+  ],
+  "alumniOf": {
+   "@type": "CollegeOrUniversity",
+   "name": "CSU Global"
+  },
+  "hasOccupation": {
+   "@type": "Occupation",
+   "name": "IT Service Desk Technician III",
+   "occupationLocation": {
+    "@type": "City",
+    "name": "Denver, CO"
+   }
+  },
+  "knowsAbout": [
+   "ServiceNow",
+   "Jira",
+   "ConnectWise",
+   "Active Directory",
+   "Microsoft Entra ID",
+   "Okta",
+   "Tanium",
+   "Jamf",
+   "Windows",
+   "macOS",
+   "iOS",
+   "Microsoft 365",
+   "Google Workspace",
+   "Citrix",
+   "Proxmox",
+   "Docker",
+   "Cloudflare",
+   "Raspberry Pi",
+   "HTML",
+   "CSS",
+   "JavaScript",
+   "Python"
+  ],
+  "sameAs": [
+   "https://github.com/connor-randall",
+   "https://www.linkedin.com/in/connorrandall"
+  ]
+ }
+}
+</script>
 <meta name="author" content="Connor Randall">
 <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -206,6 +278,7 @@ body {
   letter-spacing:1px;
   text-transform:uppercase;
 }
+.job-type { color:var(--accent); font-size:10px; margin-left:6px; }
 .job-dates {
   color:#888;
   font-size:11px;
@@ -275,6 +348,42 @@ body {
   transition:border-color 0.15s, color 0.15s;
 }
 .skill-tag:hover { border-color:var(--accent); color:var(--accent); }
+
+
+/* ===== RÉSUMÉ-ALIGNED SECTIONS ===== */
+h2.job-title { margin:0; }
+#xp-h { margin:0 auto 12px; }
+.exp-section { max-width:760px; margin:0 auto; }
+.exp-h {
+  margin:0 0 12px; font-weight:normal; text-align:left;
+  color:var(--accent); font-size:12px; letter-spacing:3px; text-transform:uppercase;
+}
+.exp-h::before { content:"> "; color:var(--dim, #828d9e); }
+.exp-summary { text-align:left; color:var(--text); font-size:13px; line-height:1.8; margin:0; }
+.exp-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.exp-btn {
+  display:inline-flex; align-items:center; padding:8px 14px; min-height:38px;
+  border:1px solid var(--border); border-radius:4px; background:rgba(255,255,255,0.015);
+  color:var(--text); text-decoration:none; font-size:12px; letter-spacing:1px;
+  transition:border-color .15s, color .15s;
+}
+.exp-btn:hover { border-color:var(--accent); color:var(--accent); }
+.skill-group { margin-bottom:14px; text-align:left; }
+.skill-group:last-child { margin-bottom:0; }
+.skill-group h3 {
+  margin:0 0 8px; font-weight:normal; color:var(--dim, #828d9e);
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+}
+.skill-group .skills-grid { justify-content:flex-start; margin:0; padding:0; list-style:none; }
+.exp-list { margin:0; padding:0; list-style:none; text-align:left; }
+.exp-list li {
+  border-left:2px solid var(--border); padding:2px 0 2px 12px; margin-bottom:12px;
+  color:var(--text); font-size:13px; line-height:1.7;
+}
+.exp-list li:last-child { margin-bottom:0; }
+.exp-list a { color:var(--accent); text-decoration:none; }
+.exp-list a:hover { text-decoration:underline; }
+.exp-list strong { color:var(--accent-2); font-weight:normal; }
 
 @media (max-width:640px) {
   body { padding-top:108px; }
@@ -404,96 +513,124 @@ body {
     </div>
 
     <h1 class="page-heading">&gt;&gt; work experience &lt;&lt;</h1>
-    <div class="page-sub">// career history &amp; roles //</div>
+    <div class="page-sub">// it support &amp; systems specialist · denver, co //</div>
 
-    <div class="divider">========================================================================</div>
+    <div class="divider" aria-hidden="true">========================================================================</div>
 
+    <section class="exp-section" aria-labelledby="summary-h">
+      <h2 class="exp-h" id="summary-h">professional summary</h2>
+      <p class="exp-summary">IT support professional experienced in enterprise service desks, device deployment, account administration, and end-user support. Skilled in resolving technical issues, documenting solutions, and supporting employees across Microsoft, Apple, identity, and SaaS environments.</p>
+      <div class="exp-actions">
+        <a class="exp-btn" href="resume.pdf" target="_blank" rel="noopener" aria-label="Résumé (PDF, opens in a new tab)">résumé (pdf) &nearr;</a>
+        <a class="exp-btn" href="https://www.linkedin.com/in/connorrandall" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)">linkedin &nearr;</a>
+        <a class="exp-btn" href="mailto:c.m.randall@icloud.com" aria-label="Contact me by email at c.m.randall@icloud.com">contact me</a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">========================================================================</div>
+
+    <section aria-labelledby="xp-h">
+    <h2 class="exp-h exp-section" id="xp-h">professional experience</h2>
     <div class="timeline">
 
-      <div class="job-card">
+      <article class="job-card">
         <div class="job-header">
-          <div class="job-title">[ Service Desk Technician ]</div>
+          <h2 class="job-title">[ IT Service Desk Technician III ]</h2>
           <div class="job-dates">2025 — present</div>
         </div>
         <div class="job-company">Modivcare — Denver, CO</div>
         <ul class="job-desc">
-          <li>Image and deploy computers to the field using Tanium</li>
-          <li>Fix and refurbish computers for redeployment</li>
-          <li>On-site IT helpdesk support — printers, monitors, wifi, hardware troubleshooting, and general office tech issues</li>
-          <li>Manage tickets and incidents through ServiceNow</li>
-          <li>User account management and provisioning via Active Directory and Azure AD</li>
-          <li>Support Citrix virtual desktop environment and LCAD alongside broader Microsoft 365 toolset</li>
+          <li>Image, configure, and deploy computers using Tanium while maintaining inventory for Modivcare and subsidiary companies</li>
+          <li>Troubleshoot hardware, software, printers, networks, Microsoft 365, and Citrix issues for end users</li>
+          <li>Resolve 20+ ServiceNow tickets per day and support employee accounts through Active Directory and Microsoft Entra ID</li>
+          <li>Refurbish returned computers and prepare devices for secure redeployment</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="job-card">
+      <article class="job-card">
         <div class="job-header">
-          <div class="job-title">[ IT Support &amp; Deployment Specialist ]</div>
-          <div class="job-dates">2025 — 2025 <span style="color:#ffff00;font-size:10px;margin-left:6px;">[ contract ]</span></div>
+          <h2 class="job-title">[ IT Support &amp; Deployment Specialist ]</h2>
+          <div class="job-dates">2025 <span class="job-type">[ contract ]</span></div>
         </div>
         <div class="job-company">Contentful — Denver, CO</div>
         <ul class="job-desc">
-          <li>Sole point of contact for deploying and implementing new technology company-wide, ensuring smooth adoption across all teams</li>
-          <li>Resolved IT support tickets using Jira, consistently meeting SLA requirements</li>
-          <li>Provided general IT support including troubleshooting, onboarding assistance, and account administration via Okta, Jamf, and Slack</li>
+          <li>Coordinated company-wide technology deployments and supported employee onboarding, access, and device configuration</li>
+          <li>Resolved hardware, software, and SaaS requests using Jira, Okta, Jamf, and Slack</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="job-card">
+      <article class="job-card">
         <div class="job-header">
-          <div class="job-title">[ IT Support ]</div>
+          <h2 class="job-title">[ IT Support ]</h2>
           <div class="job-dates">2023 — present</div>
         </div>
         <div class="job-company">CR Technologies — Denver, CO</div>
         <ul class="job-desc">
-          <li>Coordinated support requests and scheduled on-site or remote service, ensuring timely response and clear client communication</li>
-          <li>Worked closely with clients to understand infrastructure needs and implement solutions that meet business goals</li>
-          <li>Responsible for device management, user training, and vendor coordination</li>
+          <li>Coordinate client support requests and implement solutions based on infrastructure and business needs</li>
+          <li>Manage devices, user training, vendor coordination, and communication through issue resolution</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="job-card">
+      <article class="job-card">
         <div class="job-header">
-          <div class="job-title">[ Member Engagement Specialist ]</div>
+          <h2 class="job-title">[ Member Engagement Specialist ]</h2>
           <div class="job-dates">2021 — 2023</div>
         </div>
         <div class="job-company">Guild Education — Denver, CO</div>
         <ul class="job-desc">
-          <li>Managed 85+ inbound calls per day and responded to text-based inquiries</li>
-          <li>Helped prospective students understand, compare, and navigate policy options to enroll in eligible programs</li>
-          <li>Frequently chosen to train new hires; maintained top-tier rankings in call quality, productivity, and customer satisfaction</li>
+          <li>Managed 85+ daily phone and text inquiries while helping prospective students understand available programs</li>
+          <li>Helped prospective students navigate program policies while maintaining top-tier quality, productivity, and satisfaction rankings</li>
         </ul>
-      </div>
+      </article>
 
     </div>
+    </section>
 
-    <div class="divider">========================================================================</div>
+    <div class="divider" aria-hidden="true">========================================================================</div>
 
-    <div class="skills-section">
-      <div class="skills-title">&gt; skills &amp; tools &lt;</div>
-      <div class="skills-grid">
-        <span class="skill-tag">ServiceNow</span>
-        <span class="skill-tag">Tanium</span>
-        <span class="skill-tag">Active Directory</span>
-        <span class="skill-tag">Azure AD</span>
-        <span class="skill-tag">Citrix</span>
-        <span class="skill-tag">Microsoft 365</span>
-        <span class="skill-tag">IT Support</span>
-        <span class="skill-tag">Jira</span>
-        <span class="skill-tag">Okta</span>
-        <span class="skill-tag">Jamf</span>
-        <span class="skill-tag">SaaS Deployment</span>
-        <span class="skill-tag">MacOS &amp; iOS</span>
-        <span class="skill-tag">Google Workspace</span>
-        <span class="skill-tag">Onboarding &amp; Offboarding</span>
-        <span class="skill-tag">Hardware/Software Support</span>
-        <span class="skill-tag">Security &amp; Permissions</span>
-        <span class="skill-tag">Documentation</span>
-        <span class="skill-tag">Raspberry Pi</span>
-        <span class="skill-tag">HTML/CSS/JS</span>
-        <span class="skill-tag">Python</span>
-      </div>
-    </div>
+    <section class="skills-section" aria-labelledby="skills-h">
+      <h2 class="skills-title" id="skills-h" style="margin-top:0;font-weight:normal;">&gt; technical skills &lt;</h2>
+        <div class="skill-group">
+          <h3>Service Management</h3>
+          <ul class="skills-grid"><li class="skill-tag">ServiceNow</li><li class="skill-tag">Jira</li><li class="skill-tag">ConnectWise</li><li class="skill-tag">Incident Documentation</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Identity &amp; Access</h3>
+          <ul class="skills-grid"><li class="skill-tag">Active Directory</li><li class="skill-tag">Microsoft Entra ID</li><li class="skill-tag">Okta</li><li class="skill-tag">Onboarding &amp; Offboarding</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Endpoint Support</h3>
+          <ul class="skills-grid"><li class="skill-tag">Tanium</li><li class="skill-tag">Jamf</li><li class="skill-tag">Windows</li><li class="skill-tag">macOS</li><li class="skill-tag">iOS</li><li class="skill-tag">Imaging &amp; Deployment</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Systems &amp; Tools</h3>
+          <ul class="skills-grid"><li class="skill-tag">Microsoft 365</li><li class="skill-tag">Google Workspace</li><li class="skill-tag">Citrix</li><li class="skill-tag">Proxmox</li><li class="skill-tag">Docker</li><li class="skill-tag">Cloudflare</li><li class="skill-tag">Raspberry Pi</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Web &amp; Automation</h3>
+          <ul class="skills-grid"><li class="skill-tag">HTML</li><li class="skill-tag">CSS</li><li class="skill-tag">JavaScript</li><li class="skill-tag">Python</li><li class="skill-tag">GitHub Pages</li><li class="skill-tag">Cloudflare Workers</li></ul>
+        </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">========================================================================</div>
+
+    <section class="exp-section" aria-labelledby="proj-h">
+      <h2 class="exp-h" id="proj-h">technical projects</h2>
+      <ul class="exp-list">
+        <li><a href="projects.html#homelab"><strong>Proxmox Homelab</strong></a>: built and maintain a multi-node environment running VMs, LXC containers, Docker services, Grafana monitoring, VPN routing, and Cloudflare Tunnels.</li>
+        <li><a href="projects.html#birdnet"><strong>BirdNET Monitoring Network</strong></a>: deployed two always-on Raspberry Pi detectors that identify bird calls, collect environmental data, send alerts, and publish detections to a live website every 10 minutes.</li>
+        <li><a href="projects.html#this-website"><strong>Portfolio Website</strong></a>: built and maintain conradrandy.com with plain HTML, CSS, and JavaScript, including responsive project pages, live BirdNET data, and a Cloudflare Worker visitor counter.</li>
+      </ul>
+    </section>
+
+    <div class="divider" aria-hidden="true">========================================================================</div>
+
+    <section class="exp-section" aria-labelledby="edu-h">
+      <h2 class="exp-h" id="edu-h">education</h2>
+      <ul class="exp-list">
+        <li><strong>CSU Global</strong>: B.S. in Computer Science / Information Systems</li>
+      </ul>
+    </section>
 
   </div>
 </div>
