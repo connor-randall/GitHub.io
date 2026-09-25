@@ -1,16 +1,66 @@
 {
-  "generated_at": "2026-09-25T11:20:03-0600",
+  "generated_at": "2026-09-25T11:30:03-0600",
   "stats": {
-    "today_count": 144,
-    "today_species": 8,
-    "total": 592
+    "today_count": 149,
+    "today_species": 9,
+    "total": 597
   },
   "enviro": {
-    "temp_f": 79.9,
-    "humidity": 31.7,
-    "pressure": 826.9
+    "temp_f": 77.6,
+    "humidity": 34.2,
+    "pressure": 826.8
   },
   "detections": [
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.6836,
+      "iso": "2026-09-25T11:24:59",
+      "time": "11:24",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-68-2026-09-25-birdnet-11.24.59.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.7169,
+      "iso": "2026-09-25T11:24:53",
+      "time": "11:24",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-72-2026-09-25-birdnet-11.24.53.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.6973,
+      "iso": "2026-09-25T11:24:23",
+      "time": "11:24",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-70-2026-09-25-birdnet-11.24.23.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.684,
+      "iso": "2026-09-25T11:21:50",
+      "time": "11:21",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-68-2026-09-25-birdnet-11.21.50.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.8121,
+      "iso": "2026-09-25T11:21:14",
+      "time": "11:21",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-81-2026-09-25-birdnet-11.21.14.mp3"
+    },
     {
       "com_name": "Red-tailed Hawk",
       "sci_name": "Buteo jamaicensis",
@@ -110,56 +160,6 @@
       "date": "2026-09-25",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-93-2026-09-25-birdnet-10.08.03.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7293,
-      "iso": "2026-09-25T10:08:00",
-      "time": "10:08",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-73-2026-09-25-birdnet-10.08.00.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7492,
-      "iso": "2026-09-25T10:07:57",
-      "time": "10:07",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-75-2026-09-25-birdnet-10.07.57.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7506,
-      "iso": "2026-09-25T10:04:24",
-      "time": "10:04",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-75-2026-09-25-birdnet-10.04.24.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7435,
-      "iso": "2026-09-25T10:03:57",
-      "time": "10:03",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-74-2026-09-25-birdnet-10.03.57.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7173,
-      "iso": "2026-09-25T10:03:51",
-      "time": "10:03",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-72-2026-09-25-birdnet-10.03.51.mp3"
     }
   ]
 }
