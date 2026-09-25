@@ -267,7 +267,19 @@ details.trouble .body { padding:12px 14px 4px; }
 .notif .app { color:var(--dim); font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
 .back-link { text-align:center; margin-top:14px; font-size:12px; letter-spacing:1px; }
 
+/* ===== PHOTOS ===== */
+.photos { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0 4px; }
+.photos figure { margin:0; border:1px solid var(--border); border-radius:4px; background:var(--bg2); overflow:hidden; }
+.photos img { display:block; width:100%; height:auto; aspect-ratio:3 / 4; object-fit:cover; }
+.photos figcaption { padding:9px 11px; font-size:12px; line-height:1.6; color:var(--dim); }
+.buy {
+  display:inline-block; margin-top:4px; font-size:12px; letter-spacing:1px;
+  color:var(--accent); text-decoration:none; border-bottom:1px solid transparent;
+}
+.buy:hover { border-bottom-color:var(--accent); }
+
 @media (max-width:640px) {
+  .photos { grid-template-columns:1fr; }
   body { padding-top:104px; }
   .window { padding:14px 13px 20px; }
   p, li { font-size:13px; }
@@ -310,6 +322,19 @@ details.trouble .body { padding:12px 14px 4px; }
     <p>I built a Raspberry Pi-powered bird monitoring station that listens to birds around the property 24/7, identifies them locally using BirdNET, stores detections and audio clips, and makes the results available through a web dashboard.</p>
     <p>The best part is that the basic system is surprisingly simple. You only need a Raspberry Pi, a USB microphone, a microSD card, power, and Wi-Fi.</p>
     <p>This guide walks through the same basic setup so anyone can build their own.</p>
+
+    <div class="photos">
+      <figure>
+        <img src="img/birdnet-station.jpg" width="1200" height="1600" loading="lazy"
+             alt="Raspberry Pi 5 on a wooden table with a Pimoroni Enviro+ board mounted on top and a small black USB microphone in one of the USB ports">
+        <figcaption>My backyard station: a Raspberry Pi 5 with the optional Enviro+ board on top. No case.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/birdnet-mic.jpg" width="1200" height="1600" loading="lazy"
+             alt="Close-up of a tiny half-round black USB microphone plugged directly into a Raspberry Pi USB port">
+        <figcaption>The mic: an Adafruit Mini USB Microphone plugged straight into the Pi. It's tiny, but it works great.</figcaption>
+      </figure>
+    </div>
 
     <div class="cta-row">
       <a class="cta big" href="#parts">build your own &darr;</a>
@@ -360,13 +385,15 @@ details.trouble .body { padding:12px 14px 4px; }
     <div class="grid">
       <div class="card">
         <div class="part-head"><h3>Raspberry Pi</h3><span class="badge req">required</span></div>
-        <p>I used a Raspberry Pi 3 Model A+.</p>
-        <p>Other Raspberry Pi models capable of running a modern 64-bit Raspberry Pi OS can also work. My second station runs on a Pi 5.</p>
+        <p>My backyard station (pictured above) runs on a Raspberry Pi 5, and my second station runs on a Raspberry Pi 3 Model A+.</p>
+        <p>Other Raspberry Pi models capable of running a modern 64-bit Raspberry Pi OS can also work.</p>
+        <a class="buy" href="https://www.amazon.com/dp/B0CK3L9WD3" target="_blank" rel="noopener" aria-label="Raspberry Pi 5 4GB on Amazon (opens in a new tab)">&gt; raspberry pi 5 (4gb) on amazon &nearr;</a>
       </div>
       <div class="card">
         <div class="part-head"><h3>USB Microphone</h3><span class="badge req">required</span></div>
-        <p>Any Linux-compatible USB microphone can work.</p>
+        <p>Any Linux-compatible USB microphone can work. I use the Adafruit Mini USB Microphone. It's small, but it works great!</p>
         <p>This is the most important sensor in the build. A better microphone and better microphone placement can improve detection quality substantially.</p>
+        <a class="buy" href="https://www.adafruit.com/product/3367" target="_blank" rel="noopener" aria-label="Adafruit Mini USB Microphone (opens in a new tab)">&gt; adafruit mini usb mic &nearr;</a>
       </div>
       <div class="card">
         <div class="part-head"><h3>microSD Card</h3><span class="badge req">required</span></div>
@@ -401,7 +428,8 @@ details.trouble .body { padding:12px 14px 4px; }
       <div class="card">
         <div class="part-head"><h3>Enviro+ Sensor</h3><span class="badge opt">optional</span></div>
         <p>An Enviro+ or similar environmental sensor can be added if you want to record temperature, humidity, pressure, or other environmental information alongside bird detections.</p>
-        <p>This is not required for BirdNET.</p>
+        <p>This is not required for BirdNET. Mine is the Pimoroni Enviro + Air Quality version, which adds a gas sensor.</p>
+        <a class="buy" href="https://shop.pimoroni.com/en-us/products/enviro" target="_blank" rel="noopener" aria-label="Pimoroni Enviro plus Air Quality (opens in a new tab)">&gt; enviro+ at pimoroni &nearr;</a>
       </div>
       <div class="card">
         <div class="part-head"><h3>Tailscale</h3><span class="badge opt">optional</span></div>
@@ -725,12 +753,12 @@ details.trouble .body { padding:12px 14px 4px; }
       <table>
         <thead><tr><th scope="col">Part</th><th scope="col">Required?</th><th scope="col">Notes</th></tr></thead>
         <tbody>
-          <tr><td>Raspberry Pi</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Pi 3-class hardware or better</td></tr>
-          <tr><td>USB microphone</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Linux-compatible</td></tr>
+          <tr><td><a href="https://www.amazon.com/dp/B0CK3L9WD3" target="_blank" rel="noopener">Raspberry Pi</a></td><td><span class="badge req" style="margin:0;">yes</span></td><td>Pi 3-class hardware or better</td></tr>
+          <tr><td><a href="https://www.adafruit.com/product/3367" target="_blank" rel="noopener">USB microphone</a></td><td><span class="badge req" style="margin:0;">yes</span></td><td>Linux-compatible (I use the Adafruit mini mic)</td></tr>
           <tr><td>microSD card</td><td><span class="badge req" style="margin:0;">yes</span></td><td>32 GB+</td></tr>
           <tr><td>Power supply</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Appropriate for the Pi</td></tr>
           <tr><td>USB extension</td><td><span class="badge rec" style="margin:0;">recommended</span></td><td>Helps with microphone placement</td></tr>
-          <tr><td>Enviro+</td><td><span class="badge opt" style="margin:0;">no</span></td><td>Adds environmental monitoring</td></tr>
+          <tr><td><a href="https://shop.pimoroni.com/en-us/products/enviro" target="_blank" rel="noopener">Enviro+</a></td><td><span class="badge opt" style="margin:0;">no</span></td><td>Adds environmental monitoring</td></tr>
           <tr><td>Tailscale</td><td><span class="badge opt" style="margin:0;">no</span></td><td>Free option for remote access</td></tr>
         </tbody>
       </table>
