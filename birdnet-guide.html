@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a Raspberry Pi BirdNET Station | Connor Randall</title>
+<meta name="description" content="Step-by-step guide to building a Raspberry Pi BirdNET bird monitoring station with a USB microphone: parts list, setup, microphone testing, BirdNET-Pi install, tuning, and troubleshooting.">
+<link rel="canonical" href="https://www.conradrandy.com/birdnet-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Connor Randall">
+<meta property="og:title" content="Build a Raspberry Pi BirdNET Station | Connor Randall">
+<meta property="og:description" content="How I built a 24/7 bird monitoring station with a Raspberry Pi and a USB microphone, and how you can build your own.">
+<meta property="og:url" content="https://www.conradrandy.com/birdnet-guide.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Build a Raspberry Pi BirdNET Station | Connor Randall">
+<meta name="twitter:description" content="How I built a 24/7 bird monitoring station with a Raspberry Pi and a USB microphone, and how you can build your own.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "headline": "Raspberry Pi BirdNET Monitoring Station",
+ "url": "https://www.conradrandy.com/birdnet-guide.html",
+ "author": { "@id": "https://www.conradrandy.com/#connor", "@type": "Person", "name": "Connor Randall" },
+ "about": ["Raspberry Pi", "BirdNET-Pi", "Bird monitoring", "USB microphone"],
+ "proficiencyLevel": "Beginner"
+}
+</script>
+<meta name="author" content="Connor Randall">
+<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G88BJ0C3YL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-G88BJ0C3YL');
+</script>
+<style>
+:root {
+  --bg:#0b0e13; --bg2:#11151d; --panel:#0e121a; --text:#d4dbe6; --dim:#828d9e;
+  --accent:#7fa8cc; --accent-2:#aac6de; --border:#1e2530; --shadow:rgba(0,0,0,0.55);
+  --ok:#6fa86f; --warn:#c9b54f;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+html, body {
+  margin:0; padding:0; min-height:100%;
+  background:var(--bg); color:var(--text);
+  font-family:"Courier New", monospace;
+  overflow-x:hidden;
+}
+body { padding:86px 16px 64px; }
+
+/* ===== LAYOUT (same window/card pattern as the rest of the site) ===== */
+.wrap { width:100%; max-width:860px; margin:0 auto; }
+.window {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:6px;
+  box-shadow:0 18px 40px -24px var(--shadow);
+  padding:20px 22px 26px;
+  margin-bottom:26px;
+  scroll-margin-top:96px;
+}
+.title-bar {
+  display:flex; justify-content:space-between; align-items:center;
+  background:var(--bg2);
+  border:1px solid var(--border); border-radius:4px;
+  padding:7px 11px; margin-bottom:20px;
+  font-size:12px; letter-spacing:1px; color:var(--dim);
+  text-transform:lowercase;
+}
+.buttons { display:flex; gap:6px; }
+.btn { width:11px; height:11px; border-radius:50%; border:1px solid var(--border); background:var(--bg); }
+
+/* ===== TYPE ===== */
+h1.page-heading {
+  margin:4px 0 10px; text-align:center; font-weight:normal;
+  color:var(--accent); font-size:clamp(18px, 3.6vw, 28px);
+  letter-spacing:3px; text-transform:uppercase; line-height:1.3;
+}
+.kicker { text-align:center; color:var(--dim); font-size:11px; letter-spacing:2px; margin-bottom:22px; }
+h2 {
+  margin:0 0 14px; font-weight:normal; color:var(--accent);
+  font-size:15px; letter-spacing:2px; text-transform:uppercase;
+}
+h2 .step-no { color:var(--dim); margin-right:6px; }
+h3 { margin:0 0 6px; color:var(--text); font-size:14px; letter-spacing:0.5px; }
+h4 {
+  margin:22px 0 12px; font-weight:normal; color:var(--dim);
+  font-size:12px; letter-spacing:2px; text-transform:uppercase;
+}
+p, li { font-size:14px; line-height:1.8; }
+p { margin:0 0 12px; }
+ul.plain { margin:0 0 12px; padding-left:20px; }
+ul.plain li::marker { color:var(--accent); }
+a { color:var(--accent); }
+a:hover { color:var(--accent-2); }
+.muted { color:var(--dim); }
+kbd, .inline-code {
+  font-family:inherit; font-size:13px; color:var(--accent-2);
+  background:var(--bg2); border:1px solid var(--border); border-radius:3px; padding:1px 5px;
+}
+.guide-intro p { font-size:15px; }
+
+/* ===== BUTTONS (matches the home page CTA style) ===== */
+.cta-row { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:22px 0 6px; }
+.cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  padding:10px 18px; min-height:42px;
+  border:1px solid var(--border); border-radius:4px;
+  background:rgba(255,255,255,0.015);
+  color:var(--text); text-decoration:none;
+  font-size:12px; letter-spacing:1px; text-transform:lowercase;
+  transition:border-color .15s, color .15s, background .15s;
+}
+.cta:hover { border-color:var(--accent); color:var(--accent); }
+.cta.big { border-color:var(--accent); color:var(--accent); font-size:13px; padding:12px 22px; }
+.cta.big:hover { background:var(--accent); color:var(--bg); }
+
+/* ===== ON THIS PAGE ===== */
+.toc { display:flex; flex-wrap:wrap; gap:6px 8px; margin:0; padding:0; list-style:none; }
+.toc a {
+  display:inline-block; font-size:11px; letter-spacing:1px; text-decoration:none;
+  color:var(--dim); border:1px solid var(--border); border-radius:3px; padding:4px 8px;
+}
+.toc a:hover { color:var(--accent); border-color:var(--accent); }
+
+/* ===== CARDS / GRIDS ===== */
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:12px; }
+.card {
+  border:1px solid var(--border); border-radius:4px;
+  background:rgba(255,255,255,0.015); padding:14px;
+  transition:border-color .15s;
+}
+.card:hover { border-color:var(--accent); }
+.card p { font-size:13px; margin:0 0 8px; }
+.card p:last-child { margin-bottom:0; }
+.card .ico { color:var(--accent); font-size:12px; letter-spacing:1px; margin-bottom:8px; }
+
+/* ===== BADGES ===== */
+.badge {
+  display:inline-block; font-size:10px; letter-spacing:1px; text-transform:uppercase;
+  padding:2px 7px; border:1px solid; border-radius:3px; vertical-align:middle;
+  margin-left:6px;
+}
+.badge.req { color:var(--accent); border-color:var(--accent); }
+.badge.rec { color:var(--ok); border-color:var(--ok); }
+.badge.opt { color:var(--dim); border-color:var(--dim); }
+.part-head { display:flex; flex-wrap:wrap; align-items:center; gap:4px 0; margin-bottom:8px; }
+.part-head h3 { margin:0; }
+
+/* ===== CALLOUTS ===== */
+.callout {
+  border:1px solid var(--border); border-left:3px solid var(--accent);
+  background:var(--bg2); border-radius:4px;
+  padding:12px 14px; margin:14px 0; font-size:13px; line-height:1.7;
+}
+.callout.warn { border-left-color:var(--warn); }
+.callout strong { color:var(--accent-2); font-weight:normal; letter-spacing:1px; text-transform:uppercase; font-size:11px; display:block; margin-bottom:4px; }
+.callout.warn strong { color:var(--warn); }
+.callout p { font-size:13px; margin:0 0 6px; }
+.callout p:last-child { margin:0; }
+
+/* ===== CODE BLOCKS ===== */
+.code {
+  position:relative; margin:10px 0 16px;
+  border:1px solid var(--border); border-radius:4px; background:#080b10;
+}
+.code-label {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  padding:5px 10px; border-bottom:1px solid var(--border);
+  font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--dim);
+}
+.code-label .ex { color:var(--warn); }
+.code pre {
+  margin:0; padding:12px 14px; overflow-x:auto;
+  font-family:"Courier New", monospace; font-size:13px; line-height:1.6; color:var(--accent-2);
+}
+.code pre .prompt { color:var(--dim); user-select:none; }
+.copy-btn {
+  background:transparent; border:1px solid var(--border); border-radius:3px;
+  color:var(--dim); font-family:inherit; font-size:10px; letter-spacing:1px;
+  text-transform:uppercase; padding:3px 8px; cursor:pointer;
+  transition:color .15s, border-color .15s;
+}
+.copy-btn:hover { color:var(--accent); border-color:var(--accent); }
+.copy-btn.done { color:var(--ok); border-color:var(--ok); }
+
+/* ===== FLOW DIAGRAMS (pure HTML/CSS) ===== */
+.flow { list-style:none; margin:6px auto 0; padding:0; display:flex; flex-direction:column; align-items:center; }
+.flow li {
+  position:relative; width:min(320px, 100%); text-align:center;
+  border:1px solid var(--border); border-radius:4px; background:var(--bg2);
+  padding:9px 12px; font-size:13px; line-height:1.4; margin-bottom:26px;
+}
+.flow li::after {
+  content:"\2193"; position:absolute; left:50%; bottom:-24px; transform:translateX(-50%);
+  color:var(--accent); font-size:15px; line-height:22px;
+}
+.flow li:last-child { margin-bottom:0; }
+.flow li:last-child::after { display:none; }
+.flow li.hl { border-color:var(--accent); color:var(--accent-2); }
+.flow li.opt-node { border-style:dashed; color:var(--dim); }
+.flow li small { display:block; color:var(--dim); font-size:11px; margin-top:2px; }
+.split {
+  display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  margin:4px auto 0; max-width:700px; position:relative;
+}
+.split > div { display:flex; flex-direction:column; align-items:center; }
+.branch-label {
+  font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--dim);
+  margin-bottom:10px; text-align:center;
+}
+.split-arrows {
+  display:grid; grid-template-columns:1fr 1fr; max-width:700px; margin:0 auto;
+  text-align:center; color:var(--accent); font-size:15px; line-height:24px;
+}
+.split-arrows span:last-child { color:var(--dim); }
+
+/* ===== THRESHOLD SCALE ===== */
+.scale { margin:10px 0 6px; }
+.scale-bar {
+  height:10px; border-radius:5px; border:1px solid var(--border);
+  background:linear-gradient(90deg, #c9b54f 0%, #7fa8cc 55%, #6fa86f 100%);
+  opacity:.85;
+}
+.scale-ends { display:flex; justify-content:space-between; gap:14px; margin-top:10px; }
+.scale-ends div { flex:1; font-size:12px; line-height:1.6; }
+.scale-ends div:last-child { text-align:right; }
+.scale-ends b { display:block; color:var(--accent-2); font-weight:normal; letter-spacing:1px; text-transform:uppercase; font-size:11px; margin-bottom:2px; }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:4px; }
+table { width:100%; border-collapse:collapse; font-size:13px; min-width:460px; }
+th, td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+th { color:var(--dim); font-weight:normal; font-size:11px; letter-spacing:1px; text-transform:uppercase; background:var(--bg2); }
+tr:last-child td { border-bottom:none; }
+
+/* ===== TROUBLESHOOTING ===== */
+details.trouble {
+  border:1px solid var(--border); border-radius:4px; background:rgba(255,255,255,0.015);
+  margin-bottom:10px;
+}
+details.trouble summary {
+  cursor:pointer; padding:11px 14px; color:var(--text); font-size:14px; list-style:none;
+}
+details.trouble summary::-webkit-details-marker { display:none; }
+details.trouble summary::before { content:"+ "; color:var(--accent); }
+details.trouble[open] summary::before { content:"- "; }
+details.trouble[open] summary { border-bottom:1px solid var(--border); }
+details.trouble .body { padding:12px 14px 4px; }
+
+.tag-list { display:flex; flex-wrap:wrap; gap:6px; list-style:none; margin:0; padding:0; }
+.tag-list li {
+  font-size:11px; letter-spacing:1px; line-height:1.4; text-transform:uppercase;
+  padding:3px 8px; border:1px solid var(--border); border-radius:3px; color:var(--dim);
+}
+.notif {
+  max-width:360px; margin:14px auto 4px; border:1px solid var(--border); border-radius:8px;
+  background:var(--bg2); padding:10px 12px; font-size:13px;
+}
+.notif .app { color:var(--dim); font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+.back-link { text-align:center; margin-top:14px; font-size:12px; letter-spacing:1px; }
+
+@media (max-width:640px) {
+  body { padding-top:104px; }
+  .window { padding:14px 13px 20px; }
+  p, li { font-size:13px; }
+  .guide-intro p { font-size:14px; }
+  .split, .split-arrows { grid-template-columns:1fr; }
+  .split-arrows span:last-child { display:none; }
+  .split > div + div { margin-top:10px; }
+  .cta { flex:1 1 100%; }
+  .scale-ends { flex-direction:column; }
+  .scale-ends div:last-child { text-align:left; }
+}
+</style>
+<link rel="stylesheet" href="site.css?v=2">
+</head>
+<body>
+
+<header id="site-top">
+  <div class="top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">CR</span> connor randall</a>
+    <nav id="site-nav" aria-label="Main">
+      <a href="index.html">home</a>
+      <a href="experience.html">experience</a>
+      <a href="projects.html" class="active" aria-current="page">projects</a>
+      <a href="birds.html">birds</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== INTRO ===== -->
+  <section class="window guide-intro" aria-labelledby="top-h">
+    <div class="title-bar">
+      <span>~/projects/birdnet-guide</span>
+      <div class="buttons" aria-hidden="true"><span class="btn"></span><span class="btn"></span><span class="btn"></span></div>
+    </div>
+    <div class="kicker">// build guide · raspberry pi · birdnet-pi //</div>
+    <h1 class="page-heading" id="top-h">Raspberry Pi BirdNET Monitoring Station</h1>
+
+    <p>I built a Raspberry Pi-powered bird monitoring station that listens to birds around the property 24/7, identifies them locally using BirdNET, stores detections and audio clips, and makes the results available through a web dashboard.</p>
+    <p>The best part is that the basic system is surprisingly simple. You only need a Raspberry Pi, a USB microphone, a microSD card, power, and Wi-Fi.</p>
+    <p>This guide walks through the same basic setup so anyone can build their own.</p>
+
+    <div class="cta-row">
+      <a class="cta big" href="#parts">build your own &darr;</a>
+      <a class="cta" href="birds.html">view live bird data &rarr;</a>
+    </div>
+
+    <h4>on this page</h4>
+    <ul class="toc">
+      <li><a href="#features">what it does</a></li>
+      <li><a href="#parts">parts list</a></li>
+      <li><a href="#how">how it works</a></li>
+      <li><a href="#step-1">1 · install os</a></li>
+      <li><a href="#step-2">2 · find the pi</a></li>
+      <li><a href="#step-3">3 · ssh</a></li>
+      <li><a href="#step-4">4 · test the mic</a></li>
+      <li><a href="#step-5">5 · install birdnet-pi</a></li>
+      <li><a href="#step-6">6 · dashboard</a></li>
+      <li><a href="#step-7">7 · location</a></li>
+      <li><a href="#step-8">8 · tuning</a></li>
+      <li><a href="#step-9">9 · run 24/7</a></li>
+      <li><a href="#step-10">10 · tailscale</a></li>
+      <li><a href="#step-11">11 · your website</a></li>
+      <li><a href="#notifications">notifications</a></li>
+      <li><a href="#troubleshooting">troubleshooting</a></li>
+      <li><a href="#cost">cost</a></li>
+    </ul>
+  </section>
+
+  <!-- ===== WHAT IT DOES ===== -->
+  <section class="window" id="features" aria-labelledby="features-h">
+    <h2 id="features-h">What It Does</h2>
+    <div class="grid">
+      <div class="card"><div class="ico" aria-hidden="true">((o))</div><h3>Listens 24/7</h3><p>A USB microphone continuously monitors the surrounding area for bird calls and songs.</p></div>
+      <div class="card"><div class="ico" aria-hidden="true">[ai]</div><h3>Identifies Birds with AI</h3><p>BirdNET analyzes the audio and identifies likely bird species using a machine-learning model.</p></div>
+      <div class="card"><div class="ico" aria-hidden="true">[db]</div><h3>Saves Detections</h3><p>Each detection can include the species, timestamp, confidence score, audio clip, and spectrogram.</p></div>
+      <div class="card"><div class="ico" aria-hidden="true">[pi]</div><h3>Runs Locally</h3><p>The bird identification happens directly on the Raspberry Pi instead of requiring a cloud service.</p></div>
+      <div class="card"><div class="ico" aria-hidden="true">[www]</div><h3>Web Dashboard</h3><p>BirdNET-Pi provides a local web interface where detections, recordings, species, and statistics can be viewed.</p></div>
+      <div class="card"><div class="ico" aria-hidden="true">[vpn]</div><h3>Remote Access</h3><p>The Pi can optionally be accessed remotely using something such as Tailscale without exposing SSH directly to the internet.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== PARTS ===== -->
+  <section class="window" id="parts" aria-labelledby="parts-h">
+    <h2 id="parts-h">Parts List</h2>
+    <p class="muted">No case, no GPS, no sensor boards. The core build is just the five things below.</p>
+
+    <h4>required</h4>
+    <div class="grid">
+      <div class="card">
+        <div class="part-head"><h3>Raspberry Pi</h3><span class="badge req">required</span></div>
+        <p>I used a Raspberry Pi 3 Model A+.</p>
+        <p>Other Raspberry Pi models capable of running a modern 64-bit Raspberry Pi OS can also work. My second station runs on a Pi 5.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>USB Microphone</h3><span class="badge req">required</span></div>
+        <p>Any Linux-compatible USB microphone can work.</p>
+        <p>This is the most important sensor in the build. A better microphone and better microphone placement can improve detection quality substantially.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>microSD Card</h3><span class="badge req">required</span></div>
+        <p>32 GB or larger recommended.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>Power Supply</h3><span class="badge req">required</span></div>
+        <p>Use a reliable power supply designed for the Raspberry Pi model being used.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>Wi-Fi</h3><span class="badge req">required</span></div>
+        <p>The Raspberry Pi needs network access for setup, the web dashboard, remote administration, and optional website integrations.</p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>heads up if you use a pi 3 a+</strong>
+      <p>The Pi 3 A+ is the cheapest option, but it only has 512 MB of RAM. BirdNET-Pi runs on it, but mine locked up until I added a swap file and set it to boot to the console instead of the desktop. If you have a Pi with more memory, use it and skip that headache.</p>
+    </div>
+
+    <h4>recommended</h4>
+    <div class="grid">
+      <div class="card">
+        <div class="part-head"><h3>USB Extension Cable</h3><span class="badge rec">recommended</span></div>
+        <p>A USB extension cable lets you position the microphone farther away from the Raspberry Pi and closer to where birds are actually being heard.</p>
+        <p>This can also reduce noise picked up from electronics near the Pi.</p>
+      </div>
+    </div>
+
+    <h4>optional</h4>
+    <div class="grid">
+      <div class="card">
+        <div class="part-head"><h3>Enviro+ Sensor</h3><span class="badge opt">optional</span></div>
+        <p>An Enviro+ or similar environmental sensor can be added if you want to record temperature, humidity, pressure, or other environmental information alongside bird detections.</p>
+        <p>This is not required for BirdNET.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>Tailscale</h3><span class="badge opt">optional</span></div>
+        <p>Tailscale can provide secure remote access if the station is installed somewhere other than your own house.</p>
+      </div>
+      <div class="card">
+        <div class="part-head"><h3>Weather Protection</h3><span class="badge opt">optional</span></div>
+        <p>If the Raspberry Pi or microphone is installed outside, create appropriate weather protection. My Pi is not in a case, so a case is not part of the core build.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px;">You do not need a GPS receiver. A station that stays in one place only needs its approximate location typed in once (see <a href="#step-7">step 7</a>).</p>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="window" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">How the System Works</h2>
+    <p>Sound goes in one end and bird detections come out the other. Everything in the main path runs on the Pi itself.</p>
+
+    <ol class="flow" aria-label="Main signal path">
+      <li>Bird</li>
+      <li>USB Microphone</li>
+      <li>Raspberry Pi</li>
+      <li class="hl">BirdNET</li>
+    </ol>
+    <div class="split-arrows" aria-hidden="true"><span>&darr;</span><span>&darr;</span></div>
+    <div class="split">
+      <div>
+        <div class="branch-label">core</div>
+        <ol class="flow" aria-label="Core branch">
+          <li>Species Detection</li>
+          <li>Database / Audio Clips</li>
+          <li class="hl">Web Dashboard</li>
+        </ol>
+      </div>
+      <div>
+        <div class="branch-label">optional</div>
+        <ol class="flow" aria-label="Optional branch">
+          <li class="opt-node">Website / Remote Notifications<small>see step 11 and phone notifications</small></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 1 ===== -->
+  <section class="window" id="step-1" aria-labelledby="s1-h">
+    <h2 id="s1-h"><span class="step-no">01</span>Install Raspberry Pi OS</h2>
+    <p>Download <strong>Raspberry Pi Imager</strong> on another computer (Windows, Mac, or Linux all work), then use it to flash <strong>Raspberry Pi OS (64-bit)</strong> to the microSD card. The Lite version without a desktop is a good choice here since the Pi will run headless anyway.</p>
+    <p>Before writing the card, open the Imager's settings screen and configure:</p>
+    <ul class="plain">
+      <li>Hostname</li>
+      <li>Username</li>
+      <li>Password</li>
+      <li>Wi-Fi SSID</li>
+      <li>Wi-Fi password</li>
+      <li>SSH (turn it on)</li>
+    </ul>
+    <div class="callout"><strong>what's an ssid?</strong><p>SSID just means the Wi-Fi network name, the one you pick from the list on your phone.</p></div>
+    <p>Insert the microSD card into the Raspberry Pi, plug in the USB microphone, and power it on. Give it a couple of minutes on the first boot.</p>
+  </section>
+
+  <!-- ===== STEP 2 ===== -->
+  <section class="window" id="step-2" aria-labelledby="s2-h">
+    <h2 id="s2-h"><span class="step-no">02</span>Find the Raspberry Pi</h2>
+    <p>You need the Pi's IP address to talk to it. If you have a keyboard and monitor plugged into the Pi, run this on the Pi:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>hostname -I</code></pre></div>
+    <p>No monitor? Your router's admin page usually lists connected devices by hostname, so look for the name you picked in step 1.</p>
+    <p>My BirdNET Raspberry Pi is currently on:</p>
+    <div class="code"><div class="code-label"><span class="ex">example from my own network</span></div><pre><code>10.0.0.16</code></pre></div>
+    <p>That address is from my home network. Yours will probably be different, so use whatever <span class="inline-code">hostname -I</span> or your router shows you.</p>
+    <p>From another computer, check the Pi responds:</p>
+    <div class="code"><div class="code-label"><span>on your computer</span></div><pre><code>ping YOUR_PI_IP</code></pre></div>
+    <div class="code"><div class="code-label"><span class="ex">example</span></div><pre><code>ping 10.0.0.16</code></pre></div>
+    <p>Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the ping. If you see replies, the Pi is on the network.</p>
+  </section>
+
+  <!-- ===== STEP 3 ===== -->
+  <section class="window" id="step-3" aria-labelledby="s3-h">
+    <h2 id="s3-h"><span class="step-no">03</span>SSH Into the Pi</h2>
+    <p>SSH lets you type commands on the Pi from your own computer. Open Terminal (Mac/Linux) or PowerShell (Windows) and run:</p>
+    <div class="code"><div class="code-label"><span>on your computer</span></div><pre><code>ssh USERNAME@YOUR_PI_IP</code></pre></div>
+    <div class="code"><div class="code-label"><span class="ex">example</span></div><pre><code>ssh pi@10.0.0.16</code></pre></div>
+    <p>The username is whatever you chose in Raspberry Pi Imager. The first time you connect it asks you to confirm the Pi's fingerprint; type <span class="inline-code">yes</span>, then enter your password.</p>
+  </section>
+
+  <!-- ===== STEP 4 ===== -->
+  <section class="window" id="step-4" aria-labelledby="s4-h">
+    <h2 id="s4-h"><span class="step-no">04</span>Make Sure the Microphone Works</h2>
+    <p>List the recording devices the Pi can see:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>arecord -l</code></pre></div>
+    <p>A USB audio capture device should appear, something like <span class="inline-code">card 2: Device [USB PnP Sound Device]</span>. Note the card number. For the full list of device names, run:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>arecord -L</code></pre></div>
+    <p>Then record a 10 second test:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>arecord -d 10 test.wav</code></pre></div>
+    <p>And play it back:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>aplay test.wav</code></pre></div>
+    <p>If you can hear the surrounding environment clearly, the microphone is working.</p>
+    <div class="callout">
+      <strong>tips</strong>
+      <p>If the recording is silent, the default device may not be your USB mic. Point <span class="inline-code">arecord</span> at the card number from above, for example <span class="inline-code">arecord -D plughw:2,0 -f S16_LE -r 48000 -d 10 test.wav</span>.</p>
+      <p>No speaker on the Pi? Copy the file to your computer and listen there: <span class="inline-code">scp USERNAME@YOUR_PI_IP:test.wav .</span></p>
+    </div>
+    <p>Microphone placement matters a lot. Recommended placement:</p>
+    <ul class="plain">
+      <li>Point it toward the area where birds are usually active.</li>
+      <li>Keep it away from HVAC equipment.</li>
+      <li>Keep it away from televisions and speakers.</li>
+      <li>Avoid placing it directly next to the Raspberry Pi.</li>
+      <li>Protect it from rain.</li>
+      <li>Try to reduce nearby traffic or mechanical noise when possible.</li>
+    </ul>
+  </section>
+
+  <!-- ===== STEP 5 ===== -->
+  <section class="window" id="step-5" aria-labelledby="s5-h">
+    <h2 id="s5-h"><span class="step-no">05</span>Install BirdNET-Pi</h2>
+    <p>BirdNET-Pi is the software layer that turns the Raspberry Pi into a continuously operating bird detector. It:</p>
+    <ul class="plain">
+      <li>Records audio</li>
+      <li>Analyzes bird sounds</li>
+      <li>Identifies likely species</li>
+      <li>Saves detections</li>
+      <li>Stores useful audio clips</li>
+      <li>Generates spectrograms</li>
+      <li>Provides a web dashboard</li>
+    </ul>
+    <div class="callout warn">
+      <strong>check the current install command</strong>
+      <p>BirdNET-Pi has several maintained community versions. Check the linked project repository for the current installation command before installing.</p>
+      <!-- BIRDNET REPO LINK: this is the community version installed on my stations
+           (verified from the Pi's git remote). Swap the href below if you switch versions. -->
+      <p>The version I installed: <a id="birdnet-repo-link" href="https://github.com/Nachtzuster/BirdNET-Pi" target="_blank" rel="noopener">github.com/Nachtzuster/BirdNET-Pi &nearr;</a>. Its README has the install command. The installer runs for a while, so let it finish before touching anything.</p>
+    </div>
+    <p>After installation, reboot:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>sudo reboot</code></pre></div>
+  </section>
+
+  <!-- ===== STEP 6 ===== -->
+  <section class="window" id="step-6" aria-labelledby="s6-h">
+    <h2 id="s6-h"><span class="step-no">06</span>Open the BirdNET Dashboard</h2>
+    <p>On your local network, the dashboard is usually reachable by the Pi's hostname or its IP address. Open a browser on any computer or phone on the same Wi-Fi and try:</p>
+    <div class="code"><div class="code-label"><span>in your browser</span></div><pre><code>http://birdnetpi.local</code></pre></div>
+    <p>or:</p>
+    <div class="code"><div class="code-label"><span>in your browser</span></div><pre><code>http://YOUR_PI_IP</code></pre></div>
+    <p>For my current Pi:</p>
+    <div class="code"><div class="code-label"><span class="ex">example from my own network</span></div><pre><code>http://10.0.0.16</code></pre></div>
+    <p>Again, 10.0.0.16 is my local network address, not one you should copy. Swap <span class="inline-code">birdnetpi</span> for whatever hostname you set in step 1.</p>
+    <p>The dashboard can show things such as:</p>
+    <ul class="tag-list">
+      <li>latest detections</li><li>species</li><li>detection counts</li><li>confidence levels</li>
+      <li>audio recordings</li><li>spectrograms</li><li>settings</li><li>system information</li>
+    </ul>
+  </section>
+
+  <!-- ===== STEP 7 ===== -->
+  <section class="window" id="step-7" aria-labelledby="s7-h">
+    <h2 id="s7-h"><span class="step-no">07</span>Configure Location</h2>
+    <p>BirdNET uses geographic information and time of year to help decide which species are likely to occur in your area. A bird that never shows up in your region gets ruled out, which cuts down on false matches.</p>
+    <p>For a stationary bird detector, manually entering the approximate latitude and longitude in the BirdNET-Pi settings is enough. The installer may fill in a guess based on your internet connection, so check it. A GPS receiver is not needed unless you want a mobile system.</p>
+    <div class="callout warn"><strong>privacy</strong><p>Do not publish the exact latitude and longitude of a private residence on a public website. Rounding to a nearby town is plenty for BirdNET.</p></div>
+  </section>
+
+  <!-- ===== STEP 8 ===== -->
+  <section class="window" id="step-8" aria-labelledby="s8-h">
+    <h2 id="s8-h"><span class="step-no">08</span>Tune Detection Settings</h2>
+    <p>Every detection comes with a confidence score. The confidence threshold decides how sure BirdNET has to be before it saves a detection.</p>
+    <div class="scale" role="img" aria-label="Confidence threshold scale: lower means more detections and more false positives, higher means fewer detections with higher confidence">
+      <div class="scale-bar"></div>
+      <div class="scale-ends">
+        <div><b>&larr; lower threshold</b>More detections<br>More false positives</div>
+        <div><b>higher threshold &rarr;</b>Fewer detections<br>Higher confidence</div>
+      </div>
+    </div>
+    <p>Start somewhat permissive, review the detections for several days, and then adjust based on your microphone and how noisy your spot is. There is no single right number; a quiet backyard and a spot next to a busy road behave very differently.</p>
+  </section>
+
+  <!-- ===== STEP 9 ===== -->
+  <section class="window" id="step-9" aria-labelledby="s9-h">
+    <h2 id="s9-h"><span class="step-no">09</span>Let It Run Automatically</h2>
+    <p>Once installed, BirdNET-Pi runs as a set of system services, so it starts listening again on its own after a reboot or power outage.</p>
+    <ol class="flow" aria-label="Startup sequence">
+      <li>Power On</li>
+      <li>Raspberry Pi Boots</li>
+      <li>Wi-Fi Connects</li>
+      <li>BirdNET Services Start</li>
+      <li>Microphone Begins Listening</li>
+      <li class="hl">Detections Appear</li>
+    </ol>
+    <p style="margin-top:18px;">That makes it suitable for unattended 24/7 operation. To confirm the recording and analysis services are running:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>systemctl status birdnet_recording birdnet_analysis</code></pre></div>
+    <p>Both should say <span class="inline-code">active (running)</span>. Press <kbd>q</kbd> to exit.</p>
+  </section>
+
+  <!-- ===== STEP 10 ===== -->
+  <section class="window" id="step-10" aria-labelledby="s10-h">
+    <h2 id="s10-h"><span class="step-no">10</span>Optional: Remote Access with Tailscale</h2>
+    <p><span class="badge opt" style="margin-left:0;">optional</span></p>
+    <p>If the station lives somewhere other than your house, you will want to reach it without being on the same Wi-Fi. The tempting shortcut is forwarding a port on the router, but that puts SSH on the open internet. Tailscale is the approach I recommend instead: it creates a private network between your own devices, so nothing is exposed publicly.</p>
+    <p>Install it on the Pi:</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>curl -fsSL https://tailscale.com/install.sh | sh</code></pre></div>
+    <p>Then connect it to your Tailscale account (it prints a link to log in):</p>
+    <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>sudo tailscale up</code></pre></div>
+    <p>Install Tailscale on your own computer too. Once both are on the same Tailscale network, you can SSH into the Pi and open its dashboard from anywhere, using the Tailscale address shown in the Tailscale app.</p>
+  </section>
+
+  <!-- ===== STEP 11 ===== -->
+  <section class="window" id="step-11" aria-labelledby="s11-h">
+    <h2 id="s11-h"><span class="step-no">11</span>Put the Data on Your Own Website</h2>
+    <p><span class="badge opt" style="margin-left:0;">advanced</span></p>
+    <p>BirdNET-Pi keeps its detections in a local database on the Pi. That data can feed a separate public dashboard, which is how the <a href="birds.html">birds page on this site</a> works.</p>
+    <p>In my setup, a small Python script on the Pi runs every 10 minutes. It reads the latest detections, writes them to a JSON file along with short audio clips, and pushes them to this website's GitHub repository. The web page just reads that JSON file. The Pi only ever sends data out, so nothing on it is open to the internet.</p>
+    <ol class="flow" aria-label="Website data pipeline">
+      <li>BirdNET</li>
+      <li>Detection Database</li>
+      <li>Small export/API script</li>
+      <li>Website</li>
+      <li class="hl">Public Bird Dashboard</li>
+    </ol>
+    <p style="margin-top:18px;">You don't have to do it the same way. Fields worth showing:</p>
+    <ul class="tag-list">
+      <li>species name</li><li>common name</li><li>detection time</li><li>confidence</li>
+      <li>detections today</li><li>most common bird</li><li>recently detected birds</li>
+      <li>audio clips</li><li>spectrogram</li><li>daily/weekly stats</li>
+    </ul>
+    <p style="margin-top:14px;">If you are comfortable with JavaScript, PHP, Python, APIs, or databases, you can build this part yourself.</p>
+  </section>
+
+  <!-- ===== NOTIFICATIONS ===== -->
+  <section class="window" id="notifications" aria-labelledby="n-h">
+    <h2 id="n-h">Optional: Phone Notifications</h2>
+    <p><span class="badge opt" style="margin-left:0;">optional</span></p>
+    <p>Detections can also send a notification to your phone. My backyard station messages me on Telegram using a small script. Other options include:</p>
+    <ul class="tag-list">
+      <li>ntfy</li><li>Pushover</li><li>Discord</li><li>Telegram</li><li>Home Assistant</li><li>Apprise-compatible services</li>
+    </ul>
+    <ol class="flow" aria-label="Notification flow" style="margin-top:22px;">
+      <li>Bird Call</li>
+      <li>BirdNET Detection</li>
+      <li>High Confidence Match</li>
+      <li class="hl">Push Notification</li>
+    </ol>
+    <div class="notif" aria-label="Example notification">
+      <div class="app">example notification</div>
+      Black-capped Chickadee detected · 94% confidence
+    </div>
+    <p class="muted" style="margin-top:12px;">Tip: only notify on high-confidence matches and add a cooldown per species, or a chatty robin will blow up your phone.</p>
+  </section>
+
+  <!-- ===== TROUBLESHOOTING ===== -->
+  <section class="window" id="troubleshooting" aria-labelledby="t-h">
+    <h2 id="t-h">Troubleshooting</h2>
+
+    <details class="trouble">
+      <summary>Pi is not reachable</summary>
+      <div class="body">
+        <p>On the Pi (if you have a screen attached), check it has an address:</p>
+        <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>hostname -I</code></pre></div>
+        <p>Then try from your computer:</p>
+        <div class="code"><div class="code-label"><span>on your computer</span></div><pre><code>ping YOUR_PI_IP</code></pre></div>
+        <p>Verify the Pi is connected to the correct Wi-Fi network. If necessary, run:</p>
+        <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>sudo raspi-config</code></pre></div>
+        <p>Then go to the wireless network settings and reconnect it.</p>
+      </div>
+    </details>
+
+    <details class="trouble">
+      <summary>BirdNET website does not load</summary>
+      <div class="body">
+        <p>First check whether the Pi itself responds to ping. If the Pi is reachable but the BirdNET web interface is not, BirdNET or its web service may not have started correctly. Reboot:</p>
+        <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>sudo reboot</code></pre></div>
+        <p>Then check again.</p>
+      </div>
+    </details>
+
+    <details class="trouble">
+      <summary>No microphone detected</summary>
+      <div class="body">
+        <div class="code"><div class="code-label"><span>on the pi</span></div><pre><code>arecord -l</code></pre></div>
+        <p>If nothing shows up, try reconnecting the USB microphone (or a different USB port) and rebooting.</p>
+        <p>If the mic shows up but BirdNET hears nothing, another program may be holding it. On my Pi 3 A+, PulseAudio kept grabbing the mic at boot before BirdNET could. Turning off PulseAudio's autospawn (and disabling it) fixed it for good.</p>
+      </div>
+    </details>
+
+    <details class="trouble">
+      <summary>Lots of incorrect bird detections</summary>
+      <div class="body">
+        <p>Possible causes:</p>
+        <ul class="plain">
+          <li>Detection threshold too low</li><li>Poor microphone placement</li><li>Television audio</li>
+          <li>HVAC noise</li><li>Traffic</li><li>Music</li><li>Electronics near the microphone</li>
+        </ul>
+        <p>Try relocating the microphone and adjusting BirdNET's confidence settings (see <a href="#step-8">step 8</a>).</p>
+      </div>
+    </details>
+
+    <details class="trouble">
+      <summary>Pi changed IP addresses</summary>
+      <div class="body">
+        <p>Routers can hand out a different local IP after the Pi reconnects. Fixes:</p>
+        <ul class="plain">
+          <li>Check <span class="inline-code">hostname -I</span> again</li>
+          <li>Use the hostname (like <span class="inline-code">birdnetpi.local</span>) if mDNS is working</li>
+          <li>Reserve an IP address for the Pi in your router settings</li>
+          <li>Use Tailscale for remote administration</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="trouble">
+      <summary>Pi freezes or becomes unreachable after a while</summary>
+      <div class="body">
+        <p>This is usually running out of memory, especially on 512 MB boards like the Pi 3 A+. What fixed mine: adding a swap file, booting to the console instead of the desktop, and turning off services I didn't need. A Pi with more RAM avoids the problem entirely.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== COST ===== -->
+  <section class="window" id="cost" aria-labelledby="cost-h">
+    <h2 id="cost-h">Cost</h2>
+    <p>If you already own a Raspberry Pi, this is a fairly inexpensive project. The only must-buy is usually the USB microphone.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Part</th><th scope="col">Required?</th><th scope="col">Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Raspberry Pi</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Pi 3-class hardware or better</td></tr>
+          <tr><td>USB microphone</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Linux-compatible</td></tr>
+          <tr><td>microSD card</td><td><span class="badge req" style="margin:0;">yes</span></td><td>32 GB+</td></tr>
+          <tr><td>Power supply</td><td><span class="badge req" style="margin:0;">yes</span></td><td>Appropriate for the Pi</td></tr>
+          <tr><td>USB extension</td><td><span class="badge rec" style="margin:0;">recommended</span></td><td>Helps with microphone placement</td></tr>
+          <tr><td>Enviro+</td><td><span class="badge opt" style="margin:0;">no</span></td><td>Adds environmental monitoring</td></tr>
+          <tr><td>Tailscale</td><td><span class="badge opt" style="margin:0;">no</span></td><td>Free option for remote access</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== WHAT I LEARNED ===== -->
+  <section class="window" id="learned" aria-labelledby="l-h">
+    <h2 id="l-h">What I Learned</h2>
+    <p>This started as a bird project and turned into a crash course in keeping a small Linux box alive on its own. It pulled together:</p>
+    <ul class="tag-list">
+      <li>Linux</li><li>Raspberry Pi administration</li><li>Networking</li><li>SSH</li><li>Audio hardware</li>
+      <li>Machine learning inference</li><li>IoT</li><li>Remote access</li><li>Web development</li>
+      <li>APIs / data export</li><li>Troubleshooting</li><li>Long-running services</li>
+    </ul>
+  </section>
+
+  <!-- ===== FINAL RESULT ===== -->
+  <section class="window" id="result" aria-labelledby="r-h">
+    <h2 id="r-h">Final Result</h2>
+    <p>Once everything is running, the station can sit unattended and continuously listen for wildlife.</p>
+    <p>Birds call nearby, the microphone captures the audio, BirdNET identifies the species, and detections automatically appear in the dashboard.</p>
+    <p>What started as a Raspberry Pi and a USB microphone became a small always-on wildlife monitoring system.</p>
+    <div class="cta-row">
+      <a class="cta big" href="#parts">build your own birdnet &uarr;</a>
+      <a class="cta" href="birds.html">view live bird data &rarr;</a>
+    </div>
+    <div class="back-link"><a href="projects.html#birdnet">&larr; back to projects</a></div>
+  </section>
+
+</main>
+
+<script>
+// Copy buttons for every code block
+document.querySelectorAll('.code').forEach(function (block) {
+  var label = block.querySelector('.code-label');
+  var code = block.querySelector('code');
+  if (!label || !code) return;
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'copy-btn';
+  btn.textContent = 'copy';
+  btn.setAttribute('aria-label', 'Copy command: ' + code.textContent);
+  btn.addEventListener('click', function () {
+    var text = code.textContent;
+    var done = function () {
+      btn.textContent = 'copied';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('done'); }, 1500);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, function () {});
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'absolute'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  });
+  label.appendChild(btn);
+});
+</script>
+<script src="ascii-bg.js?v=4"></script>
+</body>
+</html>
