@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-25T09:00:03-0600",
+  "generated_at": "2026-09-25T09:10:04-0600",
   "stats": {
-    "today_count": 111,
+    "today_count": 112,
     "today_species": 6,
-    "total": 559
+    "total": 560
   },
   "enviro": {
-    "temp_f": 79.0,
-    "humidity": 32.6,
-    "pressure": 827.9
+    "temp_f": 81.4,
+    "humidity": 30.9,
+    "pressure": 827.8
   },
   "detections": [
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.7089,
+      "iso": "2026-09-25T09:02:05",
+      "time": "09:02",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-71-2026-09-25-birdnet-09.02.05.mp3"
+    },
     {
       "com_name": "Mountain Chickadee",
       "sci_name": "Poecile gambeli",
@@ -150,16 +160,6 @@
       "date": "2026-09-25",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
       "audio": "bird-clips/American_Crow-72-2026-09-25-birdnet-08.30.11.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.6538,
-      "iso": "2026-09-25T08:24:50",
-      "time": "08:24",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-65-2026-09-25-birdnet-08.24.50.mp3"
     }
   ]
 }
