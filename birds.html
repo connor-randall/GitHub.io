@@ -359,6 +359,13 @@ body {
 @keyframes hint-fade {
   to { opacity:0; visibility:hidden; }
 }
+.guide-link { text-align:center; margin:-12px 0 18px; font-size:12px; letter-spacing:1px; }
+.guide-link a {
+  display:inline-block; color:var(--accent); text-decoration:none;
+  border:1px solid var(--border); border-radius:4px; padding:7px 14px;
+  transition:border-color .15s, color .15s;
+}
+.guide-link a:hover { border-color:var(--accent); color:var(--accent-2); }
 </style>
 <link rel="stylesheet" href="site.css?v=2">
 </head>
@@ -387,6 +394,7 @@ body {
 
     <h1 class="page-heading">&gt;&gt; backyard birdcam &lt;&lt;</h1>
     <div class="page-sub">// bird calls heard at my house, ID'd live by a raspberry pi //</div>
+    <div class="guide-link"><a href="birdnet-guide.html">see how it's built &amp; build your own &rarr;</a></div>
 
     <div class="divider">========================================================================</div>
 
