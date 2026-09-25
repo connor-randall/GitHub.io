@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-25T14:00:03-0600",
+  "generated_at": "2026-09-25T14:10:03-0600",
   "stats": {
-    "today_count": 161,
+    "today_count": 162,
     "today_species": 9,
-    "total": 609
+    "total": 610
   },
   "enviro": {
-    "temp_f": 81.0,
-    "humidity": 30.8,
-    "pressure": 823.7
+    "temp_f": 81.7,
+    "humidity": 29.5,
+    "pressure": 823.5
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.8713,
+      "iso": "2026-09-25T14:02:49",
+      "time": "14:02",
+      "date": "2026-09-25",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-87-2026-09-25-birdnet-14.02.49.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-09-25",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-72-2026-09-25-birdnet-11.24.53.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.6973,
-      "iso": "2026-09-25T11:24:23",
-      "time": "11:24",
-      "date": "2026-09-25",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-70-2026-09-25-birdnet-11.24.23.mp3"
     }
   ]
 }
