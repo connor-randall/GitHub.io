@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-25T11:00:04-0600",
+  "generated_at": "2026-09-25T11:10:03-0600",
   "stats": {
-    "today_count": 143,
-    "today_species": 7,
-    "total": 591
+    "today_count": 144,
+    "today_species": 8,
+    "total": 592
   },
   "enviro": {
-    "temp_f": 75.6,
-    "humidity": 36.4,
-    "pressure": 827.1
+    "temp_f": 77.7,
+    "humidity": 34.0,
+    "pressure": 827.0
   },
   "detections": [
+    {
+      "com_name": "Red-tailed Hawk",
+      "sci_name": "Buteo jamaicensis",
+      "confidence": 0.6634,
+      "iso": "2026-09-25T11:05:52",
+      "time": "11:05",
+      "date": "2026-09-25",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Red-tailed_Hawk-66-2026-09-25-birdnet-11.05.52.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-09-25",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-72-2026-09-25-birdnet-10.03.51.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7465,
-      "iso": "2026-09-25T10:03:48",
-      "time": "10:03",
-      "date": "2026-09-25",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-75-2026-09-25-birdnet-10.03.48.mp3"
     }
   ]
 }
