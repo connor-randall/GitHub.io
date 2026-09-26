@@ -37,10 +37,18 @@ export function startMist(pre, opts) {
   const ambient = Boolean(opts.ambient);
   let cell = cellSize(pre);
   let cols = 0, rows = 0;
+  // Phones resize the viewport as the address bar hides/shows while
+  // scrolling. Only rebuild the grid when the width changes or the screen
+  // grows, so scrolling never makes the mist jump.
+  let lastW = 0;
   const resize = () => {
+    const w = window.innerWidth;
+    const newRows = Math.ceil(window.innerHeight / cell.h) + 1;
+    if (w === lastW && newRows <= rows) return;
+    lastW = w;
     cell = cellSize(pre);
-    cols = Math.ceil(window.innerWidth / cell.w) + 1;
-    rows = Math.ceil(window.innerHeight / cell.h) + 1;
+    cols = Math.ceil(w / cell.w) + 1;
+    rows = Math.max(newRows, Math.ceil(window.innerHeight / cell.h) + 1);
   };
   resize();
   window.addEventListener("resize", resize);

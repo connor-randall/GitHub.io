@@ -1,26 +1,31 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { startMist } from "./mist.js?v=831bde943c";
+import { startMist } from "./mist.js?v=f1fae6ed81";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;
 /** @type {HTMLElement | null} */
 let layer = null;
 
+/** A fixed spot on the screen for the swirl to circle: upper-middle of the
+ * viewport, sized once. It ignores scrolling, so the background never jumps. */
+let eyeRect = new DOMRect();
+let eyeWidth = 0;
+function fixedEye() {
+  const w = window.innerWidth;
+  if (w !== eyeWidth) {
+    eyeWidth = w;
+    const h = Math.max(window.innerHeight, 500);
+    const ew = Math.min(440, w * 0.6), eh = h * 0.32;
+    eyeRect = new DOMRect((w - ew) / 2, h * 0.38 - eh / 2, ew, eh);
+  }
+  return eyeRect;
+}
+
 export function startAmbient() {
   layer = document.getElementById("mist-bg");
-  const boss = document.getElementById("boss-art");
-  if (!layer || !boss || mist) return;
-  mist = startMist(layer, {
-    ambient: true,
-    fps: 14,
-    maxEyeFrac: 0.45,
-    eye: () => {
-      const r = boss.getBoundingClientRect();
-      // Boss scrolled away or hidden (death screen): swirl around the page centre.
-      return r.width && r.bottom > 0 && r.top < window.innerHeight ? r : null;
-    },
-  });
+  if (!layer || mist) return;
+  mist = startMist(layer, { ambient: true, fps: 14, maxEyeFrac: 0.45, eye: fixedEye });
 }
 
 /** Fade the layer in (used after the name prompt clears). */

@@ -1,14 +1,14 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=831bde943c";
-import { clock, el } from "../ascii.js?v=831bde943c";
-import * as sound from "../sound.js?v=831bde943c";
-import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=831bde943c";
-import { pulse } from "./ambient.js?v=831bde943c";
-import { hurt } from "./boss.js?v=831bde943c";
-import { showError } from "./errors.js?v=831bde943c";
-import { promptForName } from "./nameform.js?v=831bde943c";
-import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=831bde943c";
+import * as api from "../api.js?v=f1fae6ed81";
+import { clock, el } from "../ascii.js?v=f1fae6ed81";
+import * as sound from "../sound.js?v=f1fae6ed81";
+import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=f1fae6ed81";
+import { pulse } from "./ambient.js?v=f1fae6ed81";
+import { hurt } from "./boss.js?v=f1fae6ed81";
+import { showError } from "./errors.js?v=f1fae6ed81";
+import { promptForName } from "./nameform.js?v=f1fae6ed81";
+import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=f1fae6ed81";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
