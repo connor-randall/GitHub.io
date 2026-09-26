@@ -161,7 +161,7 @@ tr.current td { color:var(--accent-2); }
       its people eat, work, fall in love, have children, open and lose businesses, and die, all through
       simple rules for food, money, prices, families and health. There are no scripted events and no AI.
       Each world runs <strong>until nobody is left alive</strong>, then the next seed begins.
-      One simulated day passes every second. This page refreshes every half hour.
+      One simulated day passes every second, and this page updates every 15 minutes.
     </div>
 
     <div id="app"><div class="loading-note">// waking the settlement... //</div></div>
@@ -558,7 +558,7 @@ tr.current td { color:var(--accent-2); }
   if (m) state.year = parseInt(m[1], 10);
 
   load();
-  setInterval(load, 5 * 60 * 1000);
+  setInterval(load, 2 * 60 * 1000);
 })();
 </script>
 <script src="ascii-bg.js?v=4"></script>
