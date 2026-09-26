@@ -159,10 +159,10 @@ tr.current td { color:var(--accent-2); }
     <div class="page-sub">// a civilization nobody scripted //</div>
 
     <div class="about-note">
-      <strong>Hollowmere</strong> is a simulated settlement founded by 100 people. Nobody writes its story:
+      Each <strong>world</strong> is a simulated settlement founded by 100 people. Nobody writes its story:
       its people eat, work, fall in love, have children, open and lose businesses, and die, all through
       simple rules for food, money, prices, families and health. There are no scripted events and no AI.
-      Each world runs <strong>until nobody is left alive</strong>, then the next seed begins.
+      Each world runs <strong>until nobody is left alive</strong>, then the next one (World 2, World 3, ...) begins.
       One simulated day passes every 30 seconds, and this page follows it live.
     </div>
 
@@ -253,7 +253,7 @@ tr.current td { color:var(--accent-2); }
   function renderStatus(w) {
     var s = w.status;
     return '<div class="section">' +
-      '<p class="date-line"><span class="seed">seed ' + w.seed + '</span> &middot; ' + esc(w.date) +
+      '<p class="date-line"><span class="seed">' + esc(w.settlement) + '</span> &middot; ' + esc(w.date) +
       (w.shortage_active ? ' &middot; <span class="shortage">food shortage</span>' : '') +
       (state.source === 'live' ? ' &middot; <span class="live-dot">&#9679; live</span>' : '') + '</p>' +
       '<div class="stats">' +
@@ -276,12 +276,12 @@ tr.current td { color:var(--accent-2); }
     var body;
     if (!records.length) {
       body = '<div class="card"><div class="headline">No world has fallen yet.</div>' +
-        '<div class="meta">Seed ' + c.current_seed + ' is the first. When its last citizen dies, its story will be summarised here and seed ' +
+        '<div class="meta">World ' + c.current_seed + ' is the first. When its last citizen dies, its story will be summarised here and World ' +
         (c.current_seed + 1) + ' will begin.</div></div>';
     } else {
       var r = records[records.length - 1];
       body = '<div class="card">' +
-        '<div class="headline">Seed ' + r.seed + ' made it to <b>Year ' + r.final_year + '</b> (' + r.years.toFixed(1) + ' years)</div>' +
+        '<div class="headline">World ' + r.seed + ' made it to <b>Year ' + r.final_year + '</b> (' + r.years.toFixed(1) + ' years)</div>' +
         '<div><span style="color:var(--accent)">' + esc(r.cause.headline) + '.</span> ' + esc(r.cause.detail) + '</div>' +
         '<div class="meta">Peak of ' + n(r.peak_population) + ' people in Year ' + r.peak_year + ' &middot; ' +
           n(r.births) + ' born &middot; ' + n(r.deaths) + ' died (' + n(r.starvation_deaths) + ' starved)' +
@@ -303,33 +303,33 @@ tr.current td { color:var(--accent-2); }
     var tab = state.lbTab, head, list;
     if (tab === 'longest') {
       list = rows.slice().sort(function (a, b) { return b.years - a.years; });
-      head = '<tr><th>#</th><th>seed</th><th class="num">lasted</th><th>fate</th></tr>';
+      head = '<tr><th>#</th><th>world</th><th class="num">lasted</th><th>fate</th></tr>';
       return head + list.slice(0, 15).map(function (r, i) {
-        return '<tr' + (r.live ? ' class="current"' : '') + '><td>' + (i + 1) + '</td><td>' + r.seed + '</td><td class="num">' +
+        return '<tr' + (r.live ? ' class="current"' : '') + '><td>' + (i + 1) + '</td><td>World ' + r.seed + '</td><td class="num">' +
           r.years.toFixed(1) + ' yrs</td><td>' + (r.live ? 'still alive (Year ' + r.final_year + ')' : esc(r.cause.headline)) + '</td></tr>';
       }).join('');
     }
     if (tab === 'quickest') {
       list = rows.filter(function (r) { return !r.live; }).sort(function (a, b) { return a.years - b.years; });
       if (!list.length) return '<tr><td class="empty-note">No world has died out yet.</td></tr>';
-      head = '<tr><th>#</th><th>seed</th><th class="num">lasted</th><th>cause</th></tr>';
+      head = '<tr><th>#</th><th>world</th><th class="num">lasted</th><th>cause</th></tr>';
       return head + list.slice(0, 15).map(function (r, i) {
-        return '<tr><td>' + (i + 1) + '</td><td>' + r.seed + '</td><td class="num">' + r.years.toFixed(1) + ' yrs</td><td>' + esc(r.cause.headline) + '</td></tr>';
+        return '<tr><td>' + (i + 1) + '</td><td>World ' + r.seed + '</td><td class="num">' + r.years.toFixed(1) + ' yrs</td><td>' + esc(r.cause.headline) + '</td></tr>';
       }).join('');
     }
     if (tab === 'richest') {
       list = rows.filter(function (r) { return r.richest && r.richest.name; })
         .sort(function (a, b) { return b.richest.money - a.richest.money; });
-      head = '<tr><th>#</th><th>citizen</th><th class="num">fortune</th><th class="num">seed</th><th class="num">year</th></tr>';
+      head = '<tr><th>#</th><th>citizen</th><th class="num">fortune</th><th>world</th><th class="num">year</th></tr>';
       return head + list.slice(0, 15).map(function (r, i) {
         return '<tr' + (r.live ? ' class="current"' : '') + '><td>' + (i + 1) + '</td><td>' + esc(r.richest.name) + '</td><td class="num">' +
-          n(r.richest.money) + '</td><td class="num">' + r.seed + '</td><td class="num">' + r.richest.year + '</td></tr>';
+          n(r.richest.money) + '</td><td>World ' + r.seed + '</td><td class="num">' + r.richest.year + '</td></tr>';
       }).join('');
     }
     list = rows.sort(function (a, b) { return b.peak_population - a.peak_population; });
-    head = '<tr><th>#</th><th>seed</th><th class="num">peak</th><th class="num">in year</th></tr>';
+    head = '<tr><th>#</th><th>world</th><th class="num">peak</th><th class="num">in year</th></tr>';
     return head + list.slice(0, 15).map(function (r, i) {
-      return '<tr' + (r.live ? ' class="current"' : '') + '><td>' + (i + 1) + '</td><td>' + r.seed + '</td><td class="num">' +
+      return '<tr' + (r.live ? ' class="current"' : '') + '><td>' + (i + 1) + '</td><td>World ' + r.seed + '</td><td class="num">' +
         n(r.peak_population) + '</td><td class="num">' + r.peak_year + '</td></tr>';
     }).join('');
   }
