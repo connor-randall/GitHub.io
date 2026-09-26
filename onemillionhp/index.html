@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ONE MILLION HP</title>
+<meta name="description" content="Everyone on the internet is fighting the same boss. It has one million HP.">
+<meta name="theme-color" content="#0b0a08">
+<!-- API origin. Empty = same origin (the game server serves this page).
+     tools/publish_web.py rewrites it for the copy hosted on conradrandy.com. -->
+<meta name="omhp-api" content="https://world.conradrandy.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0a08'/%3E%3Ctext x='8' y='12.5' font-family='monospace' font-size='12' font-weight='bold' fill='%23ffb000' text-anchor='middle'%3E%25%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="crt" aria-hidden="true"></div>
+<div id="shake">
+<main id="app" class="app">
+
+  <header class="top">
+    <pre class="logo logo-wide art" aria-label="ONE MILLION HP"></pre>
+    <pre class="logo logo-stack art" aria-hidden="true"></pre>
+    <div class="statusline" id="statusline">
+      <span id="st-boss">BOSS #---</span>
+      <span class="sep">::</span>
+      <span id="st-online" title="terminals connected">- ONLINE</span>
+      <span class="sep">::</span>
+      <span id="st-link" class="link-dot">LINK ....</span>
+      <span class="sep">::</span>
+      <button id="snd" class="btn-text" type="button" aria-pressed="false">[SND:OFF]</button>
+    </div>
+  </header>
+
+  <div class="columns">
+    <section class="col-main" aria-label="Boss">
+      <div id="boss" class="boss">
+        <pre class="rule">=====================================</pre>
+        <div id="boss-alive">
+          <div class="boss-num" id="boss-num">BOSS #---</div>
+          <div class="boss-stage">
+            <pre id="boss-art" class="boss-art art" aria-hidden="true"></pre>
+            <div id="popups" class="popups" aria-hidden="true"></div>
+          </div>
+          <h1 class="boss-name" id="boss-name">........</h1>
+          <div class="boss-sub" id="boss-sub"></div>
+          <div class="taunt" id="taunt" aria-live="off"></div>
+
+          <div class="hp">
+            <pre class="hp-bar" id="hp-bar" aria-hidden="true"></pre>
+            <div class="hp-nums">
+              <span class="hp-now" id="hp-now">-------</span>
+              <span class="dim"> / </span><span id="hp-max">1,000,000</span>
+              <span class="hp-pct" id="hp-pct">(---%)</span>
+            </div>
+            <div class="phase" id="phase">PHASE -</div>
+          </div>
+
+          <div class="controls">
+            <button id="btn-attack" class="btn-big" type="button" disabled>
+              <span class="br">[</span> A T T A C K <span class="br">]</span>
+            </button>
+            <div class="pips" id="pips" aria-live="polite">ATTACKS -/-</div>
+            <div class="reset-in dim" id="reset-in"></div>
+
+            <button id="btn-ult" class="btn-big btn-ult" type="button" disabled>
+              <span class="br">[</span> U L T I M A T E <span class="br">]</span>
+            </button>
+            <div class="ult-warn" id="ult-warn">!! ONE USE PER BOSS !!</div>
+            <div class="keys dim">keys: [A]/[SPACE] attack &middot; [U] ultimate</div>
+          </div>
+
+          <pre class="rule">-------------------------------------</pre>
+          <div class="lasthit">
+            <div>YOUR LAST HIT <span id="last-hit" class="val">--</span></div>
+            <div>YOUR DMG ON THIS BOSS <span id="boss-dmg" class="val">0</span></div>
+          </div>
+
+          <div class="globals" id="globals">
+            <div><span class="dim">ATTACKS</span> <b id="g-attacks">0</b></div>
+            <div><span class="dim">DAMAGE</span> <b id="g-damage">0</b></div>
+            <div><span class="dim">FIGHTERS</span> <b id="g-players">0</b></div>
+          </div>
+        </div>
+        <div id="boss-dead" hidden></div>
+      </div>
+    </section>
+
+    <section class="col-side" aria-label="Panels">
+      <nav class="tabs" id="tabs" role="tablist">
+        <button role="tab" data-tab="feed" aria-selected="true">[ FEED ]</button>
+        <button role="tab" data-tab="player">[ YOU ]</button>
+        <button role="tab" data-tab="bag">[ BAG ]</button>
+        <button role="tab" data-tab="ranks">[ RANKS ]</button>
+        <button role="tab" data-tab="history">[ HISTORY ]</button>
+      </nav>
+      <div class="panel" id="panel-feed" role="tabpanel">
+        <div class="panel-h">RECENT ATTACKS <span class="blink">_</span></div>
+        <ol id="feed" class="feed" aria-live="polite"></ol>
+      </div>
+      <div class="panel" id="panel-player" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-bag" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-ranks" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-history" role="tabpanel" hidden></div>
+    </section>
+  </div>
+
+  <footer class="foot dim">
+    <pre class="rule">=====================================</pre>
+    <p>every attack, on every terminal, hits the same boss. 5 attacks per day, reset at 00:00 UTC.</p>
+    <p class="err" id="err" role="alert"></p>
+  </footer>
+</main>
+</div>
+
+<div id="overlay" class="overlay" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
