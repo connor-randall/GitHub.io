@@ -112,23 +112,17 @@ tr.current td { color:var(--accent-2); }
 .chart .tip[hidden] { display:none; }
 .chart .tip .v { color:var(--text); }
 .chart .tip .k { color:var(--dim); }
-.chart-note { color:var(--dim); font-size:11px; margin-top:6px; }
-.year-nav { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
-.year-nav input {
-  width:84px; background:var(--bg); border:1px solid var(--border); color:var(--text);
-  font-family:inherit; font-size:12px; padding:6px 8px; border-radius:4px;
-}
-.change-up { color:var(--accent-2); }
-.change-down { color:var(--bad); }
-.counts { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:4px 16px; font-size:12px; margin:12px 0; }
-.counts span { color:var(--dim); }
 .events { list-style:none; margin:0; padding:0; font-size:12px; max-height:420px; overflow-y:auto; border:1px solid var(--border); border-radius:4px; }
 .events li { padding:6px 10px; border-bottom:1px solid var(--border); display:flex; gap:12px; }
 .events li:last-child { border-bottom:none; }
 .events .d { color:var(--dim); white-space:nowrap; min-width:92px; font-variant-numeric:tabular-nums; }
 .events li.death .t, .events li.starvation_death .t { color:#b9c0cb; }
-.events li.starvation_death .t::before { content:"\2020 "; color:var(--bad); }
-.events li.birth .t::before { content:"+ "; color:var(--accent); }
+.events li.starvation_death .t::before { content:"\2020\00A0"; color:var(--bad); }
+.events li.birth .t::before { content:"+\00A0"; color:var(--accent); }
+.events li.partnership .t::before { content:"\2665\00A0"; color:#d9a0b4; }
+.events li.grandparent .t::before, .events li.came_of_age .t::before { content:"\00BB\00A0"; color:var(--accent); }
+.events li.milestone .t::before { content:"\2605\00A0"; color:#e0c784; }
+.events li.food_shortage .t, .events li.business_failed .t { color:#e0b2aa; }
 .empty-note, .loading-note { text-align:center; color:var(--dim); font-size:12px; letter-spacing:2px; padding:30px 0; }
 .updated-note { text-align:center; color:var(--dim); font-size:10px; letter-spacing:2px; margin-top:22px; }
 @media (max-width:640px) {
@@ -183,18 +177,9 @@ tr.current td { color:var(--accent-2); }
   var STATIC = 'world01/';
   var LIVE_POLL = 10 * 1000, STATIC_POLL = 2 * 60 * 1000;
   var app = document.getElementById('app');
-  var state = { world: null, chronicle: null, year: null, filter: 'all', lbTab: 'longest', lbOpen: false,
+  var state = { world: null, chronicle: null, lbTab: 'longest', lbOpen: false,
                 source: null, built: false, historyKey: null };
 
-  var EVENT_GROUPS = {
-    all: null,
-    deaths: ['death', 'starvation_death'],
-    births: ['birth'],
-    families: ['partnership', 'household_formed', 'household_dissolved', 'fostered'],
-    business: ['business_created', 'business_failed', 'business_inherited'],
-    'food & weather': ['food_shortage', 'food_shortage_ended', 'poor_growing_season', 'bountiful_growing_season'],
-    retirements: ['retired']
-  };
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
   function n(v) { return Math.round(v).toLocaleString('en-US'); }
@@ -434,8 +419,7 @@ tr.current td { color:var(--accent-2); }
     return '<div class="section"><h2 class="section-title">population by year</h2>' +
         '<div class="chart" id="pop-chart">' + pop + '<div class="tip" id="pop-tip" hidden></div></div></div>' +
       '<div class="section"><h2 class="section-title">starvation deaths per year</h2>' +
-        '<div class="chart" id="st-chart">' + st + '<div class="tip" id="st-tip" hidden></div></div>' +
-        '<div class="chart-note">Click a year on either chart to open it below.</div></div>';
+        '<div class="chart" id="st-chart">' + st + '<div class="tip" id="st-tip" hidden></div></div></div>';
   }
 
   function svgX(svg, evt, W) {
@@ -464,7 +448,6 @@ tr.current td { color:var(--accent-2); }
     }
     svg.addEventListener('mousemove', show);
     svg.addEventListener('mouseleave', function () { tip.hidden = true; line.setAttribute('visibility', 'hidden'); dot.setAttribute('visibility', 'hidden'); });
-    svg.addEventListener('click', function (evt) { openYear(c.years[nearest(evt).i]); });
 
     var stSvg = document.querySelector('#st-chart svg'), stTip = document.getElementById('st-tip');
     function stIndex(evt) {
@@ -478,94 +461,16 @@ tr.current td { color:var(--accent-2); }
       stTip.style.top = (20 * hit.s) + 'px'; stTip.hidden = false;
     });
     stSvg.addEventListener('mouseleave', function () { stTip.hidden = true; });
-    stSvg.addEventListener('click', function (evt) { openYear(c.starv[stIndex(evt).i].year); });
-  }
-
-  // ---------- year explorer ---------------------------------------------------------
-  var YEAR_ROWS = [
-    ['population', 'population'], ['households', 'households'], ['businesses', 'businesses'],
-    ['employed', 'working'], ['unemployed', 'without work'], ['children', 'children'],
-    ['avg_health', 'average health'], ['food_price_index', 'food price'], ['citizen_money', 'money held by people']
-  ];
-  var COUNT_ROWS = [
-    ['birth', 'births'], ['death', 'deaths'], ['starvation_death', 'starved'], ['partnership', 'new couples'],
-    ['household_formed', 'homes set up'], ['household_dissolved', 'homes ended'], ['business_created', 'businesses opened'],
-    ['business_failed', 'businesses failed'], ['job_gained', 'jobs gained'], ['job_lost', 'jobs lost']
-  ];
-
-  function fmt(key, v) {
-    if (key === 'avg_health' || key === 'food_price_index') return v.toFixed(1);
-    return n(v);
-  }
-
-  function renderYear(data) {
-    var box = document.getElementById('year-body');
-    if (!data) { box.innerHTML = '<div class="empty-note">That year has not happened yet.</div>'; return; }
-    var rows = YEAR_ROWS.map(function (r) {
-      var a = data.start[r[0]], b = data.end[r[0]], d = b - a;
-      var cls = d > 0 ? 'change-up' : d < 0 ? 'change-down' : '';
-      var ds = (d > 0 ? '+' : '') + (r[0] === 'avg_health' || r[0] === 'food_price_index' ? d.toFixed(1) : n(d));
-      return '<tr><td>' + r[1] + '</td><td class="num">' + fmt(r[0], a) + '</td><td class="num">' + fmt(r[0], b) +
-        '</td><td class="num ' + cls + '">' + (d === 0 ? '&ndash;' : ds) + '</td></tr>';
-    }).join('');
-    var counts = COUNT_ROWS.map(function (r) {
-      return '<div><span>' + r[1] + ':</span> ' + n(data.counts[r[0]] || 0) + '</div>';
-    }).join('');
-    var group = EVENT_GROUPS[state.filter];
-    var events = data.events.filter(function (e) { return !group || group.indexOf(e.type) >= 0; });
-    var filters = Object.keys(EVENT_GROUPS).map(function (k) {
-      return '<button class="pill' + (k === state.filter ? ' active' : '') + '" data-filter="' + k + '">' + k + '</button>';
-    }).join('');
-    var harvest = data.start.harvest_factor;
-    box.innerHTML =
-      '<div class="meta" style="color:var(--dim);font-size:11.5px;margin-bottom:8px">' + esc(data.start_date) + ' &rarr; ' + esc(data.end_date) +
-        (data.complete ? '' : ' (in progress)') + ' &middot; growing season ' + Math.round(harvest * 100) + '%</div>' +
-      '<div class="table-scroll"><table><tr><th></th><th class="num">start</th><th class="num">end</th><th class="num">change</th></tr>' + rows + '</table></div>' +
-      '<div class="counts">' + counts + '</div>' +
-      '<div class="pill-row" style="margin-bottom:8px">' + filters + '</div>' +
-      (events.length ? '<ul class="events">' + events.map(function (e) {
-        return '<li class="' + esc(e.type) + '"><span class="d">' + esc(e.date) + '</span><span class="t">' + esc(e.text) + '</span></li>';
-      }).join('') + '</ul>' : '<div class="empty-note">Nothing of that kind happened this year.</div>');
-  }
-
-  function openYear(year, silent) {
-    var w = state.world;
-    year = Math.max(1, Math.min(w.year, year));
-    var changed = year !== state.year;
-    state.year = year;
-    if (changed && history.replaceState) history.replaceState(null, '', '#year-' + year);
-    var input = document.getElementById('year-input');
-    input.max = w.year;
-    if (document.activeElement !== input) input.value = year;
-    document.getElementById('year-prev').disabled = year <= 1;
-    document.getElementById('year-next').disabled = year >= w.year;
-    var box = document.getElementById('year-body');
-    if (!silent) box.innerHTML = '<div class="loading-note">// reading the records... //</div>';
-    fetchJson('years/' + year + '.json').then(function (data) {
-      if (state.year !== year) return;
-      var list = box.querySelector('.events'), scroll = list ? list.scrollTop : 0;
-      state.yearData = data; renderYear(data);
-      list = box.querySelector('.events');
-      if (silent && list) list.scrollTop = scroll;
-    }).catch(function () { if (!silent) renderYear(null); });
-  }
-
-  function renderExplorer(w) {
-    return '<div class="section" id="explorer"><h2 class="section-title">year by year <span class="aside">what happened, one year at a time</span></h2>' +
-      '<div class="year-nav">' +
-        '<button class="pill" id="year-prev">&larr; prev</button>' +
-        '<label style="font-size:12px;color:var(--dim)">year <input id="year-input" type="number" min="1" max="' + w.year + '" value="' + w.year + '"></label>' +
-        '<button class="pill" id="year-next">next &rarr;</button>' +
-        '<button class="pill" id="year-latest">latest</button>' +
-      '</div><div id="year-body"></div></div>';
   }
 
   function renderRecent(w) {
     var list = w.recent_events.map(function (e) {
       return '<li class="' + esc(e.type) + '"><span class="d">' + esc(e.date) + '</span><span class="t">' + esc(e.text) + '</span></li>';
     }).join('');
-    return '<div class="section"><h2 class="section-title">latest news</h2>' +
-      (list ? '<ul class="events">' + list + '</ul>' : '<div class="empty-note">Nothing yet.</div>') + '</div>';
+    return '<div class="section"><h2 class="section-title">this month in ' + esc(w.settlement) +
+        ' <span class="aside">everything notable from the last 30 days</span></h2>' +
+      (list ? '<ul class="events">' + list + '</ul>'
+            : '<div class="empty-note">A quiet month in ' + esc(w.settlement) + '.</div>') + '</div>';
   }
 
   function renderBusinesses(w) {
@@ -590,16 +495,8 @@ tr.current td { color:var(--accent-2); }
   function render() {
     var w = state.world, c = state.chronicle, firstTime = !state.built;
     if (firstTime) {
-      app.innerHTML = '<div id="s-status"></div><div id="s-previous"></div><div id="s-leaderboard"></div>' +
-        '<div id="s-charts"></div>' + renderExplorer(w) + '<div id="s-recent"></div><div id="s-business"></div>';
-      document.getElementById('year-prev').addEventListener('click', function () { openYear(state.year - 1); });
-      document.getElementById('year-next').addEventListener('click', function () { openYear(state.year + 1); });
-      document.getElementById('year-latest').addEventListener('click', function () { openYear(state.world.year); });
-      document.getElementById('year-input').addEventListener('change', function (e) { openYear(parseInt(e.target.value, 10) || 1); });
-      document.getElementById('year-body').addEventListener('click', function (e) {
-        var f = e.target.getAttribute && e.target.getAttribute('data-filter');
-        if (f) { state.filter = f; renderYear(state.yearData); }
-      });
+      app.innerHTML = '<div id="s-status"></div><div id="s-recent"></div><div id="s-previous"></div>' +
+        '<div id="s-leaderboard"></div><div id="s-charts"></div><div id="s-business"></div>';
       state.built = true;
     }
     setSection('s-status', renderStatus(w));
@@ -607,11 +504,11 @@ tr.current td { color:var(--accent-2); }
     rerenderLeaderboard();
     var last = w.history[w.history.length - 1], key = w.seed + ':' + (last ? last.day : 0) + ':' + w.history.length;
     if (key !== state.historyKey) { state.historyKey = key; setSection('s-charts', renderCharts(w)); bindCharts(); }
+    var news = document.querySelector('#s-recent .events'), newsScroll = news ? news.scrollTop : 0;
     setSection('s-recent', renderRecent(w));
+    news = document.querySelector('#s-recent .events');
+    if (news) news.scrollTop = newsScroll;
     setSection('s-business', renderBusinesses(w));
-    if (firstTime || !state.year) openYear(state.year && state.year <= w.year ? state.year : w.year);
-    else if (state.year >= w.year - 1) openYear(state.year, true);   // finished years never change
-    else document.getElementById('year-next').disabled = state.year >= w.year;
     document.getElementById('updated').textContent = state.source === 'live'
       ? '// live from the simulation server //'
       : '// last update ' + new Date(w.published_at).toLocaleString() + ' //';
@@ -634,7 +531,6 @@ tr.current td { color:var(--accent-2); }
       return fetchJson('chronicle.json').then(function (chron) { return [world, chron]; });
     }).then(function (res) {
       var changed = !state.world || state.world.day !== res[0].day || state.world.seed !== res[0].seed;
-      if (state.world && state.world.seed !== res[0].seed) state.year = null;
       state.world = res[0]; state.chronicle = res[1];
       if (changed) render();
     }).catch(function () {
@@ -644,10 +540,8 @@ tr.current td { color:var(--accent-2); }
     });
   }
 
-  // Deep links: world.html#leaderboard, world.html#year-61
-  var hash = location.hash.slice(1), m = /^year-(\d+)$/.exec(hash);
-  if (hash === 'leaderboard') state.lbOpen = true;
-  if (m) state.year = parseInt(m[1], 10);
+  // Deep link: world.html#leaderboard opens the leaderboard.
+  if (location.hash === '#leaderboard') state.lbOpen = true;
 
   load();
 })();
