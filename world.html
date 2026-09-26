@@ -73,6 +73,12 @@ body { display:flex; align-items:flex-start; justify-content:center; padding:86p
 .date-line { text-align:center; font-size:14px; letter-spacing:2px; margin:0 0 14px; }
 .date-line .seed { color:var(--accent); }
 .shortage { color:var(--bad); }
+.trend { font-size:13px; letter-spacing:2px; margin-top:4px; min-height:15px; line-height:1; cursor:help; }
+.trend.good { color:#8cc5a0; }
+.trend.bad { color:var(--bad); }
+.trend.flat { color:var(--dim); }
+.trend-note { color:var(--dim); font-size:10.5px; text-align:center; margin-top:8px; letter-spacing:1px; }
+.trend-note .good { color:#8cc5a0; } .trend-note .bad { color:var(--bad); }
 .live-dot { color:var(--accent); font-size:12px; animation:pulse 2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity:.45; } }
 .card { border:1px solid var(--border); background:rgba(255,255,255,0.015); border-radius:4px; padding:14px; line-height:1.7; font-size:12.5px; }
@@ -218,8 +224,45 @@ tr.current td { color:var(--accent-2); }
   }
 
   // ---------- rendering -------------------------------------------------------------
-  function statBox(value, label) {
-    return '<div class="stat-box"><div class="stat-num">' + value + '</div><div class="stat-label">' + label + '</div></div>';
+  function statBox(value, label, trendHtml) {
+    return '<div class="stat-box"><div class="stat-num">' + value + '</div><div class="stat-label">' + label + '</div>' +
+      (trendHtml || '<div class="trend"></div>') + '</div>';
+  }
+
+  // ---------- trend arrows ------------------------------------------------------------
+  // Direction = which way the number moved; colour = whether that is good or bad.
+  // Levels compare now with ~3 simulated months ago. Running totals (born, died,
+  // starved) compare the last 3 months' increase with the 3 months before, so the
+  // arrow shows whether it is speeding up or slowing down.
+  var TREND_DAYS = 90;
+
+  function snapshotBefore(w, daysAgo) {
+    var rows = w.recent_months || [], target = w.day - daysAgo, found = null;
+    rows.forEach(function (r) { if (r.day <= target) found = r; });
+    return found;
+  }
+
+  function trend(w, key, upIsGood, isTotal) {
+    var now = w.status[key], past = snapshotBefore(w, TREND_DAYS);
+    if (!past || past[key] == null) return '';
+    var delta, base, what;
+    if (isTotal) {
+      var older = snapshotBefore(w, 2 * TREND_DAYS);
+      if (!older) return '';
+      var recent = now - past[key], before = past[key] - older[key];
+      delta = recent - before; base = Math.max(1, before);
+      what = recent + ' in the last 3 months vs ' + before + ' in the 3 before';
+    } else {
+      delta = now - past[key]; base = Math.max(1, Math.abs(past[key]));
+      what = (delta >= 0 ? '+' : '') + (Math.round(delta * 10) / 10) + ' over the last 3 months';
+    }
+    if (Math.abs(delta) < 1e-9 || (!isTotal && Math.abs(delta) / base < 0.005)) {
+      return '<div class="trend flat" title="steady: ' + esc(what) + '">&ndash;</div>';
+    }
+    var pct = Math.abs(delta) / base, count = pct >= 0.15 ? 3 : pct >= 0.05 ? 2 : 1;
+    var up = delta > 0, good = up === upIsGood;
+    return '<div class="trend ' + (good ? 'good' : 'bad') + '" title="' + esc(what) + '">' +
+      new Array(count + 1).join(up ? '&#9650;' : '&#9660;') + '</div>';
   }
 
   function renderStatus(w) {
@@ -229,15 +272,18 @@ tr.current td { color:var(--accent-2); }
       (w.shortage_active ? ' &middot; <span class="shortage">food shortage</span>' : '') +
       (state.source === 'live' ? ' &middot; <span class="live-dot">&#9679; live</span>' : '') + '</p>' +
       '<div class="stats">' +
-        statBox(n(s.population), 'alive') +
-        statBox(n(s.births), 'born') +
-        statBox(n(s.deaths), 'died') +
-        statBox(n(s.starvation_deaths), 'starved') +
-        statBox(n(s.households), 'households') +
-        statBox(n(s.businesses), 'businesses') +
-        statBox(n(s.employed) + '<span style="color:var(--dim);font-size:13px"> / ' + n(s.unemployed) + '</span>', 'working / idle') +
-        statBox(s.food_price_index.toFixed(1), 'food price') +
-      '</div></div>';
+        statBox(n(s.population), 'alive', trend(w, 'population', true)) +
+        statBox(n(s.births), 'born', trend(w, 'births', true, true)) +
+        statBox(n(s.deaths), 'died', trend(w, 'deaths', false, true)) +
+        statBox(n(s.starvation_deaths), 'starved', trend(w, 'starvation_deaths', false, true)) +
+        statBox(n(s.households), 'households', trend(w, 'households', true)) +
+        statBox(n(s.businesses), 'businesses', trend(w, 'businesses', true)) +
+        statBox(n(s.employed) + '<span style="color:var(--dim);font-size:13px"> / ' + n(s.unemployed) + '</span>', 'working / idle', trend(w, 'employed', true)) +
+        statBox(s.food_price_index.toFixed(1), 'food price', trend(w, 'food_price_index', false)) +
+      '</div>' +
+      '<div class="trend-note">arrows: last 3 simulated months &middot; <span class="good">&#9650; green = good</span> &middot; ' +
+        '<span class="bad">&#9660; red = bad</span> &middot; more arrows = stronger trend &middot; hover for details</div>' +
+      '</div>';
   }
 
   function renderPrevious(c) {
