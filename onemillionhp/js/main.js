@@ -2,18 +2,18 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js";
-import { connectLive } from "./live.js";
-import * as sound from "./sound.js";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js";
-import { renderFeed, tickAges } from "./ui/feed.js";
-import { popup, shake } from "./ui/fx.js";
-import { showError } from "./ui/errors.js";
-import { promptForName } from "./ui/nameform.js";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js";
+import * as api from "./api.js?v=0267a0c4ee";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=0267a0c4ee";
+import { connectLive } from "./live.js?v=0267a0c4ee";
+import * as sound from "./sound.js?v=0267a0c4ee";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=0267a0c4ee";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=0267a0c4ee";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=0267a0c4ee";
+import { renderFeed, tickAges } from "./ui/feed.js?v=0267a0c4ee";
+import { popup, shake } from "./ui/fx.js?v=0267a0c4ee";
+import { showError } from "./ui/errors.js?v=0267a0c4ee";
+import { promptForName } from "./ui/nameform.js?v=0267a0c4ee";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=0267a0c4ee";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

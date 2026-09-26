@@ -1,13 +1,13 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js";
-import { clock, el } from "../ascii.js";
-import * as sound from "../sound.js";
-import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js";
-import { hurt } from "./boss.js";
-import { showError } from "./errors.js";
-import { promptForName } from "./nameform.js";
-import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js";
+import * as api from "../api.js?v=0267a0c4ee";
+import { clock, el } from "../ascii.js?v=0267a0c4ee";
+import * as sound from "../sound.js?v=0267a0c4ee";
+import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=0267a0c4ee";
+import { hurt } from "./boss.js?v=0267a0c4ee";
+import { showError } from "./errors.js?v=0267a0c4ee";
+import { promptForName } from "./nameform.js?v=0267a0c4ee";
+import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=0267a0c4ee";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
