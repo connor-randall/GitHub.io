@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-26T11:10:03-0600",
+  "generated_at": "2026-09-26T11:20:03-0600",
   "stats": {
-    "today_count": 67,
-    "today_species": 9,
-    "total": 730
+    "today_count": 68,
+    "today_species": 10,
+    "total": 731
   },
   "enviro": {
-    "temp_f": 86.5,
-    "humidity": 16.7,
-    "pressure": 826.1
+    "temp_f": 85.2,
+    "humidity": 17.4,
+    "pressure": 826.0
   },
   "detections": [
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.6875,
+      "iso": "2026-09-26T11:17:49",
+      "time": "11:17",
+      "date": "2026-09-26",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-69-2026-09-26-birdnet-11.17.49.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-09-26",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-71-2026-09-26-birdnet-09.17.05.mp3"
-    },
-    {
-      "com_name": "Red-tailed Hawk",
-      "sci_name": "Buteo jamaicensis",
-      "confidence": 0.9551,
-      "iso": "2026-09-26T09:06:43",
-      "time": "09:06",
-      "date": "2026-09-26",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Red-tailed_Hawk-96-2026-09-26-birdnet-09.06.43.mp3"
     }
   ]
 }
