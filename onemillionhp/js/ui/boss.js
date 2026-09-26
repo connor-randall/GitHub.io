@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
 import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js";
-import { bossDef, state } from "../store.js";
+import { bossDef, bossText, state } from "../store.js";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -121,7 +121,7 @@ function renderDeath(b, def) {
   const info = el("pre", "art");
   info.style.setProperty("color", "var(--fg)");
   wrap.append(top, art, info);
-  wrap.append(el("div", "epitaph", def.death_line ?? ""));
+  wrap.append(el("div", "epitaph", bossText(def.death_line ?? "")));
   const teaser = el("div", "teaser", state.content?.next_boss_teaser ?? "SOMETHING LARGER IS APPROACHING...");
   teaser.append(el("span", "blink", "_"));
   wrap.append(teaser);
@@ -140,7 +140,7 @@ export function startTaunts() {
       t.textContent = "";
       return;
     }
-    t.textContent = `"${ph.taunts[Math.floor(Math.random() * ph.taunts.length)]}"`;
+    t.textContent = `"${bossText(ph.taunts[Math.floor(Math.random() * ph.taunts.length)])}"`;
   };
   show();
   clearInterval(tauntTimer);

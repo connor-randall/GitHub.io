@@ -3,7 +3,7 @@
 
 import * as api from "../api.js";
 import { box, el, setArt } from "../ascii.js";
-import { emit, state } from "../store.js";
+import { bossName, emit, state } from "../store.js";
 import { showOverlay } from "./fx.js";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
@@ -79,14 +79,19 @@ export function nameForm(opts) {
 let prompting = false;
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const INTRO = [
-  "> A NEW TERMINAL HAS CONNECTED...",
-  "",
-  "> GORTHAK DOES NOT FIGHT STRANGERS.",
-  "",
-  "> NAME YOURSELF BEFORE YOU FIGHT.",
-];
 const FRAME_W = 40;
+
+/** The typed intro, naming whichever boss is alive right now. */
+function introLines() {
+  const room = FRAME_W - 4; // 2 border chars + 2 spaces of left padding
+  const who = bossName();
+  const one = `> ${who} DOES NOT FIGHT STRANGERS.`;
+  // Long admin-chosen names get their own line instead of breaking the frame.
+  const strangers = one.length <= room ? [one] : [`> ${who}`.slice(0, room), "  DOES NOT FIGHT STRANGERS."];
+  return ["> A NEW TERMINAL HAS CONNECTED...", "", ...strangers, "", "> NAME YOURSELF BEFORE YOU FIGHT."];
+}
+/** @type {string[]} */
+let INTRO = introLines();
 
 /** The framed terminal with the first `chars` characters of INTRO typed. @param {number} chars */
 function introFrame(chars, cursor = true) {
@@ -110,6 +115,7 @@ function introFrame(chars, cursor = true) {
 export function promptForName() {
   if (prompting || !state.me || state.me.name_chosen) return;
   prompting = true;
+  INTRO = introLines();
   const flat = INTRO.join("");
   const total = flat.length;
   // Indices where a line finishes: pause there like a terminal would.

@@ -71,3 +71,23 @@ export const itemById = (id) => state.content?.items.find((/** @type {any} */ i)
 export const rarityById = (id) => state.content?.rarities.find((/** @type {any} */ r) => r.id === id);
 /** @param {string} id */
 export const bossDef = (id) => state.content?.bosses.find((/** @type {any} */ b) => b.id === id);
+
+/**
+ * Boss-flavoured text (taunts, epitaph, prompts) written for the boss's
+ * default name and HP, rewritten for the current boss: an admin rename or a
+ * new max HP shows up everywhere.
+ * @param {string} text
+ */
+export function bossText(text) {
+  const b = state.boss;
+  const def = b && bossDef(b.def_id);
+  if (!b || !def) return text;
+  let out = text;
+  if (def.name && b.name && def.name !== b.name) out = out.split(def.name).join(b.name);
+  const defHp = Number(def.max_hp).toLocaleString("en-US");
+  if (b.max_hp !== def.max_hp) out = out.split(defHp).join(Number(b.max_hp).toLocaleString("en-US"));
+  return out;
+}
+
+/** Current boss name, for UI copy. */
+export const bossName = () => state.boss?.name ?? "THE BOSS";

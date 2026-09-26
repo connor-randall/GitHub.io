@@ -32,7 +32,7 @@ export async function loadHistory() {
         padX: 2,
         style: alive ? RARITY_STYLE.common : { h: "#", v: "#", c: "#" },
       }).join("\n");
-      if (!alive && def) pre.title = def.death_line;
+      if (!alive && def) pre.title = String(def.death_line ?? "").split(def.name).join(b.name);
       return pre;
     });
     const future = el("pre", "history-item dim");
