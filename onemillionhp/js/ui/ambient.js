@@ -1,11 +1,39 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { startMist } from "./mist.js?v=baded90f5e";
+import { startMist } from "./mist.js?v=5fd73ddd5d";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;
 /** @type {HTMLElement | null} */
 let layer = null;
+
+/** Screen rects of every visible line of text in the game, so the mist can
+ * stay out from behind it. */
+function textRects() {
+  const app = document.getElementById("app");
+  if (!app) return [];
+  /** @type {DOMRect[]} */
+  const rects = [];
+  const range = document.createRange();
+  const walker = document.createTreeWalker(app, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+  });
+  const vh = window.innerHeight;
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    const parent = n.parentElement;
+    if (!parent || parent.closest("[hidden], #popups")) continue;
+    range.selectNodeContents(n);
+    for (const r of range.getClientRects()) {
+      if (r.width && r.bottom > 0 && r.top < vh) rects.push(r);
+    }
+  }
+  // Inputs and buttons draw their own boxes; keep those clear too.
+  app.querySelectorAll("button, input, select").forEach((b) => {
+    const r = b.getBoundingClientRect();
+    if (r.width && r.bottom > 0 && r.top < vh) rects.push(r);
+  });
+  return rects;
+}
 
 export function startAmbient() {
   layer = document.getElementById("mist-bg");
@@ -15,6 +43,7 @@ export function startAmbient() {
     ambient: true,
     fps: 14,
     maxEyeFrac: 0.45,
+    avoid: textRects,
     eye: () => {
       const r = boss.getBoundingClientRect();
       // Boss scrolled away or hidden (death screen): swirl around the page centre.

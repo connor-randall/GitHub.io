@@ -25,25 +25,57 @@ function cellSize(host) {
 
 /**
  * @param {HTMLElement} pre  full-screen <pre>
- * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number}} opts
+ * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number,
+ *          avoid?: () => DOMRect[]}} opts
  *   eye: area to keep clear (and swirl around); ambient: background mode
  *   (fainter ring + edge fog); maxEyeFrac: cap eye width as a fraction of
- *   the screen.
+ *   the screen; avoid: rects (e.g. every line of text) the mist must stay
+ *   out of, re-measured on scroll/resize and a few times a second.
  * @returns {Mist}
  */
 export function startMist(pre, opts) {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fps = opts.fps ?? 18;
   const ambient = Boolean(opts.ambient);
+  /** Per-cell multiplier: 0 inside avoided rects, soft falloff around them. */
+  let mask = new Float32Array(0);
+  let maskDirty = true;
+  let maskAt = 0;
   let cell = cellSize(pre);
   let cols = 0, rows = 0;
   const resize = () => {
     cell = cellSize(pre);
     cols = Math.ceil(window.innerWidth / cell.w) + 1;
     rows = Math.ceil(window.innerHeight / cell.h) + 1;
+    maskDirty = true;
   };
   resize();
   window.addEventListener("resize", resize);
+
+  const markDirty = () => (maskDirty = true);
+  if (opts.avoid) window.addEventListener("scroll", markDirty, { passive: true });
+
+  const buildMask = () => {
+    mask = new Float32Array(cols * rows).fill(1);
+    if (!opts.avoid) return;
+    const PAD = 1; // blank margin around text, in cells
+    const SOFT = 2; // thinned band beyond that
+    for (const r of opts.avoid()) {
+      const x0 = Math.floor(r.left / cell.w), x1 = Math.ceil(r.right / cell.w);
+      const y0 = Math.floor(r.top / cell.h), y1 = Math.ceil(r.bottom / cell.h);
+      if (x1 < 0 || y1 < 0 || x0 > cols || y0 > rows) continue;
+      for (let y = Math.max(0, y0 - PAD - SOFT); y < Math.min(rows, y1 + PAD + SOFT); y++) {
+        const dy = y < y0 ? y0 - y : y >= y1 ? y - y1 + 1 : 0;
+        for (let x = Math.max(0, x0 - PAD - SOFT); x < Math.min(cols, x1 + PAD + SOFT); x++) {
+          const dx = x < x0 ? x0 - x : x >= x1 ? x - x1 + 1 : 0;
+          const d = Math.max(dx, dy);
+          const m = d <= PAD ? 0 : (d - PAD) / (SOFT + 1);
+          const i = y * cols + x;
+          if (m < mask[i]) mask[i] = m;
+        }
+      }
+    }
+  };
 
   const t0 = performance.now();
   let raf = 0;
@@ -56,6 +88,13 @@ export function startMist(pre, opts) {
 
   const render = (/** @type {number} */ now) => {
     const t = (now - t0) / 1000;
+    // Text moves (feed updates, tabs switch) without scrolling, so refresh
+    // the mask a few times a second as well as on scroll/resize.
+    if (maskDirty || now - maskAt > 350 || mask.length !== cols * rows) {
+      buildMask();
+      maskDirty = false;
+      maskAt = now;
+    }
     const r = opts.eye();
     const cx = r ? (r.left + r.width / 2) / cell.w : cols / 2;
     const cy = r ? (r.top + r.height / 2) / cell.h : rows / 2;
@@ -71,7 +110,8 @@ export function startMist(pre, opts) {
         const dx = (x - cx) / rx;
         const dy = (y - cy) / ry;
         const e = Math.sqrt(dx * dx + dy * dy); // 1.0 = edge of the clear eye
-        if (e < 1) {
+        const m = mask[y * cols + x];
+        if (e < 1 || m === 0) {
           out += " ";
           continue;
         }
@@ -101,7 +141,7 @@ export function startMist(pre, opts) {
           Math.sin(u + Math.sin(v * 0.8 + t * 0.4) * 1.6) +
           Math.sin(v * 1.3 - Math.sin(u * 0.7 - t * 0.3) * 1.4) +
           Math.sin(x * 0.21 + y * 0.37 + t * 0.6);
-        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 - 0.12);
+        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * m * 1.35 - 0.12);
         out += RAMP[Math.min(RAMP.length - 1, Math.floor(val * RAMP.length))];
       }
       out += "\n";
@@ -122,6 +162,7 @@ export function startMist(pre, opts) {
     stopped = true;
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", resize);
+    window.removeEventListener("scroll", markDirty);
   };
 
   raf = requestAnimationFrame(frame);

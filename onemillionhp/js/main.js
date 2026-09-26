@@ -2,19 +2,19 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=baded90f5e";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=baded90f5e";
-import { connectLive } from "./live.js?v=baded90f5e";
-import * as sound from "./sound.js?v=baded90f5e";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=baded90f5e";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=baded90f5e";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=baded90f5e";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=baded90f5e";
-import { renderFeed, tickAges } from "./ui/feed.js?v=baded90f5e";
-import { popup, shake } from "./ui/fx.js?v=baded90f5e";
-import { showError } from "./ui/errors.js?v=baded90f5e";
-import { promptForName } from "./ui/nameform.js?v=baded90f5e";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=baded90f5e";
+import * as api from "./api.js?v=5fd73ddd5d";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=5fd73ddd5d";
+import { connectLive } from "./live.js?v=5fd73ddd5d";
+import * as sound from "./sound.js?v=5fd73ddd5d";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=5fd73ddd5d";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=5fd73ddd5d";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=5fd73ddd5d";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=5fd73ddd5d";
+import { renderFeed, tickAges } from "./ui/feed.js?v=5fd73ddd5d";
+import { popup, shake } from "./ui/fx.js?v=5fd73ddd5d";
+import { showError } from "./ui/errors.js?v=5fd73ddd5d";
+import { promptForName } from "./ui/nameform.js?v=5fd73ddd5d";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=5fd73ddd5d";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
