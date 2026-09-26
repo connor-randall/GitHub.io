@@ -1,9 +1,9 @@
 // [ HISTORY ] panel: every boss instance, alive or dead.
 
-import * as api from "../api.js?v=5fd73ddd5d";
-import { RARITY_STYLE, box, centerBlock, duration, el, fmt } from "../ascii.js?v=5fd73ddd5d";
-import { bossDef, state } from "../store.js?v=5fd73ddd5d";
-import { showError } from "./errors.js?v=5fd73ddd5d";
+import * as api from "../api.js?v=292b438de3";
+import { RARITY_STYLE, box, centerBlock, duration, el, fmt } from "../ascii.js?v=292b438de3";
+import { bossDef, state } from "../store.js?v=292b438de3";
+import { showError } from "./errors.js?v=292b438de3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

@@ -26,19 +26,24 @@ function cellSize(host) {
 /**
  * @param {HTMLElement} pre  full-screen <pre>
  * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number,
- *          avoid?: () => DOMRect[]}} opts
+ *          avoid?: () => DOMRect[], frameLayer?: HTMLElement}} opts
  *   eye: area to keep clear (and swirl around); ambient: background mode
  *   (fainter ring + edge fog); maxEyeFrac: cap eye width as a fraction of
  *   the screen; avoid: rects (e.g. every line of text) the mist must stay
- *   out of, re-measured on scroll/resize and a few times a second.
+ *   out of, re-measured on scroll/resize and a few times a second;
+ *   frameLayer: separate <pre> the frames are drawn into, so they can be
+ *   styled brighter than the mist.
  * @returns {Mist}
  */
 export function startMist(pre, opts) {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fps = opts.fps ?? 18;
   const ambient = Boolean(opts.ambient);
-  /** Per-cell multiplier: 0 inside avoided rects, soft falloff around them. */
-  let mask = new Float32Array(0);
+  /** Per-cell layout from the avoided rects: 0 open mist, 1 inside a frame
+   * (blank), 2 horizontal edge, 3 vertical edge, 4 corner. */
+  let kind = new Uint8Array(0);
+  /** Extra density just outside frames: mist piles up against them. */
+  let pile = new Float32Array(0);
   let maskDirty = true;
   let maskAt = 0;
   let cell = cellSize(pre);
@@ -55,23 +60,60 @@ export function startMist(pre, opts) {
   const markDirty = () => (maskDirty = true);
   if (opts.avoid) window.addEventListener("scroll", markDirty, { passive: true });
 
+  /** Text rects -> cell boxes, merged into blocks, each drawn as a frame. */
   const buildMask = () => {
-    mask = new Float32Array(cols * rows).fill(1);
+    kind = new Uint8Array(cols * rows);
+    pile = new Float32Array(cols * rows);
     if (!opts.avoid) return;
-    const PAD = 1; // blank margin around text, in cells
-    const SOFT = 2; // thinned band beyond that
+    /** @type {number[][]} [x0, y0, x1, y1) in cells, text plus 1 col padding */
+    const boxes = [];
     for (const r of opts.avoid()) {
-      const x0 = Math.floor(r.left / cell.w), x1 = Math.ceil(r.right / cell.w);
-      const y0 = Math.floor(r.top / cell.h), y1 = Math.ceil(r.bottom / cell.h);
-      if (x1 < 0 || y1 < 0 || x0 > cols || y0 > rows) continue;
-      for (let y = Math.max(0, y0 - PAD - SOFT); y < Math.min(rows, y1 + PAD + SOFT); y++) {
-        const dy = y < y0 ? y0 - y : y >= y1 ? y - y1 + 1 : 0;
-        for (let x = Math.max(0, x0 - PAD - SOFT); x < Math.min(cols, x1 + PAD + SOFT); x++) {
-          const dx = x < x0 ? x0 - x : x >= x1 ? x - x1 + 1 : 0;
-          const d = Math.max(dx, dy);
-          const m = d <= PAD ? 0 : (d - PAD) / (SOFT + 1);
-          const i = y * cols + x;
-          if (m < mask[i]) mask[i] = m;
+      // Round (not floor/ceil) vertically so neighbouring blocks don't
+      // swell into each other; always at least one row tall.
+      const top = Math.round(r.top / cell.h);
+      const b = [Math.floor(r.left / cell.w) - 1, top,
+        Math.ceil(r.right / cell.w) + 1, Math.max(top + 1, Math.round(r.bottom / cell.h))];
+      if (b[2] < 0 || b[3] < 0 || b[0] > cols || b[1] > rows) continue;
+      // Blocks arrive pre-grouped; merge only genuine overlaps. Blocks that
+      // merely touch share an edge, like a divider.
+      for (let i = 0; i < boxes.length; i++) {
+        const o = boxes[i];
+        if (b[0] < o[2] && o[0] < b[2] && b[1] < o[3] && o[1] < b[3]) {
+          b[0] = Math.min(b[0], o[0]); b[1] = Math.min(b[1], o[1]);
+          b[2] = Math.max(b[2], o[2]); b[3] = Math.max(b[3], o[3]);
+          boxes.splice(i, 1);
+          i = -1; // grown: re-check against everything
+        }
+      }
+      boxes.push(b);
+    }
+    const set = (/** @type {number} */ x, /** @type {number} */ y, /** @type {number} */ k) => {
+      if (x >= 0 && y >= 0 && x < cols && y < rows && kind[y * cols + x] !== 1) kind[y * cols + x] = k;
+    };
+    for (const [x0, y0, x1, y1] of boxes) {
+      for (let y = Math.max(0, y0); y < Math.min(rows, y1); y++)
+        for (let x = Math.max(0, x0); x < Math.min(cols, x1); x++) kind[y * cols + x] = 1;
+      for (let x = x0; x < x1; x++) {
+        set(x, y0 - 1, 2);
+        set(x, y1, 2);
+      }
+      for (let y = y0; y < y1; y++) {
+        set(x0 - 1, y, 3);
+        set(x1, y, 3);
+      }
+      for (const [cx, cy] of [[x0 - 1, y0 - 1], [x1, y0 - 1], [x0 - 1, y1], [x1, y1]]) set(cx, cy, 4);
+      // Mist piling up against the outside of the frame.
+      for (let d = 1; d <= 3; d++) {
+        const w = (4 - d) / 4 * 0.45;
+        for (let x = x0 - 1 - d; x <= x1 + d; x++) {
+          for (const y of [y0 - 1 - d, y1 + d]) {
+            if (x >= 0 && y >= 0 && x < cols && y < rows) pile[y * cols + x] = Math.max(pile[y * cols + x], w);
+          }
+        }
+        for (let y = y0 - 1 - d; y <= y1 + d; y++) {
+          for (const x of [x0 - 1 - d, x1 + d]) {
+            if (x >= 0 && y >= 0 && x < cols && y < rows) pile[y * cols + x] = Math.max(pile[y * cols + x], w);
+          }
         }
       }
     }
@@ -90,7 +132,7 @@ export function startMist(pre, opts) {
     const t = (now - t0) / 1000;
     // Text moves (feed updates, tabs switch) without scrolling, so refresh
     // the mask a few times a second as well as on scroll/resize.
-    if (maskDirty || now - maskAt > 350 || mask.length !== cols * rows) {
+    if (maskDirty || now - maskAt > 350 || kind.length !== cols * rows) {
       buildMask();
       maskDirty = false;
       maskAt = now;
@@ -105,14 +147,17 @@ export function startMist(pre, opts) {
     ripples = ripples.filter((p) => t - p.t < 2.5);
 
     let out = "";
+    let frames = "";
+    const split = Boolean(opts.frameLayer);
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         const dx = (x - cx) / rx;
         const dy = (y - cy) / ry;
         const e = Math.sqrt(dx * dx + dy * dy); // 1.0 = edge of the clear eye
-        const m = mask[y * cols + x];
-        if (e < 1 || m === 0) {
+        const k = kind[y * cols + x];
+        if (e < 1 || k === 1) {
           out += " ";
+          if (split) frames += " ";
           continue;
         }
         const edge = Math.min(1, (e - 1) / 0.35);
@@ -141,12 +186,26 @@ export function startMist(pre, opts) {
           Math.sin(u + Math.sin(v * 0.8 + t * 0.4) * 1.6) +
           Math.sin(v * 1.3 - Math.sin(u * 0.7 - t * 0.3) * 1.4) +
           Math.sin(x * 0.21 + y * 0.37 + t * 0.6);
-        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * m * 1.35 - 0.12);
+        weight += pile[y * cols + x];
+        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 - 0.12);
+        if (k > 1) {
+          // Frame edge: always drawn, lit up where the mist runs thick.
+          const hot = val > 0.5;
+          const ch = fade < 0.3 ? " " : k === 2 ? (hot ? "=" : "-") : k === 3 ? (hot ? "#" : "|") : hot ? "#" : "+";
+          if (split) {
+            frames += ch;
+            out += " ";
+          } else out += ch;
+          continue;
+        }
         out += RAMP[Math.min(RAMP.length - 1, Math.floor(val * RAMP.length))];
+        if (split) frames += " ";
       }
       out += "\n";
+      if (split) frames += "\n";
     }
     pre.textContent = out;
+    if (opts.frameLayer) opts.frameLayer.textContent = frames;
   };
 
   const frame = (/** @type {number} */ now) => {

@@ -1,12 +1,12 @@
 // [ BAG ] panel: the collection log. Every item is listed; ones you have
 // not found show as a dotted silhouette.
 
-import * as api from "../api.js?v=5fd73ddd5d";
-import { el, fmt, setArt } from "../ascii.js?v=5fd73ddd5d";
-import { bossDef, emit, rarityById, state } from "../store.js?v=5fd73ddd5d";
-import { showError } from "./errors.js?v=5fd73ddd5d";
-import { itemLines, showOverlay } from "./fx.js?v=5fd73ddd5d";
-import { bonusLine } from "./player.js?v=5fd73ddd5d";
+import * as api from "../api.js?v=292b438de3";
+import { el, fmt, setArt } from "../ascii.js?v=292b438de3";
+import { bossDef, emit, rarityById, state } from "../store.js?v=292b438de3";
+import { showError } from "./errors.js?v=292b438de3";
+import { itemLines, showOverlay } from "./fx.js?v=292b438de3";
+import { bonusLine } from "./player.js?v=292b438de3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

@@ -301,6 +301,8 @@ b { font-weight: 700; }
 .mist-bg.p2 { color: #e0a24a; }
 .mist-bg.p3 { color: #ff5a44; }
 .mist-bg.dead { color: #6d6a62; }
+/* frames around text: same grid as the mist, drawn brighter */
+.mist-frames.shown { opacity: .75; }
 #shake { position: relative; z-index: 1; }
 .identify-eye { display: inline-block; padding: 6px 4px; }
 .identify-title {
