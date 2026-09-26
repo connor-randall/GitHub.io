@@ -110,6 +110,20 @@ async function boot() {
       setOnline(u.online ?? state.online);
     },
     onOnline: setOnline,
+    // The admin changed something: take the server's word for everything,
+    // even if it "goes backwards" (a reset lowers HP totals).
+    onRefresh: (r) => {
+      state.boss = null;
+      state.feed = [];
+      applyBoss(r.boss);
+      mergeFeed(r.feed ?? []);
+      emit("boss", "feed");
+      api.getMe().then((m) => {
+        state.me = m;
+        emit("me");
+        renderPanels();
+      }).catch(() => {});
+    },
     onMode: setLink,
   });
 

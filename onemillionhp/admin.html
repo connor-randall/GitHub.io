@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ONE MILLION HP ADMIN</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0a08">
+<!-- Same API origin rule as index.html; tools/publish_web.py rewrites it. -->
+<meta name="omhp-api" content="https://world.conradrandy.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="crt" aria-hidden="true"></div>
+<main class="app admin">
+  <header class="top">
+    <pre class="rule">=====================================</pre>
+    <h1 class="admin-title">ONE MILLION HP :: ADMIN</h1>
+    <div class="statusline"><a href="./">&lt; back to the fight</a><span class="sep">::</span><button id="logout" class="btn-text" type="button" hidden>[logout]</button></div>
+    <pre class="rule">=====================================</pre>
+  </header>
+
+  <form id="login" class="adm-login" autocomplete="off">
+    <label for="passcode">&gt; PASSCODE</label>
+    <input id="passcode" type="password" autocomplete="current-password" required>
+    <button type="submit" class="inline-btn">[ ENTER ]</button>
+  </form>
+
+  <div id="panel" hidden>
+    <pre id="status" class="adm-status"></pre>
+
+    <section class="adm">
+      <h2>[ BOSS ]</h2>
+      <form data-action="rename_boss">
+        <label>NAME <input name="name" maxlength="24" placeholder="(default)"></label>
+        <label>SUBTITLE <input name="subtitle" maxlength="40" placeholder="(default)"></label>
+        <button class="inline-btn">[ RENAME ]</button>
+        <p class="hint">blank = back to the name in bosses.json</p>
+      </form>
+      <form data-action="set_hp">
+        <label>HP <input name="hp" type="number" min="0" inputmode="numeric" required></label>
+        <button class="inline-btn">[ SET HP ]</button>
+        <span class="quick">
+          <button type="button" class="inline-btn" data-pct="100">100%</button>
+          <button type="button" class="inline-btn" data-pct="50">50%</button>
+          <button type="button" class="inline-btn" data-pct="10">10%</button>
+          <button type="button" class="inline-btn" data-pct="0.01">1 hit left</button>
+        </span>
+        <p class="hint">0 kills the boss (death screen). any other value revives it.</p>
+      </form>
+      <form data-action="reset_boss" data-confirm>
+        <label>MAX HP <input name="max_hp" type="number" min="1" inputmode="numeric" placeholder="(keep)"></label>
+        <button class="inline-btn danger">[ RESET BOSS ]</button>
+        <p class="hint">full HP, clears this boss's feed, gives everyone their ultimate back. leaderboards and items stay.</p>
+      </form>
+    </section>
+
+    <section class="adm">
+      <h2>[ PLAYERS ]</h2>
+      <form data-action="refill_attacks">
+        <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
+        <button class="inline-btn">[ REFILL TODAY'S ATTACKS ]</button>
+      </form>
+      <form data-action="reset_ultimates">
+        <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
+        <button class="inline-btn">[ GIVE ULTIMATES BACK ]</button>
+      </form>
+      <form data-action="grant_item">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <label>ITEM <select name="item_id" id="item-select"></select></label>
+        <button class="inline-btn">[ GIVE ITEM ]</button>
+      </form>
+      <form data-action="rename_player">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <label>NEW NAME <input name="name" maxlength="16" required></label>
+        <button class="inline-btn">[ RENAME ]</button>
+      </form>
+      <form data-action="ban">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <button class="inline-btn danger">[ BAN ]</button>
+        <button class="inline-btn" data-override="unban">[ UNBAN ]</button>
+      </form>
+      <datalist id="players"></datalist>
+      <pre id="recent" class="adm-recent"></pre>
+    </section>
+
+    <section class="adm">
+      <h2>[ RULES ]</h2>
+      <form data-action="set_tuning">
+        <label>ATTACKS / DAY <input name="attacks_per_day" type="number" min="1" max="1000"></label>
+        <label>CRIT % <input name="crit_pct" type="number" min="0" max="100" step="0.1"></label>
+        <label>DROP RATE x <input name="loot_mult" type="number" min="0" max="50" step="0.1"></label>
+        <button class="inline-btn">[ SAVE RULES ]</button>
+        <p class="hint">applies instantly to everyone. drop rate 2 = double loot weekend.</p>
+      </form>
+    </section>
+
+    <section class="adm">
+      <h2>[ DANGER ]</h2>
+      <form data-action="reset_leaderboards" data-confirm>
+        <button class="inline-btn danger">[ WIPE LEADERBOARDS ]</button>
+        <span class="hint">zeroes everyone's damage/hits/crits (and levels)</span>
+      </form>
+      <form data-action="reset_items" data-confirm>
+        <button class="inline-btn danger">[ WIPE ALL ITEMS ]</button>
+        <span class="hint">empties every bag</span>
+      </form>
+      <form data-action="wipe_everything" data-confirm>
+        <button class="inline-btn danger">[ WIPE EVERYTHING ]</button>
+        <span class="hint">all players, items, history. boss #001 respawns.</span>
+      </form>
+    </section>
+
+    <section class="adm">
+      <h2>[ PASSCODE ]</h2>
+      <form data-action="set_passcode">
+        <label>NEW <input name="passcode" type="password" minlength="4" autocomplete="new-password" required></label>
+        <button class="inline-btn">[ CHANGE ]</button>
+        <p class="hint">logs out every admin session, including this one.</p>
+      </form>
+    </section>
+  </div>
+
+  <ol id="log" class="adm-log" aria-live="polite"></ol>
+</main>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

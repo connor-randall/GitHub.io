@@ -11,6 +11,7 @@ const MAX_BACKOFF_MS = 30000;
  *   onSnapshot: (s: {boss: any, feed: any[], online: number, server_time?: number}) => void,
  *   onUpdate: (u: {boss: any, events: any[], online: number}) => void,
  *   onOnline: (n: number) => void,
+ *   onRefresh: (r: {boss: any, feed: any[]}) => void,
  *   onMode: (mode: "live"|"poll"|"down") => void,
  * }} LiveHandlers
  */
@@ -64,6 +65,7 @@ export function connectLive(h) {
       if (msg.type === "snapshot") h.onSnapshot(msg);
       else if (msg.type === "update") h.onUpdate(msg);
       else if (msg.type === "heartbeat") h.onOnline(msg.online);
+      else if (msg.type === "refresh") h.onRefresh(msg);
     };
     ws.onclose = () => {
       ws = null;

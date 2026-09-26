@@ -1,0 +1,40 @@
+/* Admin panel: same terminal skin, form-heavy. */
+
+.admin { max-width: 760px; }
+.admin-title { font-size: 18px; letter-spacing: .2em; margin: 8px 0 4px; }
+.admin a { color: var(--dim); }
+.admin a:hover { color: var(--fg); }
+
+.adm-login { display: flex; gap: 10px; align-items: center; justify-content: center; margin: 40px 0; flex-wrap: wrap; }
+
+.adm-status {
+  white-space: pre-wrap; font-size: 13px; margin: 16px 0; padding: 10px 12px;
+  border: 1px dashed var(--faint); color: var(--fg);
+}
+.adm { margin: 22px 0; }
+.adm h2 { font-size: 14px; color: var(--amber); letter-spacing: .15em; margin: 0 0 8px; }
+.adm form {
+  display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
+  padding: 8px 0; border-bottom: 1px dotted var(--faint);
+}
+.adm label { color: var(--dim); font-size: 12px; display: inline-flex; gap: 6px; align-items: center; }
+.admin input, .admin select {
+  background: var(--bg-2); color: var(--fg); border: 1px dashed var(--dim); border-radius: 0;
+  font: inherit; font-size: 16px; /* no iOS zoom */ padding: 3px 6px; width: 15ch;
+}
+.admin input[type="number"] { width: 12ch; }
+.admin input:focus, .admin select:focus { outline: none; border-color: var(--amber); }
+.admin input[name="name"], .admin input[name="subtitle"] { text-transform: uppercase; }
+.adm .hint { flex-basis: 100%; margin: 0; font-size: 11px; color: var(--dim); }
+.adm span.hint { flex-basis: auto; }
+.adm .quick { display: inline-flex; gap: 8px; }
+.inline-btn.danger { color: var(--red); }
+.inline-btn.danger:hover { background: var(--red); color: var(--bg); }
+.inline-btn.armed { background: var(--red); color: var(--bg); animation: armed-pulse .6s steps(1) infinite; }
+@keyframes armed-pulse { 50% { background: var(--amber); } }
+.adm-recent { font-size: 11px; color: var(--dim); margin-top: 10px; white-space: pre; overflow-x: auto; }
+
+.adm-log { list-style: none; padding: 0; margin: 20px 0; font-size: 12px; }
+.adm-log li { padding: 2px 0; }
+.adm-log .ok { color: var(--green); }
+.adm-log .bad { color: var(--red); }

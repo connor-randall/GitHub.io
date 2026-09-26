@@ -332,6 +332,8 @@ b { font-weight: 700; }
 .foot { margin-top: 30px; text-align: center; font-size: 12px; }
 .foot p { margin: 6px 0; }
 .err { color: var(--red); min-height: 1.3em; }
+.admin-link { color: var(--faint); text-decoration: none; font-size: 11px; }
+.admin-link:hover { color: var(--dim); }
 
 @media (max-width: 420px) {
   body { font-size: 13px; }
