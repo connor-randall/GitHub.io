@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-09-26T08:30:03-0600",
+  "generated_at": "2026-09-26T08:40:03-0600",
   "stats": {
-    "today_count": 36,
-    "today_species": 3,
-    "total": 699
+    "today_count": 40,
+    "today_species": 5,
+    "total": 703
   },
   "enviro": {
-    "temp_f": 71.0,
-    "humidity": 28.6,
-    "pressure": 825.8
+    "temp_f": 82.7,
+    "humidity": 21.1,
+    "pressure": 825.9
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.7424,
+      "iso": "2026-09-26T08:37:11",
+      "time": "08:37",
+      "date": "2026-09-26",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-74-2026-09-26-birdnet-08.37.11.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9084,
+      "iso": "2026-09-26T08:33:32",
+      "time": "08:33",
+      "date": "2026-09-26",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-91-2026-09-26-birdnet-08.33.32.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7456,
+      "iso": "2026-09-26T08:33:26",
+      "time": "08:33",
+      "date": "2026-09-26",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-75-2026-09-26-birdnet-08.33.26.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9279,
+      "iso": "2026-09-26T08:33:20",
+      "time": "08:33",
+      "date": "2026-09-26",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-93-2026-09-26-birdnet-08.33.20.mp3"
+    },
     {
       "com_name": "American Goldfinch",
       "sci_name": "Spinus tristis",
@@ -120,46 +160,6 @@
       "date": "2026-09-26",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-83-2026-09-26-birdnet-07.26.55.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8976,
-      "iso": "2026-09-26T07:26:49",
-      "time": "07:26",
-      "date": "2026-09-26",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-90-2026-09-26-birdnet-07.26.49.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8383,
-      "iso": "2026-09-26T07:26:43",
-      "time": "07:26",
-      "date": "2026-09-26",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-84-2026-09-26-birdnet-07.26.43.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8618,
-      "iso": "2026-09-26T07:26:12",
-      "time": "07:26",
-      "date": "2026-09-26",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-86-2026-09-26-birdnet-07.26.12.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8236,
-      "iso": "2026-09-26T07:26:09",
-      "time": "07:26",
-      "date": "2026-09-26",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-82-2026-09-26-birdnet-07.26.09.mp3"
     }
   ]
 }
