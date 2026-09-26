@@ -1,6 +1,6 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { startMist } from "./mist.js?v=9683361055";
+import { startMist } from "./mist.js?v=831bde943c";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;
