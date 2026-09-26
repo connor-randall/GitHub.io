@@ -1,10 +1,10 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=a770519980";
-import { itemById, now, rarityById, state } from "../store.js?v=a770519980";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=9683361055";
+import { itemById, now, rarityById, state } from "../store.js?v=9683361055";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
-const SHOW = 40;
+const SHOW = 20;
 
 /** Build the message spans for one event. @param {any} e @returns {Node[]} */
 function message(e) {

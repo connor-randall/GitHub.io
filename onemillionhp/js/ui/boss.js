@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=a770519980";
-import { bossDef, bossText, state } from "../store.js?v=a770519980";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=9683361055";
+import { bossDef, bossText, state } from "../store.js?v=9683361055";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -23,7 +23,7 @@ function drawArt() {
   const ph = phaseDef();
   if (!ph) return;
   const hurt = performance.now() < hurtUntil;
-  setArt(artEl, hurt ? ph.hurt_art : ph.art, 15);
+  setArt(artEl, hurt ? ph.hurt_art : ph.art, 13);
   artEl.classList.toggle("glitch", Boolean(ph.glitch));
   artEl.classList.toggle("phase-2", ph.phase === 2);
   artEl.classList.toggle("phase-3", ph.phase >= 3);

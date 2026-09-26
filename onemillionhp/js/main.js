@@ -2,19 +2,19 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=a770519980";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=a770519980";
-import { connectLive } from "./live.js?v=a770519980";
-import * as sound from "./sound.js?v=a770519980";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=a770519980";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=a770519980";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=a770519980";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=a770519980";
-import { renderFeed, tickAges } from "./ui/feed.js?v=a770519980";
-import { popup, shake } from "./ui/fx.js?v=a770519980";
-import { showError } from "./ui/errors.js?v=a770519980";
-import { promptForName } from "./ui/nameform.js?v=a770519980";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=a770519980";
+import * as api from "./api.js?v=9683361055";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=9683361055";
+import { connectLive } from "./live.js?v=9683361055";
+import * as sound from "./sound.js?v=9683361055";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=9683361055";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=9683361055";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=9683361055";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=9683361055";
+import { renderFeed, tickAges } from "./ui/feed.js?v=9683361055";
+import { popup, shake } from "./ui/fx.js?v=9683361055";
+import { showError } from "./ui/errors.js?v=9683361055";
+import { promptForName } from "./ui/nameform.js?v=9683361055";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=9683361055";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -60,8 +60,8 @@ function reactToOthers(events) {
 
 async function boot() {
   setArt($("boss-art"), ["", "", "", "   . . . summoning . . .", "", ""], 15);
-  document.querySelectorAll(".logo-wide").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_WIDE, 13));
-  document.querySelectorAll(".logo-stack").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_STACK, 13));
+  document.querySelectorAll(".logo-wide").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_WIDE, 11));
+  document.querySelectorAll(".logo-stack").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_STACK, 11));
   const refit = autoFit();
 
   on("boss", () => {
