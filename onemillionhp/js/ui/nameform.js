@@ -2,9 +2,10 @@
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
 import * as api from "../api.js";
-import { box, el, setArt } from "../ascii.js";
-import { bossName, emit, state } from "../store.js";
+import { el } from "../ascii.js";
+import { emit, state } from "../store.js";
 import { showOverlay } from "./fx.js";
+import { startMist } from "./mist.js";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -77,99 +78,40 @@ export function nameForm(opts) {
 }
 
 let prompting = false;
-const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const FRAME_W = 40;
-
-/** The typed intro, naming whichever boss is alive right now. */
-function introLines() {
-  const room = FRAME_W - 4; // 2 border chars + 2 spaces of left padding
-  const who = bossName();
-  const one = `> ${who} DOES NOT FIGHT STRANGERS.`;
-  // Long admin-chosen names get their own line instead of breaking the frame.
-  const strangers = one.length <= room ? [one] : [`> ${who}`.slice(0, room), "  DOES NOT FIGHT STRANGERS."];
-  return ["> A NEW TERMINAL HAS CONNECTED...", "", ...strangers, "", "> NAME YOURSELF BEFORE YOU FIGHT."];
-}
-/** @type {string[]} */
-let INTRO = introLines();
-
-/** The framed terminal with the first `chars` characters of INTRO typed. @param {number} chars */
-function introFrame(chars, cursor = true) {
-  let left = chars;
-  const lines = INTRO.map((line) => {
-    const shown = line.slice(0, Math.max(0, left));
-    left -= line.length;
-    return shown;
-  });
-  // Cursor goes after the last character typed so far.
-  const cursorLine = Math.min(lines.length - 1, lines.findIndex((l, i) => l.length < INTRO[i].length));
-  const at = cursorLine < 0 ? lines.length - 1 : cursorLine;
-  if (cursor) lines[at] += "_";
-  const title = "[ ONE MILLION HP :: IDENTIFY ]";
-  const body = box(["", ...lines, ""], { width: FRAME_W, align: "left", padX: 2 });
-  body[0] = "+" + title.padEnd(FRAME_W - 2, "-").slice(0, FRAME_W - 2) + "+";
-  return body;
-}
-
-/** "Name yourself" - a dimmed screen, a typed-out message, then the name box. */
+/** "Name yourself before fighting", wrapped in drifting ASCII mist. */
 export function promptForName() {
   if (prompting || !state.me || state.me.name_chosen) return;
   prompting = true;
-  INTRO = introLines();
-  const flat = INTRO.join("");
-  const total = flat.length;
-  // Indices where a line finishes: pause there like a terminal would.
-  const lineEnds = new Set(INTRO.map((_, i) => INTRO.slice(0, i + 1).join("").length));
+  /** @type {() => void} */
+  let stopMist = () => {};
   showOverlay(
     (inner, close) => {
-      inner.parentElement?.classList.add("identify");
-      const pre = el("pre", "art identify-text");
-      const rest = el("div", "identify-form");
-      rest.hidden = true;
-      inner.append(pre, rest);
+      const overlay = inner.parentElement;
+      overlay?.classList.add("identify");
+      const mist = el("pre", "mist");
+      mist.setAttribute("aria-hidden", "true");
+      overlay?.prepend(mist);
+
+      const eye = el("div", "identify-eye");
+      const title = el("h2", "identify-title", "NAME YOURSELF BEFORE FIGHTING");
       const { form, input } = nameForm({ submitLabel: "[ ENTER ]", withRoll: true, onSaved: close });
       form.classList.add("prompt");
+      eye.append(title, form);
       const later = el("div", "actions");
       const b = el("button", "", "[ just looking ]");
       b.addEventListener("click", close);
       later.append(b);
-      rest.append(form, later);
+      inner.append(eye, later);
 
-      let typed = reduced ? total : 0;
-      /** @type {number} */
-      let timer = 0;
-      let blink = 0;
-      const reveal = () => {
-        if (!rest.hidden) return;
-        rest.hidden = false;
-        input.focus();
-        // The cursor keeps blinking at the end of the message.
-        blink = window.setInterval(() => {
-          if (!pre.isConnected) return clearInterval(blink);
-          setArt(pre, introFrame(total, Date.now() % 1000 < 500), 16);
-        }, 250);
-      };
-      const tick = () => {
-        setArt(pre, introFrame(typed), 16);
-        if (typed >= total) return reveal();
-        typed += 1;
-        const delay = lineEnds.has(typed) ? 380 : flat[typed - 1] === "." ? 90 : 28;
-        timer = window.setTimeout(tick, delay);
-      };
-      // Tap/click/key skips the typing straight to the name box.
-      const skip = () => {
-        if (typed >= total) return;
-        clearTimeout(timer);
-        typed = total;
-        tick();
-      };
-      pre.addEventListener("click", skip);
-      document.addEventListener("keydown", skip, { once: true });
-      tick();
+      stopMist = startMist(mist, () => eye.getBoundingClientRect());
+      requestAnimationFrame(() => input.focus());
     },
     { dismissable: false },
   ).then(() => {
+    stopMist();
     prompting = false;
-    document.getElementById("overlay")?.classList.remove("identify");
+    const overlay = document.getElementById("overlay");
+    overlay?.classList.remove("identify");
   });
 }

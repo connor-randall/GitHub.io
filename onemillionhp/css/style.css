@@ -277,13 +277,25 @@ b { font-weight: 700; }
 .btn-big.needs-name { color: var(--amber); }
 .btn-big.needs-name .br { color: var(--amber); }
 
-/* "identify yourself": near-black screen, green-phosphor typing */
-.overlay.identify { background: rgba(4,4,3,.97); animation: dim-in .5s ease-out both; }
+/* "name yourself": dark screen, ASCII mist swirling around the name box */
+.overlay.identify { background: rgba(4,4,3,.96); animation: dim-in .6s ease-out both; }
 @keyframes dim-in { from { background: rgba(4,4,3,0); } }
-.identify-text { color: var(--green); text-shadow: 0 0 8px rgba(155,255,122,.35); cursor: pointer; }
-.identify-form { animation: rise-in .35s ease-out both; }
-@keyframes rise-in { from { opacity: 0; transform: translateY(8px); } }
-.identify-form .name-form input { font-size: 18px; width: 18ch; border-color: var(--green); }
+.mist {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  margin: 0; font-size: 12px; line-height: 1.15; white-space: pre;
+  color: #b9b4a4; opacity: .55; animation: mist-in 1.2s ease-out both;
+}
+@keyframes mist-in { from { opacity: 0; } }
+.overlay.identify .overlay-inner { position: relative; z-index: 1; }
+.identify-eye { display: inline-block; padding: 6px 4px; }
+.identify-title {
+  margin: 0 0 6px; font-size: 18px; font-weight: 800; letter-spacing: .14em; color: var(--fg);
+  text-shadow: 0 0 12px rgba(232,225,203,.35);
+  animation: title-in 1.4s ease-out both;
+}
+@keyframes title-in { from { opacity: 0; letter-spacing: .5em; filter: blur(3px); } }
+.identify-eye .name-form input { font-size: 18px; width: 17ch; }
+@media (max-width: 420px) { .identify-title { font-size: 15px; letter-spacing: .08em; } }
 .name-form input {
   background: var(--bg-2); color: var(--fg); border: 1px dashed var(--dim); border-radius: 0;
   font: inherit; font-size: 16px; /* 16px stops iOS zooming on focus */
