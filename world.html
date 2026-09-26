@@ -73,6 +73,8 @@ body { display:flex; align-items:flex-start; justify-content:center; padding:86p
 .date-line { text-align:center; font-size:14px; letter-spacing:2px; margin:0 0 14px; }
 .date-line .seed { color:var(--accent); }
 .shortage { color:var(--bad); }
+.live-dot { color:var(--accent); font-size:12px; animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity:.45; } }
 .card { border:1px solid var(--border); background:rgba(255,255,255,0.015); border-radius:4px; padding:14px; line-height:1.7; font-size:12.5px; }
 .card .headline { color:var(--text); font-size:14px; letter-spacing:1px; margin-bottom:4px; }
 .card .headline b { color:var(--bad); font-weight:normal; }
@@ -161,7 +163,7 @@ tr.current td { color:var(--accent-2); }
       its people eat, work, fall in love, have children, open and lose businesses, and die, all through
       simple rules for food, money, prices, families and health. There are no scripted events and no AI.
       Each world runs <strong>until nobody is left alive</strong>, then the next seed begins.
-      One simulated day passes every second, and this page updates every 15 minutes.
+      One simulated day passes every second, and this page follows it live.
     </div>
 
     <div id="app"><div class="loading-note">// waking the settlement... //</div></div>
@@ -171,9 +173,12 @@ tr.current td { color:var(--accent-2); }
 
 <script>
 (function () {
-  var BASE = 'world01/';
+  var LIVE = 'https://world.conradrandy.com/';
+  var STATIC = 'world01/';
+  var LIVE_POLL = 10 * 1000, STATIC_POLL = 2 * 60 * 1000;
   var app = document.getElementById('app');
-  var state = { world: null, chronicle: null, year: null, filter: 'all', lbTab: 'longest', lbOpen: false };
+  var state = { world: null, chronicle: null, year: null, filter: 'all', lbTab: 'longest', lbOpen: false,
+                source: null, built: false, historyKey: null };
 
   var EVENT_GROUPS = {
     all: null,
@@ -187,10 +192,28 @@ tr.current td { color:var(--accent-2); }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
   function n(v) { return Math.round(v).toLocaleString('en-US'); }
-  function fetchJson(path) {
-    return fetch(BASE + path + '?t=' + Math.floor(Date.now() / 60000)).then(function (r) {
-      if (!r.ok) throw new Error(path + ' ' + r.status);
+  function getJson(url, timeoutMs) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = ctl && setTimeout(function () { ctl.abort(); }, timeoutMs);
+    return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) {
+      clearTimeout(timer);
+      if (!r.ok) throw new Error(url + ' ' + r.status);
       return r.json();
+    }, function (e) { clearTimeout(timer); throw e; });
+  }
+  // path is 'world.json', 'chronicle.json' or 'years/N.json'. The live API is
+  // tried first; if it is unreachable the page falls back to the static files
+  // published to this site every 15 minutes.
+  function fetchJson(path) {
+    var staticPath = STATIC + (path === 'chronicle.json' ? path : 'live/' + path) +
+      '?t=' + Math.floor(Date.now() / 60000);
+    if (state.source === 'static' && path.indexOf('years/') === 0) return getJson(staticPath, 15000);
+    return getJson(LIVE + path, 4000).then(function (data) {
+      if (path === 'world.json') state.source = 'live';
+      return data;
+    }, function () {
+      if (path === 'world.json') state.source = 'static';
+      return getJson(staticPath, 15000);
     });
   }
 
@@ -203,7 +226,8 @@ tr.current td { color:var(--accent-2); }
     var s = w.status;
     return '<div class="section">' +
       '<p class="date-line"><span class="seed">seed ' + w.seed + '</span> &middot; ' + esc(w.date) +
-      (w.shortage_active ? ' &middot; <span class="shortage">food shortage</span>' : '') + '</p>' +
+      (w.shortage_active ? ' &middot; <span class="shortage">food shortage</span>' : '') +
+      (state.source === 'live' ? ' &middot; <span class="live-dot">&#9679; live</span>' : '') + '</p>' +
       '<div class="stats">' +
         statBox(n(s.population), 'alive') +
         statBox(n(s.births), 'born') +
@@ -314,7 +338,7 @@ tr.current td { color:var(--accent-2); }
 
   function xTicks(years, xOf) {
     var first = years[0], last = years[years.length - 1], span = Math.max(1, last - first);
-    var step = niceMax(span / 6);
+    var step = Math.max(1, niceMax(span / 6));
     var out = [], y = Math.ceil(first / step) * step;
     if (y !== first) out.push({ x: xOf(first), label: 'Y' + first });
     for (; y <= last; y += step) out.push({ x: xOf(y), label: 'Y' + y });
@@ -458,19 +482,26 @@ tr.current td { color:var(--accent-2); }
       }).join('') + '</ul>' : '<div class="empty-note">Nothing of that kind happened this year.</div>');
   }
 
-  function openYear(year) {
+  function openYear(year, silent) {
     var w = state.world;
     year = Math.max(1, Math.min(w.year, year));
+    var changed = year !== state.year;
     state.year = year;
-    if (history.replaceState) history.replaceState(null, '', '#year-' + year);
-    document.getElementById('year-input').value = year;
+    if (changed && history.replaceState) history.replaceState(null, '', '#year-' + year);
+    var input = document.getElementById('year-input');
+    input.max = w.year;
+    if (document.activeElement !== input) input.value = year;
     document.getElementById('year-prev').disabled = year <= 1;
     document.getElementById('year-next').disabled = year >= w.year;
     var box = document.getElementById('year-body');
-    box.innerHTML = '<div class="loading-note">// reading the records... //</div>';
-    fetchJson('live/years/' + year + '.json').then(function (data) {
-      if (state.year === year) { state.yearData = data; renderYear(data); }
-    }).catch(function () { renderYear(null); });
+    if (!silent) box.innerHTML = '<div class="loading-note">// reading the records... //</div>';
+    fetchJson('years/' + year + '.json').then(function (data) {
+      if (state.year !== year) return;
+      var list = box.querySelector('.events'), scroll = list ? list.scrollTop : 0;
+      state.yearData = data; renderYear(data);
+      list = box.querySelector('.events');
+      if (silent && list) list.scrollTop = scroll;
+    }).catch(function () { if (!silent) renderYear(null); });
   }
 
   function renderExplorer(w) {
@@ -505,50 +536,65 @@ tr.current td { color:var(--accent-2); }
       '<th class="num">cash</th><th>prices</th></tr>' + (rows || '<tr><td colspan="6">No businesses are open.</td></tr>') + '</table></div></div>';
   }
 
+  function setSection(id, html) {
+    var el = document.getElementById(id);
+    if (el.innerHTML !== html) el.innerHTML = html;
+  }
+
   function render() {
-    var w = state.world, c = state.chronicle;
-    app.innerHTML = renderStatus(w) + renderPrevious(c) + renderLeaderboard(c) + renderCharts(w) +
-      renderExplorer(w) + renderRecent(w) + renderBusinesses(w);
-    bindCharts();
-    document.getElementById('lb-toggle').addEventListener('click', function () { state.lbOpen = !state.lbOpen; rerenderLeaderboard(); });
-    bindLeaderboardTabs();
-    document.getElementById('year-prev').addEventListener('click', function () { openYear(state.year - 1); });
-    document.getElementById('year-next').addEventListener('click', function () { openYear(state.year + 1); });
-    document.getElementById('year-latest').addEventListener('click', function () { openYear(w.year); });
-    document.getElementById('year-input').addEventListener('change', function (e) { openYear(parseInt(e.target.value, 10) || 1); });
-    document.getElementById('year-body').addEventListener('click', function (e) {
-      var f = e.target.getAttribute && e.target.getAttribute('data-filter');
-      if (f) { state.filter = f; renderYear(state.yearData); }
-    });
-    openYear(state.year && state.year <= w.year ? state.year : w.year);
-    var published = new Date(w.published_at);
-    document.getElementById('updated').textContent = '// last update ' + published.toLocaleString() + ' //';
+    var w = state.world, c = state.chronicle, firstTime = !state.built;
+    if (firstTime) {
+      app.innerHTML = '<div id="s-status"></div><div id="s-previous"></div><div id="s-leaderboard"></div>' +
+        '<div id="s-charts"></div>' + renderExplorer(w) + '<div id="s-recent"></div><div id="s-business"></div>';
+      document.getElementById('year-prev').addEventListener('click', function () { openYear(state.year - 1); });
+      document.getElementById('year-next').addEventListener('click', function () { openYear(state.year + 1); });
+      document.getElementById('year-latest').addEventListener('click', function () { openYear(state.world.year); });
+      document.getElementById('year-input').addEventListener('change', function (e) { openYear(parseInt(e.target.value, 10) || 1); });
+      document.getElementById('year-body').addEventListener('click', function (e) {
+        var f = e.target.getAttribute && e.target.getAttribute('data-filter');
+        if (f) { state.filter = f; renderYear(state.yearData); }
+      });
+      state.built = true;
+    }
+    setSection('s-status', renderStatus(w));
+    setSection('s-previous', renderPrevious(c));
+    rerenderLeaderboard();
+    var last = w.history[w.history.length - 1], key = w.seed + ':' + (last ? last.day : 0) + ':' + w.history.length;
+    if (key !== state.historyKey) { state.historyKey = key; setSection('s-charts', renderCharts(w)); bindCharts(); }
+    setSection('s-recent', renderRecent(w));
+    setSection('s-business', renderBusinesses(w));
+    if (firstTime || !state.year) openYear(state.year && state.year <= w.year ? state.year : w.year);
+    else if (state.year >= w.year - 1) openYear(state.year, true);   // finished years never change
+    else document.getElementById('year-next').disabled = state.year >= w.year;
+    document.getElementById('updated').textContent = state.source === 'live'
+      ? '// live from the simulation server //'
+      : '// last update ' + new Date(w.published_at).toLocaleString() + ' //';
   }
 
   function bindLeaderboardTabs() {
     Array.prototype.forEach.call(document.querySelectorAll('[data-lb]'), function (b) {
-      b.addEventListener('click', function () { state.lbTab = b.getAttribute('data-lb'); rerenderLeaderboard(); });
+      b.onclick = function () { state.lbTab = b.getAttribute('data-lb'); rerenderLeaderboard(); };
     });
   }
 
   function rerenderLeaderboard() {
-    var holder = document.createElement('div');
-    holder.innerHTML = renderLeaderboard(state.chronicle);
-    var oldToggle = document.getElementById('lb-toggle'), oldBoard = document.getElementById('leaderboard');
-    oldToggle.replaceWith(holder.children[0]);
-    oldBoard.replaceWith(holder.children[0]);
-    document.getElementById('lb-toggle').addEventListener('click', function () { state.lbOpen = !state.lbOpen; rerenderLeaderboard(); });
+    setSection('s-leaderboard', renderLeaderboard(state.chronicle));
+    document.getElementById('lb-toggle').onclick = function () { state.lbOpen = !state.lbOpen; rerenderLeaderboard(); };
     bindLeaderboardTabs();
   }
 
   function load() {
-    Promise.all([fetchJson('live/world.json'), fetchJson('chronicle.json')]).then(function (res) {
+    fetchJson('world.json').then(function (world) {
+      return fetchJson('chronicle.json').then(function (chron) { return [world, chron]; });
+    }).then(function (res) {
       var changed = !state.world || state.world.day !== res[0].day || state.world.seed !== res[0].seed;
       if (state.world && state.world.seed !== res[0].seed) state.year = null;
       state.world = res[0]; state.chronicle = res[1];
       if (changed) render();
     }).catch(function () {
       if (!state.world) app.innerHTML = '<div class="empty-note">// the settlement is quiet right now. try again soon. //</div>';
+    }).then(function () {
+      setTimeout(load, state.source === 'live' ? LIVE_POLL : STATIC_POLL);
     });
   }
 
@@ -558,7 +604,6 @@ tr.current td { color:var(--accent-2); }
   if (m) state.year = parseInt(m[1], 10);
 
   load();
-  setInterval(load, 2 * 60 * 1000);
 })();
 </script>
 <script src="ascii-bg.js?v=4"></script>
