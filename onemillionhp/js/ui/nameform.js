@@ -77,28 +77,93 @@ export function nameForm(opts) {
 }
 
 let prompting = false;
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** "WHO GOES THERE?" - shown until the player has chosen a name. */
+const INTRO = [
+  "> A NEW TERMINAL HAS CONNECTED...",
+  "",
+  "> GORTHAK DOES NOT FIGHT STRANGERS.",
+  "",
+  "> NAME YOURSELF BEFORE YOU FIGHT.",
+];
+const FRAME_W = 40;
+
+/** The framed terminal with the first `chars` characters of INTRO typed. @param {number} chars */
+function introFrame(chars, cursor = true) {
+  let left = chars;
+  const lines = INTRO.map((line) => {
+    const shown = line.slice(0, Math.max(0, left));
+    left -= line.length;
+    return shown;
+  });
+  // Cursor goes after the last character typed so far.
+  const cursorLine = Math.min(lines.length - 1, lines.findIndex((l, i) => l.length < INTRO[i].length));
+  const at = cursorLine < 0 ? lines.length - 1 : cursorLine;
+  if (cursor) lines[at] += "_";
+  const title = "[ ONE MILLION HP :: IDENTIFY ]";
+  const body = box(["", ...lines, ""], { width: FRAME_W, align: "left", padX: 2 });
+  body[0] = "+" + title.padEnd(FRAME_W - 2, "-").slice(0, FRAME_W - 2) + "+";
+  return body;
+}
+
+/** "Name yourself" - a dimmed screen, a typed-out message, then the name box. */
 export function promptForName() {
   if (prompting || !state.me || state.me.name_chosen) return;
   prompting = true;
-  showOverlay((inner, close) => {
-    const pre = el("pre", "art");
-    inner.append(pre);
-    setArt(pre, box(["", "WHO GOES THERE?", "", "name yourself before you fight.", ""], { width: 36 }), 16);
-    const { form, input } = nameForm({
-      submitLabel: "[ ENTER ]",
-      withRoll: true,
-      onSaved: close,
-    });
-    form.classList.add("prompt");
-    const later = el("div", "actions");
-    const b = el("button", "", "[ just looking ]");
-    b.addEventListener("click", close);
-    later.append(b);
-    inner.append(form, later);
-    requestAnimationFrame(() => input.focus());
-  }).then(() => {
+  const flat = INTRO.join("");
+  const total = flat.length;
+  // Indices where a line finishes: pause there like a terminal would.
+  const lineEnds = new Set(INTRO.map((_, i) => INTRO.slice(0, i + 1).join("").length));
+  showOverlay(
+    (inner, close) => {
+      inner.parentElement?.classList.add("identify");
+      const pre = el("pre", "art identify-text");
+      const rest = el("div", "identify-form");
+      rest.hidden = true;
+      inner.append(pre, rest);
+      const { form, input } = nameForm({ submitLabel: "[ ENTER ]", withRoll: true, onSaved: close });
+      form.classList.add("prompt");
+      const later = el("div", "actions");
+      const b = el("button", "", "[ just looking ]");
+      b.addEventListener("click", close);
+      later.append(b);
+      rest.append(form, later);
+
+      let typed = reduced ? total : 0;
+      /** @type {number} */
+      let timer = 0;
+      let blink = 0;
+      const reveal = () => {
+        if (!rest.hidden) return;
+        rest.hidden = false;
+        input.focus();
+        // The cursor keeps blinking at the end of the message.
+        blink = window.setInterval(() => {
+          if (!pre.isConnected) return clearInterval(blink);
+          setArt(pre, introFrame(total, Date.now() % 1000 < 500), 16);
+        }, 250);
+      };
+      const tick = () => {
+        setArt(pre, introFrame(typed), 16);
+        if (typed >= total) return reveal();
+        typed += 1;
+        const delay = lineEnds.has(typed) ? 380 : flat[typed - 1] === "." ? 90 : 28;
+        timer = window.setTimeout(tick, delay);
+      };
+      // Tap/click/key skips the typing straight to the name box.
+      const skip = () => {
+        if (typed >= total) return;
+        clearTimeout(timer);
+        typed = total;
+        tick();
+      };
+      pre.addEventListener("click", skip);
+      document.addEventListener("keydown", skip, { once: true });
+      tick();
+    },
+    { dismissable: false },
+  ).then(() => {
     prompting = false;
+    document.getElementById("overlay")?.classList.remove("identify");
   });
 }

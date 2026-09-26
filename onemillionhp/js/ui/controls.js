@@ -21,8 +21,15 @@ export function renderControls() {
   const alive = state.boss?.status === "alive";
   const left = me?.attacks_left ?? 0;
   const per = me?.attacks_per_day ?? 5;
-  btnAttack.disabled = busy || !me || !alive || left <= 0;
+  const unnamed = Boolean(me && !me.name_chosen);
+  // Unnamed players can still press it: it opens the name prompt.
+  btnAttack.disabled = busy || !me || !alive || (left <= 0 && !unnamed);
   btnAttack.classList.toggle("busy", busy);
+  btnAttack.classList.toggle("needs-name", unnamed);
+  btnAttack.innerHTML = unnamed
+    ? '<span class="br">[</span> N A M E &nbsp;Y O U R S E L F <span class="br">]</span>'
+    : '<span class="br">[</span> A T T A C K <span class="br">]</span>';
+  $("name-nag").hidden = !unnamed;
 
   const pips = $("pips");
   pips.replaceChildren(el("span", "dim", "ATTACKS "));
