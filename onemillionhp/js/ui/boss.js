@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=292b438de3";
-import { bossDef, bossText, state } from "../store.js?v=292b438de3";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=a770519980";
+import { bossDef, bossText, state } from "../store.js?v=a770519980";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -59,6 +59,7 @@ export function renderBoss() {
   const dead = b.status === "defeated";
   $("boss-alive").hidden = dead;
   $("boss-dead").hidden = !dead;
+  $("fight").hidden = dead;
   if (dead) {
     renderDeath(b, def);
     return;

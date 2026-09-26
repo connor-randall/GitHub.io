@@ -12,17 +12,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css?v=292b438de3">
+<link rel="stylesheet" href="css/style.css?v=a770519980">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0a08'/%3E%3Ctext x='8' y='12.5' font-family='monospace' font-size='12' font-weight='bold' fill='%23ffb000' text-anchor='middle'%3E%25%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
 <pre id="mist-bg" class="mist-bg" aria-hidden="true"></pre>
-<pre id="mist-frames" class="mist-bg mist-frames" aria-hidden="true"></pre>
 <div id="shake">
 <main id="app" class="app">
 
-  <header class="top">
+  <header class="top box">
     <pre class="logo logo-wide art" aria-label="ONE MILLION HP"></pre>
     <pre class="logo logo-stack art" aria-hidden="true"></pre>
     <div class="statusline" id="statusline">
@@ -38,10 +37,9 @@
 
   <div class="columns">
     <section class="col-main" aria-label="Boss">
-      <div id="boss" class="boss">
-        <pre class="rule">=====================================</pre>
+      <div id="boss" class="boss box">
+        <div class="box-title" id="boss-num">BOSS #---</div>
         <div id="boss-alive">
-          <div class="boss-num" id="boss-num">BOSS #---</div>
           <div class="boss-stage">
             <pre id="boss-art" class="boss-art art" aria-hidden="true"></pre>
             <div id="popups" class="popups" aria-hidden="true"></div>
@@ -59,39 +57,39 @@
             </div>
             <div class="phase" id="phase">PHASE -</div>
           </div>
-
-          <div class="controls">
-            <div id="name-nag" class="name-nag" hidden>&gt; NAME YOURSELF TO FIGHT &lt;</div>
-            <button id="btn-attack" class="btn-big" type="button" disabled>
-              <span class="br">[</span> A T T A C K <span class="br">]</span>
-            </button>
-            <div class="pips" id="pips" aria-live="polite">ATTACKS -/-</div>
-            <div class="reset-in dim" id="reset-in"></div>
-
-            <button id="btn-ult" class="btn-big btn-ult" type="button" disabled>
-              <span class="br">[</span> U L T I M A T E <span class="br">]</span>
-            </button>
-            <div class="ult-warn" id="ult-warn">!! ONE USE PER BOSS !!</div>
-            <div class="keys dim">keys: [A]/[SPACE] attack &middot; [U] ultimate</div>
-          </div>
-
-          <pre class="rule">-------------------------------------</pre>
-          <div class="lasthit">
-            <div>YOUR LAST HIT <span id="last-hit" class="val">--</span></div>
-            <div>YOUR DMG ON THIS BOSS <span id="boss-dmg" class="val">0</span></div>
-          </div>
-
-          <div class="globals" id="globals">
-            <div><span class="dim">ATTACKS</span> <b id="g-attacks">0</b></div>
-            <div><span class="dim">DAMAGE</span> <b id="g-damage">0</b></div>
-            <div><span class="dim">FIGHTERS</span> <b id="g-players">0</b></div>
-          </div>
         </div>
         <div id="boss-dead" hidden></div>
       </div>
+
+      <div id="fight" class="box fight">
+        <div class="box-title">FIGHT</div>
+        <div class="controls">
+          <div id="name-nag" class="name-nag" hidden>&gt; NAME YOURSELF TO FIGHT &lt;</div>
+          <button id="btn-attack" class="btn-big" type="button" disabled>
+            <span class="br">[</span> A T T A C K <span class="br">]</span>
+          </button>
+          <div class="pips" id="pips" aria-live="polite">ATTACKS -/-</div>
+          <div class="reset-in dim" id="reset-in"></div>
+
+          <button id="btn-ult" class="btn-big btn-ult" type="button" disabled>
+            <span class="br">[</span> U L T I M A T E <span class="br">]</span>
+          </button>
+          <div class="ult-warn" id="ult-warn">!! ONE USE PER BOSS !!</div>
+          <div class="keys dim">keys: [A]/[SPACE] attack &middot; [U] ultimate</div>
+        </div>
+        <div class="lasthit">
+          <div>YOUR LAST HIT <span id="last-hit" class="val">--</span></div>
+          <div>YOUR DMG ON THIS BOSS <span id="boss-dmg" class="val">0</span></div>
+        </div>
+        <div class="globals" id="globals">
+          <div><span class="dim">ATTACKS</span> <b id="g-attacks">0</b></div>
+          <div><span class="dim">DAMAGE</span> <b id="g-damage">0</b></div>
+          <div><span class="dim">FIGHTERS</span> <b id="g-players">0</b></div>
+        </div>
+      </div>
     </section>
 
-    <section class="col-side" aria-label="Panels">
+    <section class="col-side box" aria-label="Panels">
       <nav class="tabs" id="tabs" role="tablist">
         <button role="tab" data-tab="feed" aria-selected="true">[ FEED ]</button>
         <button role="tab" data-tab="player">[ YOU ]</button>
@@ -111,7 +109,6 @@
   </div>
 
   <footer class="foot dim">
-    <pre class="rule">=====================================</pre>
     <p>every attack, on every terminal, hits the same boss. 5 attacks per day, reset at 00:00 UTC.</p>
     <p class="err" id="err" role="alert"></p>
     <p><a class="admin-link" href="admin.html">[admin]</a></p>
@@ -120,6 +117,6 @@
 </div>
 
 <div id="overlay" class="overlay" hidden></div>
-<script type="module" src="js/main.js?v=292b438de3"></script>
+<script type="module" src="js/main.js?v=a770519980"></script>
 </body>
 </html>
