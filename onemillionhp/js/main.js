@@ -2,18 +2,19 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=0267a0c4ee";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=0267a0c4ee";
-import { connectLive } from "./live.js?v=0267a0c4ee";
-import * as sound from "./sound.js?v=0267a0c4ee";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=0267a0c4ee";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=0267a0c4ee";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=0267a0c4ee";
-import { renderFeed, tickAges } from "./ui/feed.js?v=0267a0c4ee";
-import { popup, shake } from "./ui/fx.js?v=0267a0c4ee";
-import { showError } from "./ui/errors.js?v=0267a0c4ee";
-import { promptForName } from "./ui/nameform.js?v=0267a0c4ee";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=0267a0c4ee";
+import * as api from "./api.js?v=baded90f5e";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=baded90f5e";
+import { connectLive } from "./live.js?v=baded90f5e";
+import * as sound from "./sound.js?v=baded90f5e";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=baded90f5e";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=baded90f5e";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=baded90f5e";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=baded90f5e";
+import { renderFeed, tickAges } from "./ui/feed.js?v=baded90f5e";
+import { popup, shake } from "./ui/fx.js?v=baded90f5e";
+import { showError } from "./ui/errors.js?v=baded90f5e";
+import { promptForName } from "./ui/nameform.js?v=baded90f5e";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=baded90f5e";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -39,11 +40,13 @@ function reactToOthers(events) {
     if (e.kind === "crit" || e.kind === "ultimate") {
       popup(`-${e.damage.toLocaleString("en-US")}`, "crit");
       hurt(300);
+      pulse(e.kind === "ultimate" ? 1.1 : 0.7);
       if (e.kind === "ultimate") shake("s");
       lastReact = t;
     } else if (e.kind === "hit" && t - lastReact > 350) {
       popup(`-${e.damage}`, "small");
       hurt(160);
+      pulse(0.25);
       lastReact = t;
     }
     if (e.kind === "spawn" || e.kind === "defeat") {
@@ -64,6 +67,7 @@ async function boot() {
   on("boss", () => {
     renderBoss();
     renderControls();
+    if (state.boss) setMood(state.boss.phase, state.boss.status !== "alive");
   });
   on("me", () => {
     renderControls();
@@ -73,6 +77,7 @@ async function boot() {
 
   initControls();
   initTabs();
+  startAmbient();
 
   const snd = $("snd");
   const paintSnd = () => {
@@ -131,7 +136,8 @@ async function boot() {
   try {
     state.me = await api.ensurePlayer();
     emit("me");
-    promptForName();
+    if (state.me?.name_chosen) revealAmbient();
+    else promptForName();
   } catch (e) {
     showError(/** @type {Error} */ (e).message);
   }

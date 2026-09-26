@@ -1,13 +1,14 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=0267a0c4ee";
-import { clock, el } from "../ascii.js?v=0267a0c4ee";
-import * as sound from "../sound.js?v=0267a0c4ee";
-import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=0267a0c4ee";
-import { hurt } from "./boss.js?v=0267a0c4ee";
-import { showError } from "./errors.js?v=0267a0c4ee";
-import { promptForName } from "./nameform.js?v=0267a0c4ee";
-import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=0267a0c4ee";
+import * as api from "../api.js?v=baded90f5e";
+import { clock, el } from "../ascii.js?v=baded90f5e";
+import * as sound from "../sound.js?v=baded90f5e";
+import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=baded90f5e";
+import { pulse } from "./ambient.js?v=baded90f5e";
+import { hurt } from "./boss.js?v=baded90f5e";
+import { showError } from "./errors.js?v=baded90f5e";
+import { promptForName } from "./nameform.js?v=baded90f5e";
+import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=baded90f5e";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -103,6 +104,7 @@ async function doAttack(kind) {
     }
     emit("me");
     hurt(a.crit || kind === "ultimate" ? 420 : 240);
+    pulse(kind === "ultimate" ? 1.6 : a.crit ? 1.1 : 0.55);
     if (kind === "ultimate") {
       sound.ultimate();
       await ultimateSequence(a.damage);

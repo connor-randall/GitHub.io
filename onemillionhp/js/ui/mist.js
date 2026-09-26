@@ -1,12 +1,15 @@
-// Drifting ASCII mist that swirls around a clear "eye" (e.g. a name box).
+// Drifting ASCII mist that swirls around a clear "eye" (the name box, or
+// the boss).
 //
 // Each frame fills a full-screen <pre> with characters from a light-to-dense
 // ramp. Density = a smooth flowing field (layered sines in polar coordinates,
-// so it slowly rotates around the eye and drifts outward) times a ring
-// weight that hugs the eye and fades to faint haze further out.
+// so it slowly rotates around the eye and drifts outward) times a weight:
+// a ring hugging the eye, faint haze, and (ambient mode) fog at the screen
+// edges. Ripples are rings that expand from the eye when something hits.
 
 const RAMP = " .'`,:;-~=+*";
-const FPS = 18;
+
+/** @typedef {{stop: () => void, dissipate: (ms: number) => Promise<void>, pulse: (strength: number) => void}} Mist */
 
 /** Measure one monospace cell in the given element's font. @param {HTMLElement} host */
 function cellSize(host) {
@@ -21,12 +24,17 @@ function cellSize(host) {
 }
 
 /**
- * @param {HTMLElement} pre       full-screen <pre class="mist">
- * @param {() => DOMRect | null} eye  area to keep clear (and swirl around)
- * @returns {() => void} stop
+ * @param {HTMLElement} pre  full-screen <pre>
+ * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number}} opts
+ *   eye: area to keep clear (and swirl around); ambient: background mode
+ *   (fainter ring + edge fog); maxEyeFrac: cap eye width as a fraction of
+ *   the screen.
+ * @returns {Mist}
  */
-export function startMist(pre, eye) {
+export function startMist(pre, opts) {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fps = opts.fps ?? 18;
+  const ambient = Boolean(opts.ambient);
   let cell = cellSize(pre);
   let cols = 0, rows = 0;
   const resize = () => {
@@ -40,22 +48,22 @@ export function startMist(pre, eye) {
   const t0 = performance.now();
   let raf = 0;
   let last = 0;
+  let stopped = false;
+  /** Dissipation: 0 = normal, 1 = blown away. */
+  let gone = 0;
+  /** @type {{t: number, s: number}[]} */
+  let ripples = [];
 
-  const frame = (/** @type {number} */ now) => {
-    if (!pre.isConnected) return stop();
-    raf = requestAnimationFrame(frame);
-    if (now - last < 1000 / FPS && !reduced) return;
-    last = now;
+  const render = (/** @type {number} */ now) => {
     const t = (now - t0) / 1000;
-
-    // Eye geometry in cell units (y doubled-ish: cells are taller than wide).
-    const r = eye();
+    const r = opts.eye();
     const cx = r ? (r.left + r.width / 2) / cell.w : cols / 2;
     const cy = r ? (r.top + r.height / 2) / cell.h : rows / 2;
-    // On narrow screens the box is nearly full width; cap the clear eye so
-    // the mist still curls in along the sides (it sits behind the text).
-    const rx = Math.min(r ? r.width / cell.w / 2 + 3 : 18, cols * 0.36);
-    const ry = r ? r.height / cell.h / 2 + 2 : 5;
+    const grow = 1 + gone * 2.5; // the eye opens up as the mist blows away
+    const rx = Math.min(r ? r.width / cell.w / 2 + 3 : 18, cols * (opts.maxEyeFrac ?? 0.36)) * grow;
+    const ry = (r ? r.height / cell.h / 2 + 2 : 5) * grow;
+    const fade = 1 - gone;
+    ripples = ripples.filter((p) => t - p.t < 2.5);
 
     let out = "";
     for (let y = 0; y < rows; y++) {
@@ -67,10 +75,24 @@ export function startMist(pre, eye) {
           out += " ";
           continue;
         }
-        // Ring hugging the eye, then a faint haze everywhere else.
         const edge = Math.min(1, (e - 1) / 0.35);
         const ring = Math.exp(-((e - 1.7) ** 2) / 0.9);
-        const weight = edge * Math.max(ring, 0.18);
+        let weight;
+        if (ambient) {
+          // Fog creeping in from the screen edges + a looser ring round the boss.
+          const ex = Math.abs(x / cols - 0.5) * 2, ey = Math.abs(y / rows - 0.5) * 2;
+          const border = Math.max(ex, ey) ** 4 * 0.7;
+          const wide = Math.exp(-((e - 2.0) ** 2) / 1.8); // looser, wider swirl
+          weight = edge * Math.max(wide * 1.05, border, 0.05);
+        } else {
+          weight = edge * Math.max(ring, 0.18);
+        }
+        // Ripples: rings racing outward from the eye after a hit.
+        for (const p of ripples) {
+          const age = t - p.t;
+          const band = Math.exp(-((e - (1.1 + age * 3.2)) ** 2) / 0.12);
+          weight += band * p.s * Math.exp(-age * 1.6);
+        }
         // Polar flow: rotates slowly around the eye and drifts outward.
         const a = Math.atan2(dy, dx);
         const u = a * 3 + t * 0.35;
@@ -78,20 +100,59 @@ export function startMist(pre, eye) {
         const n =
           Math.sin(u + Math.sin(v * 0.8 + t * 0.4) * 1.6) +
           Math.sin(v * 1.3 - Math.sin(u * 0.7 - t * 0.3) * 1.4) +
-          Math.sin((x * 0.21 + y * 0.37) + t * 0.6);
-        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * 1.35 - 0.12);
+          Math.sin(x * 0.21 + y * 0.37 + t * 0.6);
+        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 - 0.12);
         out += RAMP[Math.min(RAMP.length - 1, Math.floor(val * RAMP.length))];
       }
       out += "\n";
     }
     pre.textContent = out;
-    if (reduced) stop();
+  };
+
+  const frame = (/** @type {number} */ now) => {
+    if (stopped || !pre.isConnected) return stop();
+    raf = requestAnimationFrame(frame);
+    if (now - last < 1000 / fps) return;
+    last = now;
+    render(now);
+    if (reduced && !ripples.length && gone === 0) cancelAnimationFrame(raf); // one still frame
   };
 
   const stop = () => {
+    stopped = true;
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", resize);
   };
+
   raf = requestAnimationFrame(frame);
-  return stop;
+
+  return {
+    stop,
+    pulse(strength) {
+      if (reduced || stopped) return;
+      ripples.push({ t: (performance.now() - t0) / 1000, s: strength });
+      if (ripples.length > 6) ripples.shift();
+    },
+    dissipate(ms) {
+      return new Promise((resolve) => {
+        if (reduced || stopped) {
+          stop();
+          resolve();
+          return;
+        }
+        const start = performance.now();
+        const step = () => {
+          gone = Math.min(1, (performance.now() - start) / ms);
+          render(performance.now());
+          if (gone < 1) requestAnimationFrame(step);
+          else {
+            stop();
+            resolve();
+          }
+        };
+        cancelAnimationFrame(raf);
+        requestAnimationFrame(step);
+      });
+    },
+  };
 }

@@ -287,6 +287,21 @@ b { font-weight: 700; }
 }
 @keyframes mist-in { from { opacity: 0; } }
 .overlay.identify .overlay-inner { position: relative; z-index: 1; }
+/* leaving: the screen lifts while the mist blows away */
+.overlay.identify.leaving { background: rgba(4,4,3,0); transition: background 1.1s ease-in; }
+.overlay.identify.leaving .overlay-inner { opacity: 0; transform: scale(.97); transition: opacity .5s, transform .5s; }
+
+/* ambient mist behind the game, tinted by boss phase */
+.mist-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  margin: 0; font-size: 12px; line-height: 1.15; white-space: pre;
+  color: #b9b4a4; opacity: 0; transition: opacity 2s ease-out, color 3s;
+}
+.mist-bg.shown { opacity: .42; }
+.mist-bg.p2 { color: #e0a24a; }
+.mist-bg.p3 { color: #ff5a44; }
+.mist-bg.dead { color: #6d6a62; }
+#shake { position: relative; z-index: 1; }
 .identify-eye { display: inline-block; padding: 6px 4px; }
 .identify-title {
   margin: 0 0 6px; font-size: 18px; font-weight: 800; letter-spacing: .14em; color: var(--fg);

@@ -1,11 +1,12 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=0267a0c4ee";
-import { el } from "../ascii.js?v=0267a0c4ee";
-import { emit, state } from "../store.js?v=0267a0c4ee";
-import { showOverlay } from "./fx.js?v=0267a0c4ee";
-import { startMist } from "./mist.js?v=0267a0c4ee";
+import * as api from "../api.js?v=baded90f5e";
+import { el } from "../ascii.js?v=baded90f5e";
+import { emit, state } from "../store.js?v=baded90f5e";
+import { showOverlay } from "./fx.js?v=baded90f5e";
+import { revealAmbient } from "./ambient.js?v=baded90f5e";
+import { startMist } from "./mist.js?v=baded90f5e";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -79,39 +80,45 @@ export function nameForm(opts) {
 
 let prompting = false;
 
-/** "Name yourself before fighting", wrapped in drifting ASCII mist. */
+/** "Name yourself before fighting", wrapped in drifting ASCII mist. When
+ * done, the mist blows away and the game's own mist fades in behind it. */
 export function promptForName() {
   if (prompting || !state.me || state.me.name_chosen) return;
   prompting = true;
-  /** @type {() => void} */
-  let stopMist = () => {};
   showOverlay(
     (inner, close) => {
-      const overlay = inner.parentElement;
-      overlay?.classList.add("identify");
-      const mist = el("pre", "mist");
-      mist.setAttribute("aria-hidden", "true");
-      overlay?.prepend(mist);
+      const overlay = /** @type {HTMLElement} */ (inner.parentElement);
+      overlay.classList.add("identify");
+      const mistEl = el("pre", "mist");
+      mistEl.setAttribute("aria-hidden", "true");
+      overlay.prepend(mistEl);
 
       const eye = el("div", "identify-eye");
       const title = el("h2", "identify-title", "NAME YOURSELF BEFORE FIGHTING");
-      const { form, input } = nameForm({ submitLabel: "[ ENTER ]", withRoll: true, onSaved: close });
+      const mist = startMist(mistEl, { eye: () => eye.getBoundingClientRect() });
+      let leaving = false;
+      const leave = async () => {
+        if (leaving) return;
+        leaving = true;
+        overlay.classList.add("leaving");
+        revealAmbient();
+        await mist.dissipate(1100);
+        close();
+      };
+      const { form, input } = nameForm({ submitLabel: "[ ENTER ]", withRoll: true, onSaved: leave });
       form.classList.add("prompt");
       eye.append(title, form);
       const later = el("div", "actions");
       const b = el("button", "", "[ just looking ]");
-      b.addEventListener("click", close);
+      b.addEventListener("click", leave);
       later.append(b);
       inner.append(eye, later);
-
-      stopMist = startMist(mist, () => eye.getBoundingClientRect());
       requestAnimationFrame(() => input.focus());
     },
     { dismissable: false },
   ).then(() => {
-    stopMist();
     prompting = false;
     const overlay = document.getElementById("overlay");
-    overlay?.classList.remove("identify");
+    overlay?.classList.remove("identify", "leaving");
   });
 }
