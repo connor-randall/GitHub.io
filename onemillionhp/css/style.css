@@ -268,7 +268,11 @@ b { font-weight: 700; }
 }
 .inline-btn:hover { color: var(--bg); background: var(--amber); }
 .kv .inline-btn { margin-left: 1ch; }
-.name-form { display: flex; gap: 6px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+.name-form { margin: 8px 0; }
+.name-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.name-err { color: var(--red); font-size: 12px; min-height: 1.4em; margin-top: 4px; }
+.name-hint { font-size: 11px; }
+.name-form.prompt { display: inline-block; text-align: left; margin-top: 14px; }
 .name-form input {
   background: var(--bg-2); color: var(--fg); border: 1px dashed var(--dim); border-radius: 0;
   font: inherit; font-size: 16px; /* 16px stops iOS zooming on focus */

@@ -12,6 +12,7 @@ import { initControls, renderControls, tickCountdown } from "./ui/controls.js";
 import { renderFeed, tickAges } from "./ui/feed.js";
 import { popup, shake } from "./ui/fx.js";
 import { showError } from "./ui/errors.js";
+import { promptForName } from "./ui/nameform.js";
 import { currentTab, initTabs, renderPanels } from "./ui/tabs.js";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -130,6 +131,7 @@ async function boot() {
   try {
     state.me = await api.ensurePlayer();
     emit("me");
+    promptForName();
   } catch (e) {
     showError(/** @type {Error} */ (e).message);
   }

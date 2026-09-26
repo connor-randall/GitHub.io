@@ -6,6 +6,7 @@ import * as sound from "../sound.js";
 import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js";
 import { hurt } from "./boss.js";
 import { showError } from "./errors.js";
+import { promptForName } from "./nameform.js";
 import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -75,6 +76,10 @@ function fireAnim(b) {
 /** @param {"normal"|"ultimate"} kind */
 async function doAttack(kind) {
   if (busy) return;
+  if (state.me && !state.me.name_chosen) {
+    promptForName();
+    return;
+  }
   busy = true;
   fireAnim(kind === "ultimate" ? btnUlt : btnAttack);
   renderControls();
@@ -119,6 +124,13 @@ async function doAttack(kind) {
     }
   } catch (e) {
     const err = /** @type {api.ApiError} */ (e);
+    if (err.code === "NEED_NAME") {
+      api.getMe().then((m) => {
+        state.me = m;
+        promptForName();
+      }).catch(() => {});
+      return;
+    }
     showError(err.message);
     if (err.code === "NO_ATTACKS" || err.code === "ULTIMATE_USED" || err.code === "BOSS_DEFEATED") {
       api.getMe().then((m) => {

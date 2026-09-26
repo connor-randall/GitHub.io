@@ -1,10 +1,9 @@
 // [ YOU ] panel: stats, rename, equipped weapon.
 
-import * as api from "../api.js";
 import { el, fmt, setArt } from "../ascii.js";
-import { emit, itemById, state } from "../store.js";
-import { showError } from "./errors.js";
+import { itemById, state } from "../store.js";
 import { itemLines } from "./fx.js";
+import { nameForm } from "./nameform.js";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -66,24 +65,14 @@ export function renderPlayer() {
 
 /** @param {string} current */
 function renameForm(current) {
-  const form = el("form", "name-form");
-  const input = /** @type {HTMLInputElement} */ (el("input"));
-  input.value = current;
-  input.maxLength = 16;
-  input.autocapitalize = "characters";
-  input.spellcheck = false;
-  input.setAttribute("aria-label", "New name");
-  const ok = el("button", "inline-btn", "[ SAVE ]");
-  form.append(el("span", "dim", ">"), input, ok);
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    try {
-      state.me = await api.rename(input.value);
+  const { form, input } = nameForm({
+    value: current,
+    submitLabel: "[ SAVE ]",
+    withRoll: true,
+    onSaved: () => {
       renaming = false;
-      emit("me");
-    } catch (err) {
-      showError(/** @type {Error} */ (err).message);
-    }
+      renderPlayer();
+    },
   });
   requestAnimationFrame(() => input.focus());
   return form;
