@@ -151,11 +151,11 @@ tr.current td { color:var(--accent-2); }
 <div class="wrap">
   <div class="window">
     <div class="title-bar">
-      <span>world-01.live</span>
+      <span id="world-bar">world.live</span>
       <div class="buttons"><span class="btn"></span><span class="btn"></span><span class="btn"></span></div>
     </div>
 
-    <h1 class="page-heading">&gt;&gt; world-01 &lt;&lt;</h1>
+    <h1 class="page-heading" id="world-title">&gt;&gt; world &lt;&lt;</h1>
     <div class="page-sub">// a civilization nobody scripted //</div>
 
     <div class="about-note">
@@ -499,6 +499,10 @@ tr.current td { color:var(--accent-2); }
         '<div id="s-leaderboard"></div><div id="s-charts"></div><div id="s-business"></div>';
       state.built = true;
     }
+    var name = String(w.settlement || ('World ' + w.seed));
+    document.getElementById('world-title').textContent = '>> ' + name.toLowerCase() + ' <<';
+    document.getElementById('world-bar').textContent = name.toLowerCase().replace(/\s+/g, '-') + '.live';
+    document.title = 'Connor Randall | ' + name;
     setSection('s-status', renderStatus(w));
     setSection('s-previous', renderPrevious(c));
     rerenderLeaderboard();
