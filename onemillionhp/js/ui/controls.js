@@ -1,15 +1,15 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=bfef2eb086";
-import { clock, el } from "../ascii.js?v=bfef2eb086";
-import * as sound from "../sound.js?v=bfef2eb086";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=bfef2eb086";
-import { pulse } from "./ambient.js?v=bfef2eb086";
-import { hurt } from "./boss.js?v=bfef2eb086";
-import { showError } from "./errors.js?v=bfef2eb086";
-import { promptForName } from "./nameform.js?v=bfef2eb086";
-import { openBox } from "./bag.js?v=bfef2eb086";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=bfef2eb086";
+import * as api from "../api.js?v=639787ccf7";
+import { clock, el } from "../ascii.js?v=639787ccf7";
+import * as sound from "../sound.js?v=639787ccf7";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=639787ccf7";
+import { pulse } from "./ambient.js?v=639787ccf7";
+import { hurt } from "./boss.js?v=639787ccf7";
+import { showError } from "./errors.js?v=639787ccf7";
+import { promptForName } from "./nameform.js?v=639787ccf7";
+import { openBox } from "./bag.js?v=639787ccf7";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=639787ccf7";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -27,8 +27,11 @@ export function renderControls() {
   // Unnamed players can still press it: it opens the name prompt.
   btnAttack.disabled = busy || !me || !alive || (left <= 0 && !unnamed);
   btnAttack.classList.toggle("busy", busy);
-  // Unnamed players see a normal ATTACK button; pressing it asks for a name
-  // first and then lands the attack.
+  // Unnamed players: pressing ATTACK asks for a name first, then attacks.
+  const label = '<span class="br">[</span> A T T A C K <span class="br">]</span>';
+  const html = unnamed ? `${label}<span class="sub">name yourself before fighting</span>` : label;
+  if (btnAttack.innerHTML !== html) btnAttack.innerHTML = html;
+  $("boss-stage").classList.toggle("hittable", !btnAttack.disabled);
 
   const pips = $("pips");
   pips.replaceChildren(el("span", "dim", "ATTACKS "));
@@ -182,6 +185,10 @@ function ultClick() {
 
 export function initControls() {
   btnAttack.addEventListener("click", () => doAttack("normal"));
+  // The boss itself is a target: tapping it is the same as ATTACK.
+  $("boss-stage").addEventListener("click", () => {
+    if (!btnAttack.disabled) doAttack("normal");
+  });
   btnUlt.addEventListener("click", ultClick);
   document.addEventListener("keydown", (e) => {
     const t = /** @type {HTMLElement} */ (e.target);

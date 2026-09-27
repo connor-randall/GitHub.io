@@ -97,6 +97,15 @@ b { font-weight: 700; }
 .boss { text-align: center; }
 .boss-num { color: var(--dim); letter-spacing: .3em; margin: 6px 0 2px; font-size: 12px; }
 .boss-stage { position: relative; display: flex; justify-content: center; min-height: 12em; }
+/* Tapping the boss attacks. */
+.boss-stage.hittable { cursor: crosshair; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.boss-stage.hittable:hover .boss-art { text-shadow: 0 0 10px rgba(255,83,64,.35); }
+.boss-stage.hittable:active .boss-art { transform: scale(.985); }
+.btn-big .sub {
+  display: block; font-size: 11px; font-weight: 400; letter-spacing: .12em; margin-top: 4px;
+  color: var(--amber); text-transform: lowercase;
+}
+.btn-big:hover .sub, .btn-big:focus-visible .sub { color: var(--bg); }
 .boss-art { color: var(--fg); display: inline-block; text-align: left; transition: color .2s; }
 .boss-art.phase-2 { color: #f0d6b0; }
 .boss-art.phase-3 { color: #ffb4a4; }
@@ -355,7 +364,9 @@ b { font-weight: 700; }
   text-shadow: 0 0 12px rgba(232,225,203,.35);
   animation: title-in 1.4s ease-out both;
 }
-@keyframes title-in { from { opacity: 0; letter-spacing: .5em; filter: blur(3px); } }
+/* Opacity + blur only: animating letter-spacing re-wrapped the title on
+   phones mid-fade, making the text (and the mist's clear eye) jump. */
+@keyframes title-in { from { opacity: 0; filter: blur(4px); } }
 .identify-eye .name-form input { font-size: 18px; width: 17ch; }
 .identify-eye.intro { max-width: 46ch; }
 .intro-text { color: var(--fg); font-size: 14px; line-height: 1.55; margin: 14px 0 6px; }
