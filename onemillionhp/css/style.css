@@ -414,6 +414,8 @@ b { font-weight: 700; }
 .reveal > span.pending { visibility: hidden; }
 .crit-banner { color: var(--red); font-weight: 800; }
 .ult-stage { color: var(--amber); }
+.loot-stats { margin: 8px auto 0; max-width: 40ch; font-size: 12px; }
+.loot-stats > .stats:first-child { color: var(--green); font-weight: 700; margin-bottom: 4px; }
 .item-detail .flavor { color: var(--dim); font-style: italic; margin: 10px auto 0; max-width: 34ch; }
 .item-detail .stats { font-size: 12px; margin-top: 8px; color: var(--fg); }
 .item-detail .stats .dim { color: var(--dim); }

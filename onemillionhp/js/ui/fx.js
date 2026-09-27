@@ -1,8 +1,9 @@
 // Effects: shake, damage popups, crit banner, ultimate sequence, loot reveal,
 // item cards and the modal overlay they all share.
 
-import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=003e7fad9f";
-import { rarityById, state } from "../store.js?v=003e7fad9f";
+import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=e252e20647";
+import { rarityById, state } from "../store.js?v=e252e20647";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=e252e20647";
 
 const overlay = /** @type {HTMLElement} */ (document.getElementById("overlay"));
 const shakeEl = /** @type {HTMLElement} */ (document.getElementById("shake"));
@@ -259,6 +260,13 @@ export function lootReveal(item, onEquip, title = "ITEM FOUND") {
       fitArt(pre, 16);
       if (rank >= 4) shake("l");
       const flavor = el("div", "flavor dim", `"${item.flavor}"`);
+      // What the item actually does, plus a plain-English line per effect.
+      const stats = el("div", "item-detail stats loot-stats");
+      stats.append(effectLine(item));
+      for (const [k, v] of Object.entries(EFFECT_HELP)) {
+        if (effectParts(item.mods).some((p) => p.includes(k))) stats.append(el("div", "dim", `${k}: ${v}`));
+      }
+      stats.append(el("div", "dim", item.slot === "charm" ? "CHARM SLOT" : "WEAPON SLOT"));
       const actions = el("div", "actions");
       actions.append(
         button(`[ EQUIP ${item.slot === "charm" ? "CHARM" : "WEAPON"} ]`, async () => {
@@ -267,7 +275,7 @@ export function lootReveal(item, onEquip, title = "ITEM FOUND") {
         }),
         button("[ STASH ]", close),
       );
-      inner.append(flavor, actions);
+      inner.append(flavor, stats, actions);
       actions.querySelector("button")?.focus({ preventScroll: true });
     }, suspense);
   });
