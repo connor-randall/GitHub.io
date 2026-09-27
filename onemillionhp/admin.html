@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=303339e3c3">
-<link rel="stylesheet" href="css/admin.css?v=303339e3c3">
+<link rel="stylesheet" href="css/style.css?v=e1a8e2bda8">
+<link rel="stylesheet" href="css/admin.css?v=e1a8e2bda8">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -34,6 +34,17 @@
   <div id="panel" hidden>
     <pre id="status" class="adm-status"></pre>
     <label class="announce-toggle"><input type="checkbox" id="announce" checked> announce my actions in the feed as ***ADMIN***</label>
+
+    <section class="adm">
+      <h2>[ POST ]</h2>
+      <form data-action="post" class="post-form">
+        <label class="post-label">***ADMIN***
+          <input name="message" maxlength="200" required placeholder="say something to everyone">
+        </label>
+        <button class="inline-btn">[ POST TO FEED ]</button>
+        <p class="hint">shows up in everyone's feed right away. up to 200 characters.</p>
+      </form>
+    </section>
 
     <section class="adm">
       <h2>[ BOSS ]</h2>
@@ -147,6 +158,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=303339e3c3"></script>
+<script type="module" src="js/admin.js?v=e1a8e2bda8"></script>
 </body>
 </html>

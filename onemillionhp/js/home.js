@@ -4,7 +4,7 @@
 // browsers never send to any server, so players keep their name, items and
 // stats across the move. Empty = no forwarding.
 
-import { adoptToken, currentToken } from "./api.js?v=303339e3c3";
+import { adoptToken, currentToken } from "./api.js?v=e1a8e2bda8";
 
 export const CANONICAL = (() => {
   const v = document.querySelector('meta[name="omhp-canonical"]')?.getAttribute("content")?.trim();
