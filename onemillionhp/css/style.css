@@ -246,9 +246,10 @@ b { font-weight: 700; }
 
 /* ---------- feed ---------- */
 .feed { list-style: none; margin: 0; padding: 0; font-size: 13px; }
-.feed li { display: flex; gap: 8px; padding: 1px 0; white-space: nowrap; overflow: hidden; }
+.feed li { display: flex; gap: 8px; padding: 2px 0; align-items: baseline; }
 .feed .t { color: var(--faint); flex: 0 0 3.2em; text-align: right; font-variant-numeric: tabular-nums; }
-.feed .m { overflow: hidden; text-overflow: ellipsis; }
+/* Full text, wrapping under itself; only very long single words may break. */
+.feed .m { min-width: 0; white-space: normal; overflow-wrap: anywhere; line-height: 1.35; padding-left: 2ch; text-indent: -2ch; }
 .feed .who { color: var(--fg); }
 .feed .me .who { color: var(--amber); }
 .feed .num { font-weight: 700; }
