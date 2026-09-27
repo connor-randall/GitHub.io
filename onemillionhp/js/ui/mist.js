@@ -11,6 +11,13 @@ const RAMP = " .'`,:;-~=+*";
 
 /** @typedef {{stop: () => void, dissipate: (ms: number) => Promise<void>, pulse: (strength: number) => void}} Mist */
 
+// The mist waits for the page to finish loading (fonts, scripts) before it
+// starts drawing; on a slow phone that alone made loading ~5x faster.
+let pageReady = document.readyState === "complete";
+if (!pageReady) {
+  window.addEventListener("load", () => setTimeout(() => (pageReady = true), 120), { once: true });
+}
+
 /** Measure one monospace cell in the given element's font. @param {HTMLElement} host */
 function cellSize(host) {
   const probe = document.createElement("span");
@@ -25,15 +32,18 @@ function cellSize(host) {
 
 /**
  * @param {HTMLElement} pre  full-screen <pre>
- * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number}} opts
+ * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number,
+ *          active?: () => boolean}} opts
  *   eye: area to keep clear (and swirl around); ambient: background mode
  *   (fainter ring + edge fog); maxEyeFrac: cap eye width as a fraction of
- *   the screen.
+ *   the screen; active: return false to skip drawing (e.g. while hidden).
  * @returns {Mist}
  */
 export function startMist(pre, opts) {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fps = opts.fps ?? 18;
+  // Phones get fewer frames: the mist is decoration, the game comes first.
+  const small = window.innerWidth < 700;
+  const fps = Math.min(opts.fps ?? 18, small ? 12 : 18);
   const ambient = Boolean(opts.ambient);
   let cell = cellSize(pre);
   let cols = 0, rows = 0;
@@ -120,6 +130,9 @@ export function startMist(pre, opts) {
   const frame = (/** @type {number} */ now) => {
     if (stopped || !pre.isConnected) return stop();
     raf = requestAnimationFrame(frame);
+    // Don't compete with the page while it's still loading, and don't draw
+    // mist nobody can see.
+    if (!pageReady || (opts.active && !opts.active())) return;
     if (now - last < 1000 / fps) return;
     last = now;
     render(now);

@@ -1,6 +1,7 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { startMist } from "./mist.js?v=a61eef5076";
+import { overlayOpen } from "./fx.js?v=b06655b1a3";
+import { startMist } from "./mist.js?v=b06655b1a3";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;
@@ -25,7 +26,13 @@ function fixedEye() {
 export function startAmbient() {
   layer = document.getElementById("mist-bg");
   if (!layer || mist) return;
-  mist = startMist(layer, { ambient: true, fps: 14, maxEyeFrac: 0.45, eye: fixedEye });
+  const el = layer;
+  mist = startMist(layer, {
+    ambient: true, fps: 14, maxEyeFrac: 0.45, eye: fixedEye,
+    // Only draw once revealed, and not while a full-screen overlay (intro,
+    // name prompt) with its own mist covers it.
+    active: () => el.classList.contains("shown") && !overlayOpen(),
+  });
 }
 
 /** Fade the layer in (used after the name prompt clears). */

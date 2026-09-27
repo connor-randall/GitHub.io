@@ -330,7 +330,7 @@ b { font-weight: 700; }
 .mist {
   position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
   margin: 0; font-size: 12px; line-height: 1.15; white-space: pre;
-  color: #b9b4a4; opacity: .55; animation: mist-in 1.2s ease-out both;
+  color: #b9b4a4; opacity: .55; animation: mist-in 1.6s ease-out both;
 }
 @keyframes mist-in { from { opacity: 0; } }
 .overlay.identify .overlay-inner { position: relative; z-index: 1; }
@@ -345,6 +345,8 @@ b { font-weight: 700; }
   color: #b9b4a4; opacity: 0; transition: opacity 2s ease-out, color 3s;
 }
 .mist-bg.shown { opacity: .42; }
+/* Phones: bigger mist characters = far fewer to redraw each frame. */
+@media (max-width: 699px) { .mist, .mist-bg { font-size: 15px; } }
 .mist-bg.p2 { color: #e0a24a; }
 .mist-bg.p3 { color: #ff5a44; }
 .mist-bg.dead { color: #6d6a62; }
