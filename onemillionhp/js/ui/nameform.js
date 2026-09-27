@@ -1,12 +1,13 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=b06655b1a3";
-import { el } from "../ascii.js?v=b06655b1a3";
-import { emit, state } from "../store.js?v=b06655b1a3";
-import { showOverlay } from "./fx.js?v=b06655b1a3";
-import { revealAmbient } from "./ambient.js?v=b06655b1a3";
-import { startMist } from "./mist.js?v=b06655b1a3";
+import * as api from "../api.js?v=965ca38005";
+import { el } from "../ascii.js?v=965ca38005";
+import { boxById, emit, state } from "../store.js?v=965ca38005";
+import { openBox } from "./bag.js?v=965ca38005";
+import { boxDropReveal, showOverlay } from "./fx.js?v=965ca38005";
+import { revealAmbient } from "./ambient.js?v=965ca38005";
+import { startMist } from "./mist.js?v=965ca38005";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -66,9 +67,14 @@ export function nameForm(opts) {
       return;
     }
     try {
-      state.me = await api.rename(input.value);
+      const res = await api.rename(input.value);
+      state.me = res;
       emit("me");
       opts.onSaved();
+      // First name ever: a thank-you crate. Overlays queue, so this shows
+      // right after the name prompt's mist clears.
+      const gift = res.gift_box ? boxById(res.gift_box) : null;
+      if (gift) boxDropReveal(gift, () => openBox(gift), "THANK YOU! HERE IS A LOOT BOX");
     } catch (ex) {
       err.textContent = "> " + /** @type {Error} */ (ex).message;
       input.focus();

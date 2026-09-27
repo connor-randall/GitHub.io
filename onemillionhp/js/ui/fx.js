@@ -1,9 +1,9 @@
 // Effects: shake, damage popups, crit banner, ultimate sequence, loot reveal,
 // item cards and the modal overlay they all share.
 
-import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=b06655b1a3";
-import { rarityById, state } from "../store.js?v=b06655b1a3";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=b06655b1a3";
+import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=965ca38005";
+import { rarityById, state } from "../store.js?v=965ca38005";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=965ca38005";
 
 const overlay = /** @type {HTMLElement} */ (document.getElementById("overlay"));
 const shakeEl = /** @type {HTMLElement} */ (document.getElementById("shake"));
@@ -283,14 +283,16 @@ export function lootReveal(item, onEquip, title = "ITEM FOUND") {
 
 // ------------------------------------------------------------- loot boxes
 
-/** A loot box dropped from an attack. @param {any} boxDef @param {() => void} onOpen */
-export function boxDropReveal(boxDef, onOpen) {
+/** A loot box reveal (dropped from an attack, or a gift).
+ * @param {any} boxDef @param {() => void} onOpen @param {string} [title] */
+export function boxDropReveal(boxDef, onOpen, title = "LOOT BOX FOUND") {
+  const W = Math.max(30, title.length + 6);
   return showOverlay(
     (inner, close) => {
       inner.style.setProperty("width", "min(92vw, 420px)");
       const pre = el("pre", "art box-drop");
-      const lines = [...box(["LOOT BOX FOUND"], { width: 30 }), "", ...centerBlock(boxDef.art, 30), "",
-        center(boxDef.name, 30)];
+      const lines = [...box([title], { width: W }), "", ...centerBlock(boxDef.art, W), "",
+        center(boxDef.name, W)];
       inner.append(pre);
       revealLines(pre, lines, 45);
       fitArt(pre, 16);

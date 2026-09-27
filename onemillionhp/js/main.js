@@ -2,22 +2,22 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=b06655b1a3";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=b06655b1a3";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b06655b1a3";
-import { connectLive } from "./live.js?v=b06655b1a3";
-import * as sound from "./sound.js?v=b06655b1a3";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=b06655b1a3";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b06655b1a3";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=b06655b1a3";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b06655b1a3";
-import { renderFeed, tickAges } from "./ui/feed.js?v=b06655b1a3";
-import { popup, shake } from "./ui/fx.js?v=b06655b1a3";
-import { showError } from "./ui/errors.js?v=b06655b1a3";
-import { showIntro } from "./ui/nameform.js?v=b06655b1a3";
-import { loadHistory } from "./ui/history.js?v=b06655b1a3";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=b06655b1a3";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b06655b1a3";
+import * as api from "./api.js?v=965ca38005";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=965ca38005";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=965ca38005";
+import { connectLive } from "./live.js?v=965ca38005";
+import * as sound from "./sound.js?v=965ca38005";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=965ca38005";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=965ca38005";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=965ca38005";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=965ca38005";
+import { renderFeed, tickAges } from "./ui/feed.js?v=965ca38005";
+import { popup, shake } from "./ui/fx.js?v=965ca38005";
+import { showError } from "./ui/errors.js?v=965ca38005";
+import { showIntro } from "./ui/nameform.js?v=965ca38005";
+import { loadHistory } from "./ui/history.js?v=965ca38005";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=965ca38005";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=965ca38005";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
