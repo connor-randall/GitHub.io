@@ -1,9 +1,9 @@
 // [ RANKS ] panel: today / all-time leaderboards.
 
-import * as api from "../api.js?v=e252e20647";
-import { el, fmt, padL } from "../ascii.js?v=e252e20647";
-import { state } from "../store.js?v=e252e20647";
-import { showError } from "./errors.js?v=e252e20647";
+import * as api from "../api.js?v=0eabd506da";
+import { el, fmt, padL } from "../ascii.js?v=0eabd506da";
+import { state } from "../store.js?v=0eabd506da";
+import { showError } from "./errors.js?v=0eabd506da";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -12,6 +12,14 @@ const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.get
 /** @type {"today"|"all"} */
 let rankScope = "today";
 let ranksLoadedAt = 0;
+/** Last leaderboard fetched, so it can be redrawn without a request. */
+/** @type {any} */
+let lastLb = null;
+
+/** Redraw from the last fetch, e.g. once we know which player is "you". */
+export function redrawRanks() {
+  if (lastLb) renderRanks(lastLb);
+}
 
 export async function loadRanks(force = false) {
   const host = $("panel-ranks");
@@ -28,6 +36,7 @@ export async function loadRanks(force = false) {
 
 /** @param {any} lb */
 function renderRanks(lb) {
+  lastLb = lb;
   const host = $("panel-ranks");
   const toggle = el("div", "rank-toggle");
   for (const [scope, label] of /** @type {const} */ ([["today", "[ TODAY ]"], ["all", "[ ALL TIME ]"]])) {
@@ -51,7 +60,8 @@ function renderRanks(lb) {
       const n = fmt(r.value);
       const left = `${padL(String(i + 1), 2)}. ${r.name} `;
       const dots = ".".repeat(Math.max(1, W - left.length - n.length - 1));
-      const span = el("span", r.player_id === state.me?.id ? "me" : "", `${left}${dots} ${n}\n`);
+      const mine = r.player_id === state.me?.id;
+      const span = el("span", mine ? "me" : "", `${left}${dots} ${n}${mine ? " <" : ""}\n`);
       pre.append(span);
     });
     parts.push(pre);

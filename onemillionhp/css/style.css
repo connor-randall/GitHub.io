@@ -386,7 +386,7 @@ b { font-weight: 700; }
 .rank-toggle button { background: none; border: 0; color: var(--dim); cursor: pointer; padding: 6px 4px; }
 .rank-toggle button[aria-pressed="true"] { color: var(--bg); background: var(--fg); }
 .rank-table { font-size: 12px; margin-bottom: 12px; }
-.rank-table .me { color: var(--amber); }
+.rank-table .me { color: var(--amber); font-weight: 800; text-shadow: 0 0 8px rgba(255,176,0,.35); }
 
 /* ---------- history + death ---------- */
 .dead-box { text-align: center; }
