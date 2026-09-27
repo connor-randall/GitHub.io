@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-27T11:40:03-0600",
+  "generated_at": "2026-09-27T11:50:04-0600",
   "stats": {
-    "today_count": 188,
-    "today_species": 11,
-    "total": 955
+    "today_count": 189,
+    "today_species": 12,
+    "total": 956
   },
   "enviro": {
-    "temp_f": 88.1,
-    "humidity": 16.7,
-    "pressure": 827.6
+    "temp_f": 88.4,
+    "humidity": 17.1,
+    "pressure": 827.7
   },
   "detections": [
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.74,
+      "iso": "2026-09-27T11:40:53",
+      "time": "11:40",
+      "date": "2026-09-27",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-74-2026-09-27-birdnet-11.40.53.mp3"
+    },
     {
       "com_name": "Downy Woodpecker",
       "sci_name": "Dryobates pubescens",
@@ -150,16 +160,6 @@
       "date": "2026-09-27",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-86-2026-09-27-birdnet-10.33.31.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.9517,
-      "iso": "2026-09-27T10:33:13",
-      "time": "10:33",
-      "date": "2026-09-27",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-95-2026-09-27-birdnet-10.33.13.mp3"
     }
   ]
 }
