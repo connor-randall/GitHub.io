@@ -1,15 +1,15 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=639787ccf7";
-import { clock, el } from "../ascii.js?v=639787ccf7";
-import * as sound from "../sound.js?v=639787ccf7";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=639787ccf7";
-import { pulse } from "./ambient.js?v=639787ccf7";
-import { hurt } from "./boss.js?v=639787ccf7";
-import { showError } from "./errors.js?v=639787ccf7";
-import { promptForName } from "./nameform.js?v=639787ccf7";
-import { openBox } from "./bag.js?v=639787ccf7";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=639787ccf7";
+import * as api from "../api.js?v=7b8ebfb035";
+import { clock, el } from "../ascii.js?v=7b8ebfb035";
+import * as sound from "../sound.js?v=7b8ebfb035";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=7b8ebfb035";
+import { pulse } from "./ambient.js?v=7b8ebfb035";
+import { hurt } from "./boss.js?v=7b8ebfb035";
+import { showError } from "./errors.js?v=7b8ebfb035";
+import { promptForName } from "./nameform.js?v=7b8ebfb035";
+import { openBox } from "./bag.js?v=7b8ebfb035";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=7b8ebfb035";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -27,7 +27,7 @@ export function renderControls() {
   // Unnamed players can still press it: it opens the name prompt.
   btnAttack.disabled = busy || !me || !alive || (left <= 0 && !unnamed);
   btnAttack.classList.toggle("busy", busy);
-  // Unnamed players: pressing ATTACK asks for a name first, then attacks.
+  // Unnamed players: pressing ATTACK asks for a name (and doesn't attack).
   const label = '<span class="br">[</span> A T T A C K <span class="br">]</span>';
   const html = unnamed ? `${label}<span class="sub">name yourself before fighting</span>` : label;
   if (btnAttack.innerHTML !== html) btnAttack.innerHTML = html;
@@ -86,7 +86,7 @@ function fireAnim(b) {
 async function doAttack(kind) {
   if (busy) return;
   if (state.me && !state.me.name_chosen) {
-    promptForName(() => doAttack(kind)); // name first, then this very attack
+    promptForName(); // name first; attacking is a separate press
     return;
   }
   busy = true;
@@ -154,7 +154,7 @@ async function doAttack(kind) {
     if (err.code === "NEED_NAME") {
       api.getMe().then((m) => {
         state.me = m;
-        promptForName(() => doAttack(kind));
+        promptForName();
       }).catch(() => {});
       return;
     }

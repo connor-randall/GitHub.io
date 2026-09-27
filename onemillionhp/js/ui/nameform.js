@@ -1,12 +1,12 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=639787ccf7";
-import { el } from "../ascii.js?v=639787ccf7";
-import { emit, state } from "../store.js?v=639787ccf7";
-import { showOverlay } from "./fx.js?v=639787ccf7";
-import { revealAmbient } from "./ambient.js?v=639787ccf7";
-import { startMist } from "./mist.js?v=639787ccf7";
+import * as api from "../api.js?v=7b8ebfb035";
+import { el } from "../ascii.js?v=7b8ebfb035";
+import { emit, state } from "../store.js?v=7b8ebfb035";
+import { showOverlay } from "./fx.js?v=7b8ebfb035";
+import { revealAmbient } from "./ambient.js?v=7b8ebfb035";
+import { startMist } from "./mist.js?v=7b8ebfb035";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -135,8 +135,8 @@ export function showIntro() {
 
 let prompting = false;
 
-/** "Name yourself before fighting", in the same mist. Shown on the first
- * attack; ``then`` runs after a name is saved (e.g. the attack itself).
+/** "Name yourself before fighting", in the same mist. Shown when an unnamed
+ * player first tries to attack. ``then`` (optional) runs after a name is saved.
  * @param {() => void} [then] */
 export function promptForName(then) {
   if (prompting || !state.me || state.me.name_chosen) return;

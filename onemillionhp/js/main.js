@@ -2,20 +2,20 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=639787ccf7";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=639787ccf7";
-import { connectLive } from "./live.js?v=639787ccf7";
-import * as sound from "./sound.js?v=639787ccf7";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=639787ccf7";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=639787ccf7";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=639787ccf7";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=639787ccf7";
-import { renderFeed, tickAges } from "./ui/feed.js?v=639787ccf7";
-import { popup, shake } from "./ui/fx.js?v=639787ccf7";
-import { showError } from "./ui/errors.js?v=639787ccf7";
-import { showIntro } from "./ui/nameform.js?v=639787ccf7";
-import { redrawRanks } from "./ui/ranks.js?v=639787ccf7";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=639787ccf7";
+import * as api from "./api.js?v=7b8ebfb035";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=7b8ebfb035";
+import { connectLive } from "./live.js?v=7b8ebfb035";
+import * as sound from "./sound.js?v=7b8ebfb035";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=7b8ebfb035";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=7b8ebfb035";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=7b8ebfb035";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=7b8ebfb035";
+import { renderFeed, tickAges } from "./ui/feed.js?v=7b8ebfb035";
+import { popup, shake } from "./ui/fx.js?v=7b8ebfb035";
+import { showError } from "./ui/errors.js?v=7b8ebfb035";
+import { showIntro } from "./ui/nameform.js?v=7b8ebfb035";
+import { redrawRanks } from "./ui/ranks.js?v=7b8ebfb035";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=7b8ebfb035";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
