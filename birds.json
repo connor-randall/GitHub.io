@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-09-27T14:00:08-0600",
+  "generated_at": "2026-09-27T14:10:03-0600",
   "stats": {
-    "today_count": 210,
+    "today_count": 212,
     "today_species": 12,
-    "total": 977
+    "total": 979
   },
   "enviro": {
     "temp_f": 85.2,
-    "humidity": 18.3,
-    "pressure": 825.8
+    "humidity": 18.8,
+    "pressure": 825.7
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6591,
+      "iso": "2026-09-27T14:05:57",
+      "time": "14:05",
+      "date": "2026-09-27",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-09-27-birdnet-14.05.57.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6868,
+      "iso": "2026-09-27T14:00:15",
+      "time": "14:00",
+      "date": "2026-09-27",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-69-2026-09-27-birdnet-14.00.15.mp3"
+    },
     {
       "com_name": "Red-tailed Hawk",
       "sci_name": "Buteo jamaicensis",
@@ -140,26 +160,6 @@
       "date": "2026-09-27",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-09-27-birdnet-12.58.14.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.745,
-      "iso": "2026-09-27T12:58:05",
-      "time": "12:58",
-      "date": "2026-09-27",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-74-2026-09-27-birdnet-12.58.05.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8308,
-      "iso": "2026-09-27T12:57:32",
-      "time": "12:57",
-      "date": "2026-09-27",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-83-2026-09-27-birdnet-12.57.32.mp3"
     }
   ]
 }
