@@ -1,10 +1,10 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=965ca38005";
-import { boxById, itemById, now, rarityById, state } from "../store.js?v=965ca38005";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=c0a4fb7ade";
+import * as api from "../api.js?v=c0a4fb7ade";
+import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=c0a4fb7ade";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
-const SHOW = 20;
 
 /** Build the message spans for one event. @param {any} e @returns {Node[]} */
 function message(e) {
@@ -73,15 +73,79 @@ function row(e, fresh) {
   return li;
 }
 
-/** Render the whole feed (newest first). @param {Set<number>} [freshIds] */
-export function renderFeed(freshIds) {
-  const events = state.feed.slice(-SHOW).reverse();
+// ------------------------------------------------------------ scrolling feed
+// Newest at the top; scroll down for history. Older pages load on demand.
+
+let reachedStart = false;
+let loadingOlder = false;
+const footer = el("li", "feed-end dim", "");
+
+function paintFooter() {
+  footer.textContent = reachedStart ? "--- start of the fight ---" : loadingOlder ? "loading older..." : "--- scroll for older ---";
+}
+
+/** Render every loaded event, newest first. */
+export function renderFeed() {
+  const events = [...state.feed].reverse();
   if (!events.length) {
     list.replaceChildren(el("li", "dim", "> silence. be the first to strike."));
     return;
   }
-  list.replaceChildren(...events.map((e) => row(e, Boolean(freshIds?.has(e.id)))));
+  paintFooter();
+  list.replaceChildren(...events.map((e) => row(e, false)), footer);
+  fillIfShort();
 }
+
+/** New events arrived: slide them in at the top without redrawing the rest.
+ * If you've scrolled down to read history, the list doesn't move under you.
+ * @param {any[]} fresh */
+export function addFreshEvents(fresh) {
+  if (!fresh.length) return;
+  if (!list.contains(footer)) {
+    renderFeed(); // was the empty placeholder
+    return;
+  }
+  const top = list.scrollTop;
+  const before = list.scrollHeight;
+  const rows = [...fresh].sort((a, b) => b.t - a.t || b.id - a.id).map((e) => row(e, true));
+  list.prepend(...rows);
+  if (top > 0) list.scrollTop = top + (list.scrollHeight - before);
+}
+
+/** Start over (e.g. after an admin reset). */
+export function resetFeedHistory() {
+  reachedStart = false;
+  renderFeed();
+}
+
+async function loadOlder() {
+  if (loadingOlder || reachedStart || !state.feed.length) return;
+  const oldest = state.feed[0];
+  loadingOlder = true;
+  paintFooter();
+  try {
+    const { events } = await api.getOlderFeed(oldest.t, oldest.id);
+    if (events.length < 100) reachedStart = true;
+    const added = addOlderFeed(events);
+    const rows = [...added].sort((a, b) => b.t - a.t || b.id - a.id).map((e) => row(e, false));
+    for (const r of rows) list.insertBefore(r, footer);
+  } catch {
+    /* try again on the next scroll */
+  } finally {
+    loadingOlder = false;
+    paintFooter();
+  }
+  fillIfShort();
+}
+
+/** Keep loading until the box can actually scroll (or history runs out). */
+function fillIfShort() {
+  if (!reachedStart && list.scrollHeight <= list.clientHeight + 40) loadOlder();
+}
+
+list.addEventListener("scroll", () => {
+  if (list.scrollTop + list.clientHeight >= list.scrollHeight - 200) loadOlder();
+}, { passive: true });
 
 export function tickAges() {
   list.querySelectorAll(".t").forEach((n) => {

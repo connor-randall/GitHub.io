@@ -2,22 +2,22 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=965ca38005";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=965ca38005";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=965ca38005";
-import { connectLive } from "./live.js?v=965ca38005";
-import * as sound from "./sound.js?v=965ca38005";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=965ca38005";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=965ca38005";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=965ca38005";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=965ca38005";
-import { renderFeed, tickAges } from "./ui/feed.js?v=965ca38005";
-import { popup, shake } from "./ui/fx.js?v=965ca38005";
-import { showError } from "./ui/errors.js?v=965ca38005";
-import { showIntro } from "./ui/nameform.js?v=965ca38005";
-import { loadHistory } from "./ui/history.js?v=965ca38005";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=965ca38005";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=965ca38005";
+import * as api from "./api.js?v=c0a4fb7ade";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=c0a4fb7ade";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=c0a4fb7ade";
+import { connectLive } from "./live.js?v=c0a4fb7ade";
+import * as sound from "./sound.js?v=c0a4fb7ade";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=c0a4fb7ade";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=c0a4fb7ade";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=c0a4fb7ade";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=c0a4fb7ade";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=c0a4fb7ade";
+import { popup, shake } from "./ui/fx.js?v=c0a4fb7ade";
+import { showError } from "./ui/errors.js?v=c0a4fb7ade";
+import { showIntro } from "./ui/nameform.js?v=c0a4fb7ade";
+import { loadHistory } from "./ui/history.js?v=c0a4fb7ade";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=c0a4fb7ade";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=c0a4fb7ade";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -106,6 +106,7 @@ async function boot() {
     if (currentTab() === "ranks") redrawRanks(); // highlight "you" once we know who that is
   });
   on("feed", () => renderFeed());
+  let feedDrawn = false;
 
   initControls();
   initTabs();
@@ -136,14 +137,17 @@ async function boot() {
       if (s.server_time) state.serverSkew = s.server_time - Date.now() / 1000;
       if (applyBoss(s.boss)) emit("boss");
       const fresh = mergeFeed(s.feed ?? []);
-      if (fresh.length) renderFeed();
+      if (!feedDrawn) {
+        feedDrawn = true;
+        renderFeed();
+      } else addFreshEvents(fresh);
       setOnline(s.online ?? 0);
     },
     onUpdate: (u) => {
       const fresh = mergeFeed(u.events);
       if (applyBoss(u.boss)) emit("boss");
       if (fresh.length) {
-        renderFeed(new Set(fresh.map((e) => e.id)));
+        addFreshEvents(fresh);
         reactToOthers(fresh);
       }
       setOnline(u.online ?? state.online);
@@ -156,7 +160,8 @@ async function boot() {
       state.feed = [];
       applyBoss(r.boss);
       mergeFeed(r.feed ?? []);
-      emit("boss", "feed");
+      emit("boss");
+      resetFeedHistory();
       api.getMe().then((m) => {
         state.me = m;
         emit("me");

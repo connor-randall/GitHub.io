@@ -1,15 +1,16 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=965ca38005";
-import { clock, el } from "../ascii.js?v=965ca38005";
-import * as sound from "../sound.js?v=965ca38005";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=965ca38005";
-import { pulse } from "./ambient.js?v=965ca38005";
-import { hurt } from "./boss.js?v=965ca38005";
-import { showError } from "./errors.js?v=965ca38005";
-import { promptForName } from "./nameform.js?v=965ca38005";
-import { openBox } from "./bag.js?v=965ca38005";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=965ca38005";
+import * as api from "../api.js?v=c0a4fb7ade";
+import { clock, el } from "../ascii.js?v=c0a4fb7ade";
+import * as sound from "../sound.js?v=c0a4fb7ade";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=c0a4fb7ade";
+import { pulse } from "./ambient.js?v=c0a4fb7ade";
+import { hurt } from "./boss.js?v=c0a4fb7ade";
+import { showError } from "./errors.js?v=c0a4fb7ade";
+import { promptForName } from "./nameform.js?v=c0a4fb7ade";
+import { openBox } from "./bag.js?v=c0a4fb7ade";
+import { addFreshEvents } from "./feed.js?v=c0a4fb7ade";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=c0a4fb7ade";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -98,11 +99,7 @@ async function doAttack(kind) {
     state.me = res.me;
     state.lastHit = { damage: a.damage, crit: a.crit, kind: a.kind };
     if (applyBoss(res.boss)) emit("boss");
-    if (res.events) {
-      // Our own events: mark them so the live feed doesn't replay effects.
-      mergeFeed(res.events);
-      emit("feed");
-    }
+    if (res.events) addFreshEvents(mergeFeed(res.events)); // our own hit, straight into the feed
     emit("me");
     hurt(a.crit || kind === "ultimate" ? 420 : 240);
     pulse(kind === "ultimate" ? 1.6 : a.crit ? 1.1 : 0.55);

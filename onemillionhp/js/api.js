@@ -100,6 +100,8 @@ export async function ensurePlayer() {
 
 export const getContent = () => request("/api/content");
 export const getState = () => request("/api/state");
+/** Feed events older than the given one (newest first). @param {number} t @param {number} id */
+export const getOlderFeed = (t, id) => request(`/api/feed?before_t=${t}&before_id=${id}&limit=100`);
 export const getMe = () => request("/api/me", { auth: true });
 /** @param {"today"|"all"} scope */
 export const getLeaderboard = (scope) => request(`/api/leaderboard?scope=${scope}`);
