@@ -1,9 +1,9 @@
 // [ RANKS ] panel: today / all-time leaderboards.
 
-import * as api from "../api.js?v=7b8ebfb035";
-import { el, fmt, padL } from "../ascii.js?v=7b8ebfb035";
-import { state } from "../store.js?v=7b8ebfb035";
-import { showError } from "./errors.js?v=7b8ebfb035";
+import * as api from "../api.js?v=af7bf3bdae";
+import { el, fmt, padL } from "../ascii.js?v=af7bf3bdae";
+import { state } from "../store.js?v=af7bf3bdae";
+import { showError } from "./errors.js?v=af7bf3bdae";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -25,10 +25,13 @@ export async function loadRanks(force = false) {
   const host = $("panel-ranks");
   if (!force && Date.now() - ranksLoadedAt < 15000 && host.childElementCount) return;
   ranksLoadedAt = Date.now();
+  // Keep whatever is showing until the new data arrives (no flash/jump).
   if (!host.childElementCount) host.append(el("div", "dim", "> loading..."));
+  host.setAttribute("aria-busy", "true");
   try {
     const lb = await api.getLeaderboard(rankScope);
     renderRanks(lb);
+    host.removeAttribute("aria-busy");
   } catch (e) {
     showError(/** @type {Error} */ (e).message);
   }

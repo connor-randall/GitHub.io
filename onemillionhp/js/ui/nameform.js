@@ -1,12 +1,12 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=7b8ebfb035";
-import { el } from "../ascii.js?v=7b8ebfb035";
-import { emit, state } from "../store.js?v=7b8ebfb035";
-import { showOverlay } from "./fx.js?v=7b8ebfb035";
-import { revealAmbient } from "./ambient.js?v=7b8ebfb035";
-import { startMist } from "./mist.js?v=7b8ebfb035";
+import * as api from "../api.js?v=af7bf3bdae";
+import { el } from "../ascii.js?v=af7bf3bdae";
+import { emit, state } from "../store.js?v=af7bf3bdae";
+import { showOverlay } from "./fx.js?v=af7bf3bdae";
+import { revealAmbient } from "./ambient.js?v=af7bf3bdae";
+import { startMist } from "./mist.js?v=af7bf3bdae";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -83,11 +83,13 @@ export function nameForm(opts) {
  * content (the "eye"). leave() blows the mist away and reveals the game.
  * @param {(eye: HTMLElement, inner: HTMLElement, leave: () => Promise<void>) => void} build
  */
-function mistOverlay(build) {
+function mistOverlay(build, instant = false) {
   return showOverlay(
     (inner, close) => {
       const overlay = /** @type {HTMLElement} */ (inner.parentElement);
       overlay.classList.add("identify");
+      // First thing on screen: start fully dark (no fade from the page).
+      overlay.classList.toggle("instant", instant);
       const mistEl = el("pre", "mist");
       mistEl.setAttribute("aria-hidden", "true");
       overlay.prepend(mistEl);
@@ -107,12 +109,13 @@ function mistOverlay(build) {
     },
     { dismissable: false },
   ).then(() => {
-    document.getElementById("overlay")?.classList.remove("identify", "leaving");
+    document.getElementById("overlay")?.classList.remove("identify", "leaving", "instant");
   });
 }
 
-/** First visit: what this place is, then [ FIGHT! ]. No naming yet. */
-export function showIntro() {
+/** First visit: what this place is, then [ FIGHT! ]. No naming yet.
+ * @param {boolean} [instant] start fully dark (used on the very first frame) */
+export function showIntro(instant = false) {
   return mistOverlay((eye, _inner, leave) => {
     eye.classList.add("intro");
     eye.append(el("h2", "identify-title", "ONE MILLION HP"));
@@ -130,7 +133,7 @@ export function showIntro() {
     fight.addEventListener("click", leave);
     eye.append(text, fight);
     requestAnimationFrame(() => fight.focus({ preventScroll: true }));
-  });
+  }, instant);
 }
 
 let prompting = false;

@@ -2,20 +2,22 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=7b8ebfb035";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=7b8ebfb035";
-import { connectLive } from "./live.js?v=7b8ebfb035";
-import * as sound from "./sound.js?v=7b8ebfb035";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=7b8ebfb035";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=7b8ebfb035";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=7b8ebfb035";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=7b8ebfb035";
-import { renderFeed, tickAges } from "./ui/feed.js?v=7b8ebfb035";
-import { popup, shake } from "./ui/fx.js?v=7b8ebfb035";
-import { showError } from "./ui/errors.js?v=7b8ebfb035";
-import { showIntro } from "./ui/nameform.js?v=7b8ebfb035";
-import { redrawRanks } from "./ui/ranks.js?v=7b8ebfb035";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=7b8ebfb035";
+import * as api from "./api.js?v=af7bf3bdae";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=af7bf3bdae";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=af7bf3bdae";
+import { connectLive } from "./live.js?v=af7bf3bdae";
+import * as sound from "./sound.js?v=af7bf3bdae";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=af7bf3bdae";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=af7bf3bdae";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=af7bf3bdae";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=af7bf3bdae";
+import { renderFeed, tickAges } from "./ui/feed.js?v=af7bf3bdae";
+import { popup, shake } from "./ui/fx.js?v=af7bf3bdae";
+import { showError } from "./ui/errors.js?v=af7bf3bdae";
+import { showIntro } from "./ui/nameform.js?v=af7bf3bdae";
+import { loadHistory } from "./ui/history.js?v=af7bf3bdae";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=af7bf3bdae";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=af7bf3bdae";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -59,7 +61,35 @@ function reactToOthers(events) {
   }
 }
 
+/** Lift the dark cover. @param {boolean} [instant] */
+function dropCurtain(instant = false) {
+  const c = document.getElementById("curtain");
+  if (!c) return;
+  if (instant) c.remove();
+  else {
+    c.classList.add("gone");
+    setTimeout(() => c.remove(), 800);
+  }
+}
+
+let introShown = false;
+
+/** Load RANKS and HISTORY in the background so opening them is instant. */
+function prefetchPanels() {
+  loadRanks(true).catch(() => {});
+  loadHistory().catch(() => {});
+}
+
 async function boot() {
+  if (forwardToCanonical("game")) return; // moving to the official address (curtain stays up)
+  acceptClaim();
+  // A browser with no saved player is a first-time visitor: show the intro
+  // mist right away, before anything else has loaded.
+  if (!api.currentToken() && !introShown) {
+    introShown = true;
+    showIntro(true);
+    dropCurtain(true);
+  }
   setArt($("boss-art"), ["", "", "", "   . . . summoning . . .", "", ""], 15);
   document.querySelectorAll(".logo-wide").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_WIDE, 11));
   document.querySelectorAll(".logo-stack").forEach((n) => setArt(/** @type {HTMLElement} */ (n), LOGO_STACK, 11));
@@ -95,6 +125,7 @@ async function boot() {
   try {
     state.content = await api.getContent();
   } catch (e) {
+    dropCurtain();
     showError(/** @type {Error} */ (e).message);
     setTimeout(boot, 5000);
     return;
@@ -141,8 +172,14 @@ async function boot() {
     // Named players go straight in; first-timers get the intro (naming
     // waits until their first attack).
     if (state.me?.name_chosen) revealAmbient();
-    else showIntro();
+    else if (!introShown) {
+      introShown = true;
+      showIntro();
+    }
+    dropCurtain(introShown);
+    prefetchPanels();
   } catch (e) {
+    dropCurtain();
     showError(/** @type {Error} */ (e).message);
   }
   startTaunts();

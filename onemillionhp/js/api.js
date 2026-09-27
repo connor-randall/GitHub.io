@@ -32,6 +32,15 @@ function loadToken() {
   }
 }
 
+/** The token this browser plays with (null if none yet). */
+export const currentToken = () => loadToken();
+
+/** Use a token handed over from an old address, unless we already have one.
+ * @param {string} t */
+export function adoptToken(t) {
+  if (!loadToken() && /^[A-Za-z0-9_-]{20,100}$/.test(t)) saveToken(t);
+}
+
 /** @param {string | null} t */
 function saveToken(t) {
   memToken = t;

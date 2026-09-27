@@ -1,11 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=7b8ebfb035";
-import { el, fmt, padR, setArt } from "./ascii.js?v=7b8ebfb035";
-import { rarityById, state } from "./store.js?v=7b8ebfb035";
-import { effectParts } from "./ui/effects.js?v=7b8ebfb035";
-import { itemLines } from "./ui/fx.js?v=7b8ebfb035";
+import { API_BASE, getContent } from "./api.js?v=af7bf3bdae";
+import { forwardToCanonical } from "./home.js?v=af7bf3bdae";
+import { el, fmt, padR, setArt } from "./ascii.js?v=af7bf3bdae";
+import { rarityById, state } from "./store.js?v=af7bf3bdae";
+import { effectParts } from "./ui/effects.js?v=af7bf3bdae";
+import { itemLines } from "./ui/fx.js?v=af7bf3bdae";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -276,8 +277,8 @@ function wire() {
   });
 }
 
-wire();
-if (session()) refresh().catch(() => showLogin());
+if (!forwardToCanonical("admin")) wire();
+if (!forwardToCanonical("admin") && session()) refresh().catch(() => showLogin());
 else showLogin();
 setInterval(() => {
   if (!$("panel").hidden && document.visibilityState === "visible") refresh().catch(() => {});

@@ -41,6 +41,10 @@ b { font-weight: 700; }
 ::selection { background: var(--amber); color: var(--bg); }
 :focus-visible { outline: 1px dashed var(--amber); outline-offset: 3px; }
 
+/* ---------- curtain: covers the page until we know what to show ---------- */
+.curtain { position: fixed; inset: 0; z-index: 60; background: var(--bg); transition: opacity .7s ease-out; }
+.curtain.gone { opacity: 0; pointer-events: none; }
+
 /* ---------- CRT: scanlines + vignette, very faint ---------- */
 .crt {
   pointer-events: none;
@@ -310,6 +314,7 @@ b { font-weight: 700; }
 
 /* "name yourself": dark screen, ASCII mist swirling around the name box */
 .overlay.identify { background: rgba(4,4,3,.96); animation: dim-in .6s ease-out both; }
+.overlay.identify.instant { animation: none; }
 @keyframes dim-in { from { background: rgba(4,4,3,0); } }
 .mist {
   position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
@@ -353,7 +358,9 @@ b { font-weight: 700; }
 .fight .btn-big { font-size: 19px; padding: 8px 14px; min-width: min(100%, 280px); }
 .fight .btn-ult { font-size: 16px; margin-top: 6px; }
 .col-side.box { padding-top: 4px; }
-.col-side .panel { min-height: 0; }
+/* A steady height so switching tabs (and data arriving) doesn't make the
+   page jump; long panels still grow. */
+.col-side .panel { min-height: 650px; }
 .boss .boss-name { font-size: 26px; margin-top: 6px; }
 .boss .hp { margin: 10px 0 2px; }
 .boss .taunt { margin-top: 4px; }
