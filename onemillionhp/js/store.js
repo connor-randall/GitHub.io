@@ -70,6 +70,8 @@ export const itemById = (id) => state.content?.items.find((/** @type {any} */ i)
 /** @param {string} id */
 export const rarityById = (id) => state.content?.rarities.find((/** @type {any} */ r) => r.id === id);
 /** @param {string} id */
+export const boxById = (id) => state.content?.boxes?.find((/** @type {any} */ b) => b.id === id);
+/** @param {string} id */
 export const bossDef = (id) => state.content?.bosses.find((/** @type {any} */ b) => b.id === id);
 
 /**

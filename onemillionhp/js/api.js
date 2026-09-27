@@ -97,9 +97,30 @@ export const getLeaderboard = (scope) => request(`/api/leaderboard?scope=${scope
 export const getHistory = () => request("/api/history");
 /** @param {string} name */
 export const rename = (name) => request("/api/me/name", { method: "POST", auth: true, body: { name } });
-/** @param {string | null} itemId */
-export const equip = (itemId) =>
-  request("/api/me/equip", { method: "POST", auth: true, body: { item_id: itemId } });
+/** Equip an owned item (its own slot), or pass null + slot to empty a slot.
+ * @param {string | null} itemId @param {string} [slot] */
+export const equip = (itemId, slot) =>
+  request("/api/me/equip", { method: "POST", auth: true, body: { item_id: itemId, slot } });
+
+function requestId() {
+  return typeof crypto.randomUUID === "function"
+    ? crypto.randomUUID()
+    : Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/** Open one loot box. Retry-safe like attacks. @param {string} boxId */
+export async function openBox(boxId) {
+  const body = { box_id: boxId, request_id: requestId() };
+  try {
+    return await request("/api/boxes/open", { method: "POST", auth: true, body });
+  } catch (e) {
+    if (e instanceof ApiError && e.code === "NETWORK") {
+      await new Promise((r) => setTimeout(r, 900));
+      return request("/api/boxes/open", { method: "POST", auth: true, body });
+    }
+    throw e;
+  }
+}
 
 /**
  * Attack. The request id makes retries safe: if the response is lost and we
@@ -107,11 +128,7 @@ export const equip = (itemId) =>
  * @param {"normal"|"ultimate"} kind
  */
 export async function attack(kind) {
-  const requestId =
-    typeof crypto.randomUUID === "function"
-      ? crypto.randomUUID()
-      : Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
-  const body = { request_id: requestId, kind };
+  const body = { request_id: requestId(), kind };
   try {
     return await request("/api/attack", { method: "POST", auth: true, body });
   } catch (e) {

@@ -1,9 +1,10 @@
 // [ YOU ] panel: stats, rename, equipped weapon.
 
-import { el, fmt, setArt } from "../ascii.js?v=f1fae6ed81";
-import { itemById, state } from "../store.js?v=f1fae6ed81";
-import { itemLines } from "./fx.js?v=f1fae6ed81";
-import { nameForm } from "./nameform.js?v=f1fae6ed81";
+import { el, fmt, setArt } from "../ascii.js?v=a3ddcf956a";
+import { itemById, state } from "../store.js?v=a3ddcf956a";
+import { effectLine } from "./effects.js?v=a3ddcf956a";
+import { itemLines } from "./fx.js?v=a3ddcf956a";
+import { nameForm } from "./nameform.js?v=a3ddcf956a";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -19,6 +20,7 @@ export function renderPlayer() {
     return;
   }
   const equipped = me.equipped ? itemById(me.equipped) : null;
+  const charm = me.equipped_charm ? itemById(me.equipped_charm) : null;
   const rows = [
     ["NAME", me.name],
     ["LEVEL", String(me.level)],
@@ -30,6 +32,9 @@ export function renderPlayer() {
     ["ITEMS FOUND", fmt(me.items_found)],
     ["BOSSES", `${me.bosses_participated} fought / ${me.bosses_defeated} slain`],
     ["WEAPON", equipped ? equipped.name : "BARE HANDS"],
+    ["CHARM", charm ? charm.name : "NONE"],
+    ["LOOT BOXES", String((me.boxes ?? []).reduce((n, /** @type {any} */ b) => n + b.count, 0))],
+    ...(me.next_crits > 0 ? [["CRIT CHARGES", String(me.next_crits)]] : []),
   ];
   const head = el("div", "panel-h", "PLAYER ");
   head.append(el("b", "", "------------------------"));
@@ -49,17 +54,17 @@ export function renderPlayer() {
 
   const parts = [head, table];
   if (renaming) parts.push(renameForm(me.name));
-  const eq = el("div", "equipped-box");
-  if (equipped) {
-    const pre = el("pre", `art r-${equipped.rarity}`);
-    eq.append(pre);
-    parts.push(eq);
-    requestAnimationFrame(() => setArt(pre, itemLines(equipped, { width: 26, equipped: true }), 12));
-    eq.append(bonusLine(equipped));
-  } else {
-    eq.append(el("div", "dim", "> no weapon equipped. loot drops from attacks. check [ BAG ]."));
-    parts.push(eq);
+  const eq = el("div", "equipped-box eq-pair");
+  for (const item of [equipped, charm]) {
+    if (!item) continue;
+    const cell = el("div", "eq-cell");
+    const pre = el("pre", `art r-${item.rarity}`);
+    cell.append(pre, effectLine(item));
+    eq.append(cell);
+    requestAnimationFrame(() => setArt(pre, itemLines(item, { width: 24, equipped: true }), 11));
   }
+  if (!equipped && !charm) eq.append(el("div", "dim", "> nothing equipped. loot drops from attacks and boxes. check [ BAG ]."));
+  parts.push(eq);
   host.replaceChildren(...parts);
 }
 
@@ -76,15 +81,4 @@ function renameForm(current) {
   });
   requestAnimationFrame(() => input.focus());
   return form;
-}
-
-/** Weapon bonuses as text. @param {any} item */
-export function bonusLine(item) {
-  const m = item.mods;
-  const parts = [];
-  if (m.min_dmg) parts.push(`+${m.min_dmg} MIN`);
-  if (m.max_dmg) parts.push(`+${m.max_dmg} MAX`);
-  if (m.crit_chance) parts.push(`+${(m.crit_chance * 100).toFixed(2).replace(/\.?0+$/, "")}% CRIT`);
-  if (m.loot_mult > 1) parts.push(`+${Math.round((m.loot_mult - 1) * 100)}% LOOT`);
-  return el("div", "stats", parts.length ? parts.join("  ") : "NO BONUS. JUST VIBES.");
 }

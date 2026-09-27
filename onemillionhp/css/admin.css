@@ -38,3 +38,16 @@
 .adm-log li { padding: 2px 0; }
 .adm-log .ok { color: var(--green); }
 .adm-log .bad { color: var(--red); }
+
+/* item gallery */
+.admin { max-width: 980px; }
+.gal-controls { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 10px; }
+.gal-controls input#gal-player { width: 18ch; border-color: var(--amber); }
+.gal-boxes, .gal-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+.gal-boxes { margin-bottom: 14px; }
+.gal-card { border: 1px dashed #4d483c; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
+.gal-card pre { font-size: 10px; }
+.gal-box pre { color: var(--amber); align-self: center; }
+.gal-name { font-size: 11px; text-align: center; color: var(--dim); }
+.gal-fx { font-size: 10px; color: var(--fg); min-height: 2.4em; }
+.gal-count { font-size: 11px; margin: 6px 0; }

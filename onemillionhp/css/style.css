@@ -191,6 +191,25 @@ b { font-weight: 700; }
 }
 .pop.small { font-size: 13px; color: var(--dim); animation-duration: .9s; }
 .pop.crit { color: var(--red); font-size: 28px; }
+.pop.proc { color: var(--green); font-size: 14px; letter-spacing: .1em; }
+
+/* bag: boxes, equipped slots, filters */
+.box-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+.box-card { text-align: center; border: 1px dashed #4d483c; padding: 6px 8px; min-width: 120px; }
+.box-card pre { display: inline-block; text-align: left; color: var(--amber); }
+.box-name { font-size: 11px; color: var(--dim); margin: 2px 0; letter-spacing: .1em; }
+.bag-note { font-size: 12px; margin: 4px 0 10px; }
+.crit-charge { color: var(--red); }
+.eq-row { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.eq-slot { background: none; border: 0; padding: 2px 0; cursor: pointer; font-size: 13px; text-align: left; }
+.eq-slot:hover { text-decoration: underline; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 2px 0 10px; }
+.chip { background: none; border: 0; color: var(--dim); cursor: pointer; padding: 4px 2px; font-size: 12px; }
+.chip[aria-pressed="true"] { color: var(--bg); background: var(--fg); }
+.panel-h { margin-top: 6px; }
+.eq-pair { display: flex; flex-wrap: wrap; gap: 12px; }
+.eq-cell { flex: 1 1 180px; }
+.box-drop, .box-open { color: var(--amber); }
 @keyframes rise {
   0% { transform: translate(-50%, 0) scale(.6); opacity: 0; }
   15% { transform: translate(-50%, -8px) scale(1.15); opacity: 1; }
@@ -239,6 +258,9 @@ b { font-weight: 700; }
 .feed .k-ultimate { color: var(--amber); }
 .feed .k-loot { color: var(--fg); }
 .feed .k-phase, .feed .k-spawn { color: var(--amber); letter-spacing: .08em; }
+.feed .proc-tag { color: var(--green); }
+.feed .box-tag { color: var(--amber); }
+.feed .k-box, .feed .k-unbox { color: var(--dim); }
 .feed .k-defeat { color: var(--bg); background: var(--red); font-weight: 700; }
 .feed li.new .m { animation: type-in .35s steps(18) 1; }
 @keyframes type-in { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }

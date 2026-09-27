@@ -1,12 +1,12 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=f1fae6ed81";
-import { el } from "../ascii.js?v=f1fae6ed81";
-import { emit, state } from "../store.js?v=f1fae6ed81";
-import { showOverlay } from "./fx.js?v=f1fae6ed81";
-import { revealAmbient } from "./ambient.js?v=f1fae6ed81";
-import { startMist } from "./mist.js?v=f1fae6ed81";
+import * as api from "../api.js?v=a3ddcf956a";
+import { el } from "../ascii.js?v=a3ddcf956a";
+import { emit, state } from "../store.js?v=a3ddcf956a";
+import { showOverlay } from "./fx.js?v=a3ddcf956a";
+import { revealAmbient } from "./ambient.js?v=a3ddcf956a";
+import { startMist } from "./mist.js?v=a3ddcf956a";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];

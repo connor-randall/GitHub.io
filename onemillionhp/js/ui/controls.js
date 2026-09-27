@@ -1,14 +1,15 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=f1fae6ed81";
-import { clock, el } from "../ascii.js?v=f1fae6ed81";
-import * as sound from "../sound.js?v=f1fae6ed81";
-import { applyBoss, emit, itemById, mergeFeed, now, state } from "../store.js?v=f1fae6ed81";
-import { pulse } from "./ambient.js?v=f1fae6ed81";
-import { hurt } from "./boss.js?v=f1fae6ed81";
-import { showError } from "./errors.js?v=f1fae6ed81";
-import { promptForName } from "./nameform.js?v=f1fae6ed81";
-import { critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=f1fae6ed81";
+import * as api from "../api.js?v=a3ddcf956a";
+import { clock, el } from "../ascii.js?v=a3ddcf956a";
+import * as sound from "../sound.js?v=a3ddcf956a";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=a3ddcf956a";
+import { pulse } from "./ambient.js?v=a3ddcf956a";
+import { hurt } from "./boss.js?v=a3ddcf956a";
+import { showError } from "./errors.js?v=a3ddcf956a";
+import { promptForName } from "./nameform.js?v=a3ddcf956a";
+import { openBox } from "./bag.js?v=a3ddcf956a";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=a3ddcf956a";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -117,6 +118,16 @@ async function doAttack(kind) {
       popup(`-${a.damage}`, "mine");
       shake("s");
     }
+    // Item effects that fired, as floating callouts.
+    const procs = a.procs ?? {};
+    const callouts = [
+      procs.double && "DOUBLE STRIKE!",
+      procs.saved && "FREE ATTACK!",
+      procs.refund && "ULT RECHARGED!",
+      procs.forced_crit && "CHARGED CRIT!",
+    ].filter(Boolean);
+    callouts.forEach((txt, i) => setTimeout(() => popup(/** @type {string} */ (txt), "proc"), 250 + i * 260));
+    if (procs.refund) sound.loot();
     if (a.item_id) {
       const item = itemById(a.item_id);
       if (item) {
@@ -129,6 +140,13 @@ async function doAttack(kind) {
             showError(/** @type {Error} */ (e).message);
           }
         });
+      }
+    }
+    if (procs.box_id) {
+      const boxDef = boxById(procs.box_id);
+      if (boxDef) {
+        sound.loot();
+        await boxDropReveal(boxDef, () => openBox(boxDef));
       }
     }
   } catch (e) {

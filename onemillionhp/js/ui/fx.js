@@ -1,8 +1,8 @@
 // Effects: shake, damage popups, crit banner, ultimate sequence, loot reveal,
 // item cards and the modal overlay they all share.
 
-import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=f1fae6ed81";
-import { rarityById, state } from "../store.js?v=f1fae6ed81";
+import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=a3ddcf956a";
+import { rarityById, state } from "../store.js?v=a3ddcf956a";
 
 const overlay = /** @type {HTMLElement} */ (document.getElementById("overlay"));
 const shakeEl = /** @type {HTMLElement} */ (document.getElementById("shake"));
@@ -16,12 +16,12 @@ export function shake(size) {
   shakeEl.classList.add(size === "l" ? "shake-l" : "shake-s");
 }
 
-/** Floating damage number over the boss.
- * @param {string} text @param {"mine"|"crit"|"small"} kind */
+/** Floating damage number (or effect callout) over the boss.
+ * @param {string} text @param {"mine"|"crit"|"small"|"proc"} kind */
 export function popup(text, kind) {
   const host = document.getElementById("popups");
   if (!host) return;
-  const p = el("div", "pop" + (kind === "crit" ? " crit" : kind === "small" ? " small" : ""), text);
+  const p = el("div", "pop" + (kind === "mine" ? "" : " " + kind), text);
   const spread = kind === "small" ? 140 : 60;
   p.style.setProperty("margin-left", `${Math.round((Math.random() - 0.5) * spread)}px`);
   p.style.setProperty("top", `${30 + Math.round(Math.random() * 25)}%`);
@@ -120,7 +120,11 @@ export function itemLines(item, o = {}) {
   const art = [...Array(top).fill(""), ...drawn, ...Array(extra - top).fill("")];
   const label = o.unknown ? "[ ??? ]" : style.deco[0] + (rarity?.label ?? item.rarity.toUpperCase()) + style.deco[1];
   const name = o.unknown ? "? ? ? ? ?" : item.name;
-  const tag = [o.equipped ? "EQUIPPED" : "", o.count && o.count > 1 ? `x${o.count}` : ""].filter(Boolean).join("  ");
+  const tag = o.unknown
+    ? ""
+    : [item.slot === "charm" ? "CHARM" : "WEAPON", o.equipped ? "EQUIPPED" : "", o.count && o.count > 1 ? `x${o.count}` : ""]
+        .filter(Boolean)
+        .join("  ");
   // Lines are pre-centred to the box's inner width, so box() must not re-centre them.
   return box([...centerBlock(art, inner - 2), " ", center(name, inner - 2), center(label, inner - 2), center(tag, inner - 2)], {
     width: inner + 2,
@@ -237,10 +241,10 @@ export function ultimateSequence(damage) {
  * @param {any} item
  * @param {(id: string) => Promise<void>} onEquip
  */
-export function lootReveal(item, onEquip) {
+export function lootReveal(item, onEquip, title = "ITEM FOUND") {
   const rank = rarityById(item.rarity)?.rank ?? 0;
   const style = RARITY_STYLE[item.rarity] ?? RARITY_STYLE.common;
-  const header = box(["ITEM FOUND"], { width: 28, style });
+  const header = box([title], { width: 28, style });
   return showOverlay((inner, close) => {
     const pre = el("pre", `art r-${item.rarity}`);
     inner.append(pre);
@@ -257,7 +261,7 @@ export function lootReveal(item, onEquip) {
       const flavor = el("div", "flavor dim", `"${item.flavor}"`);
       const actions = el("div", "actions");
       actions.append(
-        button("[ EQUIP ]", async () => {
+        button(`[ EQUIP ${item.slot === "charm" ? "CHARM" : "WEAPON"} ]`, async () => {
           await onEquip(item.id);
           close();
         }),
@@ -266,5 +270,105 @@ export function lootReveal(item, onEquip) {
       inner.append(flavor, actions);
       actions.querySelector("button")?.focus({ preventScroll: true });
     }, suspense);
+  });
+}
+
+// ------------------------------------------------------------- loot boxes
+
+/** A loot box dropped from an attack. @param {any} boxDef @param {() => void} onOpen */
+export function boxDropReveal(boxDef, onOpen) {
+  return showOverlay(
+    (inner, close) => {
+      inner.style.setProperty("width", "min(92vw, 420px)");
+      const pre = el("pre", "art box-drop");
+      const lines = [...box(["LOOT BOX FOUND"], { width: 30 }), "", ...centerBlock(boxDef.art, 30), "",
+        center(boxDef.name, 30)];
+      inner.append(pre);
+      revealLines(pre, lines, 45);
+      fitArt(pre, 16);
+      const flavor = el("div", "flavor dim", `"${boxDef.flavor}"`);
+      const actions = el("div", "actions");
+      actions.append(
+        button("[ OPEN NOW ]", () => {
+          close();
+          onOpen();
+        }),
+        button("[ LATER ]", close),
+      );
+      inner.append(flavor, actions);
+      actions.querySelector("button")?.focus({ preventScroll: true });
+    },
+    { autoCloseMs: 8000 },
+  );
+}
+
+const BURST = [
+  "   \\   |   //   ",
+  " *  \\  |  //  * ",
+  "  -- *  *  * --  ",
+  "==== *  @  * ====",
+  "  -- *  *  * --  ",
+  " *  //  |  \\  * ",
+  "   //   |   \\   ",
+];
+
+/** Shake, burst, reveal. @param {any} boxDef @param {any} result @param {(id: string) => Promise<void>} onEquip */
+export function openBoxSequence(boxDef, result, onEquip) {
+  const W = 30;
+  const done = showOverlay((inner, close) => {
+    // Give the stage a real width up front: art is sized to its container,
+    // and an empty overlay would start out tiny.
+    inner.style.setProperty("width", "min(92vw, 420px)");
+    const pre = el("pre", "art box-open");
+    inner.append(pre);
+    const art = centerBlock(boxDef.art, W);
+    let frame = 0;
+    const frames = reduced ? 1 : 16;
+    const tick = () => {
+      if (!pre.isConnected) return;
+      if (frame < frames) {
+        // Shake harder and harder, sparks leaking out of the seams.
+        const amp = 1 + Math.floor((frame / frames) * 3);
+        const off = frame % 2 ? amp : 0;
+        const sparks = frame > frames / 2 ? " * ".repeat(Math.ceil(frame / 4)).slice(0, W) : "";
+        pre.textContent = ["", center(boxDef.name, W), center(sparks, W), ...art.map((l) => " ".repeat(off) + l),
+          center(sparks, W)].join("\n");
+        pre.dataset.cols = String(W + 4);
+        fitArt(pre, 16);
+        frame++;
+        setTimeout(tick, 70);
+        return;
+      }
+      shake("l");
+      pre.textContent = ["", "", ...centerBlock(BURST, W), "", ""].join("\n");
+      fitArt(pre, 16);
+      setTimeout(() => {
+        if (result.kind === "item") {
+          close();
+          return;
+        }
+        const text = result.kind === "attacks" ? `+${result.amount} ATTACK${result.amount > 1 ? "S" : ""}`
+          : result.kind === "next_crit" ? `NEXT ${result.amount} HIT${result.amount > 1 ? "S" : ""} WILL CRIT`
+            : "ULTIMATE RECHARGED";
+        const sub = result.kind === "attacks" ? "added to today" : result.kind === "next_crit"
+          ? "guaranteed critical strikes" : "use it again on this boss";
+        const lines = [...box(["", text, "", sub, ""], { width: W, style: RARITY_STYLE.rare }), ""];
+        revealLines(pre, lines, 60);
+        fitArt(pre, 16);
+        const actions = el("div", "actions");
+        actions.append(button("[ NICE ]", close));
+        inner.append(actions);
+        actions.querySelector("button")?.focus({ preventScroll: true });
+      }, reduced ? 0 : 380);
+    };
+    tick();
+  });
+  // Items get the full item reveal (with equip) right after the burst.
+  return done.then(() => {
+    if (result.kind === "item" && result.item_id) {
+      const item = state.content?.items.find((/** @type {any} */ i) => i.id === result.item_id);
+      if (item) return lootReveal(item, onEquip, `${boxDef.name} :: ITEM`);
+    }
+    return undefined;
   });
 }

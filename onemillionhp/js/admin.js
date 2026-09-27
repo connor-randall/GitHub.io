@@ -1,8 +1,11 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE } from "./api.js?v=f1fae6ed81";
-import { el, fmt, padR } from "./ascii.js?v=f1fae6ed81";
+import { API_BASE, getContent } from "./api.js?v=a3ddcf956a";
+import { el, fmt, padR, setArt } from "./ascii.js?v=a3ddcf956a";
+import { rarityById, state } from "./store.js?v=a3ddcf956a";
+import { effectParts } from "./ui/effects.js?v=a3ddcf956a";
+import { itemLines } from "./ui/fx.js?v=a3ddcf956a";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -89,14 +92,7 @@ async function refresh() {
   /** @type {HTMLInputElement} */ (tune.elements.namedItem("crit_pct")).placeholder = (t.crit_chance * 100).toFixed(2);
   /** @type {HTMLInputElement} */ (tune.elements.namedItem("loot_mult")).placeholder = String(t.loot_mult);
 
-  const sel = $("item-select");
-  if (!sel.childElementCount) {
-    for (const it of ov.items) {
-      const o = /** @type {HTMLOptionElement} */ (el("option", "", `${it.name} [${it.rarity}]`));
-      o.value = it.id;
-      sel.append(o);
-    }
-  }
+  await renderGallery();
   $("players").replaceChildren(
     ...ov.recent_players.map((/** @type {any} */ p) => {
       const o = /** @type {HTMLOptionElement} */ (el("option"));
@@ -111,6 +107,80 @@ async function refresh() {
         `${padR(p.name, 17)} ${padR(fmt(p.total_damage), 9)} ${padR(String(p.total_attacks), 5)} ${p.banned ? "BANNED " : ""}${p.id}`,
     ),
   ].join("\n");
+}
+
+// ------------------------------------------------------------ item gallery
+
+let galleryReady = false;
+
+async function renderGallery() {
+  if (!state.content) state.content = await getContent();
+  const content = state.content;
+  if (!galleryReady) {
+    galleryReady = true;
+    const rsel = $("gal-rarity");
+    for (const r of content.rarities) {
+      const o = /** @type {HTMLOptionElement} */ (el("option", "", r.label.toLowerCase()));
+      o.value = r.id;
+      rsel.append(o);
+    }
+    for (const id of ["gal-rarity", "gal-slot", "gal-search"]) $(id).addEventListener("input", drawGallery);
+    // Boxes: one card each with a give button.
+    $("gal-boxes").replaceChildren(
+      ...content.boxes.map((/** @type {any} */ b) => {
+        const card = el("div", "gal-card gal-box");
+        const pre = el("pre", "art");
+        const give = el("button", "inline-btn", "[ GIVE ]");
+        give.addEventListener("click", () => give1("grant_box", { box_id: b.id }, b.name));
+        card.append(pre, el("div", "gal-name", b.name), give);
+        requestAnimationFrame(() => setArt(pre, b.art, 10));
+        return card;
+      }),
+    );
+  }
+  drawGallery();
+}
+
+function drawGallery() {
+  const content = state.content;
+  if (!content) return;
+  const rarity = /** @type {HTMLSelectElement} */ ($("gal-rarity")).value;
+  const slot = /** @type {HTMLSelectElement} */ ($("gal-slot")).value;
+  const q = /** @type {HTMLInputElement} */ ($("gal-search")).value.trim().toUpperCase();
+  const items = content.items
+    .filter((/** @type {any} */ i) => (!rarity || i.rarity === rarity) && (!slot || i.slot === slot))
+    .filter((/** @type {any} */ i) => !q || i.name.includes(q) || effectParts(i.mods).join(" ").includes(q))
+    .sort((/** @type {any} */ a, /** @type {any} */ b) =>
+      (rarityById(b.rarity)?.rank ?? 0) - (rarityById(a.rarity)?.rank ?? 0) || a.name.localeCompare(b.name));
+  $("gal-count").textContent = `${items.length} of ${content.items.length} items`;
+  $("gal-grid").replaceChildren(
+    ...items.map((/** @type {any} */ item) => {
+      const card = el("div", `gal-card r-${item.rarity}`);
+      const pre = el("pre", "art");
+      const fx = effectParts(item.mods);
+      const give = el("button", "inline-btn", "[ GIVE ]");
+      give.addEventListener("click", () => give1("grant_item", { item_id: item.id }, item.name));
+      card.append(pre, el("div", "gal-fx", fx.length ? fx.join(" :: ") : "no bonus"), give);
+      requestAnimationFrame(() => setArt(pre, itemLines(item, {}), 10));
+      return card;
+    }),
+  );
+}
+
+/** @param {string} action @param {Record<string, string>} extra @param {string} what */
+async function give1(action, extra, what) {
+  const player = /** @type {HTMLInputElement} */ ($("gal-player")).value.trim();
+  if (!player) {
+    log(`Type a player name in GIVE TO first (for ${what}).`, false);
+    $("gal-player").focus();
+    return;
+  }
+  try {
+    const res = await call("/api/admin/action", { action, player, ...extra });
+    log(res.message, true);
+  } catch (e) {
+    log(/** @type {Error} */ (e).message, false);
+  }
 }
 
 /** Turn a form's inputs into action params (blank fields are omitted).

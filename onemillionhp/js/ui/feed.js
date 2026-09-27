@@ -1,7 +1,7 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=f1fae6ed81";
-import { itemById, now, rarityById, state } from "../store.js?v=f1fae6ed81";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=a3ddcf956a";
+import { boxById, itemById, now, rarityById, state } from "../store.js?v=a3ddcf956a";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 const SHOW = 20;
@@ -13,9 +13,27 @@ function message(e) {
   const txt = (/** @type {string} */ s) => document.createTextNode(s);
   switch (e.kind) {
     case "hit":
-      return [txt("> "), who(), txt(" hit "), txt(state.boss?.name ?? "the boss"), txt(" for "), num(e.damage)];
+      return [txt("> "), who(), txt(" hit "), txt(state.boss?.name ?? "the boss"), txt(" for "), num(e.damage),
+        ...procTags(e)];
     case "crit":
-      return [txt("> "), who(), txt(" landed a CRITICAL for "), num(e.damage), txt(" !!")];
+      return [txt("> "), who(), txt(" landed a CRITICAL for "), num(e.damage), txt(" !!"), ...procTags(e)];
+    case "box": {
+      const b = boxById(e.box_id);
+      return [txt("> "), who(), txt(" found a "), el("span", "box-tag", `[${b?.name ?? e.box_id}]`)];
+    }
+    case "unbox": {
+      const b = boxById(e.box_id);
+      const bits = [txt("> "), who(), txt(" opened "), el("span", "box-tag", `[${b?.name ?? e.box_id}]`), txt(" -> ")];
+      if (e.reward === "item" && e.item_id) {
+        const item = itemById(e.item_id);
+        const r = rarityById(e.rarity);
+        const st = RARITY_STYLE[e.rarity] ?? RARITY_STYLE.common;
+        bits.push(el("span", `r-${e.rarity}`, `${st.deco[0]}${r?.label ?? e.rarity}${st.deco[1]} ${item?.name ?? e.item_id}`));
+      } else if (e.reward === "attacks") bits.push(txt(`+${e.amount} ATTACK${e.amount > 1 ? "S" : ""}`));
+      else if (e.reward === "next_crit") bits.push(txt(`${e.amount} CRIT CHARGE${e.amount > 1 ? "S" : ""}`));
+      else bits.push(txt("ULTIMATE RECHARGED"));
+      return bits;
+    }
     case "ultimate":
       return [txt("> "), who(), txt(" used ULTIMATE for "), num(e.damage)];
     case "loot": {
@@ -34,6 +52,12 @@ function message(e) {
     default:
       return [txt(`> ${e.kind}`)];
   }
+}
+
+/** Short tags for item effects that fired on a hit. @param {any} e */
+function procTags(e) {
+  const tags = [e.double && "x2", e.saved && "FREE", e.refund && "ULT+"].filter(Boolean);
+  return tags.length ? [el("span", "proc-tag", ` [${tags.join(" ")}]`)] : [];
 }
 
 /** @param {any} e @param {boolean} fresh */

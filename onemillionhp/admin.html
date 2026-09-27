@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css?v=f1fae6ed81">
-<link rel="stylesheet" href="css/admin.css?v=f1fae6ed81">
+<link rel="stylesheet" href="css/style.css?v=a3ddcf956a">
+<link rel="stylesheet" href="css/admin.css?v=a3ddcf956a">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -69,11 +69,6 @@
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
         <button class="inline-btn">[ GIVE ULTIMATES BACK ]</button>
       </form>
-      <form data-action="grant_item">
-        <label>PLAYER <input name="player" required list="players"></label>
-        <label>ITEM <select name="item_id" id="item-select"></select></label>
-        <button class="inline-btn">[ GIVE ITEM ]</button>
-      </form>
       <form data-action="rename_player">
         <label>PLAYER <input name="player" required list="players"></label>
         <label>NEW NAME <input name="name" maxlength="16" required></label>
@@ -90,6 +85,19 @@
       </form>
       <datalist id="players"></datalist>
       <pre id="recent" class="adm-recent"></pre>
+    </section>
+
+    <section class="adm" id="gallery">
+      <h2>[ ITEMS &amp; BOXES ]</h2>
+      <div class="gal-controls">
+        <label>GIVE TO <input id="gal-player" list="players" placeholder="player name or id"></label>
+        <label>RARITY <select id="gal-rarity"><option value="">all</option></select></label>
+        <label>SLOT <select id="gal-slot"><option value="">all</option><option value="weapon">weapon</option><option value="charm">charm</option></select></label>
+        <label>SEARCH <input id="gal-search" placeholder="name or effect"></label>
+      </div>
+      <div class="gal-boxes" id="gal-boxes"></div>
+      <div class="gal-count dim" id="gal-count"></div>
+      <div class="gal-grid" id="gal-grid"></div>
     </section>
 
     <section class="adm">
@@ -131,6 +139,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=f1fae6ed81"></script>
+<script type="module" src="js/admin.js?v=a3ddcf956a"></script>
 </body>
 </html>
