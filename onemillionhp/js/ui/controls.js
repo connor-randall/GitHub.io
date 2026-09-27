@@ -1,15 +1,15 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=b22c5eb748";
-import { clock, el } from "../ascii.js?v=b22c5eb748";
-import * as sound from "../sound.js?v=b22c5eb748";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=b22c5eb748";
-import { pulse } from "./ambient.js?v=b22c5eb748";
-import { hurt } from "./boss.js?v=b22c5eb748";
-import { showError } from "./errors.js?v=b22c5eb748";
-import { promptForName } from "./nameform.js?v=b22c5eb748";
-import { openBox } from "./bag.js?v=b22c5eb748";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=b22c5eb748";
+import * as api from "../api.js?v=bfef2eb086";
+import { clock, el } from "../ascii.js?v=bfef2eb086";
+import * as sound from "../sound.js?v=bfef2eb086";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=bfef2eb086";
+import { pulse } from "./ambient.js?v=bfef2eb086";
+import { hurt } from "./boss.js?v=bfef2eb086";
+import { showError } from "./errors.js?v=bfef2eb086";
+import { promptForName } from "./nameform.js?v=bfef2eb086";
+import { openBox } from "./bag.js?v=bfef2eb086";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=bfef2eb086";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -27,11 +27,8 @@ export function renderControls() {
   // Unnamed players can still press it: it opens the name prompt.
   btnAttack.disabled = busy || !me || !alive || (left <= 0 && !unnamed);
   btnAttack.classList.toggle("busy", busy);
-  btnAttack.classList.toggle("needs-name", unnamed);
-  btnAttack.innerHTML = unnamed
-    ? '<span class="br">[</span> N A M E &nbsp;Y O U R S E L F <span class="br">]</span>'
-    : '<span class="br">[</span> A T T A C K <span class="br">]</span>';
-  $("name-nag").hidden = !unnamed;
+  // Unnamed players see a normal ATTACK button; pressing it asks for a name
+  // first and then lands the attack.
 
   const pips = $("pips");
   pips.replaceChildren(el("span", "dim", "ATTACKS "));
@@ -86,7 +83,7 @@ function fireAnim(b) {
 async function doAttack(kind) {
   if (busy) return;
   if (state.me && !state.me.name_chosen) {
-    promptForName();
+    promptForName(() => doAttack(kind)); // name first, then this very attack
     return;
   }
   busy = true;
@@ -154,7 +151,7 @@ async function doAttack(kind) {
     if (err.code === "NEED_NAME") {
       api.getMe().then((m) => {
         state.me = m;
-        promptForName();
+        promptForName(() => doAttack(kind));
       }).catch(() => {});
       return;
     }

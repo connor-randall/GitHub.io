@@ -1,12 +1,12 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=b22c5eb748";
-import { el } from "../ascii.js?v=b22c5eb748";
-import { emit, state } from "../store.js?v=b22c5eb748";
-import { showOverlay } from "./fx.js?v=b22c5eb748";
-import { revealAmbient } from "./ambient.js?v=b22c5eb748";
-import { startMist } from "./mist.js?v=b22c5eb748";
+import * as api from "../api.js?v=bfef2eb086";
+import { el } from "../ascii.js?v=bfef2eb086";
+import { emit, state } from "../store.js?v=bfef2eb086";
+import { showOverlay } from "./fx.js?v=bfef2eb086";
+import { revealAmbient } from "./ambient.js?v=bfef2eb086";
+import { startMist } from "./mist.js?v=bfef2eb086";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -78,23 +78,21 @@ export function nameForm(opts) {
   return { form, input };
 }
 
-let prompting = false;
-
-/** "Name yourself before fighting", wrapped in drifting ASCII mist. When
- * done, the mist blows away and the game's own mist fades in behind it. */
-export function promptForName() {
-  if (prompting || !state.me || state.me.name_chosen) return;
-  prompting = true;
-  showOverlay(
+/**
+ * Full-screen mist overlay: dark screen, ASCII mist swirling around the
+ * content (the "eye"). leave() blows the mist away and reveals the game.
+ * @param {(eye: HTMLElement, inner: HTMLElement, leave: () => Promise<void>) => void} build
+ */
+function mistOverlay(build) {
+  return showOverlay(
     (inner, close) => {
       const overlay = /** @type {HTMLElement} */ (inner.parentElement);
       overlay.classList.add("identify");
       const mistEl = el("pre", "mist");
       mistEl.setAttribute("aria-hidden", "true");
       overlay.prepend(mistEl);
-
       const eye = el("div", "identify-eye");
-      const title = el("h2", "identify-title", "NAME YOURSELF BEFORE FIGHTING");
+      inner.append(eye);
       const mist = startMist(mistEl, { eye: () => eye.getBoundingClientRect() });
       let leaving = false;
       const leave = async () => {
@@ -105,20 +103,65 @@ export function promptForName() {
         await mist.dissipate(1100);
         close();
       };
-      const { form, input } = nameForm({ submitLabel: "[ ENTER ]", withRoll: true, onSaved: leave });
-      form.classList.add("prompt");
-      eye.append(title, form);
-      const later = el("div", "actions");
-      const b = el("button", "", "[ just looking ]");
-      b.addEventListener("click", leave);
-      later.append(b);
-      inner.append(eye, later);
-      requestAnimationFrame(() => input.focus());
+      build(eye, inner, leave);
     },
     { dismissable: false },
   ).then(() => {
+    document.getElementById("overlay")?.classList.remove("identify", "leaving");
+  });
+}
+
+/** First visit: what this place is, then [ FIGHT! ]. No naming yet. */
+export function showIntro() {
+  return mistOverlay((eye, _inner, leave) => {
+    eye.classList.add("intro");
+    eye.append(el("h2", "identify-title", "ONE MILLION HP"));
+    const lines = [
+      "Everyone on this site is fighting the same boss.",
+      "It has 1,000,000 HP. Every hit, from every player, comes off the same health bar.",
+      "You get 5 attacks a day and one ultimate per boss. Hits can drop weapons, charms and loot boxes.",
+      "Whoever lands the final blow goes on the record. Then the next boss arrives.",
+    ];
+    const text = el("div", "intro-text");
+    for (const line of lines) text.append(el("p", "", line));
+    const fight = /** @type {HTMLButtonElement} */ (el("button", "btn-big intro-fight", ""));
+    fight.innerHTML = '<span class="br">[</span> F I G H T ! <span class="br">]</span>';
+    fight.type = "button";
+    fight.addEventListener("click", leave);
+    eye.append(text, fight);
+    requestAnimationFrame(() => fight.focus({ preventScroll: true }));
+  });
+}
+
+let prompting = false;
+
+/** "Name yourself before fighting", in the same mist. Shown on the first
+ * attack; ``then`` runs after a name is saved (e.g. the attack itself).
+ * @param {() => void} [then] */
+export function promptForName(then) {
+  if (prompting || !state.me || state.me.name_chosen) return;
+  prompting = true;
+  let named = false;
+  mistOverlay((eye, inner, leave) => {
+    const title = el("h2", "identify-title", "NAME YOURSELF BEFORE FIGHTING");
+    const { form, input } = nameForm({
+      submitLabel: "[ ENTER ]",
+      withRoll: true,
+      onSaved: () => {
+        named = true;
+        leave();
+      },
+    });
+    form.classList.add("prompt");
+    eye.append(title, form);
+    const later = el("div", "actions");
+    const b = el("button", "", "[ just looking ]");
+    b.addEventListener("click", leave);
+    later.append(b);
+    inner.append(later);
+    requestAnimationFrame(() => input.focus());
+  }).then(() => {
     prompting = false;
-    const overlay = document.getElementById("overlay");
-    overlay?.classList.remove("identify", "leaving");
+    if (named && then) then();
   });
 }

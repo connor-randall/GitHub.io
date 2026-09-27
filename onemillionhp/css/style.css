@@ -357,6 +357,12 @@ b { font-weight: 700; }
 }
 @keyframes title-in { from { opacity: 0; letter-spacing: .5em; filter: blur(3px); } }
 .identify-eye .name-form input { font-size: 18px; width: 17ch; }
+.identify-eye.intro { max-width: 46ch; }
+.intro-text { color: var(--fg); font-size: 14px; line-height: 1.55; margin: 14px 0 6px; }
+.intro-text p { margin: 0 0 10px; }
+.intro-text p:first-child { color: var(--amber); font-weight: 700; }
+.intro-fight { margin-top: 8px; color: var(--amber); }
+.intro-fight .br { color: var(--amber); }
 @media (max-width: 420px) { .identify-title { font-size: 15px; letter-spacing: .08em; } }
 .name-form input {
   background: var(--bg-2); color: var(--fg); border: 1px dashed var(--dim); border-radius: 0;

@@ -2,20 +2,20 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=b22c5eb748";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b22c5eb748";
-import { connectLive } from "./live.js?v=b22c5eb748";
-import * as sound from "./sound.js?v=b22c5eb748";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=b22c5eb748";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b22c5eb748";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=b22c5eb748";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b22c5eb748";
-import { renderFeed, tickAges } from "./ui/feed.js?v=b22c5eb748";
-import { popup, shake } from "./ui/fx.js?v=b22c5eb748";
-import { showError } from "./ui/errors.js?v=b22c5eb748";
-import { promptForName } from "./ui/nameform.js?v=b22c5eb748";
-import { redrawRanks } from "./ui/ranks.js?v=b22c5eb748";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b22c5eb748";
+import * as api from "./api.js?v=bfef2eb086";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=bfef2eb086";
+import { connectLive } from "./live.js?v=bfef2eb086";
+import * as sound from "./sound.js?v=bfef2eb086";
+import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=bfef2eb086";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=bfef2eb086";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=bfef2eb086";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=bfef2eb086";
+import { renderFeed, tickAges } from "./ui/feed.js?v=bfef2eb086";
+import { popup, shake } from "./ui/fx.js?v=bfef2eb086";
+import { showError } from "./ui/errors.js?v=bfef2eb086";
+import { showIntro } from "./ui/nameform.js?v=bfef2eb086";
+import { redrawRanks } from "./ui/ranks.js?v=bfef2eb086";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=bfef2eb086";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -138,8 +138,10 @@ async function boot() {
   try {
     state.me = await api.ensurePlayer();
     emit("me");
+    // Named players go straight in; first-timers get the intro (naming
+    // waits until their first attack).
     if (state.me?.name_chosen) revealAmbient();
-    else promptForName();
+    else showIntro();
   } catch (e) {
     showError(/** @type {Error} */ (e).message);
   }
