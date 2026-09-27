@@ -1,15 +1,18 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=c0a4fb7ade";
-import { forwardToCanonical } from "./home.js?v=c0a4fb7ade";
-import { el, fmt, padR, setArt } from "./ascii.js?v=c0a4fb7ade";
-import { rarityById, state } from "./store.js?v=c0a4fb7ade";
-import { effectParts } from "./ui/effects.js?v=c0a4fb7ade";
-import { itemLines } from "./ui/fx.js?v=c0a4fb7ade";
+import { API_BASE, getContent } from "./api.js?v=5ed9bfb7af";
+import { forwardToCanonical } from "./home.js?v=5ed9bfb7af";
+import { el, fmt, padR, setArt } from "./ascii.js?v=5ed9bfb7af";
+import { rarityById, state } from "./store.js?v=5ed9bfb7af";
+import { effectParts } from "./ui/effects.js?v=5ed9bfb7af";
+import { itemLines } from "./ui/fx.js?v=5ed9bfb7af";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
+
+/** Whether actions should be announced in the public feed as ***ADMIN***. */
+const announcing = () => /** @type {HTMLInputElement} */ ($("announce")).checked;
 
 function session() {
   try {
@@ -177,7 +180,7 @@ async function give1(action, extra, what) {
     return;
   }
   try {
-    const res = await call("/api/admin/action", { action, player, ...extra });
+    const res = await call("/api/admin/action", { action, player, ...extra, announce: announcing() });
     log(res.message, true);
   } catch (e) {
     log(/** @type {Error} */ (e).message, false);
@@ -226,7 +229,7 @@ async function submit(form, action, btn) {
     disarm(btn);
   }
   try {
-    const res = await call("/api/admin/action", { action, ...params(form) });
+    const res = await call("/api/admin/action", { action, ...params(form), announce: announcing() });
     log(res.message, true);
     if (action === "set_passcode") {
       showLogin();

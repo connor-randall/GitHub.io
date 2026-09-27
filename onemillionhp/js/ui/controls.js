@@ -1,16 +1,16 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=c0a4fb7ade";
-import { clock, el } from "../ascii.js?v=c0a4fb7ade";
-import * as sound from "../sound.js?v=c0a4fb7ade";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=c0a4fb7ade";
-import { pulse } from "./ambient.js?v=c0a4fb7ade";
-import { hurt } from "./boss.js?v=c0a4fb7ade";
-import { showError } from "./errors.js?v=c0a4fb7ade";
-import { promptForName } from "./nameform.js?v=c0a4fb7ade";
-import { openBox } from "./bag.js?v=c0a4fb7ade";
-import { addFreshEvents } from "./feed.js?v=c0a4fb7ade";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=c0a4fb7ade";
+import * as api from "../api.js?v=5ed9bfb7af";
+import { clock, el } from "../ascii.js?v=5ed9bfb7af";
+import * as sound from "../sound.js?v=5ed9bfb7af";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=5ed9bfb7af";
+import { pulse } from "./ambient.js?v=5ed9bfb7af";
+import { hurt } from "./boss.js?v=5ed9bfb7af";
+import { showError } from "./errors.js?v=5ed9bfb7af";
+import { promptForName } from "./nameform.js?v=5ed9bfb7af";
+import { openBox } from "./bag.js?v=5ed9bfb7af";
+import { addFreshEvents } from "./feed.js?v=5ed9bfb7af";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=5ed9bfb7af";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));

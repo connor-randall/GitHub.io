@@ -1,9 +1,9 @@
 // Effects: shake, damage popups, crit banner, ultimate sequence, loot reveal,
 // item cards and the modal overlay they all share.
 
-import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=c0a4fb7ade";
-import { rarityById, state } from "../store.js?v=c0a4fb7ade";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=c0a4fb7ade";
+import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=5ed9bfb7af";
+import { rarityById, state } from "../store.js?v=5ed9bfb7af";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=5ed9bfb7af";
 
 const overlay = /** @type {HTMLElement} */ (document.getElementById("overlay"));
 const shakeEl = /** @type {HTMLElement} */ (document.getElementById("shake"));

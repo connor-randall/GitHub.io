@@ -51,3 +51,6 @@
 .gal-name { font-size: 11px; text-align: center; color: var(--dim); }
 .gal-fx { font-size: 10px; color: var(--fg); min-height: 2.4em; }
 .gal-count { font-size: 11px; margin: 6px 0; }
+
+.announce-toggle { display: flex; gap: 8px; align-items: center; font-size: 12px; color: var(--amber); margin: -6px 0 10px; }
+.admin .announce-toggle input { width: auto; }

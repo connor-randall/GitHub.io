@@ -292,6 +292,18 @@ b { font-weight: 700; }
 .feed .k-loot { color: var(--fg); }
 .feed .k-phase, .feed .k-spawn { color: var(--amber); letter-spacing: .08em; }
 .feed .proc-tag { color: var(--green); }
+/* ***ADMIN*** announcements: a shimmering tag and a highlighted row. */
+.feed .k-admin { background: linear-gradient(90deg, rgba(255,176,0,.10), rgba(201,155,255,.06) 60%, transparent); }
+.feed .admin-tag {
+  font-weight: 800; letter-spacing: .06em;
+  background: linear-gradient(90deg, #ffb000, #ff5340, #c99bff, #ffb000);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: admin-shimmer 3s linear infinite;
+  text-shadow: 0 0 10px rgba(255,176,0,.25);
+}
+@keyframes admin-shimmer { to { background-position: 300% 0; } }
+.feed .admin-text { color: var(--amber); font-weight: 700; }
 .feed .box-tag { color: var(--amber); }
 .feed .k-box, .feed .k-unbox { color: var(--dim); }
 .feed .k-defeat { color: var(--bg); background: var(--red); font-weight: 700; }
