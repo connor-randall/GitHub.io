@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=e1a8e2bda8";
-import { forwardToCanonical } from "./home.js?v=e1a8e2bda8";
-import { el, fmt, padR, setArt } from "./ascii.js?v=e1a8e2bda8";
-import { rarityById, state } from "./store.js?v=e1a8e2bda8";
-import { effectParts } from "./ui/effects.js?v=e1a8e2bda8";
-import { itemLines } from "./ui/fx.js?v=e1a8e2bda8";
+import { API_BASE, getContent } from "./api.js?v=9f98fe4ca3";
+import { forwardToCanonical } from "./home.js?v=9f98fe4ca3";
+import { el, fmt, padR, setArt } from "./ascii.js?v=9f98fe4ca3";
+import { rarityById, state } from "./store.js?v=9f98fe4ca3";
+import { effectParts } from "./ui/effects.js?v=9f98fe4ca3";
+import { itemLines } from "./ui/fx.js?v=9f98fe4ca3";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -136,7 +136,16 @@ async function renderGallery() {
         const pre = el("pre", "art");
         const give = el("button", "inline-btn", "[ GIVE ]");
         give.addEventListener("click", () => give1("grant_box", { box_id: b.id }, b.name));
-        card.append(pre, el("div", "gal-name", b.name), give);
+        const everyone = el("button", "inline-btn gift-all", "[ GIFT EVERYONE ONLINE ]");
+        everyone.addEventListener("click", async () => {
+          try {
+            const res = await call("/api/admin/action", { action: "gift_online", box_id: b.id, announce: announcing() });
+            log(res.message, true);
+          } catch (e) {
+            log(/** @type {Error} */ (e).message, false);
+          }
+        });
+        card.append(pre, el("div", "gal-name", b.name), give, everyone);
         requestAnimationFrame(() => setArt(pre, b.art, 10));
         return card;
       }),

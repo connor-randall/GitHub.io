@@ -1,7 +1,7 @@
 // Live connection: WebSocket push, with short polling as a fallback while
 // the socket is down. Either way the server's boss state is the only truth.
 
-import { getState, liveUrl } from "./api.js?v=e1a8e2bda8";
+import { currentToken, getState, liveUrl } from "./api.js?v=9f98fe4ca3";
 
 const POLL_MS = 5000;
 const MAX_BACKOFF_MS = 30000;
@@ -12,6 +12,7 @@ const MAX_BACKOFF_MS = 30000;
  *   onUpdate: (u: {boss: any, events: any[], online: number}) => void,
  *   onOnline: (n: number) => void,
  *   onRefresh: (r: {boss: any, feed: any[]}) => void,
+ *   onGift: (g: {box_id: string}) => void,
  *   onMode: (mode: "live"|"poll"|"down") => void,
  * }} LiveHandlers
  */
@@ -54,6 +55,7 @@ export function connectLive(h) {
       backoff = 1000;
       stopPolling();
       h.onMode("live");
+      identify();
     };
     ws.onmessage = (ev) => {
       let msg;
@@ -66,6 +68,7 @@ export function connectLive(h) {
       else if (msg.type === "update") h.onUpdate(msg);
       else if (msg.type === "heartbeat") h.onOnline(msg.online);
       else if (msg.type === "refresh") h.onRefresh(msg);
+      else if (msg.type === "gift") h.onGift(msg);
     };
     ws.onclose = () => {
       ws = null;
@@ -77,6 +80,13 @@ export function connectLive(h) {
     ws.onerror = () => ws?.close();
   };
 
+  /** Tell the server which player this page is (so admin gifts reach us).
+   * Safe to call again, e.g. right after a brand-new player is created. */
+  const identify = () => {
+    const token = currentToken();
+    if (token && ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: "auth", token }));
+  };
+
   poll();
   open();
 
@@ -84,4 +94,5 @@ export function connectLive(h) {
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") poll();
   });
+  return { identify };
 }

@@ -2,22 +2,23 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=e1a8e2bda8";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=e1a8e2bda8";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=e1a8e2bda8";
-import { connectLive } from "./live.js?v=e1a8e2bda8";
-import * as sound from "./sound.js?v=e1a8e2bda8";
-import { applyBoss, emit, mergeFeed, on, state } from "./store.js?v=e1a8e2bda8";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=e1a8e2bda8";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=e1a8e2bda8";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=e1a8e2bda8";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=e1a8e2bda8";
-import { popup, shake } from "./ui/fx.js?v=e1a8e2bda8";
-import { showError } from "./ui/errors.js?v=e1a8e2bda8";
-import { showIntro } from "./ui/nameform.js?v=e1a8e2bda8";
-import { loadHistory } from "./ui/history.js?v=e1a8e2bda8";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=e1a8e2bda8";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=e1a8e2bda8";
+import * as api from "./api.js?v=9f98fe4ca3";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=9f98fe4ca3";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=9f98fe4ca3";
+import { connectLive } from "./live.js?v=9f98fe4ca3";
+import * as sound from "./sound.js?v=9f98fe4ca3";
+import { applyBoss, boxById, emit, mergeFeed, on, state } from "./store.js?v=9f98fe4ca3";
+import { openBox } from "./ui/bag.js?v=9f98fe4ca3";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=9f98fe4ca3";
+import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=9f98fe4ca3";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=9f98fe4ca3";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=9f98fe4ca3";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=9f98fe4ca3";
+import { showError } from "./ui/errors.js?v=9f98fe4ca3";
+import { showIntro } from "./ui/nameform.js?v=9f98fe4ca3";
+import { loadHistory } from "./ui/history.js?v=9f98fe4ca3";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=9f98fe4ca3";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=9f98fe4ca3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -132,7 +133,7 @@ async function boot() {
     return;
   }
 
-  connectLive({
+  const live = connectLive({
     onSnapshot: (s) => {
       if (s.server_time) state.serverSkew = s.server_time - Date.now() / 1000;
       if (applyBoss(s.boss)) emit("boss");
@@ -153,6 +154,15 @@ async function boot() {
       setOnline(u.online ?? state.online);
     },
     onOnline: setOnline,
+    // The admin gifted everyone online a loot box: pop it up right here.
+    onGift: (g) => {
+      const box = boxById(g.box_id);
+      api.getMe().then((m) => {
+        state.me = m;
+        emit("me");
+      }).catch(() => {});
+      if (box) boxDropReveal(box, () => openBox(box), "A GIFT FROM ***ADMIN***");
+    },
     // The admin changed something: take the server's word for everything,
     // even if it "goes backwards" (a reset lowers HP totals).
     onRefresh: (r) => {
@@ -174,6 +184,7 @@ async function boot() {
   try {
     state.me = await api.ensurePlayer();
     emit("me");
+    live.identify(); // a brand-new player's token exists only now
     // Named players go straight in; first-timers get the intro (naming
     // waits until their first attack).
     if (state.me?.name_chosen) revealAmbient();
