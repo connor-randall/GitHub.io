@@ -1,7 +1,7 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { overlayOpen } from "./fx.js?v=5ed9bfb7af";
-import { startMist } from "./mist.js?v=5ed9bfb7af";
+import { overlayOpen } from "./fx.js?v=303339e3c3";
+import { startMist } from "./mist.js?v=303339e3c3";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;

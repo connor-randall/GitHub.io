@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=5ed9bfb7af">
-<link rel="stylesheet" href="css/admin.css?v=5ed9bfb7af">
+<link rel="stylesheet" href="css/style.css?v=303339e3c3">
+<link rel="stylesheet" href="css/admin.css?v=303339e3c3">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -66,6 +66,12 @@
       <form data-action="refill_attacks">
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
         <button class="inline-btn">[ REFILL TODAY'S ATTACKS ]</button>
+      </form>
+      <form data-action="grant_attacks">
+        <label>ATTACKS <input name="amount" type="number" min="1" max="100" value="20" required></label>
+        <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
+        <button class="inline-btn">[ GIVE ATTACKS ]</button>
+        <p class="hint">tops them up to this many attacks left today. back to normal tomorrow.</p>
       </form>
       <form data-action="reset_ultimates">
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
@@ -141,6 +147,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=5ed9bfb7af"></script>
+<script type="module" src="js/admin.js?v=303339e3c3"></script>
 </body>
 </html>

@@ -2,12 +2,12 @@
 // Undiscovered items show as dotted silhouettes (hidden by default: there
 // are over a hundred).
 
-import * as api from "../api.js?v=5ed9bfb7af";
-import { el, fmt, setArt } from "../ascii.js?v=5ed9bfb7af";
-import { boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=5ed9bfb7af";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=5ed9bfb7af";
-import { showError } from "./errors.js?v=5ed9bfb7af";
-import { itemLines, openBoxSequence, showOverlay } from "./fx.js?v=5ed9bfb7af";
+import * as api from "../api.js?v=303339e3c3";
+import { el, fmt, setArt } from "../ascii.js?v=303339e3c3";
+import { boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=303339e3c3";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=303339e3c3";
+import { showError } from "./errors.js?v=303339e3c3";
+import { itemLines, openBoxSequence, showOverlay } from "./fx.js?v=303339e3c3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
