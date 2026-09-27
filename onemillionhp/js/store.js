@@ -61,7 +61,7 @@ export function mergeFeed(events) {
   const seen = new Set(state.feed.map((e) => e.id));
   const fresh = events.filter((e) => !seen.has(e.id));
   if (!fresh.length) return fresh;
-  state.feed = [...state.feed, ...fresh].sort((a, b) => a.id - b.id).slice(-FEED_KEEP);
+  state.feed = [...state.feed, ...fresh].sort((a, b) => a.t - b.t || a.id - b.id).slice(-FEED_KEEP);
   return fresh;
 }
 

@@ -1,10 +1,10 @@
 // Tab bar for the side panels.
 
-import { closeOverlay } from "./fx.js?v=0eabd506da";
-import { renderBag } from "./bag.js?v=0eabd506da";
-import { loadHistory } from "./history.js?v=0eabd506da";
-import { renderPlayer } from "./player.js?v=0eabd506da";
-import { loadRanks } from "./ranks.js?v=0eabd506da";
+import { closeOverlay } from "./fx.js?v=b22c5eb748";
+import { renderBag } from "./bag.js?v=b22c5eb748";
+import { loadHistory } from "./history.js?v=b22c5eb748";
+import { renderPlayer } from "./player.js?v=b22c5eb748";
+import { loadRanks } from "./ranks.js?v=b22c5eb748";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const TABS = ["feed", "player", "bag", "ranks", "history"];
