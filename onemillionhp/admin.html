@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=9f98fe4ca3">
-<link rel="stylesheet" href="css/admin.css?v=9f98fe4ca3">
+<link rel="stylesheet" href="css/style.css?v=fc1e041948">
+<link rel="stylesheet" href="css/admin.css?v=fc1e041948">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -64,6 +64,10 @@
           <button type="button" class="inline-btn" data-pct="0.01">1 hit left</button>
         </span>
         <p class="hint">0 kills the boss (death screen). any other value revives it.</p>
+      </form>
+      <form data-action="spawn_next" data-confirm>
+        <button class="inline-btn danger">[ SPAWN NEXT BOSS NOW ]</button>
+        <span class="hint">only once the current boss is dead (otherwise it arrives by itself 5 minutes after)</span>
       </form>
       <form data-action="reset_boss" data-confirm>
         <label>MAX HP <input name="max_hp" type="number" min="1" inputmode="numeric" placeholder="(keep)"></label>
@@ -158,6 +162,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=9f98fe4ca3"></script>
+<script type="module" src="js/admin.js?v=fc1e041948"></script>
 </body>
 </html>

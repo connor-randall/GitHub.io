@@ -1,7 +1,7 @@
 // Background mist around the boss: tinted by phase, rippling on hits.
 
-import { overlayOpen } from "./fx.js?v=9f98fe4ca3";
-import { startMist } from "./mist.js?v=9f98fe4ca3";
+import { overlayOpen } from "./fx.js?v=fc1e041948";
+import { startMist } from "./mist.js?v=fc1e041948";
 
 /** @type {import("./mist.js").Mist | null} */
 let mist = null;
@@ -45,8 +45,13 @@ export function pulse(strength) {
   mist?.pulse(strength);
 }
 
-/** Tint the mist by boss state. @param {number} phase @param {boolean} dead */
-export function setMood(phase, dead) {
+/** Tint the mist by boss state (and the boss's own colour, if it has one).
+ * @param {number} phase @param {boolean} dead @param {string | null} [tint] */
+export function setMood(phase, dead, tint = null) {
+  if (layer) {
+    if (tint && !dead) layer.style.setProperty("color", tint);
+    else layer.style.removeProperty("color");
+  }
   if (!layer) return;
   layer.classList.toggle("p2", phase === 2 && !dead);
   layer.classList.toggle("p3", phase >= 3 && !dead);

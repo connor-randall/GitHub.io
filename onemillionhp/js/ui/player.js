@@ -1,10 +1,10 @@
 // [ YOU ] panel: stats, rename, equipped weapon.
 
-import { el, fmt, setArt } from "../ascii.js?v=9f98fe4ca3";
-import { itemById, state } from "../store.js?v=9f98fe4ca3";
-import { effectLine } from "./effects.js?v=9f98fe4ca3";
-import { itemLines } from "./fx.js?v=9f98fe4ca3";
-import { nameForm } from "./nameform.js?v=9f98fe4ca3";
+import { el, fmt, setArt } from "../ascii.js?v=fc1e041948";
+import { itemById, state } from "../store.js?v=fc1e041948";
+import { effectLine } from "./effects.js?v=fc1e041948";
+import { itemLines } from "./fx.js?v=fc1e041948";
+import { nameForm } from "./nameform.js?v=fc1e041948";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

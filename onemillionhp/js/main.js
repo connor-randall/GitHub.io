@@ -2,23 +2,23 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=9f98fe4ca3";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=9f98fe4ca3";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=9f98fe4ca3";
-import { connectLive } from "./live.js?v=9f98fe4ca3";
-import * as sound from "./sound.js?v=9f98fe4ca3";
-import { applyBoss, boxById, emit, mergeFeed, on, state } from "./store.js?v=9f98fe4ca3";
-import { openBox } from "./ui/bag.js?v=9f98fe4ca3";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=9f98fe4ca3";
-import { hurt, renderBoss, startTaunts } from "./ui/boss.js?v=9f98fe4ca3";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=9f98fe4ca3";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=9f98fe4ca3";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=9f98fe4ca3";
-import { showError } from "./ui/errors.js?v=9f98fe4ca3";
-import { showIntro } from "./ui/nameform.js?v=9f98fe4ca3";
-import { loadHistory } from "./ui/history.js?v=9f98fe4ca3";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=9f98fe4ca3";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=9f98fe4ca3";
+import * as api from "./api.js?v=fc1e041948";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=fc1e041948";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=fc1e041948";
+import { connectLive } from "./live.js?v=fc1e041948";
+import * as sound from "./sound.js?v=fc1e041948";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=fc1e041948";
+import { openBox } from "./ui/bag.js?v=fc1e041948";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=fc1e041948";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=fc1e041948";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=fc1e041948";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=fc1e041948";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=fc1e041948";
+import { showError } from "./ui/errors.js?v=fc1e041948";
+import { showIntro } from "./ui/nameform.js?v=fc1e041948";
+import { loadHistory } from "./ui/history.js?v=fc1e041948";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=fc1e041948";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=fc1e041948";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -99,7 +99,9 @@ async function boot() {
   on("boss", () => {
     renderBoss();
     renderControls();
-    if (state.boss) setMood(state.boss.phase, state.boss.status !== "alive");
+    if (state.boss) {
+      setMood(state.boss.phase, state.boss.status !== "alive", bossDef(state.boss.def_id)?.tint ?? null);
+    }
   });
   on("me", () => {
     renderControls();
@@ -202,6 +204,7 @@ async function boot() {
   refit();
 
   setInterval(tickCountdown, 1000);
+  setInterval(tickNextBoss, 1000);
   setInterval(tickAges, 10000);
   // Slow safety net: keep our own counters honest even if an event was missed.
   setInterval(() => {

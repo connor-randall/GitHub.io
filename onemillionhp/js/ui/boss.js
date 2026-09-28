@@ -1,13 +1,14 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=9f98fe4ca3";
-import { bossDef, bossText, state } from "../store.js?v=9f98fe4ca3";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=fc1e041948";
+import { bossDef, bossText, now, state } from "../store.js?v=fc1e041948";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
 const artEl = $("boss-art");
 let lastHp = -1;
 let lastPhase = 0;
+let lastSeq = 0;
 let hurtUntil = 0;
 /** @type {ReturnType<typeof setTimeout> | undefined} */
 let hurtTimer;
@@ -27,6 +28,11 @@ function drawArt() {
   artEl.classList.toggle("glitch", Boolean(ph.glitch));
   artEl.classList.toggle("phase-2", ph.phase === 2);
   artEl.classList.toggle("phase-3", ph.phase >= 3);
+  // Some bosses have their own colour (GLORBO is blue).
+  const tint = state.boss ? bossDef(state.boss.def_id)?.tint : null;
+  if (tint) artEl.style.setProperty("--boss-tint", tint);
+  else artEl.style.removeProperty("--boss-tint");
+  artEl.classList.toggle("tinted", Boolean(tint));
 }
 
 /** Flinch: swap to the hurt frame briefly. @param {number} ms */
@@ -67,9 +73,11 @@ export function renderBoss() {
 
   $("boss-name").textContent = b.name;
   $("boss-sub").textContent = b.subtitle;
-  if (b.phase !== lastPhase) {
+  if (b.phase !== lastPhase || b.seq !== lastSeq) {
     lastPhase = b.phase;
+    lastSeq = b.seq; // a new boss always redraws, even in the same phase number
     drawArt();
+    startTaunts();
   }
   const frac = b.hp / b.max_hp;
   const hpBar = $("hp-bar");
@@ -126,6 +134,9 @@ function renderDeath(b, def) {
   const teaser = el("div", "teaser", state.content?.next_boss_teaser ?? "SOMETHING LARGER IS APPROACHING...");
   teaser.append(el("span", "blink", "_"));
   wrap.append(teaser);
+  // Countdown to the next boss (only if one is coming).
+  wrap.append(el("div", "next-count", ""));
+  tickNextBoss();
   host.replaceChildren(wrap);
   setArt(top, banner, 15);
   setArt(art, def.dead_art, 14);
@@ -153,3 +164,17 @@ window.addEventListener("resize", () => {
   lastPhase = 0;
   renderBoss();
 });
+
+/** Update the "next boss in 4:59" line on the death screen (every second). */
+export function tickNextBoss() {
+  const node = document.querySelector("#boss-dead .next-count");
+  const b = state.boss;
+  if (!node || !b) return;
+  if (!b.next_at) {
+    node.textContent = "";
+    return;
+  }
+  const left = Math.max(0, Math.round(b.next_at - now()));
+  const m = Math.floor(left / 60), sec = String(left % 60).padStart(2, "0");
+  node.textContent = left > 0 ? `ARRIVES IN ${m}:${sec}` : "IT'S HERE...";
+}
