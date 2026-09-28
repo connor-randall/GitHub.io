@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=d1f30b6b1d";
-import { forwardToCanonical } from "./home.js?v=d1f30b6b1d";
-import { el, fmt, padR, setArt } from "./ascii.js?v=d1f30b6b1d";
-import { rarityById, state } from "./store.js?v=d1f30b6b1d";
-import { effectParts } from "./ui/effects.js?v=d1f30b6b1d";
-import { itemLines } from "./ui/fx.js?v=d1f30b6b1d";
+import { API_BASE, getContent } from "./api.js?v=2bd23f6de6";
+import { forwardToCanonical } from "./home.js?v=2bd23f6de6";
+import { el, fmt, padR, setArt } from "./ascii.js?v=2bd23f6de6";
+import { rarityById, state } from "./store.js?v=2bd23f6de6";
+import { effectParts } from "./ui/effects.js?v=2bd23f6de6";
+import { itemLines } from "./ui/fx.js?v=2bd23f6de6";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -49,6 +49,24 @@ async function call(path, body) {
 function log(msg, ok) {
   const li = el("li", ok ? "ok" : "bad", `${new Date().toLocaleTimeString()}  > ${msg}`);
   $("log").prepend(li);
+}
+
+/** The [ ODDS ] table. @param {any} o */
+function renderOdds(o) {
+  const pct = (/** @type {number} */ p) => `${(p * 100).toFixed(p >= 0.01 ? 2 : p >= 0.0001 ? 4 : 5)}%`.padStart(10);
+  const line = (/** @type {string} */ what, /** @type {number} */ p, /** @type {string} */ extra = "") =>
+    `  ${what.padEnd(20)}${pct(p)}  ${extra}`;
+  const out = ["EVERY ATTACK (each rolled separately)"];
+  for (const r of o.per_attack) out.push(line(r.what.toUpperCase(), r.chance, r.one_in));
+  const d = o.damage;
+  out.push("", "DAMAGE", `  HIT ${d.hit[0]}-${d.hit[1]}   CRIT ${d.crit[0]}-${d.crit[1]}   ULTIMATE ${d.ultimate[0]}-${d.ultimate[1]}`);
+  for (const b of o.boxes) {
+    out.push("", `${b.name}  (drops ${pct(b.chance).trim()} of attacks, ${b.one_in}; shop price ${o.shop.boxes[b.id] ?? "-"})`);
+    for (const r of b.rewards) out.push(line(r.what.toUpperCase(), r.chance));
+  }
+  out.push("", "SHOP PAYS (shards per item)",
+    "  " + Object.entries(o.shop.sell).map(([k, v]) => `${k.toUpperCase()} ${v}`).join("  "));
+  $("odds").textContent = out.join("\n");
 }
 
 function showLogin() {
@@ -94,11 +112,12 @@ async function refresh() {
     if (document.activeElement !== input) input.value = input.defaultValue = current ?? "";
   }
 
-  const tune = /** @type {HTMLFormElement} */ (document.querySelector('[data-action="set_tuning"]'));
-  /** @type {HTMLInputElement} */ (tune.elements.namedItem("attacks_per_day")).placeholder = String(t.attacks_per_day);
-  /** @type {HTMLInputElement} */ (tune.elements.namedItem("recharge_seconds")).placeholder = String(t.recharge_seconds);
-  /** @type {HTMLInputElement} */ (tune.elements.namedItem("crit_pct")).placeholder = (t.crit_chance * 100).toFixed(2);
-  /** @type {HTMLInputElement} */ (tune.elements.namedItem("loot_mult")).placeholder = String(t.loot_mult);
+  // Show the current value of every rule as its placeholder.
+  document.querySelectorAll('[data-action="set_tuning"] input').forEach((node) => {
+    const input = /** @type {HTMLInputElement} */ (node);
+    input.placeholder = input.name === "crit_pct" ? (t.crit_chance * 100).toFixed(2) : String(t[input.name] ?? "");
+  });
+  renderOdds(ov.odds);
 
   await renderGallery();
   $("players").replaceChildren(

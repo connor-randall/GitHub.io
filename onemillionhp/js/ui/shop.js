@@ -1,10 +1,10 @@
 // [ SHOP ] panel: sell loot for shards, spend shards on loot boxes.
 
-import * as api from "../api.js?v=d1f30b6b1d";
-import { el, fmt, setArt } from "../ascii.js?v=d1f30b6b1d";
-import { boxById, emit, itemById, rarityById, state } from "../store.js?v=d1f30b6b1d";
-import { openBox } from "./bag.js?v=d1f30b6b1d";
-import { showError } from "./errors.js?v=d1f30b6b1d";
+import * as api from "../api.js?v=2bd23f6de6";
+import { el, fmt, setArt } from "../ascii.js?v=2bd23f6de6";
+import { boxById, emit, itemById, rarityById, state } from "../store.js?v=2bd23f6de6";
+import { openBox } from "./bag.js?v=2bd23f6de6";
+import { showError } from "./errors.js?v=2bd23f6de6";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -34,14 +34,15 @@ export function renderShop() {
   const host = $("panel-shop");
   const content = state.content;
   const me = state.me;
-  if (!content || !me || !content.shop) {
+  const prices = me?.shop ?? content?.shop; // me.shop has the admin's price changes applied
+  if (!content || !me || !prices) {
     host.replaceChildren(el("div", "dim", "> connecting..."));
     return;
   }
   /** @type {Record<string, number>} */
-  const sell = content.shop.sell;
+  const sell = prices.sell;
   /** @type {Record<string, number>} */
-  const boxes = content.shop.boxes;
+  const boxes = prices.boxes;
   const parts = [];
 
   const wallet = el("div", "shop-wallet");

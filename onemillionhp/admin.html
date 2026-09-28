@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=d1f30b6b1d">
-<link rel="stylesheet" href="css/admin.css?v=d1f30b6b1d">
+<link rel="stylesheet" href="css/style.css?v=2bd23f6de6">
+<link rel="stylesheet" href="css/admin.css?v=2bd23f6de6">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -143,10 +143,34 @@
         <label>MAX ATTACKS <input name="attacks_per_day" type="number" min="1" max="1000"></label>
         <label>RECHARGE (SECONDS) <input name="recharge_seconds" type="number" min="5" max="86400"></label>
         <label>CRIT % <input name="crit_pct" type="number" min="0" max="100" step="0.1"></label>
-        <label>DROP RATE x <input name="loot_mult" type="number" min="0" max="50" step="0.1"></label>
+        <label>ITEM DROPS x <input name="loot_mult" type="number" min="0" max="50" step="0.1"></label>
+        <label>LOOT BOXES x <input name="box_mult" type="number" min="0" max="20" step="0.1"></label>
         <button class="inline-btn">[ SAVE RULES ]</button>
-        <p class="hint">players hold up to MAX ATTACKS; below that, one comes back every RECHARGE seconds (60 = one a minute). applies instantly. drop rate 2 = double loot weekend.</p>
+        <p class="hint">players hold up to MAX ATTACKS; below that, one comes back every RECHARGE seconds (60 = one a minute). applies instantly. ITEM DROPS 2 = double loot weekend. LOOT BOXES x2 = twice as many boxes drop.</p>
       </form>
+      <form data-action="set_tuning">
+        <label>HIT DMG <input name="base_min" type="number" min="1" max="1000000" class="num-sm"> -
+          <input name="base_max" type="number" min="1" max="1000000" class="num-sm"></label>
+        <label>CRIT DMG <input name="crit_min" type="number" min="1" max="1000000" class="num-sm"> -
+          <input name="crit_max" type="number" min="1" max="1000000" class="num-sm"></label>
+        <label>ULTIMATE DMG <input name="ult_min" type="number" min="1" max="1000000" class="num-sm"> -
+          <input name="ult_max" type="number" min="1" max="1000000" class="num-sm"></label>
+        <button class="inline-btn">[ SAVE DAMAGE ]</button>
+        <p class="hint">every hit rolls between the two numbers (before gear bonuses). a boss has 1,000,000 HP.</p>
+      </form>
+      <form data-action="set_tuning">
+        <label>SHOP PAYS x <input name="shard_mult" type="number" min="0.1" max="20" step="0.1"></label>
+        <label>SHOP BOXES COST x <input name="box_price_mult" type="number" min="0.1" max="20" step="0.1"></label>
+        <button class="inline-btn">[ SAVE SHOP ]</button>
+        <p class="hint">PAYS x2 = selling gives double shards. COST x0.5 = boxes half price (a sale). 1 = normal.</p>
+      </form>
+    </section>
+
+    <section class="adm">
+      <h2>[ ODDS ]</h2>
+      <p class="hint">the real chances right now, with the rules above applied, for a player with no gear. gear adds
+        crit, item and box chance on top. change a rule and this updates.</p>
+      <pre id="odds" class="adm-status odds"></pre>
     </section>
 
     <section class="adm">
@@ -177,6 +201,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=d1f30b6b1d"></script>
+<script type="module" src="js/admin.js?v=2bd23f6de6"></script>
 </body>
 </html>
