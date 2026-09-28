@@ -1,8 +1,8 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=3c47ca09f7";
-import * as api from "../api.js?v=3c47ca09f7";
-import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=3c47ca09f7";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=62cc722a38";
+import * as api from "../api.js?v=62cc722a38";
+import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=62cc722a38";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 
@@ -131,11 +131,16 @@ export function addFreshEvents(fresh) {
 /** Start over (e.g. after an admin reset). */
 export function resetFeedHistory() {
   reachedStart = false;
+  autoPages = 0;
   renderFeed();
 }
 
+let lastOlderAt = 0;
+
 async function loadOlder() {
   if (loadingOlder || reachedStart || !state.feed.length) return;
+  if (performance.now() - lastOlderAt < 700) return; // never more than ~1 page a second
+  lastOlderAt = performance.now();
   const oldest = state.feed[0];
   loadingOlder = true;
   paintFooter();
@@ -154,13 +159,24 @@ async function loadOlder() {
   fillIfShort();
 }
 
-/** Keep loading until the box can actually scroll (or history runs out). */
+/** Pages loaded to fill a short feed box (not by scrolling). */
+let autoPages = 0;
+const AUTO_PAGE_LIMIT = 2;
+
+/** Load a page or two if the box is visible but too short to scroll. A
+ * hidden feed (another tab open) has no height: it must never count as
+ * "short", or it pages through the whole history in a loop. */
 function fillIfShort() {
-  if (!reachedStart && list.scrollHeight <= list.clientHeight + 40) loadOlder();
+  if (reachedStart || autoPages >= AUTO_PAGE_LIMIT) return;
+  if (list.clientHeight === 0 || !list.isConnected || list.offsetParent === null) return;
+  if (list.scrollHeight <= list.clientHeight + 40) {
+    autoPages++;
+    loadOlder();
+  }
 }
 
 list.addEventListener("scroll", () => {
-  if (list.scrollTop + list.clientHeight >= list.scrollHeight - 200) loadOlder();
+  if (list.clientHeight > 0 && list.scrollTop + list.clientHeight >= list.scrollHeight - 200) loadOlder();
 }, { passive: true });
 
 export function tickAges() {

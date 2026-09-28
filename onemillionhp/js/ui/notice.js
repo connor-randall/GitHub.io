@@ -1,8 +1,8 @@
 // Messages from the admin: a pinned note atop the feed, and pop-ups pushed
 // to every open page.
 
-import { el } from "../ascii.js?v=3c47ca09f7";
-import * as sound from "../sound.js?v=3c47ca09f7";
+import { el } from "../ascii.js?v=62cc722a38";
+import * as sound from "../sound.js?v=62cc722a38";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

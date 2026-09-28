@@ -2,13 +2,13 @@
 // own damage and rank, the top fighters), then the next boss makes its entrance.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=3c47ca09f7";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=3c47ca09f7";
-import { bossDef, now, state } from "../store.js?v=3c47ca09f7";
-import { nextBossDef, nextBossScreen } from "./aftermath.js?v=3c47ca09f7";
-import { deathOrigin } from "./boss.js?v=3c47ca09f7";
-import { playDeath } from "./deathfx.js?v=3c47ca09f7";
-import { shake, showOverlay } from "./fx.js?v=3c47ca09f7";
+import * as api from "../api.js?v=62cc722a38";
+import { center, duration, el, fmt, padL } from "../ascii.js?v=62cc722a38";
+import { bossDef, now, state } from "../store.js?v=62cc722a38";
+import { nextBossDef, nextBossScreen } from "./aftermath.js?v=62cc722a38";
+import { deathOrigin } from "./boss.js?v=62cc722a38";
+import { playDeath } from "./deathfx.js?v=62cc722a38";
+import { shake, showOverlay } from "./fx.js?v=62cc722a38";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;
