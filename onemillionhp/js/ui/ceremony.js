@@ -2,10 +2,10 @@
 // own damage and rank, the top fighters), then a warning about what's next.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=2bd23f6de6";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=2bd23f6de6";
-import { now, state } from "../store.js?v=2bd23f6de6";
-import { shake, showOverlay } from "./fx.js?v=2bd23f6de6";
+import * as api from "../api.js?v=60002fcd68";
+import { center, duration, el, fmt, padL } from "../ascii.js?v=60002fcd68";
+import { now, state } from "../store.js?v=60002fcd68";
+import { shake, showOverlay } from "./fx.js?v=60002fcd68";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;

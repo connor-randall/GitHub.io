@@ -61,3 +61,20 @@
 .gift-all:hover { background: var(--green); color: var(--bg); }
 .admin .num-sm { width: 9ch; }
 .odds { white-space: pre; overflow-x: auto; font-size: 12px; }
+/* collapsible sections */
+.adm details > summary { list-style: none; cursor: pointer; }
+.adm details > summary::-webkit-details-marker { display: none; }
+.adm details > summary h2 { display: inline; }
+.adm details > summary h2::before { content: "+ "; }
+.adm details[open] > summary h2::before { content: "- "; }
+.adm details[open] .fold-hint { display: none; }
+.fold-hint { font-size: 11px; color: var(--dim); letter-spacing: .05em; margin-left: 1ch; }
+/* editable odds */
+.odds-edit { font-size: 12px; }
+.odds-h { color: var(--amber); margin: 14px 0 4px; }
+.odds-row { display: grid; grid-template-columns: minmax(12ch, 22ch) minmax(10ch, 20ch) 1fr; gap: 1ch; align-items: center; padding: 1px 0; }
+.odds-now { color: var(--dim); font-variant-numeric: tabular-nums; }
+.admin .odds-edit input { width: 11ch; padding: 1px 4px; }
+.admin .odds-edit input.changed { border-color: var(--amber); color: var(--amber); }
+.odds-actions { margin: 14px 0 6px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+@media (max-width: 560px) { .odds-row { grid-template-columns: 1fr auto; } .odds-now { display: none; } }

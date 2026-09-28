@@ -1,14 +1,14 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=2bd23f6de6";
-import { el } from "../ascii.js?v=2bd23f6de6";
-import { boxById, emit, state } from "../store.js?v=2bd23f6de6";
-import { openBox } from "./bag.js?v=2bd23f6de6";
-import { boxDropReveal, showOverlay } from "./fx.js?v=2bd23f6de6";
-import { revealAmbient } from "./ambient.js?v=2bd23f6de6";
-import { startMist } from "./mist.js?v=2bd23f6de6";
-import { loadSaveForm } from "./save.js?v=2bd23f6de6";
+import * as api from "../api.js?v=60002fcd68";
+import { el } from "../ascii.js?v=60002fcd68";
+import { boxById, emit, state } from "../store.js?v=60002fcd68";
+import { openBox } from "./bag.js?v=60002fcd68";
+import { boxDropReveal, showOverlay } from "./fx.js?v=60002fcd68";
+import { revealAmbient } from "./ambient.js?v=60002fcd68";
+import { startMist } from "./mist.js?v=60002fcd68";
+import { loadSaveForm } from "./save.js?v=60002fcd68";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];

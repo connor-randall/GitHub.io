@@ -1,8 +1,8 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=2bd23f6de6";
-import * as api from "../api.js?v=2bd23f6de6";
-import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=2bd23f6de6";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=60002fcd68";
+import * as api from "../api.js?v=60002fcd68";
+import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=60002fcd68";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 

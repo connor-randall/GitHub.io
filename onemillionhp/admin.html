@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=2bd23f6de6">
-<link rel="stylesheet" href="css/admin.css?v=2bd23f6de6">
+<link rel="stylesheet" href="css/style.css?v=60002fcd68">
+<link rel="stylesheet" href="css/admin.css?v=60002fcd68">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -125,7 +125,8 @@
     </section>
 
     <section class="adm" id="gallery">
-      <h2>[ ITEMS &amp; BOXES ]</h2>
+      <details id="gal-fold">
+      <summary><h2>[ ITEMS &amp; BOXES ] <span class="fold-hint">tap to open</span></h2></summary>
       <div class="gal-controls">
         <label>GIVE TO <input id="gal-player" list="players" placeholder="player name or id"></label>
         <label>RARITY <select id="gal-rarity"><option value="">all</option></select></label>
@@ -135,6 +136,7 @@
       <div class="gal-boxes" id="gal-boxes"></div>
       <div class="gal-count dim" id="gal-count"></div>
       <div class="gal-grid" id="gal-grid"></div>
+      </details>
     </section>
 
     <section class="adm">
@@ -168,9 +170,10 @@
 
     <section class="adm">
       <h2>[ ODDS ]</h2>
-      <p class="hint">the real chances right now, with the rules above applied, for a player with no gear. gear adds
-        crit, item and box chance on top. change a rule and this updates.</p>
-      <pre id="odds" class="adm-status odds"></pre>
+      <p class="hint">the real chances right now, for a player with no gear (gear adds crit, item and box chance on
+        top). edit any number and press SAVE ODDS: "1 in 100" means once every 100 attacks on average, 0 = never.
+        box shares and box contents are relative: they're scaled to add up to 100%.</p>
+      <div id="odds" class="odds-edit"></div>
     </section>
 
     <section class="adm">
@@ -201,6 +204,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=2bd23f6de6"></script>
+<script type="module" src="js/admin.js?v=60002fcd68"></script>
 </body>
 </html>

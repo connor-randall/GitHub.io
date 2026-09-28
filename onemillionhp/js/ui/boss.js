@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=2bd23f6de6";
-import { bossDef, bossText, now, state } from "../store.js?v=2bd23f6de6";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=60002fcd68";
+import { bossDef, bossText, now, state } from "../store.js?v=60002fcd68";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

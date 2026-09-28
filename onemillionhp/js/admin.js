@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=2bd23f6de6";
-import { forwardToCanonical } from "./home.js?v=2bd23f6de6";
-import { el, fmt, padR, setArt } from "./ascii.js?v=2bd23f6de6";
-import { rarityById, state } from "./store.js?v=2bd23f6de6";
-import { effectParts } from "./ui/effects.js?v=2bd23f6de6";
-import { itemLines } from "./ui/fx.js?v=2bd23f6de6";
+import { API_BASE, getContent } from "./api.js?v=60002fcd68";
+import { forwardToCanonical } from "./home.js?v=60002fcd68";
+import { el, fmt, padR, setArt } from "./ascii.js?v=60002fcd68";
+import { rarityById, state } from "./store.js?v=60002fcd68";
+import { effectParts } from "./ui/effects.js?v=60002fcd68";
+import { itemLines } from "./ui/fx.js?v=60002fcd68";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -51,22 +51,103 @@ function log(msg, ok) {
   $("log").prepend(li);
 }
 
-/** The [ ODDS ] table. @param {any} o */
+/** @param {number} p */
+const pct = (p) => `${(p * 100).toFixed(p >= 0.01 ? 2 : p >= 0.0001 ? 4 : 5)}%`;
+
+/** A number input for the odds table. @param {number} value @param {string} step */
+function oddsInput(value, step) {
+  const input = /** @type {HTMLInputElement} */ (el("input"));
+  input.type = "number";
+  input.min = "0";
+  input.step = step;
+  input.value = String(value);
+  input.dataset.orig = input.value;
+  input.addEventListener("input", () => input.classList.toggle("changed", input.value !== input.dataset.orig));
+  return input;
+}
+
+/** @param {string} label @param {string} now @param {Node[]} [edit] */
+function oddsRow(label, now, edit = []) {
+  const row = el("div", "odds-row");
+  row.append(el("span", "odds-what", label), el("span", "odds-now", now), el("span", "odds-set"));
+  /** @type {HTMLElement} */ (row.lastChild).append(...edit);
+  return row;
+}
+
+/** The editable [ ODDS ] table. @param {any} o */
 function renderOdds(o) {
-  const pct = (/** @type {number} */ p) => `${(p * 100).toFixed(p >= 0.01 ? 2 : p >= 0.0001 ? 4 : 5)}%`.padStart(10);
-  const line = (/** @type {string} */ what, /** @type {number} */ p, /** @type {string} */ extra = "") =>
-    `  ${what.padEnd(20)}${pct(p)}  ${extra}`;
-  const out = ["EVERY ATTACK (each rolled separately)"];
-  for (const r of o.per_attack) out.push(line(r.what.toUpperCase(), r.chance, r.one_in));
-  const d = o.damage;
-  out.push("", "DAMAGE", `  HIT ${d.hit[0]}-${d.hit[1]}   CRIT ${d.crit[0]}-${d.crit[1]}   ULTIMATE ${d.ultimate[0]}-${d.ultimate[1]}`);
-  for (const b of o.boxes) {
-    out.push("", `${b.name}  (drops ${pct(b.chance).trim()} of attacks, ${b.one_in}; shop price ${o.shop.boxes[b.id] ?? "-"})`);
-    for (const r of b.rewards) out.push(line(r.what.toUpperCase(), r.chance));
+  const host = $("odds");
+  /** @type {Array<() => void>} */
+  const collect = [];
+  /** @type {Record<string, any>} */
+  let changes = {};
+  const parts = [el("div", "odds-h", "EVERY ATTACK (each rolled separately)")];
+  for (const r of o.per_attack) {
+    const now = `${pct(r.chance)}  ${r.one_in}`;
+    if (!r.key) {
+      parts.push(oddsRow(r.what.toUpperCase(), now, [el("span", "dim", "(adds up the rarities below)")]));
+      continue;
+    }
+    const input = oddsInput(r.base, "any");
+    collect.push(() => {
+      if (input.value === input.dataset.orig) return;
+      const n = Number(input.value);
+      if (r.key === "crit") changes.crit_one_in = n;
+      else if (r.key === "box") changes.box_one_in = n;
+      else (changes.rarity_one_in ??= {})[r.key.slice(7)] = n;
+    });
+    parts.push(oddsRow(r.what.toUpperCase(), now, [el("span", "dim", "1 in "), input]));
   }
-  out.push("", "SHOP PAYS (shards per item)",
-    "  " + Object.entries(o.shop.sell).map(([k, v]) => `${k.toUpperCase()} ${v}`).join("  "));
-  $("odds").textContent = out.join("\n");
+  const m = o.mults;
+  if (m.loot !== 1 || m.box !== 1)
+    parts.push(el("div", "hint", `"now" includes ITEM DROPS x${m.loot} and LOOT BOXES x${m.box} from RULES; the 1 in N you type is before those.`));
+
+  for (const b of o.boxes) {
+    const share = oddsInput(Math.round(b.share * 10000) / 100, "any");
+    collect.push(() => {
+      if (share.value !== share.dataset.orig) (changes.box_pick ??= {})[b.id] = Number(share.value);
+    });
+    const head = el("div", "odds-h");
+    head.append(`${b.name}  `, el("span", "dim", `drops ${pct(b.chance)} of attacks (${b.one_in})  ::  `), share,
+      el("span", "dim", " % of boxes"));
+    parts.push(head);
+    const rows = b.rewards.map((/** @type {any} */ r) => {
+      const input = oddsInput(Math.round(r.chance * 10000) / 100, "any");
+      parts.push(oddsRow(r.what.toUpperCase(), pct(r.chance), [input, el("span", "dim", " %")]));
+      return input;
+    });
+    collect.push(() => {
+      if (rows.some((i) => i.value !== i.dataset.orig)) (changes.box_rewards ??= {})[b.id] = rows.map((i) => Number(i.value));
+    });
+  }
+  const actions = el("div", "odds-actions");
+  const save = el("button", "inline-btn", "[ SAVE ODDS ]");
+  save.addEventListener("click", async () => {
+    changes = {};
+    collect.forEach((f) => f());
+    if (!Object.keys(changes).length) {
+      log("Nothing changed: edit a number first.", false);
+      return;
+    }
+    try {
+      log((await call("/api/admin/action", { action: "set_odds", ...changes, announce: announcing() })).message, true);
+      await refresh();
+    } catch (e) {
+      log(/** @type {Error} */ (e).message, false);
+    }
+  });
+  const reset = el("button", "inline-btn danger", "[ RESET TO DEFAULTS ]");
+  reset.addEventListener("click", () => {
+    const form = /** @type {HTMLFormElement} */ (el("form"));
+    submit(form, "reset_odds", reset);
+  });
+  actions.append(save, reset, el("span", "hint", o.edited ? " odds are CUSTOM right now" : " odds are the defaults"));
+  const d = o.damage;
+  parts.push(actions, el("div", "hint",
+    `DAMAGE  hit ${d.hit[0]}-${d.hit[1]}  crit ${d.crit[0]}-${d.crit[1]}  ultimate ${d.ultimate[0]}-${d.ultimate[1]}  ::  ` +
+    `SHOP PAYS ${Object.entries(o.shop.sell).map(([k, v]) => `${k} ${v}`).join(", ")}  ::  ` +
+    `BOXES COST ${o.boxes.map((/** @type {any} */ b) => `${b.name.toLowerCase()} ${o.shop.boxes[b.id] ?? "-"}`).join(", ")}`));
+  host.replaceChildren(...parts);
 }
 
 function showLogin() {
@@ -274,7 +355,24 @@ async function submit(form, action, btn) {
   }
 }
 
+function wireFold() {
+  const fold = /** @type {HTMLDetailsElement} */ ($("gal-fold"));
+  try {
+    fold.open = localStorage.getItem("omhp.admin.gallery") === "open";
+  } catch {
+    /* ignore */
+  }
+  fold.addEventListener("toggle", () => {
+    try {
+      localStorage.setItem("omhp.admin.gallery", fold.open ? "open" : "closed");
+    } catch {
+      /* ignore */
+    }
+  });
+}
+
 function wire() {
+  wireFold();
   $("login").addEventListener("submit", async (e) => {
     e.preventDefault();
     const input = /** @type {HTMLInputElement} */ ($("passcode"));
