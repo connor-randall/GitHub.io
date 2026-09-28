@@ -2,24 +2,24 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=b82192feda";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=b82192feda";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b82192feda";
-import { connectLive } from "./live.js?v=b82192feda";
-import * as sound from "./sound.js?v=b82192feda";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=b82192feda";
-import { openBox } from "./ui/bag.js?v=b82192feda";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b82192feda";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=b82192feda";
-import { maybeShowDeath } from "./ui/ceremony.js?v=b82192feda";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b82192feda";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=b82192feda";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=b82192feda";
-import { showError } from "./ui/errors.js?v=b82192feda";
-import { showIntro } from "./ui/nameform.js?v=b82192feda";
-import { loadHistory } from "./ui/history.js?v=b82192feda";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=b82192feda";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b82192feda";
+import * as api from "./api.js?v=1dcd1bdd6e";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=1dcd1bdd6e";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=1dcd1bdd6e";
+import { connectLive } from "./live.js?v=1dcd1bdd6e";
+import * as sound from "./sound.js?v=1dcd1bdd6e";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=1dcd1bdd6e";
+import { openBox } from "./ui/bag.js?v=1dcd1bdd6e";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=1dcd1bdd6e";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=1dcd1bdd6e";
+import { maybeShowDeath } from "./ui/ceremony.js?v=1dcd1bdd6e";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=1dcd1bdd6e";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=1dcd1bdd6e";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=1dcd1bdd6e";
+import { showError } from "./ui/errors.js?v=1dcd1bdd6e";
+import { showIntro } from "./ui/nameform.js?v=1dcd1bdd6e";
+import { loadHistory } from "./ui/history.js?v=1dcd1bdd6e";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=1dcd1bdd6e";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=1dcd1bdd6e";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
