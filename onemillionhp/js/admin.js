@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=1dcd1bdd6e";
-import { forwardToCanonical } from "./home.js?v=1dcd1bdd6e";
-import { el, fmt, padR, setArt } from "./ascii.js?v=1dcd1bdd6e";
-import { rarityById, state } from "./store.js?v=1dcd1bdd6e";
-import { effectParts } from "./ui/effects.js?v=1dcd1bdd6e";
-import { itemLines } from "./ui/fx.js?v=1dcd1bdd6e";
+import { API_BASE, getContent } from "./api.js?v=9483fa8e9b";
+import { forwardToCanonical } from "./home.js?v=9483fa8e9b";
+import { el, fmt, padR, setArt } from "./ascii.js?v=9483fa8e9b";
+import { rarityById, state } from "./store.js?v=9483fa8e9b";
+import { effectParts } from "./ui/effects.js?v=9483fa8e9b";
+import { itemLines } from "./ui/fx.js?v=9483fa8e9b";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -75,7 +75,7 @@ async function refresh() {
     `HP ${fmt(b.hp)} / ${fmt(b.max_hp)}  (${((100 * b.hp) / b.max_hp).toFixed(2)}%)  PHASE ${b.phase}`,
     `ATTACKS ${fmt(b.total_attacks)}  DAMAGE ${fmt(b.total_damage)}  FIGHTERS ${fmt(b.unique_players)}`,
     `PLAYERS ${fmt(c.players)} (${c.banned} banned)  ACTIVE TODAY ${fmt(c.active_today)}  ONLINE ${ov.online}  ITEMS HELD ${fmt(c.items_owned)}`,
-    `RULES  ${t.attacks_per_day} attacks/day  crit ${(t.crit_chance * 100).toFixed(2)}%  drops x${t.loot_mult}`,
+    `RULES  max ${t.attacks_per_day} attacks, +1 every ${t.recharge_seconds}s  crit ${(t.crit_chance * 100).toFixed(2)}%  drops x${t.loot_mult}`,
   ].join("\n");
 
   const hp = /** @type {HTMLInputElement} */ (document.querySelector('[data-action="set_hp"] [name="hp"]'));
@@ -93,6 +93,7 @@ async function refresh() {
 
   const tune = /** @type {HTMLFormElement} */ (document.querySelector('[data-action="set_tuning"]'));
   /** @type {HTMLInputElement} */ (tune.elements.namedItem("attacks_per_day")).placeholder = String(t.attacks_per_day);
+  /** @type {HTMLInputElement} */ (tune.elements.namedItem("recharge_seconds")).placeholder = String(t.recharge_seconds);
   /** @type {HTMLInputElement} */ (tune.elements.namedItem("crit_pct")).placeholder = (t.crit_chance * 100).toFixed(2);
   /** @type {HTMLInputElement} */ (tune.elements.namedItem("loot_mult")).placeholder = String(t.loot_mult);
 

@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=1dcd1bdd6e">
-<link rel="stylesheet" href="css/admin.css?v=1dcd1bdd6e">
+<link rel="stylesheet" href="css/style.css?v=9483fa8e9b">
+<link rel="stylesheet" href="css/admin.css?v=9483fa8e9b">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -80,13 +80,13 @@
       <h2>[ PLAYERS ]</h2>
       <form data-action="refill_attacks">
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
-        <button class="inline-btn">[ REFILL TODAY'S ATTACKS ]</button>
+        <button class="inline-btn">[ REFILL ATTACKS ]</button>
       </form>
       <form data-action="grant_attacks">
         <label>ATTACKS <input name="amount" type="number" min="1" max="100" value="20" required></label>
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
         <button class="inline-btn">[ GIVE ATTACKS ]</button>
-        <p class="hint">tops them up to this many attacks left today. back to normal tomorrow.</p>
+        <p class="hint">tops them up to at least this many attacks now (can go above max; recharging resumes once they're below it).</p>
       </form>
       <form data-action="reset_ultimates">
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
@@ -126,11 +126,12 @@
     <section class="adm">
       <h2>[ RULES ]</h2>
       <form data-action="set_tuning">
-        <label>ATTACKS / DAY <input name="attacks_per_day" type="number" min="1" max="1000"></label>
+        <label>MAX ATTACKS <input name="attacks_per_day" type="number" min="1" max="1000"></label>
+        <label>RECHARGE (SECONDS) <input name="recharge_seconds" type="number" min="5" max="86400"></label>
         <label>CRIT % <input name="crit_pct" type="number" min="0" max="100" step="0.1"></label>
         <label>DROP RATE x <input name="loot_mult" type="number" min="0" max="50" step="0.1"></label>
         <button class="inline-btn">[ SAVE RULES ]</button>
-        <p class="hint">applies instantly to everyone. drop rate 2 = double loot weekend.</p>
+        <p class="hint">players hold up to MAX ATTACKS; below that, one comes back every RECHARGE seconds (60 = one a minute). applies instantly. drop rate 2 = double loot weekend.</p>
       </form>
     </section>
 
@@ -162,6 +163,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=1dcd1bdd6e"></script>
+<script type="module" src="js/admin.js?v=9483fa8e9b"></script>
 </body>
 </html>

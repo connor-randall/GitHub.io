@@ -198,6 +198,7 @@ b { font-weight: 700; }
 .pips { font-size: 14px; letter-spacing: .06em; }
 .pips .on { color: var(--amber); font-weight: 700; }
 .pips .off { color: var(--faint); }
+.pips .bonus { color: var(--green); }
 .reset-in { font-size: 12px; min-height: 1.2em; }
 .keys { font-size: 11px; margin-top: 4px; }
 @media (hover: none) { .keys { display: none; } }

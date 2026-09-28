@@ -2,24 +2,24 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=1dcd1bdd6e";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=1dcd1bdd6e";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=1dcd1bdd6e";
-import { connectLive } from "./live.js?v=1dcd1bdd6e";
-import * as sound from "./sound.js?v=1dcd1bdd6e";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=1dcd1bdd6e";
-import { openBox } from "./ui/bag.js?v=1dcd1bdd6e";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=1dcd1bdd6e";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=1dcd1bdd6e";
-import { maybeShowDeath } from "./ui/ceremony.js?v=1dcd1bdd6e";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=1dcd1bdd6e";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=1dcd1bdd6e";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=1dcd1bdd6e";
-import { showError } from "./ui/errors.js?v=1dcd1bdd6e";
-import { showIntro } from "./ui/nameform.js?v=1dcd1bdd6e";
-import { loadHistory } from "./ui/history.js?v=1dcd1bdd6e";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=1dcd1bdd6e";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=1dcd1bdd6e";
+import * as api from "./api.js?v=9483fa8e9b";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=9483fa8e9b";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=9483fa8e9b";
+import { connectLive } from "./live.js?v=9483fa8e9b";
+import * as sound from "./sound.js?v=9483fa8e9b";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=9483fa8e9b";
+import { openBox } from "./ui/bag.js?v=9483fa8e9b";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=9483fa8e9b";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=9483fa8e9b";
+import { maybeShowDeath } from "./ui/ceremony.js?v=9483fa8e9b";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=9483fa8e9b";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=9483fa8e9b";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=9483fa8e9b";
+import { showError } from "./ui/errors.js?v=9483fa8e9b";
+import { showIntro } from "./ui/nameform.js?v=9483fa8e9b";
+import { loadHistory } from "./ui/history.js?v=9483fa8e9b";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=9483fa8e9b";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=9483fa8e9b";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -107,6 +107,13 @@ async function boot() {
   });
   on("me", () => {
     renderControls();
+    const m = state.me;
+    if (m) {
+      const every = m.recharge_seconds >= 120 ? `${Math.round(m.recharge_seconds / 60)} minutes`
+        : m.recharge_seconds === 60 ? "minute" : `${m.recharge_seconds} seconds`;
+      $("rules-line").textContent =
+        `every attack, on every terminal, hits the same boss. hold up to ${m.attacks_per_day} attacks; one recharges every ${every}.`;
+    }
     if (currentTab() === "player" || currentTab() === "bag") renderPanels();
     if (currentTab() === "ranks") redrawRanks(); // highlight "you" once we know who that is
   });

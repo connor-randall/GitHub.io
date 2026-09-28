@@ -1,16 +1,16 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=1dcd1bdd6e";
-import { clock, el } from "../ascii.js?v=1dcd1bdd6e";
-import * as sound from "../sound.js?v=1dcd1bdd6e";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=1dcd1bdd6e";
-import { pulse } from "./ambient.js?v=1dcd1bdd6e";
-import { hurt } from "./boss.js?v=1dcd1bdd6e";
-import { showError } from "./errors.js?v=1dcd1bdd6e";
-import { promptForName } from "./nameform.js?v=1dcd1bdd6e";
-import { openBox } from "./bag.js?v=1dcd1bdd6e";
-import { addFreshEvents } from "./feed.js?v=1dcd1bdd6e";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=1dcd1bdd6e";
+import * as api from "../api.js?v=9483fa8e9b";
+import { el } from "../ascii.js?v=9483fa8e9b";
+import * as sound from "../sound.js?v=9483fa8e9b";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=9483fa8e9b";
+import { pulse } from "./ambient.js?v=9483fa8e9b";
+import { hurt } from "./boss.js?v=9483fa8e9b";
+import { showError } from "./errors.js?v=9483fa8e9b";
+import { promptForName } from "./nameform.js?v=9483fa8e9b";
+import { openBox } from "./bag.js?v=9483fa8e9b";
+import { addFreshEvents } from "./feed.js?v=9483fa8e9b";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake, ultimateSequence } from "./fx.js?v=9483fa8e9b";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));
@@ -37,6 +37,7 @@ export function renderControls() {
   const pips = $("pips");
   pips.replaceChildren(el("span", "dim", "ATTACKS "));
   for (let i = 0; i < per; i++) pips.append(el("span", i < left ? "on" : "off", i < left ? "[*]" : "[ ]"));
+  if (left > per) pips.append(el("span", "on bonus", ` +${left - per}`)); // bonus attacks above max
   pips.append(el("span", "", `  ${left} / ${per}`));
 
   const ultOk = Boolean(me?.ultimate_available) && alive;
@@ -60,18 +61,24 @@ export function renderControls() {
   tickCountdown();
 }
 
+/** "+1 ATTACK IN 0:42" while recharging; fetch the new count when it lands. */
+let refetching = false;
 export function tickCountdown() {
   const me = state.me;
   const r = $("reset-in");
-  if (me && me.attacks_left <= 0) r.textContent = `NEW ATTACKS IN ${clock(me.next_reset - now())}`;
-  else r.textContent = "";
-  if (me && me.next_reset - now() <= 0) {
-    // Rolled past midnight UTC: refetch our allowance.
-    me.next_reset = now() + 60;
+  if (!me || !me.next_attack_at) {
+    r.textContent = "";
+    return;
+  }
+  const left = me.next_attack_at - now();
+  const secs = Math.max(0, Math.ceil(left));
+  r.textContent = `+1 ATTACK IN ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`;
+  if (left <= 0 && !refetching) {
+    refetching = true;
     api.getMe().then((m) => {
       state.me = m;
       emit("me");
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => (refetching = false));
   }
 }
 

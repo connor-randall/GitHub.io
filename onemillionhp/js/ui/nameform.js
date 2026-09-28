@@ -1,13 +1,13 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=1dcd1bdd6e";
-import { el } from "../ascii.js?v=1dcd1bdd6e";
-import { boxById, emit, state } from "../store.js?v=1dcd1bdd6e";
-import { openBox } from "./bag.js?v=1dcd1bdd6e";
-import { boxDropReveal, showOverlay } from "./fx.js?v=1dcd1bdd6e";
-import { revealAmbient } from "./ambient.js?v=1dcd1bdd6e";
-import { startMist } from "./mist.js?v=1dcd1bdd6e";
+import * as api from "../api.js?v=9483fa8e9b";
+import { el } from "../ascii.js?v=9483fa8e9b";
+import { boxById, emit, state } from "../store.js?v=9483fa8e9b";
+import { openBox } from "./bag.js?v=9483fa8e9b";
+import { boxDropReveal, showOverlay } from "./fx.js?v=9483fa8e9b";
+import { revealAmbient } from "./ambient.js?v=9483fa8e9b";
+import { startMist } from "./mist.js?v=9483fa8e9b";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -128,7 +128,7 @@ export function showIntro(instant = false) {
     const lines = [
       "Everyone on this site is fighting the same boss.",
       "It has 1,000,000 HP. Every hit, from every player, comes off the same health bar.",
-      "You get 5 attacks a day and one ultimate per boss. Hits can drop weapons, charms and loot boxes.",
+      "Your attacks recharge over time, and you get one ultimate per boss. Hits can drop weapons, charms and loot boxes.",
       "Whoever lands the final blow goes on the record. Then the next boss arrives.",
     ];
     const text = el("div", "intro-text");
