@@ -1,16 +1,86 @@
 {
-  "generated_at": "2026-09-28T16:10:03-0600",
+  "generated_at": "2026-09-28T16:20:03-0600",
   "stats": {
-    "today_count": 159,
+    "today_count": 166,
     "today_species": 8,
-    "total": 1174
+    "total": 1181
   },
   "enviro": {
-    "temp_f": 75.2,
-    "humidity": 31.1,
+    "temp_f": 78.3,
+    "humidity": 28.4,
     "pressure": 819.8
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6887,
+      "iso": "2026-09-28T16:18:58",
+      "time": "16:18",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-09-28-birdnet-16.18.58.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7221,
+      "iso": "2026-09-28T16:18:01",
+      "time": "16:18",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-72-2026-09-28-birdnet-16.18.01.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.6761,
+      "iso": "2026-09-28T16:17:40",
+      "time": "16:17",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-16.17.40.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.6759,
+      "iso": "2026-09-28T16:17:19",
+      "time": "16:17",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-16.17.19.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7873,
+      "iso": "2026-09-28T16:17:01",
+      "time": "16:17",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-79-2026-09-28-birdnet-16.17.01.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7101,
+      "iso": "2026-09-28T16:16:58",
+      "time": "16:16",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-71-2026-09-28-birdnet-16.16.58.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.6621,
+      "iso": "2026-09-28T16:16:40",
+      "time": "16:16",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-66-2026-09-28-birdnet-16.16.40.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -90,76 +160,6 @@
       "date": "2026-09-28",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
       "audio": "bird-clips/American_Crow-66-2026-09-28-birdnet-12.46.11.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7153,
-      "iso": "2026-09-28T12:45:23",
-      "time": "12:45",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-72-2026-09-28-birdnet-12.45.23.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6738,
-      "iso": "2026-09-28T12:44:14",
-      "time": "12:44",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-67-2026-09-28-birdnet-12.44.14.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6718,
-      "iso": "2026-09-28T12:42:53",
-      "time": "12:42",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-67-2026-09-28-birdnet-12.42.53.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7832,
-      "iso": "2026-09-28T12:42:17",
-      "time": "12:42",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-78-2026-09-28-birdnet-12.42.17.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6938,
-      "iso": "2026-09-28T12:42:08",
-      "time": "12:42",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-69-2026-09-28-birdnet-12.42.08.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6951,
-      "iso": "2026-09-28T12:41:53",
-      "time": "12:41",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-70-2026-09-28-birdnet-12.41.53.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6781,
-      "iso": "2026-09-28T12:41:20",
-      "time": "12:41",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-12.41.20.mp3"
     }
   ]
 }
