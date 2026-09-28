@@ -1,7 +1,7 @@
 // Live connection: WebSocket push, with short polling as a fallback while
 // the socket is down. Either way the server's boss state is the only truth.
 
-import { currentToken, getState, liveUrl } from "./api.js?v=9483fa8e9b";
+import { currentToken, getState, liveUrl } from "./api.js?v=98085e3cb0";
 
 const POLL_MS = 5000;
 const MAX_BACKOFF_MS = 30000;

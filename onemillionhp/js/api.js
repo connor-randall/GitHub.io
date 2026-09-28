@@ -93,6 +93,15 @@ export async function ensurePlayer() {
       saveToken(null); // token unknown to server (e.g. dev reset): start over
     }
   }
+  try {
+    // Lost the stored login (Safari clears it after a week away)? The server
+    // kept a cookie backup.
+    const back = await request("/api/me/restore", { method: "POST" });
+    saveToken(back.token);
+    return back.me;
+  } catch {
+    /* nothing to restore: new player */
+  }
   const out = await request("/api/players", { method: "POST", body: {} });
   saveToken(out.token);
   return out.me;
@@ -114,6 +123,22 @@ export const rename = (name) => request("/api/me/name", { method: "POST", auth: 
  * @param {string | null} itemId @param {string} [slot] */
 export const equip = (itemId, slot) =>
   request("/api/me/equip", { method: "POST", auth: true, body: { item_id: itemId, slot } });
+
+/** Sell copies of one item for shards. @param {string} itemId @param {number} count */
+export const sellItem = (itemId, count) =>
+  request("/api/shop/sell", { method: "POST", auth: true, body: { item_id: itemId, count } });
+/** Sell every copy beyond the first of everything. */
+export const sellDuplicates = () => request("/api/shop/sell", { method: "POST", auth: true, body: { duplicates: true } });
+/** @param {string} boxId */
+export const buyBox = (boxId) => request("/api/shop/buy", { method: "POST", auth: true, body: { box_id: boxId } });
+export const getSaveCode = () => request("/api/me/save-code", { auth: true });
+
+/** Swap this browser over to the player behind a save code. @param {string} code */
+export async function loadSave(code) {
+  const out = await request("/api/load-save", { method: "POST", body: { code } });
+  saveToken(out.token);
+  return out.me;
+}
 
 function requestId() {
   return typeof crypto.randomUUID === "function"

@@ -2,24 +2,24 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=9483fa8e9b";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=9483fa8e9b";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=9483fa8e9b";
-import { connectLive } from "./live.js?v=9483fa8e9b";
-import * as sound from "./sound.js?v=9483fa8e9b";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=9483fa8e9b";
-import { openBox } from "./ui/bag.js?v=9483fa8e9b";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=9483fa8e9b";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=9483fa8e9b";
-import { maybeShowDeath } from "./ui/ceremony.js?v=9483fa8e9b";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=9483fa8e9b";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=9483fa8e9b";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=9483fa8e9b";
-import { showError } from "./ui/errors.js?v=9483fa8e9b";
-import { showIntro } from "./ui/nameform.js?v=9483fa8e9b";
-import { loadHistory } from "./ui/history.js?v=9483fa8e9b";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=9483fa8e9b";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=9483fa8e9b";
+import * as api from "./api.js?v=98085e3cb0";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=98085e3cb0";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=98085e3cb0";
+import { connectLive } from "./live.js?v=98085e3cb0";
+import * as sound from "./sound.js?v=98085e3cb0";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=98085e3cb0";
+import { openBox } from "./ui/bag.js?v=98085e3cb0";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=98085e3cb0";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=98085e3cb0";
+import { maybeShowDeath } from "./ui/ceremony.js?v=98085e3cb0";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=98085e3cb0";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=98085e3cb0";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=98085e3cb0";
+import { showError } from "./ui/errors.js?v=98085e3cb0";
+import { showIntro } from "./ui/nameform.js?v=98085e3cb0";
+import { loadHistory } from "./ui/history.js?v=98085e3cb0";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=98085e3cb0";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=98085e3cb0";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -114,7 +114,7 @@ async function boot() {
       $("rules-line").textContent =
         `every attack, on every terminal, hits the same boss. hold up to ${m.attacks_per_day} attacks; one recharges every ${every}.`;
     }
-    if (currentTab() === "player" || currentTab() === "bag") renderPanels();
+    if (["player", "bag", "shop"].includes(currentTab())) renderPanels();
     if (currentTab() === "ranks") redrawRanks(); // highlight "you" once we know who that is
   });
   on("feed", () => renderFeed());

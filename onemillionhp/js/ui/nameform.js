@@ -1,13 +1,14 @@
 // Name entry, shared by the first-visit prompt and the [ YOU ] rename form.
 // Errors (taken, not allowed, bad characters) appear right under the input.
 
-import * as api from "../api.js?v=9483fa8e9b";
-import { el } from "../ascii.js?v=9483fa8e9b";
-import { boxById, emit, state } from "../store.js?v=9483fa8e9b";
-import { openBox } from "./bag.js?v=9483fa8e9b";
-import { boxDropReveal, showOverlay } from "./fx.js?v=9483fa8e9b";
-import { revealAmbient } from "./ambient.js?v=9483fa8e9b";
-import { startMist } from "./mist.js?v=9483fa8e9b";
+import * as api from "../api.js?v=98085e3cb0";
+import { el } from "../ascii.js?v=98085e3cb0";
+import { boxById, emit, state } from "../store.js?v=98085e3cb0";
+import { openBox } from "./bag.js?v=98085e3cb0";
+import { boxDropReveal, showOverlay } from "./fx.js?v=98085e3cb0";
+import { revealAmbient } from "./ambient.js?v=98085e3cb0";
+import { startMist } from "./mist.js?v=98085e3cb0";
+import { loadSaveForm } from "./save.js?v=98085e3cb0";
 
 const ADJ = ["MOSSY", "FERAL", "RUSTY", "GLOOMY", "SOGGY", "GRIM", "TINY", "NEON", "VOID", "FUZZY",
   "SNEAKY", "CURSED", "HOLLOW", "FERVENT", "DAMP", "GILDED", "FROSTY", "SPOOKY", "MIGHTY", "WEARY"];
@@ -137,7 +138,10 @@ export function showIntro(instant = false) {
     fight.innerHTML = '<span class="br">[</span> F I G H T ! <span class="br">]</span>';
     fight.type = "button";
     fight.addEventListener("click", leave);
-    eye.append(text, fight);
+    const have = /** @type {HTMLButtonElement} */ (el("button", "inline-btn intro-save", "[ have a save code? ]"));
+    have.type = "button";
+    have.addEventListener("click", () => have.replaceWith(loadSaveForm()));
+    eye.append(text, fight, have);
     requestAnimationFrame(() => fight.focus({ preventScroll: true }));
   }, instant);
 }

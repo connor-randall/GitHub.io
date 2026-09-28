@@ -1,13 +1,14 @@
 // Tab bar for the side panels.
 
-import { closeOverlay } from "./fx.js?v=9483fa8e9b";
-import { renderBag } from "./bag.js?v=9483fa8e9b";
-import { loadHistory } from "./history.js?v=9483fa8e9b";
-import { renderPlayer } from "./player.js?v=9483fa8e9b";
-import { loadRanks } from "./ranks.js?v=9483fa8e9b";
+import { closeOverlay } from "./fx.js?v=98085e3cb0";
+import { renderBag } from "./bag.js?v=98085e3cb0";
+import { loadHistory } from "./history.js?v=98085e3cb0";
+import { renderPlayer } from "./player.js?v=98085e3cb0";
+import { loadRanks } from "./ranks.js?v=98085e3cb0";
+import { renderShop } from "./shop.js?v=98085e3cb0";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
-const TABS = ["feed", "player", "bag", "ranks", "history"];
+const TABS = ["feed", "player", "bag", "shop", "ranks", "history"];
 let activeTab = "feed";
 
 /** @param {string} tab */
@@ -30,6 +31,7 @@ export const currentTab = () => activeTab;
 export function renderPanels() {
   if (activeTab === "player") renderPlayer();
   else if (activeTab === "bag") renderBag();
+  else if (activeTab === "shop") renderShop();
   else if (activeTab === "ranks") loadRanks();
   else if (activeTab === "history") loadHistory();
 }

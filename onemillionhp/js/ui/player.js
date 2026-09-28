@@ -1,10 +1,11 @@
 // [ YOU ] panel: stats, rename, equipped weapon.
 
-import { el, fmt, setArt } from "../ascii.js?v=9483fa8e9b";
-import { itemById, state } from "../store.js?v=9483fa8e9b";
-import { effectLine } from "./effects.js?v=9483fa8e9b";
-import { itemLines } from "./fx.js?v=9483fa8e9b";
-import { nameForm } from "./nameform.js?v=9483fa8e9b";
+import { el, fmt, setArt } from "../ascii.js?v=98085e3cb0";
+import { itemById, state } from "../store.js?v=98085e3cb0";
+import { effectLine } from "./effects.js?v=98085e3cb0";
+import { itemLines } from "./fx.js?v=98085e3cb0";
+import { nameForm } from "./nameform.js?v=98085e3cb0";
+import { saveSection } from "./save.js?v=98085e3cb0";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -33,6 +34,7 @@ export function renderPlayer() {
     ["BOSSES", `${me.bosses_participated} fought / ${me.bosses_defeated} slain`],
     ["WEAPON", equipped ? equipped.name : "BARE HANDS"],
     ["CHARM", charm ? charm.name : "NONE"],
+    ["SHARDS", fmt(me.shards ?? 0)],
     ["LOOT BOXES", String((me.boxes ?? []).reduce((n, /** @type {any} */ b) => n + b.count, 0))],
     ...(me.next_crits > 0 ? [["CRIT CHARGES", String(me.next_crits)]] : []),
   ];
@@ -64,7 +66,7 @@ export function renderPlayer() {
     requestAnimationFrame(() => setArt(pre, itemLines(item, { width: 24, equipped: true }), 11));
   }
   if (!equipped && !charm) eq.append(el("div", "dim", "> nothing equipped. loot drops from attacks and boxes. check [ BAG ]."));
-  parts.push(eq);
+  parts.push(eq, saveSection(renderPlayer));
   host.replaceChildren(...parts);
 }
 
