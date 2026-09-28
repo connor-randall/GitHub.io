@@ -1,14 +1,14 @@
 // Live connection: WebSocket push, with short polling as a fallback while
 // the socket is down. Either way the server's boss state is the only truth.
 
-import { currentToken, getState, liveUrl } from "./api.js?v=daf849befb";
+import { currentToken, getState, liveUrl } from "./api.js?v=d1f30b6b1d";
 
 const POLL_MS = 5000;
 const MAX_BACKOFF_MS = 30000;
 
 /**
  * @typedef {{
- *   onSnapshot: (s: {boss: any, feed: any[], online: number, server_time?: number, pinned?: any}) => void,
+ *   onSnapshot: (s: {boss: any, feed: any[], online: number, server_time?: number, pinned?: any, web_version?: string | null}) => void,
  *   onUpdate: (u: {boss: any, events: any[], online: number}) => void,
  *   onOnline: (n: number) => void,
  *   onRefresh: (r: {boss: any, feed: any[], pinned?: any}) => void,

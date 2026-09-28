@@ -1,8 +1,8 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=daf849befb";
-import * as api from "../api.js?v=daf849befb";
-import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=daf849befb";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=d1f30b6b1d";
+import * as api from "../api.js?v=d1f30b6b1d";
+import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=d1f30b6b1d";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 
@@ -65,8 +65,8 @@ function message(e) {
       return [el("span", "admin-tag", "***ADMIN***"), txt(" "), el("span", "admin-text", e.text ?? "")];
     case "spawn":
       return [txt(`>>> BOSS #${String(e.number).padStart(3, "0")} ${e.boss} HAS APPEARED <<<`)];
-    default:
-      return [txt(`> ${e.kind}`)];
+    default: // something newer than this page knows how to show
+      return e.name ? [txt("> "), who(), txt(` ${e.kind}`)] : [txt(`> ${e.kind}`)];
   }
 }
 

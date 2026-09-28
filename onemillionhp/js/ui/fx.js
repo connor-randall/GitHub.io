@@ -1,9 +1,9 @@
 // Effects: shake, damage popups, crit banner, ultimate sequence, loot reveal,
 // item cards and the modal overlay they all share.
 
-import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=daf849befb";
-import { rarityById, state } from "../store.js?v=daf849befb";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=daf849befb";
+import { RARITY_STYLE, bigText, box, center, centerBlock, dedent, el, fitArt, fmt, widthOf } from "../ascii.js?v=d1f30b6b1d";
+import { rarityById, state } from "../store.js?v=d1f30b6b1d";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=d1f30b6b1d";
 
 const overlay = /** @type {HTMLElement} */ (document.getElementById("overlay"));
 const shakeEl = /** @type {HTMLElement} */ (document.getElementById("shake"));
@@ -39,6 +39,9 @@ let closeCurrent = null;
 let queue = Promise.resolve();
 
 export const overlayOpen = () => !overlay.hidden;
+/** A pop-up the player is in the middle of (loot, gifts, the death scoreboard),
+ * as opposed to the welcome / name screens, which lose nothing on a reload. */
+export const busyOverlay = () => !overlay.hidden && !overlay.classList.contains("identify");
 
 /**
  * Show content in the overlay until closed. Overlays queue, so a crit

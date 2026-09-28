@@ -2,25 +2,55 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=daf849befb";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=daf849befb";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=daf849befb";
-import { connectLive } from "./live.js?v=daf849befb";
-import * as sound from "./sound.js?v=daf849befb";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=daf849befb";
-import { openBox } from "./ui/bag.js?v=daf849befb";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=daf849befb";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=daf849befb";
-import { maybeShowDeath } from "./ui/ceremony.js?v=daf849befb";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=daf849befb";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=daf849befb";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=daf849befb";
-import { showError } from "./ui/errors.js?v=daf849befb";
-import { showIntro } from "./ui/nameform.js?v=daf849befb";
-import { setPinned, showNotice } from "./ui/notice.js?v=daf849befb";
-import { loadHistory } from "./ui/history.js?v=daf849befb";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=daf849befb";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=daf849befb";
+import * as api from "./api.js?v=d1f30b6b1d";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=d1f30b6b1d";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=d1f30b6b1d";
+import { connectLive } from "./live.js?v=d1f30b6b1d";
+import * as sound from "./sound.js?v=d1f30b6b1d";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=d1f30b6b1d";
+import { openBox } from "./ui/bag.js?v=d1f30b6b1d";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=d1f30b6b1d";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=d1f30b6b1d";
+import { maybeShowDeath } from "./ui/ceremony.js?v=d1f30b6b1d";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=d1f30b6b1d";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=d1f30b6b1d";
+import { boxDropReveal, busyOverlay, popup, shake } from "./ui/fx.js?v=d1f30b6b1d";
+import { showError } from "./ui/errors.js?v=d1f30b6b1d";
+import { showIntro } from "./ui/nameform.js?v=d1f30b6b1d";
+import { setPinned, showNotice } from "./ui/notice.js?v=d1f30b6b1d";
+import { loadHistory } from "./ui/history.js?v=d1f30b6b1d";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=d1f30b6b1d";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=d1f30b6b1d";
+
+/** This page's own build stamp (main.js?v=...), empty for an unbuilt dev copy. */
+const MY_VERSION = new URL(import.meta.url).searchParams.get("v") ?? "";
+
+/** A deploy changed the page: reload so everyone runs the new code. Waits
+ * while someone is typing or watching a pop-up, and tries each new
+ * version only once (no reload loops if a cache serves the old page).
+ * @param {string | null | undefined} serverVersion */
+function reloadIfOutdated(serverVersion) {
+  if (!serverVersion || !MY_VERSION || serverVersion === MY_VERSION) return;
+  try {
+    if (sessionStorage.getItem("omhp.reloaded_for") === serverVersion) return;
+  } catch {
+    return;
+  }
+  const busy = () => busyOverlay() || (document.activeElement instanceof HTMLInputElement && document.activeElement.value !== "");
+  const go = () => {
+    if (busy()) {
+      setTimeout(go, 3000);
+      return;
+    }
+    try {
+      sessionStorage.setItem("omhp.reloaded_for", serverVersion);
+    } catch {
+      /* ignore */
+    }
+    location.reload();
+  };
+  setTimeout(go, 500 + Math.random() * 4000); // don't have every tab hit the server at once
+}
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -148,6 +178,7 @@ async function boot() {
   const live = connectLive({
     onSnapshot: (s) => {
       if (s.server_time) state.serverSkew = s.server_time - Date.now() / 1000;
+      reloadIfOutdated(s.web_version);
       if ("pinned" in s) setPinned(s.pinned);
       if (applyBoss(s.boss)) emit("boss");
       const fresh = mergeFeed(s.feed ?? []);

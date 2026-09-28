@@ -1,9 +1,9 @@
 // [ RANKS ] panel: today / all-time leaderboards.
 
-import * as api from "../api.js?v=daf849befb";
-import { el, fmt, padL } from "../ascii.js?v=daf849befb";
-import { state } from "../store.js?v=daf849befb";
-import { showError } from "./errors.js?v=daf849befb";
+import * as api from "../api.js?v=d1f30b6b1d";
+import { el, fmt, padL } from "../ascii.js?v=d1f30b6b1d";
+import { state } from "../store.js?v=d1f30b6b1d";
+import { showError } from "./errors.js?v=d1f30b6b1d";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
