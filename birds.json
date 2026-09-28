@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-09-28T10:40:03-0600",
+  "generated_at": "2026-09-28T10:50:03-0600",
   "stats": {
-    "today_count": 122,
+    "today_count": 125,
     "today_species": 8,
-    "total": 1137
+    "total": 1140
   },
   "enviro": {
-    "temp_f": 81.8,
-    "humidity": 26.4,
+    "temp_f": 78.3,
+    "humidity": 28.2,
     "pressure": 822.2
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9647,
+      "iso": "2026-09-28T10:46:27",
+      "time": "10:46",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-96-2026-09-28-birdnet-10.46.27.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9494,
+      "iso": "2026-09-28T10:46:21",
+      "time": "10:46",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-95-2026-09-28-birdnet-10.46.21.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8663,
+      "iso": "2026-09-28T10:46:18",
+      "time": "10:46",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-87-2026-09-28-birdnet-10.46.18.mp3"
+    },
     {
       "com_name": "Blue Jay",
       "sci_name": "Cyanocitta cristata",
@@ -130,36 +160,6 @@
       "date": "2026-09-28",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-86-2026-09-28-birdnet-08.40.49.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.9582,
-      "iso": "2026-09-28T08:40:43",
-      "time": "08:40",
-      "date": "2026-09-28",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-96-2026-09-28-birdnet-08.40.43.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6918,
-      "iso": "2026-09-28T08:40:37",
-      "time": "08:40",
-      "date": "2026-09-28",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-69-2026-09-28-birdnet-08.40.37.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.9467,
-      "iso": "2026-09-28T08:40:34",
-      "time": "08:40",
-      "date": "2026-09-28",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-95-2026-09-28-birdnet-08.40.34.mp3"
     }
   ]
 }
