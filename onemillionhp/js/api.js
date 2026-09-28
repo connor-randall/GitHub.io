@@ -115,7 +115,8 @@ export const getOlderFeed = (t, id, limit = 100) =>
   request(`/api/feed?before_t=${t}&before_id=${id}&limit=${Math.max(1, Math.min(100, limit))}`);
 export const getMe = () => request("/api/me", { auth: true });
 /** @param {string} scope "today", "all" or "boss:<number>" */
-export const getLeaderboard = (scope) => request(`/api/leaderboard?scope=${encodeURIComponent(scope)}`);
+export const getLeaderboard = (scope) =>
+  request(`/api/leaderboard?scope=${encodeURIComponent(scope)}`, { auth: true }); // auth: includes your own rank
 export const getHistory = () => request("/api/history");
 /** Scoreboard for one boss (with your rank if you have a player). @param {number} seq */
 export const getBossResults = (seq) => request(`/api/bosses/${seq}/results`, { auth: true });

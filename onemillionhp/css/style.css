@@ -616,3 +616,11 @@ b { font-weight: 700; }
 .rank-bosses button { font-size: 12px; padding: 4px 2px; color: color-mix(in srgb, var(--chip-tint, var(--dim)) 70%, var(--dim)); }
 .rank-bosses button[aria-pressed="true"] { color: var(--bg); background: var(--chip-tint, var(--fg)); }
 .rank-boss-h { font-size: 12px; color: var(--amber); margin: 0 0 8px; letter-spacing: .04em; }
+.rank-you {
+  border: 1px solid #6b5418; background: rgba(255, 176, 0, .07); padding: 6px 8px; margin: 0 0 12px;
+  color: var(--amber); font-size: 12px;
+}
+.rank-you-name { font-weight: 800; letter-spacing: .06em; text-shadow: 0 0 8px rgba(255, 176, 0, .35); }
+.rank-you-bits { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 3px; }
+.rank-you-cell b { font-size: 14px; }
+.rank-you-hint { color: var(--dim); margin-top: 3px; }

@@ -1,9 +1,9 @@
 // [ RANKS ] panel: today / all-time leaderboards, and one per boss.
 
-import * as api from "../api.js?v=e54d3ddffb";
-import { el, fmt, padL } from "../ascii.js?v=e54d3ddffb";
-import { bossDef, state } from "../store.js?v=e54d3ddffb";
-import { showError } from "./errors.js?v=e54d3ddffb";
+import * as api from "../api.js?v=a46acbc584";
+import { el, fmt, padL } from "../ascii.js?v=a46acbc584";
+import { bossDef, state } from "../store.js?v=a46acbc584";
+import { showError } from "./errors.js?v=a46acbc584";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -71,6 +71,21 @@ function renderRanks(lb) {
   if (shown) {
     const how = shown.status === "alive" ? "FIGHTING IT NOW" : `SLAIN BY ${shown.killer_name ?? "?"}`;
     parts.push(el("div", "rank-boss-h", `BOSS #${String(shown.seq).padStart(3, "0")} ${shown.name}  ::  ${how}`));
+  }
+  // YOU: your own place on this board, even outside the top 10.
+  if (lb.me && state.me) {
+    const box = el("div", "rank-you");
+    box.append(el("span", "rank-you-name", `YOU (${state.me.name})`));
+    const bits = el("div", "rank-you-bits");
+    for (const [key, label] of [["damage", "DAMAGE"], ["attacks", "ATTACKS"], ["crits", "CRITS"]]) {
+      const r = lb.me[key];
+      const cell = el("span", "rank-you-cell");
+      cell.append(el("b", "", r?.rank ? `#${fmt(r.rank)}` : "--"), ` ${label} ${fmt(r?.value ?? 0)}`);
+      bits.append(cell);
+    }
+    box.append(bits);
+    if (!lb.me.damage?.rank) box.append(el("div", "rank-you-hint", "> not on this board yet. go hit something."));
+    parts.push(box);
   }
   const W = 34;
   for (const [key, title] of [["damage", "HIGHEST DAMAGE"], ["attacks", "MOST ATTACKS"], ["crits", "MOST CRITS"]]) {
