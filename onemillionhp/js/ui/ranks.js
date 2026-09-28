@@ -1,16 +1,18 @@
-// [ RANKS ] panel: today / all-time leaderboards.
+// [ RANKS ] panel: today / all-time leaderboards, and one per boss.
 
-import * as api from "../api.js?v=c9274a97a7";
-import { el, fmt, padL } from "../ascii.js?v=c9274a97a7";
-import { state } from "../store.js?v=c9274a97a7";
-import { showError } from "./errors.js?v=c9274a97a7";
+import * as api from "../api.js?v=3c47ca09f7";
+import { el, fmt, padL } from "../ascii.js?v=3c47ca09f7";
+import { bossDef, state } from "../store.js?v=3c47ca09f7";
+import { showError } from "./errors.js?v=3c47ca09f7";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
 // ------------------------------------------------------------------ ranks
 
-/** @type {"today"|"all"} */
+/** "today", "all" or "boss:<seq>". */
 let rankScope = "today";
+/** Every boss so far (newest first), for the per-boss buttons. @type {any[]} */
+let bosses = [];
 let ranksLoadedAt = 0;
 /** Last leaderboard fetched, so it can be redrawn without a request. */
 /** @type {any} */
@@ -29,7 +31,8 @@ export async function loadRanks(force = false) {
   if (!host.childElementCount) host.append(el("div", "dim", "> loading..."));
   host.setAttribute("aria-busy", "true");
   try {
-    const lb = await api.getLeaderboard(rankScope);
+    const [lb, hist] = await Promise.all([api.getLeaderboard(rankScope), api.getHistory().catch(() => null)]);
+    if (hist) bosses = hist.bosses;
     renderRanks(lb);
     host.removeAttribute("aria-busy");
   } catch (e) {
@@ -41,17 +44,34 @@ export async function loadRanks(force = false) {
 function renderRanks(lb) {
   lastLb = lb;
   const host = $("panel-ranks");
-  const toggle = el("div", "rank-toggle");
-  for (const [scope, label] of /** @type {const} */ ([["today", "[ TODAY ]"], ["all", "[ ALL TIME ]"]])) {
+  /** @param {string} scope @param {string} label @param {string | null} [tint] */
+  const button = (scope, label, tint = null) => {
     const b = el("button", "", label);
     b.setAttribute("aria-pressed", String(rankScope === scope));
+    if (tint) b.style.setProperty("--chip-tint", tint);
     b.addEventListener("click", () => {
       rankScope = scope;
       loadRanks(true);
     });
-    toggle.append(b);
-  }
+    return b;
+  };
+  const toggle = el("div", "rank-toggle");
+  toggle.append(button("today", "[ TODAY ]"), button("all", "[ ALL TIME ]"));
   const parts = [toggle];
+  if (bosses.length) {
+    parts.push(el("div", "rank-sub", "BY BOSS"));
+    const row = el("div", "rank-toggle rank-bosses");
+    for (const b of [...bosses].sort((x, y) => x.seq - y.seq)) {
+      const live = b.status === "alive";
+      row.append(button(`boss:${b.seq}`, `[ #${b.seq} ${b.name}${live ? " *" : ""} ]`, bossDef(b.def_id)?.tint ?? null));
+    }
+    parts.push(row);
+  }
+  const shown = rankScope.startsWith("boss:") ? bosses.find((b) => `boss:${b.seq}` === rankScope) : null;
+  if (shown) {
+    const how = shown.status === "alive" ? "FIGHTING IT NOW" : `SLAIN BY ${shown.killer_name ?? "?"}`;
+    parts.push(el("div", "rank-boss-h", `BOSS #${String(shown.seq).padStart(3, "0")} ${shown.name}  ::  ${how}`));
+  }
   const W = 34;
   for (const [key, title] of [["damage", "HIGHEST DAMAGE"], ["attacks", "MOST ATTACKS"], ["crits", "MOST CRITS"]]) {
     const rows = lb[key] ?? [];
@@ -69,6 +89,7 @@ function renderRanks(lb) {
     });
     parts.push(pre);
   }
-  parts.push(el("div", "dim", rankScope === "today" ? "resets 00:00 UTC" : "since the first boss"));
+  parts.push(el("div", "dim", rankScope === "today" ? "resets 00:00 UTC"
+    : rankScope === "all" ? "since the first boss" : "damage, hits and crits on this boss only  ::  * = alive now"));
   host.replaceChildren(...parts);
 }

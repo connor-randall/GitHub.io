@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=c9274a97a7";
-import { forwardToCanonical } from "./home.js?v=c9274a97a7";
-import { el, fmt, padR, setArt } from "./ascii.js?v=c9274a97a7";
-import { rarityById, state } from "./store.js?v=c9274a97a7";
-import { effectParts } from "./ui/effects.js?v=c9274a97a7";
-import { itemLines } from "./ui/fx.js?v=c9274a97a7";
+import { API_BASE, getContent } from "./api.js?v=3c47ca09f7";
+import { forwardToCanonical } from "./home.js?v=3c47ca09f7";
+import { el, fmt, padR, setArt } from "./ascii.js?v=3c47ca09f7";
+import { rarityById, state } from "./store.js?v=3c47ca09f7";
+import { effectParts } from "./ui/effects.js?v=3c47ca09f7";
+import { itemLines } from "./ui/fx.js?v=3c47ca09f7";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));

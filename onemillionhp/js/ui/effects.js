@@ -1,6 +1,6 @@
 // Human-readable item effects, shared by the bag, player panel and admin.
 
-import { el } from "../ascii.js?v=c9274a97a7";
+import { el } from "../ascii.js?v=3c47ca09f7";
 
 /** @param {number} x */
 const pct = (x) => `${(x * 100).toFixed(2).replace(/\.?0+$/, "")}%`;

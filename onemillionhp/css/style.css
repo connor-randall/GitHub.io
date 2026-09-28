@@ -611,3 +611,8 @@ b { font-weight: 700; }
 .appeared.landed .stack-front { animation: appeared-pulse 2.4s ease-in-out infinite; }
 @keyframes appeared-pulse { 50% { filter: brightness(1.35); } }
 .aftermath .panic-count { margin-top: 22px; }
+.rank-sub { font-size: 11px; color: var(--dim); letter-spacing: .14em; margin: 4px 0 2px; }
+.rank-bosses { flex-wrap: wrap; gap: 2px 6px; margin-bottom: 10px; }
+.rank-bosses button { font-size: 12px; padding: 4px 2px; color: color-mix(in srgb, var(--chip-tint, var(--dim)) 70%, var(--dim)); }
+.rank-bosses button[aria-pressed="true"] { color: var(--bg); background: var(--chip-tint, var(--fg)); }
+.rank-boss-h { font-size: 12px; color: var(--amber); margin: 0 0 8px; letter-spacing: .04em; }
