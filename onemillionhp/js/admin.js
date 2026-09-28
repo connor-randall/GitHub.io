@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=98085e3cb0";
-import { forwardToCanonical } from "./home.js?v=98085e3cb0";
-import { el, fmt, padR, setArt } from "./ascii.js?v=98085e3cb0";
-import { rarityById, state } from "./store.js?v=98085e3cb0";
-import { effectParts } from "./ui/effects.js?v=98085e3cb0";
-import { itemLines } from "./ui/fx.js?v=98085e3cb0";
+import { API_BASE, getContent } from "./api.js?v=7763333b59";
+import { forwardToCanonical } from "./home.js?v=7763333b59";
+import { el, fmt, padR, setArt } from "./ascii.js?v=7763333b59";
+import { rarityById, state } from "./store.js?v=7763333b59";
+import { effectParts } from "./ui/effects.js?v=7763333b59";
+import { itemLines } from "./ui/fx.js?v=7763333b59";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -77,6 +77,9 @@ async function refresh() {
     `PLAYERS ${fmt(c.players)} (${c.banned} banned)  ACTIVE TODAY ${fmt(c.active_today)}  ONLINE ${ov.online}  ITEMS HELD ${fmt(c.items_owned)}`,
     `RULES  max ${t.attacks_per_day} attacks, +1 every ${t.recharge_seconds}s  crit ${(t.crit_chance * 100).toFixed(2)}%  drops x${t.loot_mult}`,
   ].join("\n");
+
+  $("pin-now").textContent = ov.pinned ? `PINNED NOW: ${ov.pinned.text}` : "nothing pinned.";
+  $("unpin-btn").hidden = !ov.pinned;
 
   const hp = /** @type {HTMLInputElement} */ (document.querySelector('[data-action="set_hp"] [name="hp"]'));
   hp.max = String(b.max_hp);

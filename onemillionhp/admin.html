@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=98085e3cb0">
-<link rel="stylesheet" href="css/admin.css?v=98085e3cb0">
+<link rel="stylesheet" href="css/style.css?v=7763333b59">
+<link rel="stylesheet" href="css/admin.css?v=7763333b59">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -42,7 +42,15 @@
           <input name="message" maxlength="200" required placeholder="say something to everyone">
         </label>
         <button class="inline-btn">[ POST TO FEED ]</button>
-        <p class="hint">shows up in everyone's feed right away. up to 200 characters.</p>
+        <button class="inline-btn" data-override="push">[ POP-UP ON EVERY SCREEN ]</button>
+        <button class="inline-btn" data-override="pin">[ PIN TO TOP OF FEED ]</button>
+        <p class="hint">POST: a line in the feed. POP-UP: appears at the top of everyone's screen right now (people who
+          aren't on the site won't see it). PIN: stays at the top of the feed for everyone until you unpin it or pin
+          something else. up to 200 characters.</p>
+      </form>
+      <form data-action="unpin" class="unpin-form">
+        <span id="pin-now" class="hint">nothing pinned.</span>
+        <button class="inline-btn" id="unpin-btn" hidden>[ UNPIN ]</button>
       </form>
     </section>
 
@@ -163,6 +171,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=98085e3cb0"></script>
+<script type="module" src="js/admin.js?v=7763333b59"></script>
 </body>
 </html>

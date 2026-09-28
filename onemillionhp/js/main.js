@@ -2,24 +2,25 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=98085e3cb0";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=98085e3cb0";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=98085e3cb0";
-import { connectLive } from "./live.js?v=98085e3cb0";
-import * as sound from "./sound.js?v=98085e3cb0";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=98085e3cb0";
-import { openBox } from "./ui/bag.js?v=98085e3cb0";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=98085e3cb0";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=98085e3cb0";
-import { maybeShowDeath } from "./ui/ceremony.js?v=98085e3cb0";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=98085e3cb0";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=98085e3cb0";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=98085e3cb0";
-import { showError } from "./ui/errors.js?v=98085e3cb0";
-import { showIntro } from "./ui/nameform.js?v=98085e3cb0";
-import { loadHistory } from "./ui/history.js?v=98085e3cb0";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=98085e3cb0";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=98085e3cb0";
+import * as api from "./api.js?v=7763333b59";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=7763333b59";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=7763333b59";
+import { connectLive } from "./live.js?v=7763333b59";
+import * as sound from "./sound.js?v=7763333b59";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=7763333b59";
+import { openBox } from "./ui/bag.js?v=7763333b59";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=7763333b59";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=7763333b59";
+import { maybeShowDeath } from "./ui/ceremony.js?v=7763333b59";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=7763333b59";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=7763333b59";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=7763333b59";
+import { showError } from "./ui/errors.js?v=7763333b59";
+import { showIntro } from "./ui/nameform.js?v=7763333b59";
+import { setPinned, showNotice } from "./ui/notice.js?v=7763333b59";
+import { loadHistory } from "./ui/history.js?v=7763333b59";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=7763333b59";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=7763333b59";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -147,6 +148,7 @@ async function boot() {
   const live = connectLive({
     onSnapshot: (s) => {
       if (s.server_time) state.serverSkew = s.server_time - Date.now() / 1000;
+      if ("pinned" in s) setPinned(s.pinned);
       if (applyBoss(s.boss)) emit("boss");
       const fresh = mergeFeed(s.feed ?? []);
       if (!feedDrawn) {
@@ -176,7 +178,9 @@ async function boot() {
     },
     // The admin changed something: take the server's word for everything,
     // even if it "goes backwards" (a reset lowers HP totals).
+    onNotice: (n) => showNotice(n.text),
     onRefresh: (r) => {
+      setPinned(r.pinned);
       state.boss = null;
       state.feed = [];
       applyBoss(r.boss);

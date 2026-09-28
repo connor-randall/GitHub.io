@@ -539,3 +539,31 @@ b { font-weight: 700; }
 .save-warn { color: var(--red); font-size: 12px; }
 .load-save input { width: 16ch; text-transform: uppercase; }
 .intro-save { display: block; margin: 14px auto 0; color: var(--dim); }
+
+/* ---------- admin pinned message + pop-ups ---------- */
+.pinned {
+  border: 1px solid #6b5418; background: linear-gradient(90deg, rgba(255,176,0,.10), rgba(201,155,255,.06) 60%, transparent);
+  padding: 6px 8px; margin: 0 0 10px; font-size: 13px; line-height: 1.45; list-style: none;
+}
+.pinned .pin-h { color: var(--amber); font-size: 11px; letter-spacing: .14em; margin-bottom: 2px; }
+.pinned .pin-body { overflow-wrap: anywhere; }
+.notices {
+  position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 60;
+  display: flex; flex-direction: column; gap: 6px; width: min(560px, calc(100vw - 32px)); pointer-events: none;
+}
+.notice {
+  pointer-events: auto; display: flex; gap: 1ch; align-items: baseline; text-align: left; width: 100%;
+  background: #15120c; border: 1px solid var(--amber); box-shadow: 0 0 0 1px #000, 0 6px 24px rgba(0,0,0,.6), 0 0 18px rgba(255,176,0,.18);
+  color: var(--fg); padding: 10px 12px; font: inherit; font-size: 14px; cursor: pointer;
+  animation: notice-in .35s ease-out;
+}
+.notice .admin-tag {
+  flex: none; font-weight: 800; letter-spacing: .06em;
+  background: linear-gradient(90deg, #ffb000, #ff5340, #c99bff, #ffb000); background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: admin-shimmer 3s linear infinite;
+}
+.notice-text { flex: 1; color: var(--amber); font-weight: 700; overflow-wrap: anywhere; }
+.notice-x { flex: none; color: var(--dim); }
+.notice.leaving { opacity: 0; transform: translateY(-8px); transition: opacity .3s, transform .3s; }
+@keyframes notice-in { from { opacity: 0; transform: translateY(-14px); } }
+@media (prefers-reduced-motion: reduce) { .notice { animation: none; } }

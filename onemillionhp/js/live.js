@@ -1,18 +1,19 @@
 // Live connection: WebSocket push, with short polling as a fallback while
 // the socket is down. Either way the server's boss state is the only truth.
 
-import { currentToken, getState, liveUrl } from "./api.js?v=98085e3cb0";
+import { currentToken, getState, liveUrl } from "./api.js?v=7763333b59";
 
 const POLL_MS = 5000;
 const MAX_BACKOFF_MS = 30000;
 
 /**
  * @typedef {{
- *   onSnapshot: (s: {boss: any, feed: any[], online: number, server_time?: number}) => void,
+ *   onSnapshot: (s: {boss: any, feed: any[], online: number, server_time?: number, pinned?: any}) => void,
  *   onUpdate: (u: {boss: any, events: any[], online: number}) => void,
  *   onOnline: (n: number) => void,
- *   onRefresh: (r: {boss: any, feed: any[]}) => void,
+ *   onRefresh: (r: {boss: any, feed: any[], pinned?: any}) => void,
  *   onGift: (g: {box_id: string}) => void,
+ *   onNotice: (n: {text: string}) => void,
  *   onMode: (mode: "live"|"poll"|"down") => void,
  * }} LiveHandlers
  */
@@ -69,6 +70,7 @@ export function connectLive(h) {
       else if (msg.type === "heartbeat") h.onOnline(msg.online);
       else if (msg.type === "refresh") h.onRefresh(msg);
       else if (msg.type === "gift") h.onGift(msg);
+      else if (msg.type === "notice") h.onNotice(msg);
     };
     ws.onclose = () => {
       ws = null;
