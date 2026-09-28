@@ -1,9 +1,9 @@
 // After the death scoreboard: a nervous little monologue, typed out, then
 // the next boss's name slammed across the whole screen in big block letters.
 
-import { el } from "../ascii.js?v=62cc722a38";
-import { bossDef, now, state } from "../store.js?v=62cc722a38";
-import { shake, showOverlay } from "./fx.js?v=62cc722a38";
+import { el } from "../ascii.js?v=e54d3ddffb";
+import { bossDef, now, state } from "../store.js?v=e54d3ddffb";
+import { shake, showOverlay } from "./fx.js?v=e54d3ddffb";
 
 const LINES = ["Yay we did it.....", "uh guys do you hear that?.......", "Its right behind me isnt it?"];
 

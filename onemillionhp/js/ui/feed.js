@@ -1,8 +1,8 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=62cc722a38";
-import * as api from "../api.js?v=62cc722a38";
-import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=62cc722a38";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=e54d3ddffb";
+import * as api from "../api.js?v=e54d3ddffb";
+import { FEED_KEEP, addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=e54d3ddffb";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 
@@ -93,11 +93,14 @@ function row(e, fresh) {
 // Newest at the top; scroll down for history. Older pages load on demand.
 
 let reachedStart = false;
+/** Hit the history cap (FEED_KEEP lines): stop loading older ones. */
+const full = () => state.feed.length >= FEED_KEEP;
 let loadingOlder = false;
 const footer = el("li", "feed-end dim", "");
 
 function paintFooter() {
-  footer.textContent = reachedStart ? "--- start of the fight ---" : loadingOlder ? "loading older..." : "--- scroll for older ---";
+  footer.textContent = reachedStart ? "--- start of the fight ---"
+    : full() ? `--- that's the last ${FEED_KEEP} ---` : loadingOlder ? "loading older..." : "--- scroll for older ---";
 }
 
 /** Render every loaded event, newest first. */
@@ -125,6 +128,10 @@ export function addFreshEvents(fresh) {
   const before = list.scrollHeight;
   const rows = [...fresh].sort((a, b) => b.t - a.t || b.id - a.id).map((e) => row(e, true));
   list.prepend(...rows);
+  // Keep the list at FEED_KEEP lines: the oldest fall off the bottom.
+  let extra = list.childElementCount - 1 - FEED_KEEP;
+  while (extra-- > 0 && footer.previousElementSibling) footer.previousElementSibling.remove();
+  paintFooter();
   if (top > 0) list.scrollTop = top + (list.scrollHeight - before);
 }
 
@@ -138,15 +145,16 @@ export function resetFeedHistory() {
 let lastOlderAt = 0;
 
 async function loadOlder() {
-  if (loadingOlder || reachedStart || !state.feed.length) return;
+  if (loadingOlder || reachedStart || full() || !state.feed.length) return;
   if (performance.now() - lastOlderAt < 700) return; // never more than ~1 page a second
   lastOlderAt = performance.now();
   const oldest = state.feed[0];
   loadingOlder = true;
   paintFooter();
   try {
-    const { events } = await api.getOlderFeed(oldest.t, oldest.id);
-    if (events.length < 100) reachedStart = true;
+    const want = Math.min(100, FEED_KEEP - state.feed.length);
+    const { events } = await api.getOlderFeed(oldest.t, oldest.id, want);
+    if (events.length < want) reachedStart = true;
     const added = addOlderFeed(events);
     const rows = [...added].sort((a, b) => b.t - a.t || b.id - a.id).map((e) => row(e, false));
     for (const r of rows) list.insertBefore(r, footer);
@@ -167,7 +175,7 @@ const AUTO_PAGE_LIMIT = 2;
  * hidden feed (another tab open) has no height: it must never count as
  * "short", or it pages through the whole history in a loop. */
 function fillIfShort() {
-  if (reachedStart || autoPages >= AUTO_PAGE_LIMIT) return;
+  if (reachedStart || full() || autoPages >= AUTO_PAGE_LIMIT) return;
   if (list.clientHeight === 0 || !list.isConnected || list.offsetParent === null) return;
   if (list.scrollHeight <= list.clientHeight + 40) {
     autoPages++;

@@ -9,9 +9,9 @@
 //
 // Tap anywhere to skip. Reduced motion gets a short fade to the death image.
 
-import { el } from "../ascii.js?v=62cc722a38";
-import { showOverlay } from "./fx.js?v=62cc722a38";
-import { startMist } from "./mist.js?v=62cc722a38";
+import { el } from "../ascii.js?v=e54d3ddffb";
+import { showOverlay } from "./fx.js?v=e54d3ddffb";
+import { startMist } from "./mist.js?v=e54d3ddffb";
 
 const MIST = " .'`,:;-~=+*";
 const GLYPHS = "#%&@$*+=-:;.'~^";

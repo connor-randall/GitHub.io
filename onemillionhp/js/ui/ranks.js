@@ -1,9 +1,9 @@
 // [ RANKS ] panel: today / all-time leaderboards, and one per boss.
 
-import * as api from "../api.js?v=62cc722a38";
-import { el, fmt, padL } from "../ascii.js?v=62cc722a38";
-import { bossDef, state } from "../store.js?v=62cc722a38";
-import { showError } from "./errors.js?v=62cc722a38";
+import * as api from "../api.js?v=e54d3ddffb";
+import { el, fmt, padL } from "../ascii.js?v=e54d3ddffb";
+import { bossDef, state } from "../store.js?v=e54d3ddffb";
+import { showError } from "./errors.js?v=e54d3ddffb";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

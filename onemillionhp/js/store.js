@@ -53,8 +53,8 @@ export function applyBoss(boss) {
   return true;
 }
 
-// The feed scrolls back through the fight; keep plenty in memory.
-const FEED_KEEP = 5000;
+// The feed scrolls back a little way, not forever: the newest this many lines.
+export const FEED_KEEP = 300;
 
 /** Merge events into the feed by id. Returns the genuinely new ones.
  * @param {any[]} events */
@@ -71,8 +71,8 @@ export function mergeFeed(events) {
 export function addOlderFeed(events) {
   const seen = new Set(state.feed.map((e) => e.id));
   const fresh = events.filter((e) => !seen.has(e.id));
-  state.feed = [...fresh, ...state.feed].sort((a, b) => a.t - b.t || a.id - b.id);
-  return fresh;
+  state.feed = [...fresh, ...state.feed].sort((a, b) => a.t - b.t || a.id - b.id).slice(-FEED_KEEP);
+  return fresh.filter((e) => state.feed.includes(e));
 }
 
 /** @param {string} id */

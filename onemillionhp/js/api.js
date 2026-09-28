@@ -109,8 +109,10 @@ export async function ensurePlayer() {
 
 export const getContent = () => request("/api/content");
 export const getState = () => request("/api/state");
-/** Feed events older than the given one (newest first). @param {number} t @param {number} id */
-export const getOlderFeed = (t, id) => request(`/api/feed?before_t=${t}&before_id=${id}&limit=100`);
+/** Feed events older than the given one (newest first).
+ * @param {number} t @param {number} id @param {number} [limit] */
+export const getOlderFeed = (t, id, limit = 100) =>
+  request(`/api/feed?before_t=${t}&before_id=${id}&limit=${Math.max(1, Math.min(100, limit))}`);
 export const getMe = () => request("/api/me", { auth: true });
 /** @param {string} scope "today", "all" or "boss:<number>" */
 export const getLeaderboard = (scope) => request(`/api/leaderboard?scope=${encodeURIComponent(scope)}`);
