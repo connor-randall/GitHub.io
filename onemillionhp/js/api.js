@@ -106,6 +106,8 @@ export const getMe = () => request("/api/me", { auth: true });
 /** @param {"today"|"all"} scope */
 export const getLeaderboard = (scope) => request(`/api/leaderboard?scope=${scope}`);
 export const getHistory = () => request("/api/history");
+/** Scoreboard for one boss (with your rank if you have a player). @param {number} seq */
+export const getBossResults = (seq) => request(`/api/bosses/${seq}/results`, { auth: true });
 /** @param {string} name */
 export const rename = (name) => request("/api/me/name", { method: "POST", auth: true, body: { name } });
 /** Equip an owned item (its own slot), or pass null + slot to empty a slot.

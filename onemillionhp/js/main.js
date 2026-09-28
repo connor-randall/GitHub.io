@@ -2,23 +2,24 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=fc1e041948";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=fc1e041948";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=fc1e041948";
-import { connectLive } from "./live.js?v=fc1e041948";
-import * as sound from "./sound.js?v=fc1e041948";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=fc1e041948";
-import { openBox } from "./ui/bag.js?v=fc1e041948";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=fc1e041948";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=fc1e041948";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=fc1e041948";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=fc1e041948";
-import { boxDropReveal, popup, shake } from "./ui/fx.js?v=fc1e041948";
-import { showError } from "./ui/errors.js?v=fc1e041948";
-import { showIntro } from "./ui/nameform.js?v=fc1e041948";
-import { loadHistory } from "./ui/history.js?v=fc1e041948";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=fc1e041948";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=fc1e041948";
+import * as api from "./api.js?v=b82192feda";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=b82192feda";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b82192feda";
+import { connectLive } from "./live.js?v=b82192feda";
+import * as sound from "./sound.js?v=b82192feda";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=b82192feda";
+import { openBox } from "./ui/bag.js?v=b82192feda";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b82192feda";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=b82192feda";
+import { maybeShowDeath } from "./ui/ceremony.js?v=b82192feda";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b82192feda";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=b82192feda";
+import { boxDropReveal, popup, shake } from "./ui/fx.js?v=b82192feda";
+import { showError } from "./ui/errors.js?v=b82192feda";
+import { showIntro } from "./ui/nameform.js?v=b82192feda";
+import { loadHistory } from "./ui/history.js?v=b82192feda";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=b82192feda";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b82192feda";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -101,6 +102,7 @@ async function boot() {
     renderControls();
     if (state.boss) {
       setMood(state.boss.phase, state.boss.status !== "alive", bossDef(state.boss.def_id)?.tint ?? null);
+      maybeShowDeath(state.boss); // the scoreboard + "another boss is coming", once per boss
     }
   });
   on("me", () => {
@@ -187,6 +189,7 @@ async function boot() {
     state.me = await api.ensurePlayer();
     emit("me");
     live.identify(); // a brand-new player's token exists only now
+    maybeShowDeath(state.boss); // came back after a boss died: show what happened
     // Named players go straight in; first-timers get the intro (naming
     // waits until their first attack).
     if (state.me?.name_chosen) revealAmbient();

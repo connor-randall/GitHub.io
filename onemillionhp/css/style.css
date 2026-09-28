@@ -499,3 +499,25 @@ b { font-weight: 700; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
   .boss-art.glitch { animation: none; }
 }
+
+/* ---------- death ceremony ---------- */
+.ceremony { width: min(92vw, 440px); }
+.cer-board { text-align: left; display: inline-block; font-size: clamp(9px, 3vw, 14px); line-height: 1.35; white-space: pre; }
+.cer-line { display: block; }
+.cer-line.pending { visibility: hidden; }
+.cer-bar { color: var(--red); }
+.cer-title { color: var(--red); font-weight: 800; text-shadow: 0 0 12px rgba(255,83,64,.5); }
+.cer-kill { color: var(--amber); font-weight: 700; }
+.cer-you { color: var(--green); font-weight: 700; }
+.cer-first { color: var(--amber); }
+.cer-me { color: var(--amber); font-weight: 800; text-shadow: 0 0 8px rgba(255,176,0,.35); }
+.panic {
+  color: var(--red); font-size: clamp(20px, 6vw, 30px); font-weight: 800; line-height: 1.25;
+  text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 14px;
+  animation: panic .18s steps(2) infinite, flicker 2.2s steps(1) infinite;
+  text-shadow: 2px 0 var(--blue), -2px 0 var(--amber);
+}
+@keyframes panic { 50% { transform: translate(2px, -1px) rotate(-.4deg); } }
+@keyframes flicker { 0%, 88%, 100% { opacity: 1; } 90% { opacity: .35; } 94% { opacity: .8; } }
+.panic-count { color: var(--amber); letter-spacing: .2em; font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .panic { animation: none; } }
