@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=60002fcd68";
-import { forwardToCanonical } from "./home.js?v=60002fcd68";
-import { el, fmt, padR, setArt } from "./ascii.js?v=60002fcd68";
-import { rarityById, state } from "./store.js?v=60002fcd68";
-import { effectParts } from "./ui/effects.js?v=60002fcd68";
-import { itemLines } from "./ui/fx.js?v=60002fcd68";
+import { API_BASE, getContent } from "./api.js?v=2870087685";
+import { forwardToCanonical } from "./home.js?v=2870087685";
+import { el, fmt, padR, setArt } from "./ascii.js?v=2870087685";
+import { rarityById, state } from "./store.js?v=2870087685";
+import { effectParts } from "./ui/effects.js?v=2870087685";
+import { itemLines } from "./ui/fx.js?v=2870087685";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -232,7 +232,7 @@ async function renderGallery() {
       o.value = r.id;
       rsel.append(o);
     }
-    for (const id of ["gal-rarity", "gal-slot", "gal-search"]) $(id).addEventListener("input", drawGallery);
+    for (const id of ["gal-rarity", "gal-slot", "gal-search", "gal-sort"]) $(id).addEventListener("input", drawGallery);
     // Boxes: one card each with a give button.
     $("gal-boxes").replaceChildren(
       ...content.boxes.map((/** @type {any} */ b) => {
@@ -249,7 +249,9 @@ async function renderGallery() {
             log(/** @type {Error} */ (e).message, false);
           }
         });
-        card.append(pre, el("div", "gal-name", b.name), give, everyone);
+        const held = el("div", "gal-held");
+        held.id = `held-${b.id}`;
+        card.append(pre, el("div", "gal-name", b.name), held, give, everyone);
         requestAnimationFrame(() => setArt(pre, b.art, 10));
         return card;
       }),
@@ -264,12 +266,25 @@ function drawGallery() {
   const rarity = /** @type {HTMLSelectElement} */ ($("gal-rarity")).value;
   const slot = /** @type {HTMLSelectElement} */ ($("gal-slot")).value;
   const q = /** @type {HTMLInputElement} */ ($("gal-search")).value.trim().toUpperCase();
+  const sort = /** @type {HTMLSelectElement} */ ($("gal-sort")).value;
+  /** @type {Record<string, {players: number, copies: number}>} */
+  const owned = ov?.ownership ?? {};
+  const held = (/** @type {any} */ i) => owned[i.id]?.players ?? 0;
   const items = content.items
     .filter((/** @type {any} */ i) => (!rarity || i.rarity === rarity) && (!slot || i.slot === slot))
     .filter((/** @type {any} */ i) => !q || i.name.includes(q) || effectParts(i.mods).join(" ").includes(q))
+    .filter((/** @type {any} */ i) => sort !== "unowned" || !held(i))
     .sort((/** @type {any} */ a, /** @type {any} */ b) =>
+      (sort === "owned" ? held(b) - held(a) : 0) ||
       (rarityById(b.rarity)?.rank ?? 0) - (rarityById(a.rarity)?.rank ?? 0) || a.name.localeCompare(b.name));
-  $("gal-count").textContent = `${items.length} of ${content.items.length} items`;
+  const found = content.items.filter((/** @type {any} */ i) => held(i)).length;
+  $("gal-count").textContent =
+    `${items.length} of ${content.items.length} items shown  ::  ${found} of ${content.items.length} owned by someone`;
+  for (const b of content.boxes) {
+    const o = ov?.box_ownership?.[b.id];
+    const line = document.getElementById(`held-${b.id}`);
+    if (line) line.replaceChildren(heldLine(o, { box_id: b.id }));
+  }
   $("gal-grid").replaceChildren(
     ...items.map((/** @type {any} */ item) => {
       const card = el("div", `gal-card r-${item.rarity}`);
@@ -277,11 +292,31 @@ function drawGallery() {
       const fx = effectParts(item.mods);
       const give = el("button", "inline-btn", "[ GIVE ]");
       give.addEventListener("click", () => give1("grant_item", { item_id: item.id }, item.name));
-      card.append(pre, el("div", "gal-fx", fx.length ? fx.join(" :: ") : "no bonus"), give);
+      card.append(pre, el("div", "gal-fx", fx.length ? fx.join(" :: ") : "no bonus"),
+        el("div", "gal-held"), give);
+      /** @type {HTMLElement} */ (card.querySelector(".gal-held")).append(heldLine(owned[item.id], { item_id: item.id }));
       requestAnimationFrame(() => setArt(pre, itemLines(item, {}), 10));
       return card;
     }),
   );
+}
+
+/** "HELD BY 3 (5 copies) [ WHO? ]" for a gallery card.
+ * @param {{players: number, copies: number} | undefined} o @param {Record<string, string>} ref */
+function heldLine(o, ref) {
+  const wrap = el("span", o ? "" : "dim", o ? `HELD BY ${fmt(o.players)}${o.copies > o.players ? ` (${fmt(o.copies)} copies)` : ""} ` : "nobody has one");
+  if (o) {
+    const who = el("button", "inline-btn", "[ WHO? ]");
+    who.addEventListener("click", async () => {
+      try {
+        log((await call("/api/admin/action", { action: "who_has", ...ref })).message, true);
+      } catch (e) {
+        log(/** @type {Error} */ (e).message, false);
+      }
+    });
+    wrap.append(who);
+  }
+  return wrap;
 }
 
 /** @param {string} action @param {Record<string, string>} extra @param {string} what */

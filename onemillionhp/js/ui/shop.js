@@ -1,10 +1,10 @@
 // [ SHOP ] panel: sell loot for shards, spend shards on loot boxes.
 
-import * as api from "../api.js?v=60002fcd68";
-import { el, fmt, setArt } from "../ascii.js?v=60002fcd68";
-import { boxById, emit, itemById, rarityById, state } from "../store.js?v=60002fcd68";
-import { openBox } from "./bag.js?v=60002fcd68";
-import { showError } from "./errors.js?v=60002fcd68";
+import * as api from "../api.js?v=2870087685";
+import { el, fmt, setArt } from "../ascii.js?v=2870087685";
+import { boxById, emit, itemById, rarityById, state } from "../store.js?v=2870087685";
+import { openBox } from "./bag.js?v=2870087685";
+import { showError } from "./errors.js?v=2870087685";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
