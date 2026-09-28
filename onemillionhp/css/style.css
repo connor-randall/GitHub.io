@@ -567,3 +567,5 @@ b { font-weight: 700; }
 .notice.leaving { opacity: 0; transform: translateY(-8px); transition: opacity .3s, transform .3s; }
 @keyframes notice-in { from { opacity: 0; transform: translateY(-14px); } }
 @media (prefers-reduced-motion: reduce) { .notice { animation: none; } }
+.feed .shard-tag { color: var(--amber); }
+.feed .k-sell, .feed .k-sellall, .feed .k-buy { color: var(--dim); }

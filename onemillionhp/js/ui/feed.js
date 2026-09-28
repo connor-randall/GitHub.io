@@ -1,8 +1,8 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=4614447cb9";
-import * as api from "../api.js?v=4614447cb9";
-import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=4614447cb9";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=daf849befb";
+import * as api from "../api.js?v=daf849befb";
+import { addOlderFeed, boxById, itemById, now, rarityById, state } from "../store.js?v=daf849befb";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 
@@ -43,6 +43,20 @@ function message(e) {
       const tag = el("span", `r-${e.rarity}`, `${st.deco[0]}${r?.label ?? e.rarity}${st.deco[1]} ${item?.name ?? e.item_id}`);
       return [txt("> "), who(), txt(" found "), tag];
     }
+    case "sell": {
+      const item = itemById(e.item_id);
+      const r = rarityById(e.rarity);
+      const st = RARITY_STYLE[e.rarity] ?? RARITY_STYLE.common;
+      const tag = el("span", `r-${e.rarity}`, `${st.deco[0]}${r?.label ?? e.rarity}${st.deco[1]} ${item?.name ?? e.item_id}`);
+      return [txt("> "), who(), txt(" sold "), ...(e.count > 1 ? [txt(`${e.count} x `)] : []), tag,
+        txt(" for "), el("span", "shard-tag", `<> ${e.shards}`)];
+    }
+    case "sellall":
+      return [txt("> "), who(), txt(` sold ${e.count} duplicate${e.count > 1 ? "s" : ""} for `),
+        el("span", "shard-tag", `<> ${e.shards}`)];
+    case "buy":
+      return [txt("> "), who(), txt(" bought "), el("span", "box-tag", boxById(e.box_id)?.name ?? e.box_id),
+        txt(" for "), el("span", "shard-tag", `<> ${e.shards}`)];
     case "phase":
       return [txt(`>>> ${e.boss} ENTERS ${e.label} <<<`)];
     case "defeat":

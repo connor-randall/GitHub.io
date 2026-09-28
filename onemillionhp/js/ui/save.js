@@ -1,9 +1,9 @@
 // Save codes: the bag lives on the server; this code logs another device
 // (or a wiped browser) back in as you.
 
-import * as api from "../api.js?v=4614447cb9";
-import { el } from "../ascii.js?v=4614447cb9";
-import { state } from "../store.js?v=4614447cb9";
+import * as api from "../api.js?v=daf849befb";
+import { el } from "../ascii.js?v=daf849befb";
+import { state } from "../store.js?v=daf849befb";
 
 let shown = /** @type {string | null} */ (null);
 
