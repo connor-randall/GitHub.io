@@ -2,25 +2,25 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=2870087685";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=2870087685";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=2870087685";
-import { connectLive } from "./live.js?v=2870087685";
-import * as sound from "./sound.js?v=2870087685";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=2870087685";
-import { openBox } from "./ui/bag.js?v=2870087685";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=2870087685";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=2870087685";
-import { maybeShowDeath } from "./ui/ceremony.js?v=2870087685";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=2870087685";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=2870087685";
-import { boxDropReveal, busyOverlay, popup, shake } from "./ui/fx.js?v=2870087685";
-import { showError } from "./ui/errors.js?v=2870087685";
-import { showIntro } from "./ui/nameform.js?v=2870087685";
-import { setPinned, showNotice } from "./ui/notice.js?v=2870087685";
-import { loadHistory } from "./ui/history.js?v=2870087685";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=2870087685";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=2870087685";
+import * as api from "./api.js?v=c9274a97a7";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=c9274a97a7";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=c9274a97a7";
+import { connectLive } from "./live.js?v=c9274a97a7";
+import * as sound from "./sound.js?v=c9274a97a7";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=c9274a97a7";
+import { openBox } from "./ui/bag.js?v=c9274a97a7";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=c9274a97a7";
+import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=c9274a97a7";
+import { maybeShowDeath, previewDeath } from "./ui/ceremony.js?v=c9274a97a7";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=c9274a97a7";
+import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=c9274a97a7";
+import { boxDropReveal, busyOverlay, popup, shake } from "./ui/fx.js?v=c9274a97a7";
+import { showError } from "./ui/errors.js?v=c9274a97a7";
+import { showIntro } from "./ui/nameform.js?v=c9274a97a7";
+import { setPinned, showNotice } from "./ui/notice.js?v=c9274a97a7";
+import { loadHistory } from "./ui/history.js?v=c9274a97a7";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=c9274a97a7";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=c9274a97a7";
 
 /** This page's own build stamp (main.js?v=...), empty for an unbuilt dev copy. */
 const MY_VERSION = new URL(import.meta.url).searchParams.get("v") ?? "";
@@ -118,7 +118,8 @@ async function boot() {
   acceptClaim();
   // A browser with no saved player is a first-time visitor: show the intro
   // mist right away, before anything else has loaded.
-  if (!api.currentToken() && !introShown) {
+  const previewing = location.hash.startsWith("#preview-death"); // admin preview: straight to the show
+  if (!api.currentToken() && !introShown && !previewing) {
     introShown = true;
     showIntro(true);
     dropCurtain(true);
@@ -234,13 +235,19 @@ async function boot() {
     maybeShowDeath(state.boss); // came back after a boss died: show what happened
     // Named players go straight in; first-timers get the intro (naming
     // waits until their first attack).
-    if (state.me?.name_chosen) revealAmbient();
+    if (state.me?.name_chosen || previewing) revealAmbient();
     else if (!introShown) {
       introShown = true;
       showIntro();
     }
     dropCurtain(introShown);
     prefetchPanels();
+    // Admin panel's [ PREVIEW DEATH ]: play a boss's death on this screen only.
+    const preview = location.hash.match(/^#preview-death(?:=([a-z0-9_]+))?$/);
+    if (preview) {
+      history.replaceState(null, "", location.pathname + location.search);
+      setTimeout(() => previewDeath(preview[1] ?? state.boss?.def_id ?? ""), 600);
+    }
   } catch (e) {
     dropCurtain();
     showError(/** @type {Error} */ (e).message);

@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=2870087685";
-import { bossDef, bossText, now, state } from "../store.js?v=2870087685";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=c9274a97a7";
+import { bossDef, bossText, now, state } from "../store.js?v=c9274a97a7";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -35,6 +35,11 @@ function drawArt() {
   artEl.classList.toggle("tinted", Boolean(tint));
 }
 
+/** @type {{seq: number, rect: DOMRect, lines: string[] | null} | null} */
+let deathFrom = null;
+/** Where the boss was on screen when it died (null if we didn't see it die). @param {number} seq */
+export const deathOrigin = (seq) => (deathFrom && deathFrom.seq === seq ? deathFrom : null);
+
 /** Flinch: swap to the hurt frame briefly. @param {number} ms */
 export function hurt(ms = 240) {
   hurtUntil = performance.now() + ms;
@@ -63,6 +68,11 @@ export function renderBoss() {
   $("boss-num").textContent = num;
 
   const dead = b.status === "defeated";
+  if (dead && !$("boss-alive").hidden && lastSeq === b.seq) {
+    // It just died in front of us: remember where it stood, for the death animation.
+    const ph = phaseDef();
+    deathFrom = { seq: b.seq, rect: artEl.getBoundingClientRect(), lines: ph ? ph.art : null };
+  }
   $("boss-alive").hidden = dead;
   $("boss-dead").hidden = !dead;
   $("fight").hidden = dead;

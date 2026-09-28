@@ -1,11 +1,14 @@
 // The death ceremony: when a boss falls, everyone gets the scoreboard (their
-// own damage and rank, the top fighters), then a warning about what's next.
+// own damage and rank, the top fighters), then the next boss makes its entrance.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=2870087685";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=2870087685";
-import { now, state } from "../store.js?v=2870087685";
-import { shake, showOverlay } from "./fx.js?v=2870087685";
+import * as api from "../api.js?v=c9274a97a7";
+import { center, duration, el, fmt, padL } from "../ascii.js?v=c9274a97a7";
+import { bossDef, now, state } from "../store.js?v=c9274a97a7";
+import { nextBossDef, nextBossScreen } from "./aftermath.js?v=c9274a97a7";
+import { deathOrigin } from "./boss.js?v=c9274a97a7";
+import { playDeath } from "./deathfx.js?v=c9274a97a7";
+import { shake, showOverlay } from "./fx.js?v=c9274a97a7";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;
@@ -36,11 +39,44 @@ export async function maybeShowDeath(boss) {
   running = true;
   markSeen(boss.seq);
   try {
-    const res = await api.getBossResults(boss.seq);
+    const def = bossDef(boss.def_id);
+    const results = api.getBossResults(boss.seq); // fetch while the animation plays
+    if (def) await playDeath({ ...def, name: boss.name }, deathOrigin(boss.seq) ?? {});
+    const res = await results;
     await defeatScreen(res);
-    if (res.boss.next_at) await incomingScreen(res.boss);
+    const next = nextBossDef(boss.def_id);
+    if (res.boss.next_at && next) await nextBossScreen(next, res.boss.next_at);
   } catch {
     /* the regular death screen still shows everything */
+  } finally {
+    running = false;
+  }
+}
+
+/**
+ * Play the whole death sequence for any boss without anything dying: the
+ * animation, a sample scoreboard and the "another boss is coming" screen.
+ * Opened from the admin panel (#preview-death=<boss id>); only this screen sees it.
+ * @param {string} bossId
+ */
+export async function previewDeath(bossId) {
+  const def = bossDef(bossId) ?? bossDef(state.boss?.def_id ?? "");
+  if (!def || running) return;
+  running = true;
+  try {
+    const rect = document.getElementById("boss-art")?.getBoundingClientRect() ?? null;
+    const live = state.boss && state.boss.def_id === def.id && state.boss.status === "alive";
+    await playDeath(def, live ? { rect, lines: null } : {});
+    const t = now();
+    const names = ["SAMPLE_HERO", "PREVIEW_PAL", "TEST_DUMMY", "NOT_REAL", "EXAMPLE_EDDIE"];
+    await defeatScreen({
+      boss: { name: def.name, killer_name: "SAMPLE_HERO", total_damage: 1_000_000, overkill: 0,
+        unique_players: 42, started_at: t - 3 * 3600, defeated_at: t, next_at: t + 60 },
+      me: { damage: 12_345, rank: 7 },
+      top: names.map((name, i) => ({ name, player_id: `preview-${i}`, damage: 120_000 - i * 17_000 })),
+    });
+    const next = nextBossDef(def.id);
+    if (next) await nextBossScreen(next, now() + 60);
   } finally {
     running = false;
   }
@@ -102,33 +138,6 @@ function defeatScreen(res) {
       actions.append(next);
       inner.append(actions);
       setTimeout(() => next.focus({ preventScroll: true }), 300);
-    },
-    { dismissable: false },
-  );
-}
-
-/** @param {any} boss */
-function incomingScreen(boss) {
-  shake("l");
-  return showOverlay(
-    (inner, close) => {
-      inner.classList.add("ceremony");
-      inner.append(el("div", "panic", "oh god oh no oh god no another boss is coming!"));
-      const count = el("div", "panic-count", "");
-      inner.append(count);
-      const tick = () => {
-        if (!count.isConnected) return;
-        const left = Math.max(0, Math.round(boss.next_at - now()));
-        count.textContent = left > 0 ? `ARRIVES IN ${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}` : "IT'S HERE.";
-        setTimeout(tick, 1000);
-      };
-      tick();
-      const actions = el("div", "actions");
-      const ok = el("button", "", "[ BRACE YOURSELF ]");
-      ok.addEventListener("click", close);
-      actions.append(ok);
-      inner.append(actions);
-      setTimeout(() => ok.focus({ preventScroll: true }), 300);
     },
     { dismissable: false },
   );

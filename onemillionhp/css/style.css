@@ -569,3 +569,45 @@ b { font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { .notice { animation: none; } }
 .feed .shard-tag { color: var(--amber); }
 .feed .k-sell, .feed .k-sellall, .feed .k-buy { color: var(--dim); }
+
+/* ---------- boss death animation ---------- */
+.overlay.death { background: rgba(4, 4, 3, var(--death-dim, 0)); padding: 0; cursor: pointer; overflow: hidden; }
+.overlay.death .death-mist {
+  position: fixed; inset: 0; margin: 0; pointer-events: none; overflow: hidden;
+  color: var(--death-tint, var(--fg)); opacity: .6; font-size: 12px; line-height: 13px; white-space: pre;
+}
+.overlay.death .death-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.death-art {
+  margin: 0; line-height: 1.12; white-space: pre; text-align: left; transform-origin: center;
+  color: var(--death-tint, var(--fg)); text-shadow: 0 0 12px color-mix(in srgb, var(--death-tint, #ffb000) 35%, transparent);
+  will-change: transform;
+}
+.death-art.jolt { translate: 3px -2px; filter: brightness(1.6); }
+.death-art.dead { color: color-mix(in srgb, var(--death-tint, var(--fg)) 55%, #8a8578); text-shadow: none; }
+.death-title, .death-line { opacity: 0; transform: translateY(6px); transition: opacity .6s, transform .6s; text-align: center; max-width: 34ch; }
+.death-title { margin-top: 18px; color: var(--red); font-weight: 800; letter-spacing: .22em; font-size: 18px; }
+.death-line { margin-top: 8px; color: var(--amber); font-size: 13px; }
+.death-title.in, .death-line.in { opacity: 1; transform: none; }
+.death-skip { margin-top: 22px; font-size: 11px; color: var(--dim); letter-spacing: .1em; }
+
+/* ---------- "... it's right behind me isn't it?" + HAS APPEARED ---------- */
+.overlay.aftermath { background: rgba(4, 4, 3, .995); cursor: pointer; overflow: hidden; }
+.overlay.aftermath.flash { background: #fff; transition: none; }
+.aftermath-inner { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.monologue {
+  margin: 0; white-space: pre-wrap; text-align: left; color: var(--amber); font-size: clamp(15px, 2.2vw, 24px);
+  line-height: 1.9; max-width: min(92vw, 44ch); text-shadow: 0 0 10px rgba(255, 176, 0, .25);
+}
+.type-cursor { animation: blink 1s steps(1) infinite; }
+.appeared { display: flex; flex-direction: column; align-items: center; gap: .9em; }
+.appeared pre { margin: 0; line-height: 1.0; white-space: pre; text-align: left; font-weight: 800; }
+.appeared .stack { position: relative; }
+.appeared .stack-shadow { position: absolute; left: .35em; top: .3em; opacity: .28; filter: blur(.4px); }
+.appeared .stack-front { position: relative; }
+.appeared-name .stack-front { color: var(--next-tint, var(--amber)); text-shadow: 0 0 14px color-mix(in srgb, var(--next-tint, #ffb000) 45%, transparent); }
+.appeared-name .stack-shadow { color: var(--next-tint, var(--amber)); }
+.appeared-tail .stack-front { color: var(--red); text-shadow: 0 0 14px rgba(255, 83, 64, .4); }
+.appeared-tail .stack-shadow { color: var(--red); }
+.appeared.landed .stack-front { animation: appeared-pulse 2.4s ease-in-out infinite; }
+@keyframes appeared-pulse { 50% { filter: brightness(1.35); } }
+.aftermath .panic-count { margin-top: 22px; }

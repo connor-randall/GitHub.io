@@ -33,10 +33,14 @@ function cellSize(host) {
 /**
  * @param {HTMLElement} pre  full-screen <pre>
  * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number,
- *          active?: () => boolean}} opts
+ *          active?: () => boolean, eyeScale?: () => number, density?: () => number,
+ *          fill?: () => number}} opts
  *   eye: area to keep clear (and swirl around); ambient: background mode
  *   (fainter ring + edge fog); maxEyeFrac: cap eye width as a fraction of
- *   the screen; active: return false to skip drawing (e.g. while hidden).
+ *   the screen; active: return false to skip drawing (e.g. while hidden);
+ *   eyeScale: shrink (<1) or widen (>1) the clear eye, e.g. to swallow the
+ *   boss; density: extra thickness (1 = normal); fill: mist everywhere, not
+ *   just in the ring (0 = none, 1 = a solid wall).
  * @returns {Mist}
  */
 export function startMist(pre, opts) {
@@ -77,7 +81,9 @@ export function startMist(pre, opts) {
     const r = opts.eye();
     const cx = r ? (r.left + r.width / 2) / cell.w : cols / 2;
     const cy = r ? (r.top + r.height / 2) / cell.h : rows / 2;
-    const grow = 1 + gone * 2.5; // the eye opens up as the mist blows away
+    const grow = Math.max(0.02, (1 + gone * 2.5) * (opts.eyeScale?.() ?? 1)); // the eye opens up as the mist blows away
+    const thick = opts.density?.() ?? 1;
+    const fill = opts.fill?.() ?? 0;
     const rx = Math.min(r ? r.width / cell.w / 2 + 3 : 18, cols * (opts.maxEyeFrac ?? 0.36)) * grow;
     const ry = (r ? r.height / cell.h / 2 + 2 : 5) * grow;
     const fade = 1 - gone;
@@ -103,7 +109,7 @@ export function startMist(pre, opts) {
           const wide = Math.exp(-((e - 2.0) ** 2) / 1.8); // looser, wider swirl
           weight = edge * Math.max(wide * 1.05, border, 0.05);
         } else {
-          weight = edge * Math.max(ring, 0.18);
+          weight = edge * Math.max(ring, 0.18, fill);
         }
         // Ripples: rings racing outward from the eye after a hit.
         for (const p of ripples) {
@@ -119,7 +125,7 @@ export function startMist(pre, opts) {
           Math.sin(u + Math.sin(v * 0.8 + t * 0.4) * 1.6) +
           Math.sin(v * 1.3 - Math.sin(u * 0.7 - t * 0.3) * 1.4) +
           Math.sin(x * 0.21 + y * 0.37 + t * 0.6);
-        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 - 0.12);
+        const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 * thick - 0.12);
         out += RAMP[Math.min(RAMP.length - 1, Math.floor(val * RAMP.length))];
       }
       out += "\n";

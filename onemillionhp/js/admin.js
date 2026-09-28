@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=2870087685";
-import { forwardToCanonical } from "./home.js?v=2870087685";
-import { el, fmt, padR, setArt } from "./ascii.js?v=2870087685";
-import { rarityById, state } from "./store.js?v=2870087685";
-import { effectParts } from "./ui/effects.js?v=2870087685";
-import { itemLines } from "./ui/fx.js?v=2870087685";
+import { API_BASE, getContent } from "./api.js?v=c9274a97a7";
+import { forwardToCanonical } from "./home.js?v=c9274a97a7";
+import { el, fmt, padR, setArt } from "./ascii.js?v=c9274a97a7";
+import { rarityById, state } from "./store.js?v=c9274a97a7";
+import { effectParts } from "./ui/effects.js?v=c9274a97a7";
+import { itemLines } from "./ui/fx.js?v=c9274a97a7";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -201,6 +201,7 @@ async function refresh() {
   renderOdds(ov.odds);
 
   await renderGallery();
+  fillPreviewBosses(state.content, b.def_id);
   $("players").replaceChildren(
     ...ov.recent_players.map((/** @type {any} */ p) => {
       const o = /** @type {HTMLOptionElement} */ (el("option"));
@@ -406,8 +407,28 @@ function wireFold() {
   });
 }
 
+function wirePreview() {
+  $("preview-btn").addEventListener("click", () => {
+    const id = /** @type {HTMLSelectElement} */ ($("preview-boss")).value;
+    window.open(new URL(`./#preview-death=${id}`, location.href).href, "_blank", "noopener");
+  });
+}
+
+/** Fill the preview boss list (current boss first selected). @param {any} content @param {string} current */
+function fillPreviewBosses(content, current) {
+  const sel = /** @type {HTMLSelectElement} */ ($("preview-boss"));
+  if (sel.options.length) return;
+  for (const b of content.bosses) {
+    const o = /** @type {HTMLOptionElement} */ (el("option", "", `#${String(b.number).padStart(2, "0")} ${b.name}`));
+    o.value = b.id;
+    o.selected = b.id === current;
+    sel.append(o);
+  }
+}
+
 function wire() {
   wireFold();
+  wirePreview();
   $("login").addEventListener("submit", async (e) => {
     e.preventDefault();
     const input = /** @type {HTMLInputElement} */ ($("passcode"));

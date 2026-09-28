@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=2870087685">
-<link rel="stylesheet" href="css/admin.css?v=2870087685">
+<link rel="stylesheet" href="css/style.css?v=c9274a97a7">
+<link rel="stylesheet" href="css/admin.css?v=c9274a97a7">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -56,6 +56,12 @@
 
     <section class="adm">
       <h2>[ BOSS ]</h2>
+      <div class="preview-death">
+        <label>PREVIEW DEATH OF <select id="preview-boss"></select></label>
+        <button class="inline-btn" id="preview-btn" type="button">[ PREVIEW DEATH ]</button>
+        <p class="hint">plays the death animation + a sample scoreboard in a new tab, on your screen only. nothing
+          dies and nobody else sees it.</p>
+      </div>
       <form data-action="rename_boss">
         <label>NAME <input name="name" maxlength="24" placeholder="(default)"></label>
         <label>SUBTITLE <input name="subtitle" maxlength="40" placeholder="(default)"></label>
@@ -205,6 +211,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=2870087685"></script>
+<script type="module" src="js/admin.js?v=c9274a97a7"></script>
 </body>
 </html>
