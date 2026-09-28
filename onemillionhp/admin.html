@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=7763333b59">
-<link rel="stylesheet" href="css/admin.css?v=7763333b59">
+<link rel="stylesheet" href="css/style.css?v=4614447cb9">
+<link rel="stylesheet" href="css/admin.css?v=4614447cb9">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -86,6 +86,12 @@
 
     <section class="adm">
       <h2>[ PLAYERS ]</h2>
+      <form data-action="lookup_player">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <button class="inline-btn">[ LOOK UP + SAVE CODE ]</button>
+        <p class="hint">shows their save code (and stats) in the log below. give the code to someone who lost their
+          login: they enter it under [ YOU ] or "have a save code?" on the first screen. part of a name lists matches.</p>
+      </form>
       <form data-action="refill_attacks">
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
         <button class="inline-btn">[ REFILL ATTACKS ]</button>
@@ -171,6 +177,6 @@
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=7763333b59"></script>
+<script type="module" src="js/admin.js?v=4614447cb9"></script>
 </body>
 </html>
