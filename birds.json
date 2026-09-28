@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-27T17:50:03-0600",
+  "generated_at": "2026-09-27T18:00:03-0600",
   "stats": {
-    "today_count": 245,
+    "today_count": 246,
     "today_species": 12,
-    "total": 1012
+    "total": 1013
   },
   "enviro": {
-    "temp_f": 84.5,
-    "humidity": 16.8,
+    "temp_f": 86.9,
+    "humidity": 16.2,
     "pressure": 823.7
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6733,
+      "iso": "2026-09-27T17:56:23",
+      "time": "17:56",
+      "date": "2026-09-27",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-67-2026-09-27-birdnet-17.56.23.mp3"
+    },
     {
       "com_name": "Blue Jay",
       "sci_name": "Cyanocitta cristata",
@@ -150,16 +160,6 @@
       "date": "2026-09-27",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Blue_Jay-78-2026-09-27-birdnet-16.47.09.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6824,
-      "iso": "2026-09-27T16:46:57",
-      "time": "16:46",
-      "date": "2026-09-27",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-68-2026-09-27-birdnet-16.46.57.mp3"
     }
   ]
 }
