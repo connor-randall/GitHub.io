@@ -1,16 +1,116 @@
 {
-  "generated_at": "2026-09-28T17:10:03-0600",
+  "generated_at": "2026-09-28T17:20:03-0600",
   "stats": {
-    "today_count": 176,
+    "today_count": 186,
     "today_species": 9,
-    "total": 1191
+    "total": 1201
   },
   "enviro": {
-    "temp_f": 73.4,
-    "humidity": 30.8,
+    "temp_f": 74.4,
+    "humidity": 30.3,
     "pressure": 819.2
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7674,
+      "iso": "2026-09-28T17:16:11",
+      "time": "17:16",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-09-28-birdnet-17.16.11.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.913,
+      "iso": "2026-09-28T17:11:34",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-09-28-birdnet-17.11.34.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7314,
+      "iso": "2026-09-28T17:11:16",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-73-2026-09-28-birdnet-17.11.16.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8084,
+      "iso": "2026-09-28T17:11:13",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-81-2026-09-28-birdnet-17.11.13.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9435,
+      "iso": "2026-09-28T17:11:10",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-09-28-birdnet-17.11.10.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9652,
+      "iso": "2026-09-28T17:11:07",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-09-28-birdnet-17.11.07.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7668,
+      "iso": "2026-09-28T17:11:04",
+      "time": "17:11",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-09-28-birdnet-17.11.04.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9138,
+      "iso": "2026-09-28T17:10:43",
+      "time": "17:10",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-09-28-birdnet-17.10.43.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7031,
+      "iso": "2026-09-28T17:10:28",
+      "time": "17:10",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-70-2026-09-28-birdnet-17.10.28.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8865,
+      "iso": "2026-09-28T17:09:58",
+      "time": "17:09",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-09-28-birdnet-17.09.58.mp3"
+    },
     {
       "com_name": "Gadwall",
       "sci_name": "Mareca strepera",
@@ -60,106 +160,6 @@
       "date": "2026-09-28",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
       "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-16.21.13.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7143,
-      "iso": "2026-09-28T16:20:40",
-      "time": "16:20",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-71-2026-09-28-birdnet-16.20.40.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.8284,
-      "iso": "2026-09-28T16:20:37",
-      "time": "16:20",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-83-2026-09-28-birdnet-16.20.37.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7706,
-      "iso": "2026-09-28T16:20:25",
-      "time": "16:20",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-77-2026-09-28-birdnet-16.20.25.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6745,
-      "iso": "2026-09-28T16:20:19",
-      "time": "16:20",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-67-2026-09-28-birdnet-16.20.19.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6942,
-      "iso": "2026-09-28T16:20:10",
-      "time": "16:20",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-69-2026-09-28-birdnet-16.20.10.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.6887,
-      "iso": "2026-09-28T16:18:58",
-      "time": "16:18",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-09-28-birdnet-16.18.58.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7221,
-      "iso": "2026-09-28T16:18:01",
-      "time": "16:18",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-72-2026-09-28-birdnet-16.18.01.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6761,
-      "iso": "2026-09-28T16:17:40",
-      "time": "16:17",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-16.17.40.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6759,
-      "iso": "2026-09-28T16:17:19",
-      "time": "16:17",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-68-2026-09-28-birdnet-16.17.19.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7873,
-      "iso": "2026-09-28T16:17:01",
-      "time": "16:17",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-79-2026-09-28-birdnet-16.17.01.mp3"
     }
   ]
 }
