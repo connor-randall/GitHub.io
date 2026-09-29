@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-29T09:20:03-0600",
+  "generated_at": "2026-09-29T09:30:03-0600",
   "stats": {
-    "today_count": 132,
+    "today_count": 133,
     "today_species": 7,
-    "total": 1342
+    "total": 1343
   },
   "enviro": {
-    "temp_f": 81.2,
-    "humidity": 28.0,
-    "pressure": 821.2
+    "temp_f": 80.7,
+    "humidity": 28.1,
+    "pressure": 821.5
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6916,
+      "iso": "2026-09-29T09:28:51",
+      "time": "09:28",
+      "date": "2026-09-29",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-09-29-birdnet-09.28.51.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-09-29",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-74-2026-09-29-birdnet-08.50.40.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.814,
-      "iso": "2026-09-29T08:43:48",
-      "time": "08:43",
-      "date": "2026-09-29",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-81-2026-09-29-birdnet-08.43.48.mp3"
     }
   ]
 }
