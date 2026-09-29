@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-09-29T13:30:03-0600",
+  "generated_at": "2026-09-29T13:40:03-0600",
   "stats": {
-    "today_count": 218,
+    "today_count": 220,
     "today_species": 9,
-    "total": 1428
+    "total": 1430
   },
   "enviro": {
-    "temp_f": 83.6,
-    "humidity": 25.1,
-    "pressure": 820.4
+    "temp_f": 83.2,
+    "humidity": 25.5,
+    "pressure": 820.5
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7425,
+      "iso": "2026-09-29T13:32:10",
+      "time": "13:32",
+      "date": "2026-09-29",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-74-2026-09-29-birdnet-13.32.10.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9011,
+      "iso": "2026-09-29T13:32:04",
+      "time": "13:32",
+      "date": "2026-09-29",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-90-2026-09-29-birdnet-13.32.04.mp3"
+    },
     {
       "com_name": "American Crow",
       "sci_name": "Corvus brachyrhynchos",
@@ -140,26 +160,6 @@
       "date": "2026-09-29",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-65-2026-09-29-birdnet-12.14.11.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.6688,
-      "iso": "2026-09-29T11:56:34",
-      "time": "11:56",
-      "date": "2026-09-29",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-67-2026-09-29-birdnet-11.56.34.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7921,
-      "iso": "2026-09-29T11:52:34",
-      "time": "11:52",
-      "date": "2026-09-29",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-79-2026-09-29-birdnet-11.52.34.mp3"
     }
   ]
 }
