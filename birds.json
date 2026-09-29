@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-29T15:30:03-0600",
+  "generated_at": "2026-09-29T15:40:03-0600",
   "stats": {
-    "today_count": 282,
+    "today_count": 283,
     "today_species": 9,
-    "total": 1492
+    "total": 1493
   },
   "enviro": {
-    "temp_f": 81.0,
-    "humidity": 26.8,
+    "temp_f": 83.6,
+    "humidity": 25.1,
     "pressure": 820.0
   },
   "detections": [
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.6936,
+      "iso": "2026-09-29T15:33:09",
+      "time": "15:33",
+      "date": "2026-09-29",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-69-2026-09-29-birdnet-15.33.09.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-09-29",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-87-2026-09-29-birdnet-14.58.01.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7791,
-      "iso": "2026-09-29T14:57:55",
-      "time": "14:57",
-      "date": "2026-09-29",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-78-2026-09-29-birdnet-14.57.55.mp3"
     }
   ]
 }
