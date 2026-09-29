@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-28T17:50:04-0600",
+  "generated_at": "2026-09-28T18:00:04-0600",
   "stats": {
-    "today_count": 194,
+    "today_count": 195,
     "today_species": 9,
-    "total": 1209
+    "total": 1210
   },
   "enviro": {
-    "temp_f": 71.1,
-    "humidity": 32.8,
+    "temp_f": 73.4,
+    "humidity": 31.3,
     "pressure": 819.1
   },
   "detections": [
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7382,
+      "iso": "2026-09-28T17:50:25",
+      "time": "17:50",
+      "date": "2026-09-28",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-74-2026-09-28-birdnet-17.50.25.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-09-28",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-09-28-birdnet-17.11.07.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7668,
-      "iso": "2026-09-28T17:11:04",
-      "time": "17:11",
-      "date": "2026-09-28",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-09-28-birdnet-17.11.04.mp3"
     }
   ]
 }
