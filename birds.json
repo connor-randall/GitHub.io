@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-30T09:30:03-0600",
+  "generated_at": "2026-09-30T09:40:03-0600",
   "stats": {
-    "today_count": 61,
+    "today_count": 62,
     "today_species": 6,
-    "total": 1589
+    "total": 1590
   },
   "enviro": {
-    "temp_f": 78.4,
-    "humidity": 29.8,
-    "pressure": 821.4
+    "temp_f": 80.0,
+    "humidity": 28.4,
+    "pressure": 821.3
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7147,
+      "iso": "2026-09-30T09:30:35",
+      "time": "09:30",
+      "date": "2026-09-30",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-71-2026-09-30-birdnet-09.30.35.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-09-30",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-09-30-birdnet-07.36.03.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8027,
-      "iso": "2026-09-30T07:35:57",
-      "time": "07:35",
-      "date": "2026-09-30",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-80-2026-09-30-birdnet-07.35.57.mp3"
     }
   ]
 }
