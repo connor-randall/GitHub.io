@@ -1,19 +1,19 @@
 // Attack + ultimate buttons, attack pips, reset countdown, keyboard.
 
-import * as api from "../api.js?v=b7420735b5";
-import { isAttackShortcut, isHeldSpace } from "../keyboard.js?v=b7420735b5";
-import { el } from "../ascii.js?v=b7420735b5";
-import { isAutoStash } from "../autostash.js?v=b7420735b5";
-import * as sound from "../sound.js?v=b7420735b5";
-import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=b7420735b5";
-import { pulse } from "./ambient.js?v=b7420735b5";
-import { hurt } from "./boss.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
-import { promptForName } from "./nameform.js?v=b7420735b5";
-import { openBox } from "./bag.js?v=b7420735b5";
-import { addFreshEvents } from "./feed.js?v=b7420735b5";
-import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake } from "./fx.js?v=b7420735b5";
-import { chooseScroll, scrollReveal } from "./scrolls.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { isAttackShortcut, isHeldSpace } from "../keyboard.js?v=c30f4a427c";
+import { el } from "../ascii.js?v=c30f4a427c";
+import { isAutoStash } from "../autostash.js?v=c30f4a427c";
+import * as sound from "../sound.js?v=c30f4a427c";
+import { applyBoss, boxById, emit, itemById, mergeFeed, now, state } from "../store.js?v=c30f4a427c";
+import { pulse } from "./ambient.js?v=c30f4a427c";
+import { hurt } from "./boss.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
+import { promptForName } from "./nameform.js?v=c30f4a427c";
+import { openBox } from "./bag.js?v=c30f4a427c";
+import { addFreshEvents } from "./feed.js?v=c30f4a427c";
+import { boxDropReveal, critBanner, lootReveal, overlayOpen, popup, shake } from "./fx.js?v=c30f4a427c";
+import { chooseScroll, scrollReveal } from "./scrolls.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const btnAttack = /** @type {HTMLButtonElement} */ ($("btn-attack"));

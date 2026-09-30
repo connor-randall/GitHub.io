@@ -3,8 +3,8 @@
 // each, rarities in their item colours. Numbers come from the server (the
 // admin's odds included).
 
-import { RARITY_STYLE, el } from "../ascii.js?v=b7420735b5";
-import { rarityById, state } from "../store.js?v=b7420735b5";
+import { RARITY_STYLE, el } from "../ascii.js?v=c30f4a427c";
+import { rarityById, state } from "../store.js?v=c30f4a427c";
 
 /** @type {HTMLElement | null} */
 let tip = null;

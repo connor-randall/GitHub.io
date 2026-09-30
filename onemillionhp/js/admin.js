@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=b7420735b5";
-import { forwardToCanonical } from "./home.js?v=b7420735b5";
-import { duration, el, fmt, padR, setArt } from "./ascii.js?v=b7420735b5";
-import { rarityById, SCROLLS, state } from "./store.js?v=b7420735b5";
-import { effectParts } from "./ui/effects.js?v=b7420735b5";
-import { itemLines } from "./ui/fx.js?v=b7420735b5";
+import { API_BASE, getContent } from "./api.js?v=c30f4a427c";
+import { forwardToCanonical } from "./home.js?v=c30f4a427c";
+import { duration, el, fmt, padR, setArt } from "./ascii.js?v=c30f4a427c";
+import { rarityById, SCROLLS, state } from "./store.js?v=c30f4a427c";
+import { effectParts } from "./ui/effects.js?v=c30f4a427c";
+import { itemLines } from "./ui/fx.js?v=c30f4a427c";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -226,20 +226,20 @@ const DESIGN_TINTS = {
   cyan: "#8bdcff", purple: "#dc8cff", white: "#f0eadc",
 };
 
-/** @param {string} playerId @param {string} decision */
-function reviewDesignForm(playerId, decision) {
+/** @param {string} submissionId @param {string} decision */
+function reviewDesignForm(submissionId, decision) {
   const form = /** @type {HTMLFormElement} */ (el("form"));
-  const player = /** @type {HTMLInputElement} */ (el("input"));
-  player.type = "hidden";
-  player.name = "player_id";
-  player.value = playerId;
+  const submission = /** @type {HTMLInputElement} */ (el("input"));
+  submission.type = "hidden";
+  submission.name = "submission_id";
+  submission.value = submissionId;
   const choice = /** @type {HTMLInputElement} */ (el("input"));
   choice.type = "hidden";
   choice.name = "decision";
   choice.value = decision;
   const button = el("button", `inline-btn${decision === "deny" ? " danger" : ""}`,
     decision === "approve" ? "[ APPROVE + QUEUE ]" : "[ DENY ]");
-  form.append(player, choice, button);
+  form.append(submission, choice, button);
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     submit(form, "review_boss_design", button);
@@ -383,7 +383,8 @@ function renderBossDesigns(designs, queue, randomEnabled = false, preview = [], 
       el("div", "boss-design-flavor", `"${design.flavor}"`), frames);
     if (design.status === "pending") {
       const actions = el("div", "boss-design-actions");
-      actions.append(reviewDesignForm(design.player_id, "approve"), reviewDesignForm(design.player_id, "deny"));
+      actions.append(reviewDesignForm(design.submission_id, "approve"),
+        reviewDesignForm(design.submission_id, "deny"));
       card.append(actions);
     }
     return card;

@@ -2,14 +2,14 @@
 // own damage and rank, the top fighters), then the next boss makes its entrance.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=b7420735b5";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=b7420735b5";
-import { bossDef, now, state } from "../store.js?v=b7420735b5";
-import { nextBossDef, nextBossScreen } from "./aftermath.js?v=b7420735b5";
-import { badgeTag, badgeWidth } from "./badges.js?v=b7420735b5";
-import { deathOrigin } from "./boss.js?v=b7420735b5";
-import { playDeath } from "./deathfx.js?v=b7420735b5";
-import { shake, showOverlay } from "./fx.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { center, duration, el, fmt, padL } from "../ascii.js?v=c30f4a427c";
+import { bossDef, now, state } from "../store.js?v=c30f4a427c";
+import { nextBossDef, nextBossScreen } from "./aftermath.js?v=c30f4a427c";
+import { badgeTag, badgeWidth } from "./badges.js?v=c30f4a427c";
+import { deathOrigin } from "./boss.js?v=c30f4a427c";
+import { playDeath } from "./deathfx.js?v=c30f4a427c";
+import { shake, showOverlay } from "./fx.js?v=c30f4a427c";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;

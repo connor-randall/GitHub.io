@@ -2,28 +2,28 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=b7420735b5";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=b7420735b5";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b7420735b5";
-import { connectLive } from "./live.js?v=b7420735b5";
-import * as sound from "./sound.js?v=b7420735b5";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=b7420735b5";
-import { openBox } from "./ui/bag.js?v=b7420735b5";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b7420735b5";
-import { bossHealEffect, hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=b7420735b5";
-import { maybeShowDeath, previewDeath } from "./ui/ceremony.js?v=b7420735b5";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b7420735b5";
-import { addFreshEvents, renderFeed, resetFeedHistory, streamEvents, tickAges } from "./ui/feed.js?v=b7420735b5";
-import { boxDropReveal, busyOverlay, popup, shake, shardsReveal, stolenReveal } from "./ui/fx.js?v=b7420735b5";
-import { showError } from "./ui/errors.js?v=b7420735b5";
-import { showIntro } from "./ui/nameform.js?v=b7420735b5";
-import { setPinned, setRotating, showNotice } from "./ui/notice.js?v=b7420735b5";
-import { loadHistory } from "./ui/history.js?v=b7420735b5";
-import { initBadges, loadBadgeDefs } from "./ui/badges.js?v=b7420735b5";
-import { initBoxOdds } from "./ui/boxodds.js?v=b7420735b5";
-import { loadPolls } from "./ui/polls.js?v=b7420735b5";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=b7420735b5";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b7420735b5";
+import * as api from "./api.js?v=c30f4a427c";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=c30f4a427c";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=c30f4a427c";
+import { connectLive } from "./live.js?v=c30f4a427c";
+import * as sound from "./sound.js?v=c30f4a427c";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=c30f4a427c";
+import { openBox } from "./ui/bag.js?v=c30f4a427c";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=c30f4a427c";
+import { bossHealEffect, hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=c30f4a427c";
+import { maybeShowDeath, previewDeath } from "./ui/ceremony.js?v=c30f4a427c";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=c30f4a427c";
+import { addFreshEvents, renderFeed, resetFeedHistory, streamEvents, tickAges } from "./ui/feed.js?v=c30f4a427c";
+import { boxDropReveal, busyOverlay, popup, shake, shardsReveal, stolenReveal } from "./ui/fx.js?v=c30f4a427c";
+import { showError } from "./ui/errors.js?v=c30f4a427c";
+import { showIntro } from "./ui/nameform.js?v=c30f4a427c";
+import { setPinned, setRotating, showNotice } from "./ui/notice.js?v=c30f4a427c";
+import { loadHistory } from "./ui/history.js?v=c30f4a427c";
+import { initBadges, loadBadgeDefs } from "./ui/badges.js?v=c30f4a427c";
+import { initBoxOdds } from "./ui/boxodds.js?v=c30f4a427c";
+import { loadPolls } from "./ui/polls.js?v=c30f4a427c";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=c30f4a427c";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=c30f4a427c";
 
 /** This page's own build stamp (main.js?v=...), empty for an unbuilt dev copy. */
 const MY_VERSION = new URL(import.meta.url).searchParams.get("v") ?? "";

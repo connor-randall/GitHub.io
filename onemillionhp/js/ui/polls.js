@@ -2,11 +2,11 @@
 // until the timer runs out), see the counts once you've voted, and when a
 // poll ends with more than half YES it PASSES, with a one-time celebration.
 
-import * as api from "../api.js?v=b7420735b5";
-import { bar, center, duration, el, fitArt, fmt } from "../ascii.js?v=b7420735b5";
-import { now, state } from "../store.js?v=b7420735b5";
-import { blockLetters } from "./aftermath.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { bar, center, duration, el, fitArt, fmt } from "../ascii.js?v=c30f4a427c";
+import { now, state } from "../store.js?v=c30f4a427c";
+import { blockLetters } from "./aftermath.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

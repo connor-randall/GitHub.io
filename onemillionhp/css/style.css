@@ -741,6 +741,12 @@ b { font-weight: 700; }
 
 /* ---------- public ASCII boss designer ---------- */
 .designer-title { color: var(--amber); margin: 0 auto 8px; width: max-content; max-width: 100%; }
+.design-submissions { margin: 0 0 12px; padding: 7px 9px; border: 1px dashed var(--faint); font-size: 11px; }
+.design-submissions > b { display: block; color: var(--amber); margin-bottom: 4px; }
+.design-submission { padding: 2px 0; }
+.design-submission.pending { color: var(--amber); }
+.design-submission.approved { color: var(--green); }
+.design-submission.denied { color: var(--red); }
 .designer-note { color: var(--dim); font-size: 12px; line-height: 1.45; margin-bottom: 10px; }
 .designer-fields { display: grid; gap: 6px; margin-bottom: 8px; }
 .designer-input, .design-canvas {
@@ -774,18 +780,15 @@ b { font-weight: 700; }
   border: 1px solid var(--faint); box-shadow: none;
   white-space: pre; line-height: 1.12; tab-size: 2; color: var(--design-color, var(--amber));
 }
-.design-canvas-frame { box-sizing: border-box; width: max-content; max-width: 100%; margin: 10px 0; overflow-x: auto; }
+.design-canvas-frame {
+  box-sizing: border-box; width: 50ch; max-width: 100%; margin: 10px 0; overflow: hidden;
+  font-size: clamp(7px, 2.25vw, 13px);
+}
 .design-canvas-border { width: 50ch; color: var(--amber); white-space: pre; line-height: 1; }
 .design-canvas-border.bottom { margin-top: 0; }
 .design-canvas-frame:focus-within .design-canvas { border-color: var(--amber); }
 .design-canvas.pencil-on { cursor: crosshair; touch-action: none; user-select: none; }
 .designer-size { margin: 4px 0; text-align: right; font-size: 10px; }
-.designer-preview-h { margin-top: 12px; }
-.design-preview {
-  box-sizing: border-box; min-height: 8em; width: 100%; overflow: auto; padding: 8px;
-  border: 1px solid color-mix(in srgb, var(--design-color, var(--amber)) 55%, transparent);
-  color: var(--design-color, var(--amber)); line-height: 1.08; white-space: pre;
-}
 .designer-status { margin: 8px 0; font-size: 11px; }
 .designer-submit {
   display: block; max-width: 100%; margin: 10px auto 0; padding: 0; border: 0;

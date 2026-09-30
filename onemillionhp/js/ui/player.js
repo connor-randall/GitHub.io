@@ -1,14 +1,14 @@
 // [ YOU ] panel: stats, rename, equipped weapon.
 
-import * as api from "../api.js?v=b7420735b5";
-import { el, fmt, setArt } from "../ascii.js?v=b7420735b5";
-import { emit, itemById, state } from "../store.js?v=b7420735b5";
-import { badgeTag, forgetBadges } from "./badges.js?v=b7420735b5";
-import { effectLine } from "./effects.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
-import { itemLines } from "./fx.js?v=b7420735b5";
-import { nameForm } from "./nameform.js?v=b7420735b5";
-import { saveSection } from "./save.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { el, fmt, setArt } from "../ascii.js?v=c30f4a427c";
+import { emit, itemById, state } from "../store.js?v=c30f4a427c";
+import { badgeTag, forgetBadges } from "./badges.js?v=c30f4a427c";
+import { effectLine } from "./effects.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
+import { itemLines } from "./fx.js?v=c30f4a427c";
+import { nameForm } from "./nameform.js?v=c30f4a427c";
+import { saveSection } from "./save.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

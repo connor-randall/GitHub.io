@@ -1,10 +1,10 @@
 // [ HISTORY ] panel: every boss instance, alive or dead.
 
-import * as api from "../api.js?v=b7420735b5";
-import { RARITY_STYLE, box, centerBlock, duration, el, fmt } from "../ascii.js?v=b7420735b5";
-import { bossDef, state } from "../store.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
-import { playDeath } from "./deathfx.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { RARITY_STYLE, box, centerBlock, duration, el, fmt } from "../ascii.js?v=c30f4a427c";
+import { bossDef, state } from "../store.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
+import { playDeath } from "./deathfx.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 let replaying = false;

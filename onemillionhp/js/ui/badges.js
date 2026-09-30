@@ -5,9 +5,9 @@
 //   admin-made       any symbol/colour, given by hand (token "c<id>")
 // Hover (or tap) the stars for an ASCII box saying what each one is for.
 
-import * as api from "../api.js?v=b7420735b5";
-import { el } from "../ascii.js?v=b7420735b5";
-import { bossDef } from "../store.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { el } from "../ascii.js?v=c30f4a427c";
+import { bossDef } from "../store.js?v=c30f4a427c";
 
 /** Boss number -> boss definition id (from the boss history), for colours. @type {Map<string, string>} */
 const seqDef = new Map();

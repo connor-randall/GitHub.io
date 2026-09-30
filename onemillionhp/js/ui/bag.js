@@ -2,15 +2,15 @@
 // Undiscovered items show as dotted silhouettes (hidden by default: there
 // are over a hundred).
 
-import * as api from "../api.js?v=b7420735b5";
-import { isAutoStash, setAutoStash } from "../autostash.js?v=b7420735b5";
-import { el, fmt, setArt } from "../ascii.js?v=b7420735b5";
-import { SCROLLS, boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=b7420735b5";
-import { withOdds } from "./boxodds.js?v=b7420735b5";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
-import { itemLines, openAllBoxesReveal, openBoxSequence, showOverlay } from "./fx.js?v=b7420735b5";
-import { scrollReveal } from "./scrolls.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
+import { isAutoStash, setAutoStash } from "../autostash.js?v=c30f4a427c";
+import { el, fmt, setArt } from "../ascii.js?v=c30f4a427c";
+import { SCROLLS, boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=c30f4a427c";
+import { withOdds } from "./boxodds.js?v=c30f4a427c";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
+import { itemLines, openAllBoxesReveal, openBoxSequence, showOverlay } from "./fx.js?v=c30f4a427c";
+import { scrollReveal } from "./scrolls.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 

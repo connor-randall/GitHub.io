@@ -1,10 +1,10 @@
-import * as api from "../api.js?v=b7420735b5";
+import * as api from "../api.js?v=c30f4a427c";
 import {
   DESIGN_COLORS, DESIGN_LINES, DESIGN_WIDTH, artSize, paintBossLine, sanitizeBossArt, syncHurtArt,
-} from "../boss-design.js?v=b7420735b5";
-import { el } from "../ascii.js?v=b7420735b5";
-import { state } from "../store.js?v=b7420735b5";
-import { showError } from "./errors.js?v=b7420735b5";
+} from "../boss-design.js?v=c30f4a427c";
+import { el } from "../ascii.js?v=c30f4a427c";
+import { state } from "../store.js?v=c30f4a427c";
+import { showError } from "./errors.js?v=c30f4a427c";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const FRAME_KEYS = ["phase1_art", "phase1_hurt_art", "phase2_art", "phase2_hurt_art",
@@ -22,11 +22,53 @@ let active = 0;
 let selectedColor = "amber";
 let selectedTool = "#";
 let pencilOn = false;
+let lastStatusLoad = 0;
 /** @type {Record<string, string>} */
 const frames = {
   phase1_art: "", phase1_hurt_art: "", phase2_art: "", phase2_hurt_art: "",
   phase3_art: "", phase3_hurt_art: "", death_art: "",
 };
+
+/** @param {any[]} submissions */
+function renderSubmissionStatus(submissions = []) {
+  const host = document.getElementById("design-submissions");
+  if (!host) return;
+  host.replaceChildren(el("b", "", "YOUR SUBMISSIONS"));
+  if (!submissions.length) {
+    host.append(el("div", "dim", "NO BOSSES SUBMITTED YET"));
+    return;
+  }
+  for (const submission of submissions) {
+    host.append(el("div", `design-submission ${submission.status}`,
+      `${submission.name}  ::  [ ${String(submission.status).toUpperCase()} ]`));
+  }
+}
+
+async function refreshSubmissionStatus() {
+  lastStatusLoad = Date.now();
+  try {
+    const response = await api.getBossDesign();
+    renderSubmissionStatus(response.submissions ?? (response.design ? [response.design] : []));
+    return response;
+  } catch {
+    return null;
+  }
+}
+
+function resetCanvas() {
+  /** @type {HTMLInputElement} */ ($("design-name")).value = "";
+  /** @type {HTMLInputElement} */ ($("design-flavor")).value = "";
+  for (const key of FRAME_KEYS) frames[key] = "";
+  active = 0;
+  selectedColor = "amber";
+  /** @type {HTMLTextAreaElement} */ ($("design-canvas")).value = "";
+  document.querySelectorAll(".design-color").forEach((node) => {
+    node.setAttribute("aria-pressed",
+      String(/** @type {HTMLElement} */ (node).dataset.color === selectedColor));
+  });
+  try { localStorage.removeItem(DRAFT_KEY); } catch { /* optional */ }
+  drawPreview();
+}
 
 /** Update one frame and mirror it into an untouched matching hurt frame. */
 function updateFrame(key, value) {
@@ -51,9 +93,6 @@ function saveDraft() {
 
 function drawPreview() {
   const art = frames[FRAME_KEYS[active]];
-  const preview = $("design-preview");
-  preview.textContent = art || "\n       ( draw something terrible )\n";
-  preview.style.setProperty("--design-color", DESIGN_COLORS[selectedColor]);
   $("design-canvas").style.setProperty("--design-color", DESIGN_COLORS[selectedColor]);
   const size = artSize(art);
   $("design-size").textContent = `${size.width}/${DESIGN_WIDTH} COLS :: ${size.lines}/${DESIGN_LINES} LINES`;
@@ -102,19 +141,12 @@ function pointerCell(canvas, event) {
 
 async function loadSaved() {
   let draft = null;
-  let savedStatus = "";
   try {
     draft = JSON.parse(localStorage.getItem(DRAFT_KEY) ?? "null");
   } catch {
     /* ignore a damaged local draft */
   }
-  try {
-    const response = await api.getBossDesign();
-    savedStatus = response.design?.status ?? "";
-    if (!draft && response.design) draft = response.design;
-  } catch {
-    /* the editor still works offline until submit */
-  }
+  await refreshSubmissionStatus();
   if (!draft) return;
   /** @type {HTMLInputElement} */ ($("design-name")).value = draft.name ?? "";
   /** @type {HTMLInputElement} */ ($("design-flavor")).value = draft.flavor ?? "";
@@ -128,19 +160,19 @@ async function loadSaved() {
     node.setAttribute("aria-pressed", String(/** @type {HTMLElement} */ (node).dataset.color === selectedColor));
   });
   drawPreview();
-  if (savedStatus) {
-    $("design-status").textContent = savedStatus === "denied"
-      ? "STATUS DENIED — EDIT + RESUBMIT WHEN READY"
-      : `SAVED SUBMISSION :: STATUS ${savedStatus.toUpperCase()}`;
-  }
 }
 
 export function renderDesigner() {
-  if (built) return;
+  if (built) {
+    if (Date.now() - lastStatusLoad > 10_000) void refreshSubmissionStatus();
+    return;
+  }
   built = true;
   const host = $("panel-designer");
   const title = el("pre", "art designer-title",
     "+------------------------------------------+\n|       A S C I I   B O S S   F O R G E      |\n+------------------------------------------+");
+  const submissionStatus = el("div", "design-submissions");
+  submissionStatus.id = "design-submissions";
   const intro = el("div", "designer-note",
     "> Seven required drawings: three normal phases, each phase's hurt frame, and DEATH. Every frame is locked to 48 x 16. Hurt frames copy their phase until you edit them.");
   const fields = el("div", "designer-fields");
@@ -236,8 +268,6 @@ export function renderDesigner() {
   canvasFrame.append(el("div", "design-canvas-border", topBorder),
     canvas, size,
     el("div", "design-canvas-border bottom", bottomBorder));
-  const preview = el("pre", "art design-preview");
-  preview.id = "design-preview";
   const status = el("div", "designer-status dim", "DRAFT — NOT IN THE LIVE BOSS ROTATION");
   status.id = "design-status";
   const submit = /** @type {HTMLButtonElement} */ (el("button", "designer-submit",
@@ -294,7 +324,8 @@ export function renderDesigner() {
         ...frames,
       });
       status.textContent = `SUBMITTED :: ${response.design.name} :: STATUS ${response.design.status.toUpperCase()}`;
-      try { localStorage.removeItem(DRAFT_KEY); } catch { /* optional */ }
+      renderSubmissionStatus(response.submissions ?? [response.design]);
+      resetCanvas();
     } catch (error) {
       status.textContent = "SUBMISSION FAILED — DRAFT KEPT LOCALLY";
       showError(/** @type {Error} */ (error).message);
@@ -303,8 +334,8 @@ export function renderDesigner() {
     }
   });
   if (!state.me?.name_chosen) status.textContent = "CHOOSE YOUR PLAYER NAME BEFORE SUBMITTING";
-  host.append(title, intro, fields, colors, phases, copyStatus, tools, canvasFrame,
-    el("div", "panel-h designer-preview-h", "LIVE MONOCHROME PREVIEW"), preview, status, submit);
+  host.append(title, submissionStatus, intro, fields, colors, phases, copyStatus, tools, canvasFrame,
+    status, submit);
   drawPreview();
   paintToolState();
   loadSaved();

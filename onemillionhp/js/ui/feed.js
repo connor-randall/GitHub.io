@@ -1,10 +1,10 @@
 // Global activity feed.
 
-import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=b7420735b5";
-import * as api from "../api.js?v=b7420735b5";
-import { FEED_KEEP, addOlderFeed, boxById, itemById, mergeFeed, now, rarityById, state } from "../store.js?v=b7420735b5";
-import { withBadges } from "./badges.js?v=b7420735b5";
-import { adminTag } from "./notice.js?v=b7420735b5";
+import { RARITY_STYLE, ago, el, fmt } from "../ascii.js?v=c30f4a427c";
+import * as api from "../api.js?v=c30f4a427c";
+import { FEED_KEEP, addOlderFeed, boxById, itemById, mergeFeed, now, rarityById, state } from "../store.js?v=c30f4a427c";
+import { withBadges } from "./badges.js?v=c30f4a427c";
+import { adminTag } from "./notice.js?v=c30f4a427c";
 
 const list = /** @type {HTMLOListElement} */ (document.getElementById("feed"));
 const jump = /** @type {HTMLButtonElement} */ (document.getElementById("feed-jump"));
