@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-09-29T23:20:03-0600",
+  "generated_at": "2026-09-29T23:30:03-0600",
   "stats": {
-    "today_count": 317,
-    "today_species": 10,
-    "total": 1527
+    "today_count": 318,
+    "today_species": 11,
+    "total": 1528
   },
   "enviro": {
-    "temp_f": 83.2,
-    "humidity": 27.6,
-    "pressure": 820.7
+    "temp_f": 83.4,
+    "humidity": 26.6,
+    "pressure": 820.8
   },
   "detections": [
+    {
+      "com_name": "Canada Goose",
+      "sci_name": "Branta canadensis",
+      "confidence": 0.6696,
+      "iso": "2026-09-29T23:28:07",
+      "time": "23:28",
+      "date": "2026-09-29",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Canada_goose.jpg/330px-Canada_goose.jpg",
+      "audio": "bird-clips/Canada_Goose-67-2026-09-29-birdnet-23.28.07.mp3"
+    },
     {
       "com_name": "American Robin",
       "sci_name": "Turdus migratorius",
@@ -150,16 +160,6 @@
       "date": "2026-09-29",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-09-29-birdnet-17.08.40.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8883,
-      "iso": "2026-09-29T16:37:50",
-      "time": "16:37",
-      "date": "2026-09-29",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-09-29-birdnet-16.37.50.mp3"
     }
   ]
 }
