@@ -2,13 +2,14 @@
 // own damage and rank, the top fighters), then the next boss makes its entrance.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=a46acbc584";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=a46acbc584";
-import { bossDef, now, state } from "../store.js?v=a46acbc584";
-import { nextBossDef, nextBossScreen } from "./aftermath.js?v=a46acbc584";
-import { deathOrigin } from "./boss.js?v=a46acbc584";
-import { playDeath } from "./deathfx.js?v=a46acbc584";
-import { shake, showOverlay } from "./fx.js?v=a46acbc584";
+import * as api from "../api.js?v=b7420735b5";
+import { center, duration, el, fmt, padL } from "../ascii.js?v=b7420735b5";
+import { bossDef, now, state } from "../store.js?v=b7420735b5";
+import { nextBossDef, nextBossScreen } from "./aftermath.js?v=b7420735b5";
+import { badgeTag, badgeWidth } from "./badges.js?v=b7420735b5";
+import { deathOrigin } from "./boss.js?v=b7420735b5";
+import { playDeath } from "./deathfx.js?v=b7420735b5";
+import { shake, showOverlay } from "./fx.js?v=b7420735b5";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;
@@ -120,10 +121,14 @@ function defeatScreen(res) {
   lines.push(text(" "), text(`TOP FIGHTERS ${"-".repeat(W - 13)}`, "dim"));
   res.top.forEach((/** @type {any} */ r, /** @type {number} */ i) => {
     const n = fmt(r.damage);
-    const left = `${padL(String(i + 1), 2)}. ${r.name} `;
-    const dots = ".".repeat(Math.max(1, W - left.length - n.length - 1));
+    const num = `${padL(String(i + 1), 2)}. `;
+    const left = `${num}${r.name} `;
+    const dots = ".".repeat(Math.max(1, W - left.length - badgeWidth(r.badges) - n.length - 1));
     const mine = r.player_id === state.me?.id;
-    lines.push(text(`${left}${dots} ${n}${mine ? " <" : ""}`, mine ? "cer-me" : i === 0 ? "cer-first" : ""));
+    const line = text("", mine ? "cer-me" : i === 0 ? "cer-first" : "");
+    const tag = badgeTag(r.badges, r.player_id);
+    line.append(num, ...(tag ? [tag, " "] : []), `${r.name} ${dots} ${n}${mine ? " <" : ""}`);
+    lines.push(line);
   });
   shake("l");
   return showOverlay(

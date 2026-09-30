@@ -1,9 +1,9 @@
 // After the death scoreboard: a nervous little monologue, typed out, then
 // the next boss's name slammed across the whole screen in big block letters.
 
-import { el } from "../ascii.js?v=a46acbc584";
-import { bossDef, now, state } from "../store.js?v=a46acbc584";
-import { shake, showOverlay } from "./fx.js?v=a46acbc584";
+import { el } from "../ascii.js?v=b7420735b5";
+import { bossDef, now, state } from "../store.js?v=b7420735b5";
+import { shake, showOverlay } from "./fx.js?v=b7420735b5";
 
 const LINES = ["Yay we did it.....", "uh guys do you hear that?.......", "Its right behind me isnt it?"];
 
@@ -57,6 +57,7 @@ function wrap(name, max) {
 
 /** The boss after ``defId`` (next number up), like the server picks it. @param {string} defId */
 export function nextBossDef(defId) {
+  if (state.boss?.def_id === defId && state.boss.next_definition) return state.boss.next_definition;
   const cur = bossDef(defId);
   const later = (state.content?.bosses ?? []).filter((/** @type {any} */ b) => cur && b.number > cur.number);
   return later.sort((/** @type {any} */ a, /** @type {any} */ b) => a.number - b.number)[0] ?? null;

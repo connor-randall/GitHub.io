@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=a46acbc584">
-<link rel="stylesheet" href="css/admin.css?v=a46acbc584">
+<link rel="stylesheet" href="css/style.css?v=b7420735b5">
+<link rel="stylesheet" href="css/admin.css?v=b7420735b5">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -35,8 +35,56 @@
     <pre id="status" class="adm-status"></pre>
     <label class="announce-toggle"><input type="checkbox" id="announce" checked> announce my actions in the feed as ***ADMIN***</label>
 
+    <section class="adm admin-power" aria-label="Quick player refills">
+      <h2>[ THE REFILL STATION ]</h2>
+      <p class="hint">Leave PLAYER blank for everyone, or enter one player's name or ID.</p>
+      <div class="power-grid">
+        <form data-action="refill_attacks">
+          <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
+          <button class="power-button" aria-label="Refill attacks"><span aria-hidden="true">+=======================+
+|  &gt;&gt; REFILL ATTACKS &lt;&lt; |
+|    [#][#][#][#][#]    |
++=======================+</span></button>
+        </form>
+        <form data-action="reset_ultimates">
+          <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
+          <button class="power-button ultimate" aria-label="Recharge ultimate"><span aria-hidden="true">+=======================+
+|  &gt;&gt; RECHARGE ULTIMATE |
+|       /_/  READY      |
++=======================+</span></button>
+        </form>
+      </div>
+    </section>
+
     <section class="adm">
-      <h2>[ POST ]</h2>
+      <details class="fold" data-fold="shards">
+        <summary><h2>[ SHARD LEDGER ]</h2></summary>
+        <form data-action="grant_shards" data-confirm-empty="player" class="shard-give">
+          <label>GIVE <input name="amount" type="number" min="1" max="1000000" value="100" required> SHARDS</label>
+          <label>TO <input name="player" placeholder="(everyone)" list="players"></label>
+          <button class="inline-btn">[ GIVE SHARDS ]</button>
+          <p class="hint">leave TO empty to give every player (online or not). anyone with the game open gets a pop-up,
+            like a gifted box. giving everyone asks you to click twice.</p>
+        </form>
+        <form id="shard-search-form">
+          <label>PLAYER <input id="shard-search" placeholder="name or ID" type="search"></label>
+          <button class="inline-btn">[ SEARCH / REFRESH ]</button>
+        </form>
+        <p id="shard-summary" class="hint" aria-live="polite"></p>
+        <div class="shard-scroll">
+          <table class="shard-table">
+            <caption class="hint">Every player, including zero balances and banned players. Most shards first.</caption>
+            <thead><tr><th scope="col">PLAYER</th><th scope="col">&lt;&gt; SHARDS</th><th scope="col">STATUS</th></tr></thead>
+            <tbody id="shard-rows"></tbody>
+          </table>
+        </div>
+        <div class="shard-pages"><button id="shard-prev" class="inline-btn" type="button">[ &lt; PREVIOUS ]</button><button id="shard-next" class="inline-btn" type="button">[ NEXT &gt; ]</button></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="post">
+      <summary><h2>[ POST ]</h2></summary>
       <form data-action="post" class="post-form">
         <label class="post-label">***ADMIN***
           <input name="message" maxlength="200" required placeholder="say something to everyone">
@@ -52,10 +100,44 @@
         <span id="pin-now" class="hint">nothing pinned.</span>
         <button class="inline-btn" id="unpin-btn" hidden>[ UNPIN ]</button>
       </form>
+      <form data-action="set_rotating" class="rotate-form">
+        <label class="rotate-label">ROTATING MESSAGES <span class="hint">one per line</span>
+          <textarea name="messages" id="rotate-text" rows="5" required
+            placeholder="double loot this weekend!&#10;join the discord: ...&#10;BLING BLING BOI is coming"></textarea>
+        </label>
+        <button class="inline-btn">[ SAVE ROTATION ]</button>
+        <button class="inline-btn" data-override="clear_rotating" id="rotate-stop" formnovalidate hidden>[ STOP ROTATING ]</button>
+        <p class="hint">each message shows for 1 minute where the pin goes, then the next one, on a loop. if something is
+          pinned too, it takes its turn in the loop. up to 20 messages, 200 characters each.</p>
+        <pre id="rotate-now" class="hint rotate-now"></pre>
+      </form>
+      </details>
     </section>
 
     <section class="adm">
-      <h2>[ BOSS ]</h2>
+      <details class="fold" data-fold="polls">
+      <summary><h2>[ POLLS ]</h2></summary>
+      <form data-action="create_poll" class="poll-form">
+        <label class="post-label">QUESTION
+          <input name="question" maxlength="200" required placeholder="should the next boss have 3,000,000 HP?">
+        </label>
+        <label>RUNS FOR <input name="duration" type="number" min="1" step="any" value="1" required></label>
+        <select name="unit" aria-label="unit">
+          <option value="minutes">minutes</option>
+          <option value="hours">hours</option>
+          <option value="days" selected>days</option>
+        </select>
+        <button class="inline-btn">[ START POLL ]</button>
+        <p class="hint">everyone can vote YES or NO in the [ POLLS ] tab (and change their vote) until the timer runs
+          out. it PASSES with more than half YES. any length from 1 minute to 365 days.</p>
+      </form>
+      <div id="poll-list" class="poll-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="boss">
+      <summary><h2>[ BOSS ]</h2></summary>
       <div class="preview-death">
         <label>PREVIEW DEATH OF <select id="preview-boss"></select></label>
         <button class="inline-btn" id="preview-btn" type="button">[ PREVIEW DEATH ]</button>
@@ -88,29 +170,33 @@
         <button class="inline-btn danger">[ RESET BOSS ]</button>
         <p class="hint">full HP, clears this boss's feed, gives everyone their ultimate back. leaderboards and items stay.</p>
       </form>
+      <div id="boss-queue" class="boss-design-queue"></div>
+      </details>
     </section>
 
     <section class="adm">
-      <h2>[ PLAYERS ]</h2>
+      <details class="fold" data-fold="boss-designs">
+      <summary><h2>[ BOSS SUBMISSIONS ]</h2></summary>
+      <p class="hint">APPROVE freezes a copy of the design and adds it to the queue under [ BOSS ]. DENY returns it to the artist for editing.</p>
+      <div id="boss-design-library" class="boss-design-library"></div>
+      <div id="boss-design-list" class="boss-design-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="players">
+      <summary><h2>[ PLAYERS ]</h2></summary>
       <form data-action="lookup_player">
         <label>PLAYER <input name="player" required list="players"></label>
         <button class="inline-btn">[ LOOK UP + SAVE CODE ]</button>
         <p class="hint">shows their save code (and stats) in the log below. give the code to someone who lost their
           login: they enter it under [ YOU ] or "have a save code?" on the first screen. part of a name lists matches.</p>
       </form>
-      <form data-action="refill_attacks">
-        <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
-        <button class="inline-btn">[ REFILL ATTACKS ]</button>
-      </form>
       <form data-action="grant_attacks">
         <label>ATTACKS <input name="amount" type="number" min="1" max="100" value="20" required></label>
         <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
         <button class="inline-btn">[ GIVE ATTACKS ]</button>
         <p class="hint">tops them up to at least this many attacks now (can go above max; recharging resumes once they're below it).</p>
-      </form>
-      <form data-action="reset_ultimates">
-        <label>PLAYER <input name="player" placeholder="(everyone)" list="players"></label>
-        <button class="inline-btn">[ GIVE ULTIMATES BACK ]</button>
       </form>
       <form data-action="rename_player">
         <label>PLAYER <input name="player" required list="players"></label>
@@ -128,11 +214,36 @@
       </form>
       <datalist id="players"></datalist>
       <pre id="recent" class="adm-recent"></pre>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="badges">
+      <summary><h2>[ BADGES ]</h2></summary>
+      <form data-action="create_badge" class="badge-make">
+        <label>TITLE <input name="title" maxlength="24" required placeholder="BETA TESTER"></label>
+        <label>SAYS <input name="description" maxlength="60" placeholder="was here in week one"></label>
+        <label>COLOUR <input name="color" type="color" value="#ffb000"></label>
+        <label>SYMBOL <input name="symbol" maxlength="1" value="*" class="badge-symbol-input"></label>
+        <label><input name="rainbow" type="checkbox"> RAINBOW</label>
+        <button class="inline-btn">[ MAKE BADGE ]</button>
+        <pre id="badge-preview" class="badge-preview-box"></pre>
+        <p class="hint">makes a badge you hand out yourself (below). it shows by their name like the earned ones; they
+          can pick it in [ YOU ]. SAYS is the line in its hover box. SYMBOL is one character (* by default).</p>
+      </form>
+      <form data-action="give_badge">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <label>BADGE <select name="badge_id" id="badge-pick" required></select></label>
+        <button class="inline-btn">[ GIVE ]</button>
+        <button class="inline-btn" data-override="take_badge">[ TAKE AWAY ]</button>
+      </form>
+      <div id="badge-list" class="badge-admin-list"></div>
+      </details>
     </section>
 
     <section class="adm" id="gallery">
-      <details id="gal-fold">
-      <summary><h2>[ ITEMS &amp; BOXES ] <span class="fold-hint">tap to open</span></h2></summary>
+      <details class="fold" data-fold="items">
+      <summary><h2>[ ITEMS &amp; BOXES ]</h2></summary>
       <div class="gal-controls">
         <label>GIVE TO <input id="gal-player" list="players" placeholder="player name or id"></label>
         <label>RARITY <select id="gal-rarity"><option value="">all</option></select></label>
@@ -141,13 +252,18 @@
         <label>SORT <select id="gal-sort"><option value="rarity">rarity</option><option value="owned">most owned</option><option value="unowned">nobody has it</option></select></label>
       </div>
       <div class="gal-boxes" id="gal-boxes"></div>
+      <div id="gal-scroll-lock"></div>
+      <h3 class="gal-subhead">SCROLLS</h3>
+      <p class="hint">Gift scrolls here even while random scroll rewards are locked.</p>
+      <div class="gal-boxes gal-scrolls" id="gal-scrolls"></div>
       <div class="gal-count dim" id="gal-count"></div>
       <div class="gal-grid" id="gal-grid"></div>
       </details>
     </section>
 
     <section class="adm">
-      <h2>[ RULES ]</h2>
+      <details class="fold" data-fold="rules">
+      <summary><h2>[ RULES ]</h2></summary>
       <form data-action="set_tuning">
         <label>MAX ATTACKS <input name="attacks_per_day" type="number" min="1" max="1000"></label>
         <label>RECHARGE (SECONDS) <input name="recharge_seconds" type="number" min="5" max="86400"></label>
@@ -173,18 +289,22 @@
         <button class="inline-btn">[ SAVE SHOP ]</button>
         <p class="hint">PAYS x2 = selling gives double shards. COST x0.5 = boxes half price (a sale). 1 = normal.</p>
       </form>
+      </details>
     </section>
 
     <section class="adm">
-      <h2>[ ODDS ]</h2>
+      <details class="fold" data-fold="odds">
+      <summary><h2>[ ODDS ]</h2></summary>
       <p class="hint">the real chances right now, for a player with no gear (gear adds crit, item and box chance on
         top). edit any number and press SAVE ODDS: "1 in 100" means once every 100 attacks on average, 0 = never.
         box shares and box contents are relative: they're scaled to add up to 100%.</p>
       <div id="odds" class="odds-edit"></div>
+      </details>
     </section>
 
     <section class="adm">
-      <h2>[ DANGER ]</h2>
+      <details class="fold" data-fold="danger">
+      <summary><h2>[ DANGER ]</h2></summary>
       <form data-action="reset_leaderboards" data-confirm>
         <button class="inline-btn danger">[ WIPE LEADERBOARDS ]</button>
         <span class="hint">zeroes everyone's damage/hits/crits (and levels)</span>
@@ -197,20 +317,23 @@
         <button class="inline-btn danger">[ WIPE EVERYTHING ]</button>
         <span class="hint">all players, items, history. boss #001 respawns.</span>
       </form>
+      </details>
     </section>
 
     <section class="adm">
-      <h2>[ PASSCODE ]</h2>
+      <details class="fold" data-fold="passcode">
+      <summary><h2>[ PASSCODE ]</h2></summary>
       <form data-action="set_passcode">
         <label>NEW <input name="passcode" type="password" minlength="8" autocomplete="new-password" required></label>
         <button class="inline-btn">[ CHANGE ]</button>
         <p class="hint">logs out every admin session, including this one.</p>
       </form>
+      </details>
     </section>
   </div>
 
   <ol id="log" class="adm-log" aria-live="polite"></ol>
 </main>
-<script type="module" src="js/admin.js?v=a46acbc584"></script>
+<script type="module" src="js/admin.js?v=b7420735b5"></script>
 </body>
 </html>

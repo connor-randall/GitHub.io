@@ -1,16 +1,19 @@
 // [ SHOP ] panel: sell loot for shards, spend shards on loot boxes.
 
-import * as api from "../api.js?v=a46acbc584";
-import { el, fmt, setArt } from "../ascii.js?v=a46acbc584";
-import { boxById, emit, itemById, rarityById, state } from "../store.js?v=a46acbc584";
-import { openBox } from "./bag.js?v=a46acbc584";
-import { showError } from "./errors.js?v=a46acbc584";
+import * as api from "../api.js?v=b7420735b5";
+import { el, fmt, setArt } from "../ascii.js?v=b7420735b5";
+import { boxById, emit, itemById, rarityById, state } from "../store.js?v=b7420735b5";
+import { openBox } from "./bag.js?v=b7420735b5";
+import { withOdds } from "./boxodds.js?v=b7420735b5";
+import { showError } from "./errors.js?v=b7420735b5";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
 /** @type {{text: string, boxId?: string} | null} */
 let note = null;
 let confirmDupes = false;
+/** A rarity whose auto-sell box was just ticked, waiting for [ YES ] because it sells things you own. */
+let pendingAuto = /** @type {string | null} */ (null);
 let busy = false;
 
 /** Run a shop call, take the new profile, redraw. @param {() => Promise<any>} call @param {(res: any) => void} [after] */
@@ -69,7 +72,7 @@ export function renderShop() {
     const def = boxById(id);
     if (!def) continue;
     const card = el("div", "box-card");
-    const pre = el("pre", "art");
+    const pre = withOdds(el("pre", "art"), id);
     const buy = /** @type {HTMLButtonElement} */ (el("button", "inline-btn", `[ BUY ] <> ${fmt(price)}`));
     buy.disabled = (me.shards ?? 0) < price;
     buy.addEventListener("click", () =>
@@ -99,6 +102,74 @@ export function renderShop() {
     (/** @type {number} */ n, /** @type {any} */ x) => n + Math.max(0, x.inv.count - 1) * (sell[x.item.rarity] ?? 0),
     0,
   );
+
+  // ---- auto-sell: ticked rarities are sold the moment they drop
+  /** @type {string[]} */
+  const auto = me.autosell ?? [];
+  /** Turn auto-sell on/off for one rarity. @param {string} rid @param {boolean} on */
+  const setAuto = (rid, on) => {
+    const next = on ? [...auto, rid] : auto.filter((r) => r !== rid);
+    const label = rarityById(rid)?.label ?? rid.toUpperCase();
+    act(() => api.setAutosell(next), (res) => {
+      note = { text: on ? `auto-selling ${label}.${res.sold ? ` sold ${fmt(res.sold)} for ${fmt(res.shards_gained)} shards.` : ""}`
+        : `stopped auto-selling ${label}.` };
+    });
+  };
+  /** What ticking a rarity would sell right now (the equipped copy stays). @param {string} rid */
+  const sellsNow = (rid) => owned
+    .filter((/** @type {any} */ x) => x.item.rarity === rid)
+    .reduce((/** @type {{n: number, v: number}} */ t, /** @type {any} */ x) => {
+      const n = x.inv.count - (equipped.has(x.item.id) ? 1 : 0);
+      return { n: t.n + n, v: t.v + n * (sell[rid] ?? 0) };
+    }, { n: 0, v: 0 });
+  const autoRow = el("div", "shop-auto");
+  autoRow.append(el("span", "dim", "AUTO-SELL: "));
+  for (const r of content.rarities) {
+    if (!(sell[r.id] > 0)) continue;
+    const on = auto.includes(r.id) || pendingAuto === r.id;
+    const lab = el("label", `shop-auto-opt r-${r.id}`);
+    const box = /** @type {HTMLInputElement} */ (el("input", ""));
+    box.type = "checkbox";
+    box.checked = on;
+    box.disabled = busy;
+    box.addEventListener("change", () => {
+      if (!box.checked) {
+        if (pendingAuto !== r.id) return setAuto(r.id, false);
+        pendingAuto = null; // unticked while asking = cancel
+        renderShop();
+        return;
+      }
+      if (sellsNow(r.id).n > 0) {
+        pendingAuto = r.id; // ask first: this sells things they own
+        renderShop();
+      } else setAuto(r.id, true);
+    });
+    lab.append(box, el("span", "shop-auto-mark", on ? "[x]" : "[ ]"), ` ${r.label}`);
+    autoRow.append(lab);
+  }
+  parts.push(autoRow);
+  if (pendingAuto) {
+    const rid = pendingAuto;
+    const label = rarityById(rid)?.label ?? rid.toUpperCase();
+    const { n, v } = sellsNow(rid);
+    const ask = el("div", "bag-note shop-note",
+      `> SURE? sells the ${fmt(n)} ${label} you own now (+${fmt(v)} shards) and every ${label} you find from now on. `);
+    const yes = el("button", "inline-btn", "[ YES, AUTO-SELL ]");
+    yes.addEventListener("click", () => {
+      pendingAuto = null;
+      setAuto(rid, true);
+    });
+    const no = el("button", "inline-btn", " [ CANCEL ]");
+    no.addEventListener("click", () => {
+      pendingAuto = null;
+      renderShop();
+    });
+    ask.append(yes, no);
+    parts.push(ask);
+  } else if (auto.length) {
+    parts.push(el("div", "dim bag-note", "> ticked rarities are sold the moment they drop. your equipped gear is safe."));
+  }
+
   if (dupeValue > 0) {
     const dupes = el("button", "shop-dupes", confirmDupes ? `[ SURE? KEEPS ONE OF EACH :: +${fmt(dupeValue)} ]` : `[ SELL ALL DUPLICATES +${fmt(dupeValue)} ]`);
     dupes.addEventListener("click", () => {

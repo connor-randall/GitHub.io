@@ -41,13 +41,19 @@ export function emit(...keys) {
 export const now = () => Date.now() / 1000 + state.serverSkew;
 
 /** Apply a boss snapshot only if it's not older than what we have.
- * total_attacks only grows within a boss, and seq only grows across bosses.
+ * revision grows for attacks and scroll effects; seq grows across bosses.
  * @param {any} boss @returns {boolean} whether anything changed */
 export function applyBoss(boss) {
+  // Community bosses arrive from the database rather than the deployed JSON.
+  // Carry their definition with the live snapshot so already-open games can
+  // render the next queued boss without a refresh.
+  if (boss.definition && state.content && !state.content.bosses.some((/** @type {any} */ b) => b.id === boss.def_id)) {
+    state.content.bosses.push(boss.definition);
+  }
   const cur = state.boss;
-  if (cur && (boss.seq < cur.seq || (boss.seq === cur.seq && boss.total_attacks < cur.total_attacks)))
+  if (cur && (boss.seq < cur.seq || (boss.seq === cur.seq && (boss.revision ?? boss.total_attacks) < (cur.revision ?? cur.total_attacks))))
     return false;
-  if (cur && boss.seq === cur.seq && boss.total_attacks === cur.total_attacks && boss.status === cur.status)
+  if (cur && boss.seq === cur.seq && (boss.revision ?? boss.total_attacks) === (cur.revision ?? cur.total_attacks) && boss.status === cur.status)
     return false;
   state.boss = boss;
   return true;
@@ -82,7 +88,16 @@ export const rarityById = (id) => state.content?.rarities.find((/** @type {any} 
 /** @param {string} id */
 export const boxById = (id) => state.content?.boxes?.find((/** @type {any} */ b) => b.id === id);
 /** @param {string} id */
-export const bossDef = (id) => state.content?.bosses.find((/** @type {any} */ b) => b.id === id);
+export const bossDef = (id) => state.content?.bosses.find((/** @type {any} */ b) => b.id === id)
+  ?? (state.boss?.def_id === id ? state.boss.definition : undefined);
+
+export const SCROLLS = {
+  freezing: { name: "FREEZING SCROLL", mini: "*/\\*", color: "#8bdcff", description: "Freezes everyone online for 10 seconds. No attacks can be made.", art: ["    .-=================-.", "  _/  *   /\\   /\\  *  \\_", " / *   /\\/  \\/  \\   * \\", "|        F R E E Z E      |", "|   *      \\  /      *   |", " \\_   /\\   \\/   /\\   _/", "   '==v============v=='"] },
+  poison: { name: "POISON SCROLL", mini: "o(x)o", color: "#75e36d", description: "Poisons the boss for 10 seconds, dealing chip damage over time.", art: ["    .-=================-.", "  _/   o    O    o      \\_", " /       .-^^-.      o   \\", "|       / x  x \\          |", "|       \\  __ /  P O I S O N|", " \\_  o  '----'     O   _/", "   '==o============O=='"] },
+  treasure: { name: "TREASURE SCROLL", mini: "*<>$*", color: "#ffd45c", description: "Doubles item and loot-box drop chances for everyone for 10 seconds.", art: ["    .-=================-.", "  _/  *    $    <>   *  \\_", " /      .--------.       \\", "|      /_|_|__|_|_\\      |", "|      |  T R E A S U R E |", " \\_  * '--------'  $  _/", "   '==$============*=='"] },
+  attack_steal: { name: "ATTACK STEAL SCROLL", mini: "[*]->+", color: "#dc8cff", description: "Steals every attack held by online players, resets them to 0, then gives you the stolen total plus +1 per online player, capped at 100.", art: ["    .-=================-.", "  _/ [*]  [*]  [*]     \\_", " /      \\   |   /        \\", "|         \\  |  /         |", "|      ---> [+] <---       |", " \\_   A T T A C K S   _/", "   '==^============^=='"] },
+  boss_heal: { name: "BOSS HEAL SCROLL", mini: "+<3+", color: "#ff6e62", description: "Restores 10% of the boss's maximum life. Usable only at 89% HP or lower.", art: ["    .-=================-.", "  _/    .:::. .:::.     \\_", " /     :::::::::::::     \\", "|       ':::::::::'       |", "|         ':::::'  +10%   |", " \\_         ':'       _/", "   '==+============+=='"] },
+};
 
 /**
  * Boss-flavoured text (taunts, epitaph, prompts) written for the boss's

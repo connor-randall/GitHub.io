@@ -45,6 +45,9 @@
 .gal-controls input#gal-player { width: 18ch; border-color: var(--amber); }
 .gal-boxes, .gal-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 .gal-boxes { margin-bottom: 14px; }
+.gal-subhead { color: var(--amber); font: inherit; margin: 18px 0 2px; }
+.gal-scrolls { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.gal-scroll .art { color: var(--amber); }
 .gal-card { border: 1px dashed #4d483c; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
 .gal-card pre { font-size: 10px; }
 .gal-box pre { color: var(--amber); align-self: center; }
@@ -81,3 +84,98 @@
 .gal-held { font-size: 10px; color: var(--amber); }
 .gal-held .dim { color: var(--dim); }
 .gal-held .inline-btn { font-size: 10px; }
+
+.rotate-form { margin-top: 12px; }
+.adm .rotate-form .rotate-label { flex: 1 1 100%; display: block; color: var(--amber); font-weight: 800; }
+.admin .rotate-form textarea {
+  display: block; width: 100%; box-sizing: border-box; margin: 6px 0 2px; resize: vertical;
+  background: var(--bg-2); color: var(--fg); border: 1px dashed var(--dim); border-radius: 0;
+  font: inherit; font-size: 16px; font-weight: 400; padding: 4px 6px;
+}
+.admin .rotate-form textarea:focus { outline: none; border-color: var(--amber); }
+.rotate-now { white-space: pre-wrap; margin: 6px 0 0; }
+
+.poll-list { margin-top: 6px; }
+.adm form.poll-admin { gap: 4px 12px; padding: 6px 0; }
+.poll-admin-state { font-size: 12px; letter-spacing: .06em; }
+.poll-admin-state.live { color: var(--amber); }
+.poll-admin-state.ok { color: var(--green); }
+.poll-admin-q { flex: 1 1 60%; overflow-wrap: anywhere; }
+.admin .poll-form input[name="question"] { flex: 1; width: auto; min-width: 0; text-transform: none; }
+
+/* ---------- badges ---------- */
+.admin .badge-make input[type="color"] { width: 3.2em; height: 1.9em; padding: 0 2px; cursor: pointer; }
+.admin .badge-make input.badge-symbol-input { width: 3ch; text-align: center; }
+.admin .badge-make input[type="checkbox"] { width: auto; }
+.badge-preview-box { flex-basis: 100%; margin: 4px 0 0; font-size: 13px; line-height: 1.35; color: var(--fg); }
+.badge-preview-box .tip-title { color: var(--amber); }
+.badge-admin-list { margin-top: 6px; }
+.adm form.badge-admin { gap: 4px 12px; padding: 6px 0; }
+.badge-admin-title { color: var(--fg); font-weight: 700; }
+.adm details.fold > summary { padding: 2px 0; }
+.adm details.fold:not([open]) > summary h2 { margin-bottom: 0; color: var(--dim); }
+
+/* The owner's refill station and private wallet ledger. */
+.admin-power { border-top: 1px dashed var(--amber); border-bottom: 1px dashed var(--amber); padding: 18px 0; }
+.power-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 12px; }
+.adm .power-grid form { display: flex; flex-direction: column; align-items: flex-start; border: 0; }
+.power-button { display: block; white-space: pre; border: 0; padding: 8px 0; background: none; color: var(--green); font-size: clamp(12px, 1.7vw, 17px); line-height: 1.35; cursor: pointer; }
+.power-button.ultimate { color: var(--amber); }
+.power-button:hover { text-shadow: 0 0 10px currentColor; background: var(--bg-2); }
+.power-button:disabled { opacity: .5; cursor: wait; }
+.shard-scroll { overflow-x: auto; }
+.shard-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+.shard-table caption { text-align: left; margin-bottom: 8px; }
+.shard-table th, .shard-table td { padding: 8px; text-align: left; border-bottom: 1px dotted var(--faint); }
+.shard-table th { color: var(--amber); }
+.shard-table .shard-balance { color: var(--green); font-variant-numeric: tabular-nums; }
+.shard-pages { display: flex; justify-content: space-between; }
+.shard-pages button:disabled { opacity: .35; cursor: default; }
+@media (max-width: 600px) { .power-grid { grid-template-columns: 1fr; gap: 4px; } .power-button { font-size: 16px; } }
+
+/* ---------- [ ODDS ] box reward checkboxes ---------- */
+.odds-toggle { background: none; border: 0; color: var(--green); font: inherit; padding: 0 2px; cursor: pointer; }
+.odds-toggle[aria-pressed="false"] { color: var(--dim); }
+.odds-toggle:hover, .odds-toggle:focus-visible { background: var(--fg); color: var(--bg); outline: none; }
+.odds-row.odds-off .odds-what, .odds-row.odds-off .odds-now { color: var(--faint); text-decoration: line-through; }
+.odds-toggle { display: inline-block; }  /* keeps the strike-through off the [ ] */
+.odds-toggle:disabled { cursor: not-allowed; }
+.scroll-lock { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin: 16px 0; padding: 12px; border: 1px solid var(--faint); }
+.scroll-lock.enabled { border-color: var(--green); }
+.scroll-lock.locked { border-color: var(--amber); }
+
+.shard-give { margin-bottom: 6px; }
+.admin .shard-give input[name="amount"] { width: 10ch; }
+
+/* ---------- community boss moderation ---------- */
+.boss-design-queue { margin: 10px 0 14px; padding: 8px; border: 1px dashed var(--faint); font-size: 11px; }
+.boss-design-queue pre { margin: 0; }
+.boss-queue-mode { margin: 9px 0 0; padding: 8px 0 0; border: 0; border-top: 1px dashed var(--faint); }
+.boss-random-label { display: inline-flex; align-items: center; gap: 5px; margin-right: 8px; cursor: pointer; }
+.boss-queue-list > b { display: block; margin-bottom: 5px; color: var(--amber); }
+.boss-queue-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-height: 25px; }
+.boss-queue-row > span { flex: 1 1 250px; }
+.boss-queue-row form { margin: 0; padding: 0; border: 0; }
+.boss-queue-row.running { color: var(--green); }
+.boss-queue-more { margin-top: 6px; }
+.boss-queue-add { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 10px 0 0; }
+.boss-queue-add > b { flex: 1 0 100%; color: var(--amber); }
+.boss-queue-add select:first-of-type { flex: 1 1 260px; }
+.boss-design-library { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--faint); }
+.boss-library-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 5px 12px; margin-top: 6px; }
+.boss-library-row form { margin: 0; padding: 0; border: 0; }
+.boss-design-card { margin: 12px 0; padding: 10px; border: 1px solid var(--faint); }
+.boss-design-card.pending { border-color: var(--amber); }
+.boss-design-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; color: var(--amber); }
+.boss-design-meta, .boss-design-flavor { margin: 4px 0; color: var(--dim); font-size: 11px; }
+.boss-design-frames { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 10px 0; }
+.boss-design-frame { min-width: 0; min-height: 12em; border: 1px dashed var(--faint); padding: 8px; overflow: auto; }
+.boss-design-frame.boss-design-death { grid-column: 1 / -1; }
+.boss-design-frame b { display: block; margin-bottom: 5px; color: var(--dim); font-size: 10px; }
+.boss-design-frame pre { margin: 0; color: var(--boss-design-color, var(--amber)); font-size: 10px; line-height: 1.08; }
+.boss-design-actions { display: flex; gap: 10px; }
+.boss-design-actions form { border: 0; padding: 0; }
+@media (max-width: 760px) {
+  .boss-design-frames { grid-template-columns: 1fr; }
+  .boss-design-frame.boss-design-death { grid-column: auto; }
+}

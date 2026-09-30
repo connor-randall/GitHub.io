@@ -2,25 +2,28 @@
 // and live.js (everyone's actions); both land in store.js, and views
 // re-render from there.
 
-import * as api from "./api.js?v=a46acbc584";
-import { acceptClaim, forwardToCanonical } from "./home.js?v=a46acbc584";
-import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=a46acbc584";
-import { connectLive } from "./live.js?v=a46acbc584";
-import * as sound from "./sound.js?v=a46acbc584";
-import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=a46acbc584";
-import { openBox } from "./ui/bag.js?v=a46acbc584";
-import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=a46acbc584";
-import { hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=a46acbc584";
-import { maybeShowDeath, previewDeath } from "./ui/ceremony.js?v=a46acbc584";
-import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=a46acbc584";
-import { addFreshEvents, renderFeed, resetFeedHistory, tickAges } from "./ui/feed.js?v=a46acbc584";
-import { boxDropReveal, busyOverlay, popup, shake } from "./ui/fx.js?v=a46acbc584";
-import { showError } from "./ui/errors.js?v=a46acbc584";
-import { showIntro } from "./ui/nameform.js?v=a46acbc584";
-import { setPinned, showNotice } from "./ui/notice.js?v=a46acbc584";
-import { loadHistory } from "./ui/history.js?v=a46acbc584";
-import { loadRanks, redrawRanks } from "./ui/ranks.js?v=a46acbc584";
-import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=a46acbc584";
+import * as api from "./api.js?v=b7420735b5";
+import { acceptClaim, forwardToCanonical } from "./home.js?v=b7420735b5";
+import { LOGO_STACK, LOGO_WIDE, autoFit, setArt } from "./ascii.js?v=b7420735b5";
+import { connectLive } from "./live.js?v=b7420735b5";
+import * as sound from "./sound.js?v=b7420735b5";
+import { applyBoss, bossDef, boxById, emit, mergeFeed, on, state } from "./store.js?v=b7420735b5";
+import { openBox } from "./ui/bag.js?v=b7420735b5";
+import { pulse, revealAmbient, setMood, startAmbient } from "./ui/ambient.js?v=b7420735b5";
+import { bossHealEffect, hurt, renderBoss, startTaunts, tickNextBoss } from "./ui/boss.js?v=b7420735b5";
+import { maybeShowDeath, previewDeath } from "./ui/ceremony.js?v=b7420735b5";
+import { initControls, renderControls, tickCountdown } from "./ui/controls.js?v=b7420735b5";
+import { addFreshEvents, renderFeed, resetFeedHistory, streamEvents, tickAges } from "./ui/feed.js?v=b7420735b5";
+import { boxDropReveal, busyOverlay, popup, shake, shardsReveal, stolenReveal } from "./ui/fx.js?v=b7420735b5";
+import { showError } from "./ui/errors.js?v=b7420735b5";
+import { showIntro } from "./ui/nameform.js?v=b7420735b5";
+import { setPinned, setRotating, showNotice } from "./ui/notice.js?v=b7420735b5";
+import { loadHistory } from "./ui/history.js?v=b7420735b5";
+import { initBadges, loadBadgeDefs } from "./ui/badges.js?v=b7420735b5";
+import { initBoxOdds } from "./ui/boxodds.js?v=b7420735b5";
+import { loadPolls } from "./ui/polls.js?v=b7420735b5";
+import { loadRanks, redrawRanks } from "./ui/ranks.js?v=b7420735b5";
+import { currentTab, initTabs, renderPanels } from "./ui/tabs.js?v=b7420735b5";
 
 /** This page's own build stamp (main.js?v=...), empty for an unbuilt dev copy. */
 const MY_VERSION = new URL(import.meta.url).searchParams.get("v") ?? "";
@@ -73,6 +76,9 @@ function reactToOthers(events) {
   const t = performance.now();
   for (const e of events) {
     if (e.player_id && e.player_id === state.me?.id) continue;
+    if (e.kind === "scroll_use" && e.scroll_id === "boss_heal") {
+      bossHealEffect(e.name ?? "SOMEONE", e.amount ?? 0, e.shards ?? 100);
+    }
     if (e.kind === "crit" || e.kind === "ultimate") {
       popup(`-${e.damage.toLocaleString("en-US")}`, "crit");
       hurt(300);
@@ -90,6 +96,9 @@ function reactToOthers(events) {
         state.me = m;
         emit("me");
       }).catch(() => {});
+    }
+    if (e.kind === "scroll_use") {
+      api.getMe().then((m) => { state.me = m; emit("me"); }).catch(() => {});
     }
   }
 }
@@ -154,6 +163,8 @@ async function boot() {
 
   initControls();
   initTabs();
+  initBadges();
+  initBoxOdds();
   startAmbient();
 
   const snd = $("snd");
@@ -181,6 +192,7 @@ async function boot() {
       if (s.server_time) state.serverSkew = s.server_time - Date.now() / 1000;
       reloadIfOutdated(s.web_version);
       if ("pinned" in s) setPinned(s.pinned);
+      if ("rotating" in s) setRotating(s.rotating);
       if (applyBoss(s.boss)) emit("boss");
       const fresh = mergeFeed(s.feed ?? []);
       if (!feedDrawn) {
@@ -190,29 +202,41 @@ async function boot() {
       setOnline(s.online ?? 0);
     },
     onUpdate: (u) => {
-      const fresh = mergeFeed(u.events);
       if (applyBoss(u.boss)) emit("boss");
-      if (fresh.length) {
-        addFreshEvents(fresh);
-        reactToOthers(fresh);
-      }
+      // Lines stream in at a steady pace (bursts don't land in one lump); the
+      // boss reacts to each as it appears.
+      streamEvents(u.events ?? [], reactToOthers);
       setOnline(u.online ?? state.online);
     },
     onOnline: setOnline,
     // The admin gifted everyone online a loot box: pop it up right here.
+    onShards: (s) => {
+      api.getMe().then((m) => {
+        state.me = m;
+        emit("me");
+      }).catch(() => {});
+      sound.loot();
+      shardsReveal(s.amount);
+    },
+    onScrollNotice: (s) => {
+      api.getMe().then((m) => { state.me = m; emit("me"); }).catch(() => {});
+      sound.loot();
+      stolenReveal(s.name, s.amount);
+    },
     onGift: (g) => {
       const box = boxById(g.box_id);
       api.getMe().then((m) => {
         state.me = m;
         emit("me");
       }).catch(() => {});
-      if (box) boxDropReveal(box, () => openBox(box), "A GIFT FROM ***ADMIN***");
+      if (box) boxDropReveal(box, () => openBox(box), g.title ?? "A GIFT FROM ***ADMIN***");
     },
     // The admin changed something: take the server's word for everything,
     // even if it "goes backwards" (a reset lowers HP totals).
     onNotice: (n) => showNotice(n.text),
     onRefresh: (r) => {
       setPinned(r.pinned);
+      setRotating(r.rotating);
       state.boss = null;
       state.feed = [];
       applyBoss(r.boss);
@@ -224,6 +248,11 @@ async function boot() {
         emit("me");
         renderPanels();
       }).catch(() => {});
+      // A new or deleted poll / badge: refetch (spread out, so every open page doesn't ask at once).
+      setTimeout(() => {
+        loadPolls(true);
+        loadBadgeDefs(true);
+      }, Math.random() * 3000);
     },
     onMode: setLink,
   });
@@ -231,6 +260,7 @@ async function boot() {
   try {
     state.me = await api.ensurePlayer();
     emit("me");
+    loadPolls(true); // for the [ POLLS n ] badge
     live.identify(); // a brand-new player's token exists only now
     maybeShowDeath(state.boss); // came back after a boss died: show what happened
     // Named players go straight in; first-timers get the intro (naming
@@ -255,7 +285,7 @@ async function boot() {
   startTaunts();
   refit();
 
-  setInterval(tickCountdown, 1000);
+  setInterval(() => { tickCountdown(); renderControls(); renderBoss(); }, 1000);
   setInterval(tickNextBoss, 1000);
   setInterval(tickAges, 10000);
   // Slow safety net: keep our own counters honest even if an event was missed.

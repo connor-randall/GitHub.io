@@ -1,12 +1,12 @@
 // Admin panel. Every button is a <form data-action="..."> whose inputs become
 // the action's parameters; the server validates everything.
 
-import { API_BASE, getContent } from "./api.js?v=a46acbc584";
-import { forwardToCanonical } from "./home.js?v=a46acbc584";
-import { el, fmt, padR, setArt } from "./ascii.js?v=a46acbc584";
-import { rarityById, state } from "./store.js?v=a46acbc584";
-import { effectParts } from "./ui/effects.js?v=a46acbc584";
-import { itemLines } from "./ui/fx.js?v=a46acbc584";
+import { API_BASE, getContent } from "./api.js?v=b7420735b5";
+import { forwardToCanonical } from "./home.js?v=b7420735b5";
+import { duration, el, fmt, padR, setArt } from "./ascii.js?v=b7420735b5";
+import { rarityById, SCROLLS, state } from "./store.js?v=b7420735b5";
+import { effectParts } from "./ui/effects.js?v=b7420735b5";
+import { itemLines } from "./ui/fx.js?v=b7420735b5";
 
 const KEY = "omhp.admin";
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
@@ -74,6 +74,57 @@ function oddsRow(label, now, edit = []) {
   return row;
 }
 
+/** [x] / [ ] in front of a loot box reward: switch it off or on right away
+ * (the others share its chance in proportion). @param {any} b @param {any} r */
+function boxRowToggle(b, r) {
+  const t = /** @type {HTMLButtonElement} */ (el("button", "odds-toggle", r.off ? "[ ]" : "[x]"));
+  if (r.locked) {
+    t.disabled = true;
+    t.title = "Scroll rewards are locked by the master switch above.";
+    return t;
+  }
+  t.type = "button";
+  t.setAttribute("aria-pressed", String(!r.off));
+  t.title = r.off ? "switched off: never rolled. click to switch back on" : "click to stop this being rolled";
+  t.addEventListener("click", async () => {
+    t.disabled = true;
+    try {
+      const res = await call("/api/admin/action",
+        { action: "set_box_row", box_id: b.id, row: r.row, on: Boolean(r.off), announce: announcing() });
+      log(res.message, true);
+      await refresh();
+    } catch (e) {
+      log(/** @type {Error} */ (e).message, false);
+      t.disabled = false;
+    }
+  });
+  return t;
+}
+
+/** Master launch switch used in both the chest gallery and detailed odds panel. @param {any} o */
+function scrollLockControl(o) {
+  const wrap = el("div", `scroll-lock ${o.scrolls_enabled ? "enabled" : "locked"}`);
+  const toggle = /** @type {HTMLButtonElement} */ (el("button", "inline-btn",
+    o.scrolls_enabled ? "[x] SCROLL DROPS + CHEST REWARDS: ON" : "[ ] SCROLL DROPS + CHEST REWARDS: OFF"));
+  toggle.type = "button";
+  toggle.addEventListener("click", async () => {
+    toggle.disabled = true;
+    try {
+      const res = await call("/api/admin/action",
+        { action: "set_scrolls", on: !o.scrolls_enabled, announce: announcing() });
+      log(res.message, true);
+      await refresh();
+    } catch (e) {
+      log(/** @type {Error} */ (e).message, false);
+      toggle.disabled = false;
+    }
+  });
+  wrap.append(toggle, el("span", "hint", o.scrolls_enabled
+    ? " players can find scrolls from attacks and random-scroll chest rewards"
+    : " launch locked; admin gifting still works"));
+  return wrap;
+}
+
 /** The editable [ ODDS ] table. @param {any} o */
 function renderOdds(o) {
   const host = $("odds");
@@ -85,7 +136,8 @@ function renderOdds(o) {
   for (const r of o.per_attack) {
     const now = `${pct(r.chance)}  ${r.one_in}`;
     if (!r.key) {
-      parts.push(oddsRow(r.what.toUpperCase(), now, [el("span", "dim", "(adds up the rarities below)")]));
+      const note = r.what === "any scroll" ? "(master launch lock)" : "(adds up the rarities below)";
+      parts.push(oddsRow(r.what.toUpperCase(), now, [el("span", "dim", note)]));
       continue;
     }
     const input = oddsInput(r.base, "any");
@@ -102,6 +154,8 @@ function renderOdds(o) {
   if (m.loot !== 1 || m.box !== 1)
     parts.push(el("div", "hint", `"now" includes ITEM DROPS x${m.loot} and LOOT BOXES x${m.box} from RULES; the 1 in N you type is before those.`));
 
+  parts.push(scrollLockControl(o));
+
   for (const b of o.boxes) {
     const share = oddsInput(Math.round(b.share * 10000) / 100, "any");
     collect.push(() => {
@@ -112,8 +166,14 @@ function renderOdds(o) {
       el("span", "dim", " % of boxes"));
     parts.push(head);
     const rows = b.rewards.map((/** @type {any} */ r) => {
-      const input = oddsInput(Math.round(r.chance * 10000) / 100, "any");
-      parts.push(oddsRow(r.what.toUpperCase(), pct(r.chance), [input, el("span", "dim", " %")]));
+      // The % box edits this reward's share with nothing switched off, so a
+      // switched-off one keeps its number for when it comes back on.
+      const input = oddsInput(Number(((r.base ?? r.chance) * 100).toFixed(6)), "any");
+      input.disabled = Boolean(r.off);
+      const row = oddsRow(r.what.toUpperCase(), r.off ? "off" : pct(r.chance), [input, el("span", "dim", " %")]);
+      row.classList.toggle("odds-off", Boolean(r.off));
+      row.firstElementChild?.prepend(boxRowToggle(b, r), " ");
+      parts.push(row);
       return input;
     });
     collect.push(() => {
@@ -161,6 +221,176 @@ function showLogin() {
 /** @type {any} */
 let ov = null;
 
+const DESIGN_TINTS = {
+  amber: "#ffb000", red: "#ff6e62", green: "#75e36d",
+  cyan: "#8bdcff", purple: "#dc8cff", white: "#f0eadc",
+};
+
+/** @param {string} playerId @param {string} decision */
+function reviewDesignForm(playerId, decision) {
+  const form = /** @type {HTMLFormElement} */ (el("form"));
+  const player = /** @type {HTMLInputElement} */ (el("input"));
+  player.type = "hidden";
+  player.name = "player_id";
+  player.value = playerId;
+  const choice = /** @type {HTMLInputElement} */ (el("input"));
+  choice.type = "hidden";
+  choice.name = "decision";
+  choice.value = decision;
+  const button = el("button", `inline-btn${decision === "deny" ? " danger" : ""}`,
+    decision === "approve" ? "[ APPROVE + QUEUE ]" : "[ DENY ]");
+  form.append(player, choice, button);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submit(form, "review_boss_design", button);
+  });
+  return form;
+}
+
+/** @param {string} bossId */
+function reuseBossForm(bossId) {
+  const form = /** @type {HTMLFormElement} */ (el("form"));
+  const input = /** @type {HTMLInputElement} */ (el("input"));
+  input.type = "hidden";
+  input.name = "boss_id";
+  input.value = bossId;
+  const button = el("button", "inline-btn", "[ QUEUE AGAIN ]");
+  form.append(input, button);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submit(form, "reuse_community_boss", button);
+  });
+  return form;
+}
+
+/** @param {string} entryId @param {string} direction @param {boolean} disabled */
+function moveBossForm(entryId, direction, disabled) {
+  const form = /** @type {HTMLFormElement} */ (el("form"));
+  const id = /** @type {HTMLInputElement} */ (el("input"));
+  id.type = "hidden";
+  id.name = "entry_id";
+  id.value = entryId;
+  const move = /** @type {HTMLInputElement} */ (el("input"));
+  move.type = "hidden";
+  move.name = "direction";
+  move.value = direction;
+  const button = /** @type {HTMLButtonElement} */ (el("button", "inline-btn",
+    direction === "up" ? "[ UP ]" : "[ DOWN ]"));
+  button.disabled = disabled;
+  form.append(id, move, button);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submit(form, "move_boss_queue_entry", button);
+  });
+  return form;
+}
+
+/** @param {any[]} choices */
+function addBossForm(choices) {
+  const form = /** @type {HTMLFormElement} */ (el("form", "boss-queue-add"));
+  const boss = /** @type {HTMLSelectElement} */ (el("select"));
+  boss.name = "boss_id";
+  for (const choice of choices) {
+    const label = choice.community
+      ? `${choice.name} :: COMMUNITY BY ${choice.creator_name}` : `${choice.name} :: BUILT-IN`;
+    const option = /** @type {HTMLOptionElement} */ (el("option", "", label));
+    option.value = choice.id;
+    boss.append(option);
+  }
+  const position = /** @type {HTMLSelectElement} */ (el("select"));
+  position.name = "position";
+  for (let i = 1; i <= 10; i += 1) {
+    const option = /** @type {HTMLOptionElement} */ (el("option", "", `POSITION ${i}`));
+    option.value = String(i);
+    position.append(option);
+  }
+  const button = el("button", "inline-btn", "[ ADD BOSS ]");
+  form.append(el("b", "", "ADD BOSS TO QUEUE"), boss, position, button);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submit(form, "add_boss_to_queue", button);
+  });
+  return form;
+}
+
+/** @param {any[]} designs @param {any[]} queue @param {boolean} randomEnabled
+ * @param {any[]} preview @param {any[]} choices @param {any} current */
+function renderBossDesigns(designs, queue, randomEnabled = false, preview = [], choices = [], current = {}) {
+  const queueHost = $("boss-queue");
+  const libraryHost = $("boss-design-library");
+  const used = queue.filter((/** @type {any} */ b) => b.status === "used");
+  const mode = /** @type {HTMLFormElement} */ (el("form", "boss-queue-mode"));
+  const random = /** @type {HTMLInputElement} */ (el("input"));
+  random.type = "checkbox";
+  random.name = "enabled";
+  random.checked = randomEnabled;
+  const randomLabel = el("label", "boss-random-label");
+  randomLabel.append(random, " RANDOMIZE BOSS IF NONE IN MANUAL QUEUE");
+  const saveMode = el("button", "inline-btn", "[ SAVE MODE ]");
+  mode.append(randomLabel, saveMode);
+  mode.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submit(mode, "set_community_queue_random", saveMode);
+  });
+  const queueList = el("div", "boss-queue-list");
+  queueList.append(el("b", "", `CURRENT BOSS :: ${current.name ?? "UNKNOWN"}`),
+    el("b", "", "NEXT 10 BOSSES"));
+  preview.slice(0, 10).forEach((boss, index) => {
+    const row = el("div", "boss-queue-row");
+    const slot = index === 0 ? "NEXT BOSS" : String(index + 1);
+    row.append(el("span", "", `${slot}: ${boss.name}${boss.community
+      ? `  ::  BY ${boss.creator_name}` : "  ::  [ BUILT-IN ]"}${boss.fallback
+      ? `  ::  [ ${randomEnabled ? "RANDOM FALLBACK" : "ROTATION FALLBACK"} ]` : ""}`));
+    if (boss.queue_entry_id) {
+      if (index > 0) row.append(moveBossForm(boss.queue_entry_id, "up", false));
+      if (index < 9 && preview[index + 1]?.queue_entry_id) {
+        row.append(moveBossForm(boss.queue_entry_id, "down", false));
+      }
+    }
+    queueList.append(row);
+  });
+  if (!preview.length) queueList.append(el("div", "dim", "NO MORE BOSSES DEFINED"));
+  const library = el("div", "boss-library-content");
+  if (used.length) {
+    library.append(el("b", "", "APPROVED BOSS LIBRARY"));
+    for (const boss of used) {
+      const row = el("div", "boss-library-row");
+      row.append(el("span", "", `${boss.name} :: BY ${boss.creator_name}`), reuseBossForm(boss.id));
+      library.append(row);
+    }
+  }
+  queueHost.replaceChildren(queueList, addBossForm(choices), mode);
+  libraryHost.hidden = !used.length;
+  libraryHost.replaceChildren(library);
+  const cards = designs.map((/** @type {any} */ design) => {
+    const card = el("article", `boss-design-card ${design.status}`);
+    const head = el("div", "boss-design-head");
+    head.append(el("b", "", design.name), el("span", "", `[ ${design.status.toUpperCase()} ]`));
+    const frames = el("div", "boss-design-frames");
+    for (const [label, key] of [
+      ["PHASE I", "phase1_art"], ["PHASE I HURT", "phase1_hurt_art"],
+      ["PHASE II", "phase2_art"], ["PHASE II HURT", "phase2_hurt_art"],
+      ["PHASE III", "phase3_art"], ["PHASE III HURT", "phase3_hurt_art"], ["DEATH", "death_art"],
+    ]) {
+      const frame = el("div", "boss-design-frame");
+      if (key === "death_art") frame.classList.add("boss-design-death");
+      frame.style.setProperty("--boss-design-color", DESIGN_TINTS[design.color] ?? DESIGN_TINTS.amber);
+      frame.append(el("b", "", label), el("pre", "art", design[key]));
+      frames.append(frame);
+    }
+    card.append(head,
+      el("div", "boss-design-meta", `BY ${design.creator_name}  ::  COLOR ${design.color.toUpperCase()}`),
+      el("div", "boss-design-flavor", `"${design.flavor}"`), frames);
+    if (design.status === "pending") {
+      const actions = el("div", "boss-design-actions");
+      actions.append(reviewDesignForm(design.player_id, "approve"), reviewDesignForm(design.player_id, "deny"));
+      card.append(actions);
+    }
+    return card;
+  });
+  $("boss-design-list").replaceChildren(...(cards.length ? cards : [el("p", "hint", "no boss submissions yet.")]));
+}
+
 async function refresh() {
   ov = await call("/api/admin/overview");
   $("login").hidden = true;
@@ -179,6 +409,23 @@ async function refresh() {
 
   $("pin-now").textContent = ov.pinned ? `PINNED NOW: ${ov.pinned.text}` : "nothing pinned.";
   $("unpin-btn").hidden = !ov.pinned;
+
+  renderPolls(ov.polls ?? []);
+  renderBadgeAdmin(ov.badges ?? []);
+  renderBossDesigns(ov.boss_designs ?? [], ov.community_queue ?? [],
+    ov.community_queue_random === true, ov.boss_queue_preview ?? [],
+    ov.boss_queue_choices ?? [], ov.boss ?? {});
+
+  // Rotation: fill the box with what's saved, unless you're mid-edit.
+  const rot = ov.rotating?.messages ?? [];
+  const box = /** @type {HTMLTextAreaElement} */ ($("rotate-text"));
+  const saved = rot.join("\n");
+  if (document.activeElement !== box && (box.value === "" || box.value === box.dataset.saved)) box.value = saved;
+  box.dataset.saved = saved;
+  $("rotate-stop").hidden = !rot.length;
+  $("rotate-now").textContent = rot.length
+    ? `ROTATING NOW (${rot.length}, 1 min each):\n` + rot.map((m, i) => `${i + 1}. ${m}`).join("\n")
+    : "nothing rotating.";
 
   const hp = /** @type {HTMLInputElement} */ (document.querySelector('[data-action="set_hp"] [name="hp"]'));
   hp.max = String(b.max_hp);
@@ -216,6 +463,33 @@ async function refresh() {
         `${padR(p.name, 17)} ${padR(fmt(p.total_damage), 9)} ${padR(String(p.total_attacks), 5)} ${p.banned ? "BANNED " : ""}${p.id}`,
     ),
   ].join("\n");
+  await loadShards();
+}
+
+let shardPage = 0;
+let shardQuery = "";
+let shardRequest = 0;
+
+async function loadShards() {
+  const request = ++shardRequest;
+  try {
+    const data = await call(`/api/admin/shards?page=${shardPage}&q=${encodeURIComponent(shardQuery)}`);
+    if (request !== shardRequest || $("panel").hidden) return;
+    shardPage = data.page;
+    $("shard-rows").replaceChildren(...data.players.map((/** @type {any} */ p) => {
+      const row = el("tr", "");
+      const name = el("td", "", p.name);
+      name.title = p.id;
+      row.append(name, el("td", "shard-balance", fmt(p.shards)), el("td", "dim", p.banned ? "BANNED" : "ACTIVE"));
+      return row;
+    }));
+    const start = data.total ? data.page * data.page_size + 1 : 0;
+    $("shard-summary").textContent = `${start}–${Math.min((data.page + 1) * data.page_size, data.total)} of ${fmt(data.total)} players :: ${fmt(data.total_shards)} shards${shardQuery ? " matching search" : " total"}`;
+    /** @type {HTMLButtonElement} */ ($("shard-prev")).disabled = data.page === 0;
+    /** @type {HTMLButtonElement} */ ($("shard-next")).disabled = (data.page + 1) * data.page_size >= data.total;
+  } catch (e) {
+    if (request === shardRequest) $("shard-summary").textContent = /** @type {Error} */ (e).message;
+  }
 }
 
 // ------------------------------------------------------------ item gallery
@@ -257,6 +531,19 @@ async function renderGallery() {
         return card;
       }),
     );
+    $("gal-scrolls").replaceChildren(
+      ...Object.entries(SCROLLS).map(([id, def]) => {
+        const card = el("div", "gal-card gal-scroll");
+        const pre = el("pre", "art");
+        const give = el("button", "inline-btn", "[ GIVE ]");
+        give.addEventListener("click", () => give1("grant_scroll", { scroll_id: id }, def.name));
+        const held = el("div", "gal-held");
+        held.id = `held-scroll-${id}`;
+        card.append(pre, el("div", "gal-name", def.name), el("div", "gal-fx", def.description), held, give);
+        requestAnimationFrame(() => setArt(pre, def.art, 10));
+        return card;
+      }),
+    );
   }
   drawGallery();
 }
@@ -270,6 +557,7 @@ function drawGallery() {
   const sort = /** @type {HTMLSelectElement} */ ($("gal-sort")).value;
   /** @type {Record<string, {players: number, copies: number}>} */
   const owned = ov?.ownership ?? {};
+  $("gal-scroll-lock").replaceChildren(scrollLockControl(ov.odds));
   const held = (/** @type {any} */ i) => owned[i.id]?.players ?? 0;
   const items = content.items
     .filter((/** @type {any} */ i) => (!rarity || i.rarity === rarity) && (!slot || i.slot === slot))
@@ -285,6 +573,11 @@ function drawGallery() {
     const o = ov?.box_ownership?.[b.id];
     const line = document.getElementById(`held-${b.id}`);
     if (line) line.replaceChildren(heldLine(o, { box_id: b.id }));
+  }
+  for (const id of Object.keys(SCROLLS)) {
+    const o = ov?.scroll_ownership?.[id];
+    const line = document.getElementById(`held-scroll-${id}`);
+    if (line) line.replaceChildren(heldLine(o, { scroll_id: id }));
   }
   $("gal-grid").replaceChildren(
     ...items.map((/** @type {any} */ item) => {
@@ -346,10 +639,108 @@ function params(form) {
     if (!input.name) continue;
     const v = input.value.trim();
     if (v === "" && input.name !== "name" && input.name !== "subtitle") continue;
-    if (input.name === "crit_pct") out.crit_chance = Number(v) / 100;
+    if (input.type === "checkbox") out[input.name] = input.checked;
+    else if (input.name === "crit_pct") out.crit_chance = Number(v) / 100;
     else out[input.name] = input.type === "number" ? Number(v) : v;
   }
   return out;
+}
+
+/** One badge star as it looks by names. @param {any} b */
+function badgeStar(b) {
+  const s = el("span", `badge${b.rainbow ? " badge-rainbow" : ""}`, b.symbol || "*");
+  if (!b.rainbow) s.style.color = b.color;
+  return s;
+}
+
+/** The admin's badges: the GIVE dropdown and the list (holders, [ DELETE ]). @param {any[]} badges */
+function renderBadgeAdmin(badges) {
+  const pick = /** @type {HTMLSelectElement} */ ($("badge-pick"));
+  const was = pick.value;
+  pick.replaceChildren(...badges.map((b) => {
+    const o = /** @type {HTMLOptionElement} */ (el("option", "", `${b.symbol} ${b.title}`));
+    o.value = String(b.id);
+    return o;
+  }));
+  if (badges.some((b) => String(b.id) === was)) pick.value = was;
+  const host = $("badge-list");
+  if (host.querySelector(".armed")) return; // mid-confirm: don't redraw under the click
+  host.replaceChildren(...(badges.length ? badges.map((b) => {
+    const form = /** @type {HTMLFormElement} */ (el("form", "badge-admin"));
+    const id = /** @type {HTMLInputElement} */ (el("input"));
+    id.type = "hidden";
+    id.name = "badge_id";
+    id.value = String(b.id);
+    const tag = el("span", "badges");
+    tag.append("[", badgeStar(b), "]");
+    const del = /** @type {HTMLButtonElement} */ (el("button", "inline-btn danger", "[ DELETE ]"));
+    form.append(id, tag, el("span", "badge-admin-title", b.title), el("span", "hint", b.description || "--"),
+      el("span", "hint", `${fmt(b.holders)} player${b.holders === 1 ? " has" : "s have"} it`), del);
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submit(form, "delete_badge", del);
+    });
+    return form;
+  }) : [el("p", "hint", "no badges made yet.")]));
+}
+
+/** The make-a-badge form's live preview: the star by a name, and its hover box. */
+function drawBadgePreview() {
+  const form = /** @type {HTMLFormElement} */ (document.querySelector('form[data-action="create_badge"]'));
+  const val = (/** @type {string} */ n) => /** @type {HTMLInputElement} */ (form.elements.namedItem(n)).value;
+  const b = {
+    symbol: val("symbol").trim() || "*",
+    color: val("color"),
+    rainbow: /** @type {HTMLInputElement} */ (form.elements.namedItem("rainbow")).checked,
+  };
+  const title = val("title").trim().toUpperCase() || "BADGE NAME";
+  const says = val("description").trim();
+  const lines = [title, ...(says ? [`  ${says}`] : []), "  given by the admin <date>"];
+  const w = Math.max(...lines.map((l, i) => l.length + (i === 0 ? 2 : 0)));
+  const pre = $("badge-preview");
+  const tag = el("span", "badges");
+  tag.append("[", badgeStar(b), "]");
+  const edge = `+${"-".repeat(w + 2)}+\n`;
+  pre.replaceChildren("PREVIEW  ", tag, " SOMEONE\n\n", edge);
+  lines.forEach((l, i) => {
+    const row = el("span", i === 0 ? "tip-title" : "");
+    row.append("| ", ...(i === 0 ? [badgeStar(b), " "] : []), l.padEnd(w - (i === 0 ? 2 : 0)), " |\n");
+    pre.append(row);
+  });
+  pre.append(edge.trimEnd());
+}
+
+/** Every poll with its counts and a [ DELETE ] (two clicks). @param {any[]} polls */
+function renderPolls(polls) {
+  const host = $("poll-list");
+  if (host.querySelector(".armed")) return; // mid-confirm: don't redraw under the click
+  const t = Date.now() / 1000;
+  const rows = polls.map((p) => {
+    const closed = p.closed || p.ends_at <= t;
+    const total = p.yes + p.no;
+    const pct = total ? Math.round((100 * p.yes) / total) : 0;
+    const form = /** @type {HTMLFormElement} */ (el("form", "poll-admin"));
+    form.dataset.action = "delete_poll";
+    const id = /** @type {HTMLInputElement} */ (el("input"));
+    id.type = "hidden";
+    id.name = "poll_id";
+    id.value = String(p.id);
+    const status = closed ? (p.passed ? "PASSED" : "FAILED") : `OPEN ${duration(p.ends_at - t)} left`;
+    const del = /** @type {HTMLButtonElement} */ (el("button", "inline-btn danger", "[ DELETE ]"));
+    form.append(
+      id,
+      el("span", `poll-admin-state ${closed ? (p.passed ? "ok" : "dim") : "live"}`, `#${p.id} ${status}`),
+      el("span", "poll-admin-q", p.question),
+      el("span", "hint", `YES ${fmt(p.yes)} / NO ${fmt(p.no)} (${pct}% yes)`),
+      del,
+    );
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submit(form, "delete_poll", del);
+    });
+    return form;
+  });
+  host.replaceChildren(...(rows.length ? rows : [el("p", "hint", "no polls yet.")]));
 }
 
 /** Two-click confirm for destructive buttons: first click arms for 3 s.
@@ -368,7 +759,12 @@ function disarm(btn) {
 
 /** @param {HTMLFormElement} form @param {string} action @param {HTMLElement | null} btn */
 async function submit(form, action, btn) {
-  if (btn && (form.hasAttribute("data-confirm") || btn.classList.contains("danger"))) {
+  // data-confirm-empty="field": ask twice only when that field is left empty (e.g. "everyone").
+  const emptyField = form.dataset.confirmEmpty;
+  const risky = emptyField
+    ? !(/** @type {HTMLInputElement | null} */ (form.elements.namedItem(emptyField))?.value.trim())
+    : false;
+  if (btn && (form.hasAttribute("data-confirm") || btn.classList.contains("danger") || risky)) {
     if (!armed.has(btn)) {
       armed.set(btn, { label: btn.textContent ?? "", timer: window.setTimeout(() => disarm(btn), 3000) });
       btn.classList.add("armed");
@@ -391,19 +787,24 @@ async function submit(form, action, btn) {
   }
 }
 
+/** Every section folds open/closed; each remembers how you left it (POST starts open). */
 function wireFold() {
-  const fold = /** @type {HTMLDetailsElement} */ ($("gal-fold"));
-  try {
-    fold.open = localStorage.getItem("omhp.admin.gallery") === "open";
-  } catch {
-    /* ignore */
-  }
-  fold.addEventListener("toggle", () => {
+  document.querySelectorAll("details.fold").forEach((node) => {
+    const fold = /** @type {HTMLDetailsElement} */ (node);
+    const key = `omhp.admin.fold.${fold.dataset.fold}`;
     try {
-      localStorage.setItem("omhp.admin.gallery", fold.open ? "open" : "closed");
+      const saved = localStorage.getItem(key) ?? (fold.dataset.fold === "items" ? localStorage.getItem("omhp.admin.gallery") : null);
+      fold.open = saved ? saved === "open" : fold.dataset.fold === "post";
     } catch {
-      /* ignore */
+      fold.open = fold.dataset.fold === "post";
     }
+    fold.addEventListener("toggle", () => {
+      try {
+        localStorage.setItem(key, fold.open ? "open" : "closed");
+      } catch {
+        /* ignore */
+      }
+    });
   });
 }
 
@@ -419,7 +820,11 @@ function fillPreviewBosses(content, current) {
   const sel = /** @type {HTMLSelectElement} */ ($("preview-boss"));
   if (sel.options.length) return;
   for (const b of content.bosses) {
-    const o = /** @type {HTMLOptionElement} */ (el("option", "", `#${String(b.number).padStart(2, "0")} ${b.name}`));
+    const community = String(b.id).startsWith("community_");
+    const label = community
+      ? `[COMMUNITY] ${b.name} · ${String(b.intro || "").replace("A COMMUNITY BOSS ", "")} · ${String(b.id).slice(-4).toUpperCase()}`
+      : `#${String(b.number).padStart(2, "0")} ${b.name}`;
+    const o = /** @type {HTMLOptionElement} */ (el("option", "", label));
     o.value = b.id;
     o.selected = b.id === current;
     sel.append(o);
@@ -428,6 +833,18 @@ function fillPreviewBosses(content, current) {
 
 function wire() {
   wireFold();
+  $("shard-search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    shardQuery = /** @type {HTMLInputElement} */ ($("shard-search")).value.trim();
+    shardPage = 0;
+    void loadShards();
+  });
+  $("shard-prev").addEventListener("click", () => { shardPage = Math.max(0, shardPage - 1); void loadShards(); });
+  $("shard-next").addEventListener("click", () => { shardPage++; void loadShards(); });
+  const make = /** @type {HTMLFormElement} */ (document.querySelector('form[data-action="create_badge"]'));
+  make.addEventListener("input", drawBadgePreview);
+  make.addEventListener("reset", () => setTimeout(drawBadgePreview));
+  drawBadgePreview();
   wirePreview();
   $("login").addEventListener("submit", async (e) => {
     e.preventDefault();

@@ -1,9 +1,10 @@
 // [ RANKS ] panel: today / all-time leaderboards, and one per boss.
 
-import * as api from "../api.js?v=a46acbc584";
-import { el, fmt, padL } from "../ascii.js?v=a46acbc584";
-import { bossDef, state } from "../store.js?v=a46acbc584";
-import { showError } from "./errors.js?v=a46acbc584";
+import * as api from "../api.js?v=b7420735b5";
+import { el, fmt, padL } from "../ascii.js?v=b7420735b5";
+import { bossDef, state } from "../store.js?v=b7420735b5";
+import { badgeTag, badgeWidth } from "./badges.js?v=b7420735b5";
+import { showError } from "./errors.js?v=b7420735b5";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -96,10 +97,13 @@ function renderRanks(lb) {
     rows.forEach((/** @type {any} */ r, /** @type {number} */ i) => {
       // " 1. CONNOR ............ 1,234"
       const n = fmt(r.value);
-      const left = `${padL(String(i + 1), 2)}. ${r.name} `;
-      const dots = ".".repeat(Math.max(1, W - left.length - n.length - 1));
+      const num = `${padL(String(i + 1), 2)}. `;
+      const left = `${num}${r.name} `;
+      const dots = ".".repeat(Math.max(1, W - left.length - badgeWidth(r.badges) - n.length - 1));
       const mine = r.player_id === state.me?.id;
-      const span = el("span", mine ? "me" : "", `${left}${dots} ${n}${mine ? " <" : ""}\n`);
+      const span = el("span", mine ? "me" : "");
+      const tag = badgeTag(r.badges, r.player_id);
+      span.append(num, ...(tag ? [tag, " "] : []), `${r.name} ${dots} ${n}${mine ? " <" : ""}\n`);
       pre.append(span);
     });
     parts.push(pre);

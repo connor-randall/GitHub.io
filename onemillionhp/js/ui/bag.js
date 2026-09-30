@@ -2,18 +2,30 @@
 // Undiscovered items show as dotted silhouettes (hidden by default: there
 // are over a hundred).
 
-import * as api from "../api.js?v=a46acbc584";
-import { el, fmt, setArt } from "../ascii.js?v=a46acbc584";
-import { boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=a46acbc584";
-import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=a46acbc584";
-import { showError } from "./errors.js?v=a46acbc584";
-import { itemLines, openBoxSequence, showOverlay } from "./fx.js?v=a46acbc584";
+import * as api from "../api.js?v=b7420735b5";
+import { isAutoStash, setAutoStash } from "../autostash.js?v=b7420735b5";
+import { el, fmt, setArt } from "../ascii.js?v=b7420735b5";
+import { SCROLLS, boxById, bossDef, emit, itemById, rarityById, state } from "../store.js?v=b7420735b5";
+import { withOdds } from "./boxodds.js?v=b7420735b5";
+import { EFFECT_HELP, effectLine, effectParts } from "./effects.js?v=b7420735b5";
+import { showError } from "./errors.js?v=b7420735b5";
+import { itemLines, openAllBoxesReveal, openBoxSequence, showOverlay } from "./fx.js?v=b7420735b5";
+import { scrollReveal } from "./scrolls.js?v=b7420735b5";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
 /** @type {"all" | "weapon" | "charm"} */
 let slotFilter = "all";
 let showUnknown = false;
+
+/** @param {any} def @param {number} count */
+function scrollBagButton(def, count) {
+  const width = 46;
+  const inside = width - 2;
+  const label = `${def.name}  x${fmt(count)}  [ DEPLOY ]`;
+  const body = ` ${label.slice(0, inside - 2).padEnd(inside - 2)} `;
+  return `+${"-".repeat(inside)}+\n|${body}|\n+${"-".repeat(inside)}+`;
+}
 
 /** @param {string} label @param {boolean} on @param {() => void} fn */
 function chip(label, on, fn) {
@@ -33,6 +45,26 @@ export function renderBag() {
   }
   const parts = [];
 
+  // ---- consumable scrolls
+  parts.push(el("div", "panel-h", "SCROLLS"));
+  const scrolls = me.scrolls ?? [];
+  if (!scrolls.length) parts.push(el("div", "dim bag-note", "> none yet. rare scrolls can drop from attacks."));
+  else {
+    const row = el("div", "scroll-bag");
+    for (const s of scrolls) {
+      const def = SCROLLS[s.scroll_id];
+      if (!def) continue;
+      const b = el("button", "scroll-bag-item");
+      const art = el("pre", "art", scrollBagButton(def, s.count));
+      b.append(art);
+      b.setAttribute("aria-label", `${def.name}, owned ${s.count}, deploy`);
+      b.style.setProperty("--scroll-color", def.color);
+      b.addEventListener("click", () => scrollReveal(s.scroll_id));
+      row.append(b);
+    }
+    parts.push(row);
+  }
+
   // ---- loot boxes
   const boxes = me.boxes ?? [];
   const boxHead = el("div", "panel-h", "LOOT BOXES");
@@ -45,10 +77,28 @@ export function renderBag() {
       const def = boxById(b.box_id);
       if (!def) continue;
       const card = el("div", "box-card");
-      const pre = el("pre", "art");
-      const open = /** @type {HTMLButtonElement} */ (el("button", "inline-btn", `[ OPEN ] x${b.count}`));
+      const pre = withOdds(el("pre", "art"), def.id);
+      const actions = el("div", "box-card-actions");
+      const open = /** @type {HTMLButtonElement} */ (el("button", "inline-btn", "[ OPEN ONE ]"));
       open.addEventListener("click", () => openBox(def));
-      card.append(pre, el("div", "box-name", def.name), open);
+      const openAll = /** @type {HTMLButtonElement} */ (el("button", "inline-btn",
+        `[ AUTO OPEN ALL x${fmt(b.count)} ]`));
+      openAll.addEventListener("click", async () => {
+        for (const button of actions.querySelectorAll("button")) button.disabled = true;
+        openAll.textContent = "[ OPENING... ]";
+        try {
+          const res = await api.openAllBoxes([{ box_id: b.box_id, count: b.count }]);
+          state.me = res.me;
+          emit("me");
+          await openAllBoxesReveal(res.results, def);
+        } catch (e) {
+          showError(/** @type {Error} */ (e).message);
+          for (const button of actions.querySelectorAll("button")) button.disabled = false;
+          openAll.textContent = `[ AUTO OPEN ALL x${fmt(b.count)} ]`;
+        }
+      });
+      actions.append(open, openAll);
+      card.append(pre, el("div", "box-name", `${def.name}  x${fmt(b.count)}`), actions);
       row.append(card);
       requestAnimationFrame(() => setArt(pre, def.art, 11));
     }
@@ -68,6 +118,15 @@ export function renderBag() {
   parts.push(eq);
   const total = effectParts(me.mods);
   parts.push(el("div", "stats bag-note", total.length ? `TOTAL: ${total.join("  ::  ")}` : "TOTAL: no bonuses yet"));
+  const stash = el("div", "bag-note auto-stash-line");
+  const flip = el("button", "inline-btn", isAutoStash() ? "[ TURN OFF ]" : "[ TURN ON ]");
+  flip.addEventListener("click", () => {
+    setAutoStash(!isAutoStash());
+    renderBag();
+  });
+  stash.append(el("span", isAutoStash() ? "" : "dim",
+    isAutoStash() ? "AUTO STASH: ON :: new items go straight here " : "AUTO STASH: OFF "), flip);
+  parts.push(stash);
 
   // ---- collection
   /** @type {Map<string, any>} */

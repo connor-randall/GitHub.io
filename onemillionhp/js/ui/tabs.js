@@ -1,14 +1,16 @@
 // Tab bar for the side panels.
 
-import { closeOverlay } from "./fx.js?v=a46acbc584";
-import { renderBag } from "./bag.js?v=a46acbc584";
-import { loadHistory } from "./history.js?v=a46acbc584";
-import { renderPlayer } from "./player.js?v=a46acbc584";
-import { loadRanks } from "./ranks.js?v=a46acbc584";
-import { renderShop } from "./shop.js?v=a46acbc584";
+import { closeOverlay } from "./fx.js?v=b7420735b5";
+import { renderBag } from "./bag.js?v=b7420735b5";
+import { renderDesigner } from "./designer.js?v=b7420735b5";
+import { loadHistory } from "./history.js?v=b7420735b5";
+import { renderPlayer } from "./player.js?v=b7420735b5";
+import { loadPolls } from "./polls.js?v=b7420735b5";
+import { loadRanks } from "./ranks.js?v=b7420735b5";
+import { renderShop } from "./shop.js?v=b7420735b5";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
-const TABS = ["feed", "player", "bag", "shop", "ranks", "history"];
+const TABS = ["feed", "player", "bag", "shop", "ranks", "history", "polls", "designer"];
 let activeTab = "feed";
 
 /** @param {string} tab */
@@ -34,6 +36,8 @@ export function renderPanels() {
   else if (activeTab === "shop") renderShop();
   else if (activeTab === "ranks") loadRanks();
   else if (activeTab === "history") loadHistory();
+  else if (activeTab === "polls") loadPolls();
+  else if (activeTab === "designer") renderDesigner();
 }
 
 export function initTabs() {

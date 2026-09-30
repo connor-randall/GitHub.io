@@ -13,7 +13,7 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=a46acbc584">
+<link rel="stylesheet" href="css/style.css?v=b7420735b5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0a08'/%3E%3Ctext x='8' y='12.5' font-family='monospace' font-size='12' font-weight='bold' fill='%23ffb000' text-anchor='middle'%3E%25%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -45,9 +45,13 @@
         <div class="box-title" id="boss-num">BOSS #---</div>
         <div id="boss-alive">
           <div class="boss-stage" id="boss-stage" title="hit it">
+            <pre id="boss-freeze-fx" class="boss-scroll-fx boss-freeze-fx" aria-hidden="true"></pre>
+            <pre id="boss-treasure-fx" class="boss-scroll-fx boss-treasure-fx" aria-hidden="true"></pre>
+            <pre id="boss-poison-fx" class="boss-scroll-fx boss-poison-fx" aria-hidden="true"></pre>
             <pre id="boss-art" class="boss-art art" aria-hidden="true"></pre>
             <div id="popups" class="popups" aria-hidden="true"></div>
           </div>
+          <div id="boss-effects" class="active-effects" aria-live="polite" hidden></div>
           <h1 class="boss-name" id="boss-name">........</h1>
           <div class="boss-sub" id="boss-sub"></div>
           <div class="taunt" id="taunt" aria-live="off"></div>
@@ -75,10 +79,10 @@
           <div class="reset-in dim" id="reset-in"></div>
 
           <button id="btn-ult" class="btn-big btn-ult" type="button" disabled>
-            <span class="br">[</span> U L T I M A T E <span class="br">]</span>
+            <span class="br">[</span> N O  S C R O L L <span class="br">]</span>
           </button>
-          <div class="ult-warn" id="ult-warn">!! ONE USE PER BOSS !!</div>
-          <div class="keys dim">keys: [A]/[SPACE] attack &middot; [U] ultimate</div>
+          <div class="ult-warn" id="ult-warn">SCROLLS DROP FROM ATTACKS</div>
+          <div class="keys dim">keys: [A]/[SPACE] attack &middot; [S] scroll</div>
         </div>
         <div class="lasthit">
           <div>YOUR LAST HIT <span id="last-hit" class="val">--</span></div>
@@ -100,17 +104,25 @@
         <button role="tab" data-tab="shop">[ SHOP ]</button>
         <button role="tab" data-tab="ranks">[ RANKS ]</button>
         <button role="tab" data-tab="history">[ HISTORY ]</button>
+        <button role="tab" data-tab="polls">[ POLLS ]</button>
+        <button role="tab" data-tab="designer">[ DESIGN ]</button>
       </nav>
       <div class="panel" id="panel-feed" role="tabpanel">
+        <div id="feed-effects" class="active-effects feed-effects" aria-live="polite" hidden></div>
         <div id="pinned" class="pinned feed" hidden></div>
         <div class="panel-h">RECENT ATTACKS <span class="blink">_</span></div>
-        <ol id="feed" class="feed" aria-live="polite"></ol>
+        <div class="feed-wrap">
+          <button id="feed-jump" class="feed-jump" type="button" hidden>[ ^ JUMP TO TOP ]</button>
+          <ol id="feed" class="feed" aria-live="polite"></ol>
+        </div>
       </div>
       <div class="panel" id="panel-player" role="tabpanel" hidden></div>
       <div class="panel" id="panel-bag" role="tabpanel" hidden></div>
       <div class="panel" id="panel-shop" role="tabpanel" hidden></div>
       <div class="panel" id="panel-ranks" role="tabpanel" hidden></div>
       <div class="panel" id="panel-history" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-polls" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-designer" role="tabpanel" hidden></div>
     </section>
   </div>
 
@@ -123,7 +135,7 @@
 </div>
 
 <div id="overlay" class="overlay" hidden></div>
-<script type="module" src="js/main.js?v=a46acbc584"></script>
+<script type="module" src="js/main.js?v=b7420735b5"></script>
   <div id="notices" class="notices" aria-live="assertive"></div>
 </body>
 </html>

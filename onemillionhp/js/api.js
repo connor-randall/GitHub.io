@@ -118,6 +118,19 @@ export const getMe = () => request("/api/me", { auth: true });
 export const getLeaderboard = (scope) =>
   request(`/api/leaderboard?scope=${encodeURIComponent(scope)}`, { auth: true }); // auth: includes your own rank
 export const getHistory = () => request("/api/history");
+/** What someone's badges are for (the hover box). @param {string} playerId */
+export const getPlayerBadges = (playerId) => request(`/api/players/${encodeURIComponent(playerId)}/badges`);
+/** How the admin's badges look (symbol, colour, rainbow). */
+export const getBadgeDefs = () => request("/api/badges");
+/** Your earned badges and which ones show. */
+export const getMyBadges = () => request("/api/me/badges", { auth: true });
+/** @param {string[] | null} pick which badges show, in order (null = automatic) */
+export const setMyBadges = (pick) => request("/api/me/badges", { method: "POST", auth: true, body: { pick } });
+/** Every poll, with your vote if you have a player. */
+export const getPolls = () => request("/api/polls", { auth: true });
+/** @param {number} pollId @param {"yes" | "no"} choice */
+export const votePoll = (pollId, choice) =>
+  request("/api/polls/vote", { method: "POST", auth: true, body: { poll_id: pollId, choice } });
 /** Scoreboard for one boss (with your rank if you have a player). @param {number} seq */
 export const getBossResults = (seq) => request(`/api/bosses/${seq}/results`, { auth: true });
 /** @param {string} name */
@@ -133,8 +146,14 @@ export const sellItem = (itemId, count) =>
 /** Sell every copy beyond the first of everything. */
 export const sellDuplicates = () => request("/api/shop/sell", { method: "POST", auth: true, body: { duplicates: true } });
 /** @param {string} boxId */
+/** Rarities to sell the moment they drop (also sells owned copies). @param {string[]} rarities */
+export const setAutosell = (rarities) => request("/api/shop/autosell", { method: "POST", auth: true, body: { rarities } });
 export const buyBox = (boxId) => request("/api/shop/buy", { method: "POST", auth: true, body: { box_id: boxId } });
 export const getSaveCode = () => request("/api/me/save-code", { auth: true });
+export const getBossDesign = () => request("/api/boss-design", { auth: true });
+/** @param {any} design */
+export const saveBossDesign = (design) =>
+  request("/api/boss-design", { method: "POST", auth: true, body: design });
 
 /** Swap this browser over to the player behind a save code. @param {string} code */
 export async function loadSave(code) {
@@ -163,6 +182,39 @@ export async function openBox(boxId) {
   }
 }
 
+/** Open every listed loot box, in retry-safe batches. @param {{box_id: string, count: number}[]} boxes */
+export async function openAllBoxes(boxes) {
+  const pending = boxes.map((row) => ({ ...row }));
+  /** @type {{results: any[], events: any[], me: any}} */
+  const combined = { results: [], events: [], me: null };
+  while (pending.some((row) => row.count > 0)) {
+    let room = 250;
+    const batch = [];
+    for (const row of pending) {
+      const count = Math.min(row.count, room);
+      if (count > 0) {
+        batch.push({ box_id: row.box_id, count });
+        row.count -= count;
+        room -= count;
+      }
+      if (!room) break;
+    }
+    const body = { boxes: batch, request_id: requestId() };
+    let opened;
+    try {
+      opened = await request("/api/boxes/open-all", { method: "POST", auth: true, body });
+    } catch (e) {
+      if (!(e instanceof ApiError) || e.code !== "NETWORK") throw e;
+      await new Promise((resolve) => setTimeout(resolve, 900));
+      opened = await request("/api/boxes/open-all", { method: "POST", auth: true, body });
+    }
+    combined.results.push(...opened.results);
+    combined.events.push(...(opened.events ?? []));
+    combined.me = opened.me;
+  }
+  return combined;
+}
+
 /**
  * Attack. The request id makes retries safe: if the response is lost and we
  * resend, the server returns the original result instead of attacking twice.
@@ -180,6 +232,10 @@ export async function attack(kind) {
     throw e;
   }
 }
+
+/** Consume one owned global-effect scroll. @param {string} scrollId */
+export const useScroll = (scrollId) =>
+  request("/api/scrolls/use", { method: "POST", auth: true, body: { scroll_id: scrollId } });
 
 export function liveUrl() {
   const base = API_BASE || location.origin;

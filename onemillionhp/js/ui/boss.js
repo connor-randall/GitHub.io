@@ -1,7 +1,7 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=a46acbc584";
-import { bossDef, bossText, now, state } from "../store.js?v=a46acbc584";
+import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=b7420735b5";
+import { bossDef, bossText, now, state } from "../store.js?v=b7420735b5";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -25,7 +25,6 @@ function drawArt() {
   if (!ph) return;
   const hurt = performance.now() < hurtUntil;
   setArt(artEl, hurt ? ph.hurt_art : ph.art, 13);
-  artEl.classList.toggle("glitch", Boolean(ph.glitch));
   artEl.classList.toggle("phase-2", ph.phase === 2);
   artEl.classList.toggle("phase-3", ph.phase >= 3);
   // Some bosses have their own colour (GLORBO is blue).
@@ -52,6 +51,64 @@ export function hurt(ms = 240) {
     artEl.classList.remove("hurt");
     drawArt();
   }, ms);
+}
+
+/** Temporarily replace the normal taunt cycle with a direct boss response.
+ * @param {string} text @param {number} [ms] */
+export function bossSay(text, ms = 4000) {
+  clearInterval(tauntTimer);
+  const node = $("taunt");
+  node.textContent = `"${text}"`;
+  window.setTimeout(startTaunts, ms);
+}
+
+/** Boss Heal scroll: ASCII hearts rise over the boss with caster credit.
+ * @param {string} name @param {number} amount @param {number} [shards] */
+export function bossHealEffect(name, amount, shards = 100) {
+  bossSay("Thank you kind soul");
+  const stage = $("boss-stage");
+  stage.querySelector(".boss-heal-fx")?.remove();
+  const fx = el("div", "boss-heal-fx");
+  const title = el("div", "boss-heal-title",
+    `${name} HEALED THE BOSS  +${fmt(amount)} HP  ·  +${fmt(shards)} SHARDS`);
+  const canvas = el("pre", "ascii-hearts");
+  fx.append(canvas, title);
+  stage.append(fx);
+  const sprite = [" .::. .::. ", ":::::::::::", " ':::::::' ", "   ':::'   ", "     :     "];
+  const width = 60, height = 20;
+  const seeds = [[1, 0, 1], [17, 8, -1], [33, 3, 1], [47, 11, -1]];
+  let frame = 0;
+  const draw = () => {
+    if (!fx.isConnected) return false;
+    const field = Array.from({ length: height }, () => Array(width).fill(" "));
+    for (const [baseX, delay, drift] of seeds) {
+      const age = frame - delay;
+      if (age < 0) continue;
+      const y = height - 5 - Math.floor(age * .72);
+      const x = baseX + Math.round(Math.sin(age / 3) * 2) * drift;
+      sprite.forEach((line, sy) => [...line].forEach((ch, sx) => {
+        const yy = y + sy, xx = x + sx;
+        if (ch !== " " && yy >= 0 && yy < height && xx >= 0 && xx < width) field[yy][xx] = ch;
+      }));
+    }
+    canvas.textContent = field.map((row) => row.join("")).join("\n");
+    frame++;
+    return frame < 30;
+  };
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) {
+    frame = 10;
+    draw();
+    setTimeout(() => fx.remove(), 3000);
+    return;
+  }
+  draw();
+  const timer = setInterval(() => {
+    if (!draw()) {
+      clearInterval(timer);
+      fx.remove();
+    }
+  }, 90);
 }
 
 function hpCells() {
@@ -90,15 +147,19 @@ export function renderBoss() {
     startTaunts();
   }
   const frac = b.hp / b.max_hp;
+  const poisoned = Boolean(b.effects?.poison_until && now() < b.effects.poison_until);
+  const frozen = Boolean(b.effects?.frozen_until && now() < b.effects.frozen_until);
+  artEl.classList.toggle("poisoned", poisoned);
+  artEl.classList.toggle("frozen", frozen);
   const hpBar = $("hp-bar");
   hpBar.textContent = "HP " + bar(frac, hpCells());
   hpBar.classList.toggle("low", frac <= 0.1);
-  const now = $("hp-now");
-  now.textContent = fmt(b.hp);
+  const hpNow = $("hp-now");
+  hpNow.textContent = fmt(b.hp);
   if (lastHp >= 0 && b.hp < lastHp) {
-    now.classList.remove("tick");
-    void now.offsetWidth;
-    now.classList.add("tick");
+    hpNow.classList.remove("tick");
+    void hpNow.offsetWidth;
+    hpNow.classList.add("tick");
   }
   lastHp = b.hp;
   $("hp-max").textContent = fmt(b.max_hp);

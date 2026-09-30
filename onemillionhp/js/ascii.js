@@ -34,6 +34,7 @@ export const RARITY_STYLE = {
   epic:      { h: "=", v: "|", c: "+", deco: ["<< ", " >>"] },
   legendary: { h: "#", v: "#", c: "#", deco: ["## ", " ##"] },
   mythic:    { h: "@", v: "@", c: "@", deco: ["@@ ", " @@"] },
+  godly:     { h: "=", v: "$", c: "$", deco: ["$$ ", " $$"] },
 };
 
 /** @param {number} n */
