@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-09-30T16:50:03-0600",
+  "generated_at": "2026-09-30T17:00:03-0600",
   "stats": {
-    "today_count": 219,
-    "today_species": 11,
-    "total": 1747
+    "today_count": 221,
+    "today_species": 12,
+    "total": 1749
   },
   "enviro": {
-    "temp_f": 79.8,
-    "humidity": 33.2,
-    "pressure": 820.8
+    "temp_f": 81.7,
+    "humidity": 31.5,
+    "pressure": 820.9
   },
   "detections": [
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.6891,
+      "iso": "2026-09-30T16:55:16",
+      "time": "16:55",
+      "date": "2026-09-30",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-69-2026-09-30-birdnet-16.55.16.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.8255,
+      "iso": "2026-09-30T16:55:13",
+      "time": "16:55",
+      "date": "2026-09-30",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-83-2026-09-30-birdnet-16.55.13.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -140,26 +160,6 @@
       "date": "2026-09-30",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-66-2026-09-30-birdnet-16.22.59.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6843,
-      "iso": "2026-09-30T16:22:53",
-      "time": "16:22",
-      "date": "2026-09-30",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-68-2026-09-30-birdnet-16.22.53.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6707,
-      "iso": "2026-09-30T16:22:47",
-      "time": "16:22",
-      "date": "2026-09-30",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-09-30-birdnet-16.22.47.mp3"
     }
   ]
 }
