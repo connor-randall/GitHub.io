@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-01T12:30:03-0600",
+  "generated_at": "2026-10-01T12:40:03-0600",
   "stats": {
-    "today_count": 118,
+    "today_count": 120,
     "today_species": 6,
-    "total": 1928
+    "total": 1930
   },
   "enviro": {
-    "temp_f": 79.7,
-    "humidity": 25.8,
+    "temp_f": 77.2,
+    "humidity": 28.0,
     "pressure": 829.6
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6815,
+      "iso": "2026-10-01T12:30:03",
+      "time": "12:30",
+      "date": "2026-10-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-68-2026-10-01-birdnet-12.30.03.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6813,
+      "iso": "2026-10-01T12:30:00",
+      "time": "12:30",
+      "date": "2026-10-01",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-68-2026-10-01-birdnet-12.30.00.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -140,26 +160,6 @@
       "date": "2026-10-01",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-86-2026-10-01-birdnet-11.12.52.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8878,
-      "iso": "2026-10-01T11:10:13",
-      "time": "11:10",
-      "date": "2026-10-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-10-01-birdnet-11.10.13.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9617,
-      "iso": "2026-10-01T11:10:10",
-      "time": "11:10",
-      "date": "2026-10-01",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-96-2026-10-01-birdnet-11.10.10.mp3"
     }
   ]
 }
