@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-02T16:10:03-0600",
+  "generated_at": "2026-10-02T16:20:04-0600",
   "stats": {
-    "today_count": 134,
-    "today_species": 10,
-    "total": 2128
+    "today_count": 136,
+    "today_species": 11,
+    "total": 2130
   },
   "enviro": {
-    "temp_f": 82.2,
+    "temp_f": 82.6,
     "humidity": 21.2,
     "pressure": 826.8
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.6864,
+      "iso": "2026-10-02T16:18:27",
+      "time": "16:18",
+      "date": "2026-10-02",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-69-2026-10-02-birdnet-16.18.27.mp3"
+    },
+    {
+      "com_name": "Steller's Jay",
+      "sci_name": "Cyanocitta stelleri",
+      "confidence": 0.6611,
+      "iso": "2026-10-02T16:13:51",
+      "time": "16:13",
+      "date": "2026-10-02",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "American Crow",
       "sci_name": "Corvus brachyrhynchos",
@@ -140,26 +160,6 @@
       "date": "2026-10-02",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Blue_Jay-79-2026-10-02-birdnet-12.28.41.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.8285,
-      "iso": "2026-10-02T12:28:38",
-      "time": "12:28",
-      "date": "2026-10-02",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-83-2026-10-02-birdnet-12.28.38.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.7723,
-      "iso": "2026-10-02T12:28:29",
-      "time": "12:28",
-      "date": "2026-10-02",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-77-2026-10-02-birdnet-12.28.29.mp3"
     }
   ]
 }
