@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-10-02T10:00:03-0600",
+  "generated_at": "2026-10-02T10:10:03-0600",
   "stats": {
-    "today_count": 43,
+    "today_count": 46,
     "today_species": 5,
-    "total": 2037
+    "total": 2040
   },
   "enviro": {
-    "temp_f": 81.9,
-    "humidity": 22.5,
-    "pressure": 830.5
+    "temp_f": 76.0,
+    "humidity": 26.3,
+    "pressure": 830.4
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8144,
+      "iso": "2026-10-02T10:02:35",
+      "time": "10:02",
+      "date": "2026-10-02",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-81-2026-10-02-birdnet-10.02.35.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9446,
+      "iso": "2026-10-02T10:02:26",
+      "time": "10:02",
+      "date": "2026-10-02",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-10-02-birdnet-10.02.26.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.767,
+      "iso": "2026-10-02T10:02:05",
+      "time": "10:02",
+      "date": "2026-10-02",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-77-2026-10-02-birdnet-10.02.05.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -130,36 +160,6 @@
       "date": "2026-10-02",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-94-2026-10-02-birdnet-08.44.08.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7184,
-      "iso": "2026-10-02T08:37:02",
-      "time": "08:37",
-      "date": "2026-10-02",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-72-2026-10-02-birdnet-08.37.02.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7018,
-      "iso": "2026-10-02T08:34:23",
-      "time": "08:34",
-      "date": "2026-10-02",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-70-2026-10-02-birdnet-08.34.23.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.6829,
-      "iso": "2026-10-02T08:26:16",
-      "time": "08:26",
-      "date": "2026-10-02",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-68-2026-10-02-birdnet-08.26.16.mp3"
     }
   ]
 }
