@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-02T17:20:03-0600",
+  "generated_at": "2026-10-02T17:30:03-0600",
   "stats": {
-    "today_count": 138,
+    "today_count": 139,
     "today_species": 11,
-    "total": 2132
+    "total": 2133
   },
   "enviro": {
-    "temp_f": 80.9,
-    "humidity": 24.4,
+    "temp_f": 83.6,
+    "humidity": 23.4,
     "pressure": 826.5
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6713,
+      "iso": "2026-10-02T17:29:50",
+      "time": "17:29",
+      "date": "2026-10-02",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-67-2026-10-02-birdnet-17.29.50.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-02",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-70-2026-10-02-birdnet-12.34.30.mp3"
-    },
-    {
-      "com_name": "Townsend's Solitaire",
-      "sci_name": "Myadestes townsendi",
-      "confidence": 0.7346,
-      "iso": "2026-10-02T12:33:36",
-      "time": "12:33",
-      "date": "2026-10-02",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/TownsendsSolitaire.jpg/330px-TownsendsSolitaire.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": null
     }
   ]
 }
