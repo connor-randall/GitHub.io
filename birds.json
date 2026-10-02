@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-02T16:50:03-0600",
+  "generated_at": "2026-10-02T17:00:04-0600",
   "stats": {
-    "today_count": 136,
+    "today_count": 137,
     "today_species": 11,
-    "total": 2130
+    "total": 2131
   },
   "enviro": {
-    "temp_f": 82.4,
-    "humidity": 22.6,
-    "pressure": 826.6
+    "temp_f": 80.6,
+    "humidity": 24.4,
+    "pressure": 826.5
   },
   "detections": [
+    {
+      "com_name": "Steller's Jay",
+      "sci_name": "Cyanocitta stelleri",
+      "confidence": 0.7173,
+      "iso": "2026-10-02T16:53:17",
+      "time": "16:53",
+      "date": "2026-10-02",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "Mountain Chickadee",
       "sci_name": "Poecile gambeli",
@@ -150,16 +160,6 @@
       "date": "2026-10-02",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Blue_Jay-67-2026-10-02-birdnet-12.28.59.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.7928,
-      "iso": "2026-10-02T12:28:41",
-      "time": "12:28",
-      "date": "2026-10-02",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-79-2026-10-02-birdnet-12.28.41.mp3"
     }
   ]
 }
