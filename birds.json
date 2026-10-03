@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-03T17:20:04-0600",
+  "generated_at": "2026-10-03T17:30:03-0600",
   "stats": {
-    "today_count": 200,
+    "today_count": 201,
     "today_species": 11,
-    "total": 2347
+    "total": 2348
   },
   "enviro": {
-    "temp_f": 93.2,
-    "humidity": 10.8,
+    "temp_f": 92.4,
+    "humidity": 11.2,
     "pressure": 829.8
   },
   "detections": [
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.7682,
+      "iso": "2026-10-03T17:21:49",
+      "time": "17:21",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-77-2026-10-03-birdnet-17.21.49.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-95-2026-10-03-birdnet-16.30.45.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9583,
-      "iso": "2026-10-03T16:30:39",
-      "time": "16:30",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-96-2026-10-03-birdnet-16.30.39.mp3"
     }
   ]
 }
