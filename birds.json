@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-03T14:00:03-0600",
+  "generated_at": "2026-10-03T14:10:03-0600",
   "stats": {
-    "today_count": 121,
+    "today_count": 122,
     "today_species": 9,
-    "total": 2268
+    "total": 2269
   },
   "enviro": {
-    "temp_f": 90.2,
-    "humidity": 11.0,
+    "temp_f": 90.5,
+    "humidity": 11.5,
     "pressure": 829.3
   },
   "detections": [
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.6936,
+      "iso": "2026-10-03T14:02:41",
+      "time": "14:02",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-69-2026-10-03-birdnet-14.02.41.mp3"
+    },
     {
       "com_name": "Mountain Chickadee",
       "sci_name": "Poecile gambeli",
@@ -150,16 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-10-03-birdnet-12.57.39.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9277,
-      "iso": "2026-10-03T12:57:36",
-      "time": "12:57",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-93-2026-10-03-birdnet-12.57.36.mp3"
     }
   ]
 }
