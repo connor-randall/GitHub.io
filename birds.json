@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-10-03T09:00:03-0600",
+  "generated_at": "2026-10-03T09:10:03-0600",
   "stats": {
-    "today_count": 78,
-    "today_species": 7,
-    "total": 2225
+    "today_count": 81,
+    "today_species": 8,
+    "total": 2228
   },
   "enviro": {
-    "temp_f": 88.3,
-    "humidity": 16.8,
-    "pressure": 829.1
+    "temp_f": 82.2,
+    "humidity": 19.9,
+    "pressure": 829.2
   },
   "detections": [
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7569,
+      "iso": "2026-10-03T09:07:56",
+      "time": "09:07",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-76-2026-10-03-birdnet-09.07.56.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8044,
+      "iso": "2026-10-03T09:07:53",
+      "time": "09:07",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-80-2026-10-03-birdnet-09.07.53.mp3"
+    },
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.8554,
+      "iso": "2026-10-03T09:01:14",
+      "time": "09:01",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-86-2026-10-03-birdnet-09.01.14.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -130,36 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
       "audio": "bird-clips/American_Crow-67-2026-10-03-birdnet-08.16.23.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.7212,
-      "iso": "2026-10-03T08:16:14",
-      "time": "08:16",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-72-2026-10-03-birdnet-08.16.14.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6553,
-      "iso": "2026-10-03T08:16:05",
-      "time": "08:16",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-66-2026-10-03-birdnet-08.16.05.mp3"
-    },
-    {
-      "com_name": "American Crow",
-      "sci_name": "Corvus brachyrhynchos",
-      "confidence": 0.6943,
-      "iso": "2026-10-03T08:15:56",
-      "time": "08:15",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
-      "audio": "bird-clips/American_Crow-69-2026-10-03-birdnet-08.15.56.mp3"
     }
   ]
 }
