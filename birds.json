@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-03T17:00:04-0600",
+  "generated_at": "2026-10-03T17:10:04-0600",
   "stats": {
-    "today_count": 196,
+    "today_count": 197,
     "today_species": 11,
-    "total": 2343
+    "total": 2344
   },
   "enviro": {
-    "temp_f": 92.3,
-    "humidity": 11.3,
-    "pressure": 829.6
+    "temp_f": 92.7,
+    "humidity": 10.7,
+    "pressure": 829.7
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7266,
+      "iso": "2026-10-03T17:03:42",
+      "time": "17:03",
+      "date": "2026-10-03",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-73-2026-10-03-birdnet-17.03.42.mp3"
+    },
     {
       "com_name": "Blue Jay",
       "sci_name": "Cyanocitta cristata",
@@ -150,16 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-83-2026-10-03-birdnet-16.30.27.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8054,
-      "iso": "2026-10-03T16:30:24",
-      "time": "16:30",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-81-2026-10-03-birdnet-16.30.24.mp3"
     }
   ]
 }
