@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-03T16:50:04-0600",
+  "generated_at": "2026-10-03T17:00:04-0600",
   "stats": {
-    "today_count": 195,
+    "today_count": 196,
     "today_species": 11,
-    "total": 2342
+    "total": 2343
   },
   "enviro": {
-    "temp_f": 92.5,
+    "temp_f": 92.3,
     "humidity": 11.3,
-    "pressure": 829.5
+    "pressure": 829.6
   },
   "detections": [
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.6552,
+      "iso": "2026-10-03T16:59:41",
+      "time": "16:59",
+      "date": "2026-10-03",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-66-2026-10-03-birdnet-16.59.41.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-81-2026-10-03-birdnet-16.30.24.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7936,
-      "iso": "2026-10-03T16:30:21",
-      "time": "16:30",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-79-2026-10-03-birdnet-16.30.21.mp3"
     }
   ]
 }
