@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-04T06:30:03-0600",
+  "generated_at": "2026-10-04T06:40:03-0600",
   "stats": {
-    "today_count": 1,
+    "today_count": 3,
     "today_species": 1,
-    "total": 2423
+    "total": 2425
   },
   "enviro": {
-    "temp_f": 72.1,
-    "humidity": 30.0,
-    "pressure": 834.0
+    "temp_f": 75.1,
+    "humidity": 27.8,
+    "pressure": 833.9
   },
   "detections": [
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.6928,
+      "iso": "2026-10-04T06:32:03",
+      "time": "06:32",
+      "date": "2026-10-04",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-69-2026-10-04-birdnet-06.32.03.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.6548,
+      "iso": "2026-10-04T06:31:03",
+      "time": "06:31",
+      "date": "2026-10-04",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-65-2026-10-04-birdnet-06.31.03.mp3"
+    },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
@@ -140,26 +160,6 @@
       "date": "2026-10-03",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-91-2026-10-03-birdnet-18.28.44.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8742,
-      "iso": "2026-10-03T18:28:41",
-      "time": "18:28",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-87-2026-10-03-birdnet-18.28.41.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8332,
-      "iso": "2026-10-03T18:28:29",
-      "time": "18:28",
-      "date": "2026-10-03",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-83-2026-10-03-birdnet-18.28.29.mp3"
     }
   ]
 }
