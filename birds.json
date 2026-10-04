@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-03T18:40:03-0600",
+  "generated_at": "2026-10-03T18:50:03-0600",
   "stats": {
-    "today_count": 274,
+    "today_count": 275,
     "today_species": 11,
-    "total": 2421
+    "total": 2422
   },
   "enviro": {
-    "temp_f": 87.2,
-    "humidity": 14.3,
-    "pressure": 831.0
+    "temp_f": 90.4,
+    "humidity": 13.4,
+    "pressure": 831.2
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6513,
+      "iso": "2026-10-03T18:39:54",
+      "time": "18:39",
+      "date": "2026-10-03",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-65-2026-10-03-birdnet-18.39.54.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-03",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-78-2026-10-03-birdnet-17.56.39.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7581,
-      "iso": "2026-10-03T17:56:33",
-      "time": "17:56",
-      "date": "2026-10-03",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-76-2026-10-03-birdnet-17.56.33.mp3"
     }
   ]
 }
