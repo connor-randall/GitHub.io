@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-04T12:40:03-0600",
+  "generated_at": "2026-10-04T12:50:04-0600",
   "stats": {
-    "today_count": 184,
+    "today_count": 185,
     "today_species": 11,
-    "total": 2606
+    "total": 2607
   },
   "enviro": {
-    "temp_f": 90.6,
-    "humidity": 19.4,
+    "temp_f": 87.2,
+    "humidity": 21.4,
     "pressure": 831.9
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.854,
+      "iso": "2026-10-04T12:43:22",
+      "time": "12:43",
+      "date": "2026-10-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-85-2026-10-04-birdnet-12.43.22.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-10-04",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-72-2026-10-04-birdnet-10.41.23.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.7473,
-      "iso": "2026-10-04T10:41:07",
-      "time": "10:41",
-      "date": "2026-10-04",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-75-2026-10-04-birdnet-10.41.07.mp3"
     }
   ]
 }
