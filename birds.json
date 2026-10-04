@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-04T09:00:03-0600",
+  "generated_at": "2026-10-04T09:10:03-0600",
   "stats": {
-    "today_count": 102,
-    "today_species": 6,
-    "total": 2524
+    "today_count": 103,
+    "today_species": 7,
+    "total": 2525
   },
   "enviro": {
-    "temp_f": 74.5,
-    "humidity": 27.6,
-    "pressure": 834.0
+    "temp_f": 77.8,
+    "humidity": 26.1,
+    "pressure": 833.8
   },
   "detections": [
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.6931,
+      "iso": "2026-10-04T09:00:55",
+      "time": "09:00",
+      "date": "2026-10-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-69-2026-10-04-birdnet-09.00.55.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-80-2026-10-04-birdnet-07.53.47.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8372,
-      "iso": "2026-10-04T07:53:29",
-      "time": "07:53",
-      "date": "2026-10-04",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-84-2026-10-04-birdnet-07.53.29.mp3"
     }
   ]
 }
