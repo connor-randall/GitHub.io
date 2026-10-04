@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-04T14:30:03-0600",
+  "generated_at": "2026-10-04T14:40:04-0600",
   "stats": {
-    "today_count": 238,
+    "today_count": 239,
     "today_species": 11,
-    "total": 2660
+    "total": 2661
   },
   "enviro": {
-    "temp_f": 90.6,
-    "humidity": 18.1,
-    "pressure": 830.8
+    "temp_f": 90.0,
+    "humidity": 18.4,
+    "pressure": 830.7
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6644,
+      "iso": "2026-10-04T14:30:38",
+      "time": "14:30",
+      "date": "2026-10-04",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-10-04-birdnet-14.30.38.mp3"
+    },
     {
       "com_name": "Mountain Chickadee",
       "sci_name": "Poecile gambeli",
@@ -150,16 +160,6 @@
       "date": "2026-10-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips/Black-capped_Chickadee-71-2026-10-04-birdnet-14.24.47.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6708,
-      "iso": "2026-10-04T14:24:32",
-      "time": "14:24",
-      "date": "2026-10-04",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-67-2026-10-04-birdnet-14.24.32.mp3"
     }
   ]
 }
