@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-04T15:30:08-0600",
+  "generated_at": "2026-10-04T15:40:03-0600",
   "stats": {
-    "today_count": 251,
+    "today_count": 253,
     "today_species": 12,
-    "total": 2673
+    "total": 2675
   },
   "enviro": {
-    "temp_f": 90.9,
-    "humidity": 17.2,
-    "pressure": 830.6
+    "temp_f": 92.2,
+    "humidity": 16.3,
+    "pressure": 830.5
   },
   "detections": [
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.8925,
+      "iso": "2026-10-04T15:36:04",
+      "time": "15:36",
+      "date": "2026-10-04",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-89-2026-10-04-birdnet-15.36.04.mp3"
+    },
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.8345,
+      "iso": "2026-10-04T15:36:01",
+      "time": "15:36",
+      "date": "2026-10-04",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-83-2026-10-04-birdnet-15.36.01.mp3"
+    },
     {
       "com_name": "Black-capped Chickadee",
       "sci_name": "Poecile atricapillus",
@@ -140,26 +160,6 @@
       "date": "2026-10-04",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-10-04-birdnet-14.30.38.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6556,
-      "iso": "2026-10-04T14:28:08",
-      "time": "14:28",
-      "date": "2026-10-04",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-66-2026-10-04-birdnet-14.28.08.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7554,
-      "iso": "2026-10-04T14:27:59",
-      "time": "14:27",
-      "date": "2026-10-04",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-76-2026-10-04-birdnet-14.27.59.mp3"
     }
   ]
 }
