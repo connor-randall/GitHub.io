@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-05T15:20:03-0600",
+  "generated_at": "2026-10-05T15:30:03-0600",
   "stats": {
-    "today_count": 122,
+    "today_count": 124,
     "today_species": 10,
-    "total": 2822
+    "total": 2824
   },
   "enviro": {
-    "temp_f": 91.2,
-    "humidity": 10.5,
+    "temp_f": 90.6,
+    "humidity": 9.7,
     "pressure": 826.7
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6596,
+      "iso": "2026-10-05T15:28:39",
+      "time": "15:28",
+      "date": "2026-10-05",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-66-2026-10-05-birdnet-15.28.39.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7489,
+      "iso": "2026-10-05T15:28:33",
+      "time": "15:28",
+      "date": "2026-10-05",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-75-2026-10-05-birdnet-15.28.33.mp3"
+    },
     {
       "com_name": "Black-capped Chickadee",
       "sci_name": "Poecile atricapillus",
@@ -140,26 +160,6 @@
       "date": "2026-10-05",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-82-2026-10-05-birdnet-13.28.10.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7115,
-      "iso": "2026-10-05T13:27:25",
-      "time": "13:27",
-      "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-71-2026-10-05-birdnet-13.27.25.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6693,
-      "iso": "2026-10-05T13:27:10",
-      "time": "13:27",
-      "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-67-2026-10-05-birdnet-13.27.10.mp3"
     }
   ]
 }
