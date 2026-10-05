@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-10-05T12:10:04-0600",
+  "generated_at": "2026-10-05T12:20:03-0600",
   "stats": {
-    "today_count": 86,
+    "today_count": 101,
     "today_species": 9,
-    "total": 2786
+    "total": 2801
   },
   "enviro": {
-    "temp_f": 91.1,
-    "humidity": 11.6,
-    "pressure": 829.0
+    "temp_f": 90.2,
+    "humidity": 11.2,
+    "pressure": 828.9
   },
   "detections": [
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
-      "confidence": 0.7797,
-      "iso": "2026-10-05T11:43:50",
-      "time": "11:43",
+      "confidence": 0.65,
+      "iso": "2026-10-05T12:19:56",
+      "time": "12:19",
       "date": "2026-10-05",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-78-2026-10-05-birdnet-11.43.50.mp3"
+      "audio": "bird-clips/Red-breasted_Nuthatch-65-2026-10-05-birdnet-12.19.56.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6505,
-      "iso": "2026-10-05T11:34:02",
-      "time": "11:34",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8857,
+      "iso": "2026-10-05T12:19:47",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-65-2026-10-05-birdnet-11.34.02.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-10-05-birdnet-12.19.47.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6732,
-      "iso": "2026-10-05T11:33:56",
-      "time": "11:33",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8202,
+      "iso": "2026-10-05T12:19:44",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-10-05-birdnet-11.33.56.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-82-2026-10-05-birdnet-12.19.44.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6547,
-      "iso": "2026-10-05T11:33:50",
-      "time": "11:33",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9464,
+      "iso": "2026-10-05T12:19:41",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-65-2026-10-05-birdnet-11.33.50.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-95-2026-10-05-birdnet-12.19.41.mp3"
     },
     {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.8771,
-      "iso": "2026-10-05T10:41:40",
-      "time": "10:41",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.835,
+      "iso": "2026-10-05T12:19:38",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-88-2026-10-05-birdnet-10.41.40.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-84-2026-10-05-birdnet-12.19.38.mp3"
     },
     {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7149,
-      "iso": "2026-10-05T10:41:13",
-      "time": "10:41",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8403,
+      "iso": "2026-10-05T12:19:35",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-71-2026-10-05-birdnet-10.41.13.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-84-2026-10-05-birdnet-12.19.35.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6931,
-      "iso": "2026-10-05T10:24:27",
-      "time": "10:24",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7937,
+      "iso": "2026-10-05T12:19:29",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-69-2026-10-05-birdnet-10.24.27.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-79-2026-10-05-birdnet-12.19.29.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6709,
-      "iso": "2026-10-05T10:24:24",
-      "time": "10:24",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6582,
+      "iso": "2026-10-05T12:19:17",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-10-05-birdnet-10.24.24.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-66-2026-10-05-birdnet-12.19.17.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6679,
-      "iso": "2026-10-05T10:23:48",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6893,
+      "iso": "2026-10-05T12:19:02",
+      "time": "12:19",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-10-05-birdnet-10.23.48.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-10-05-birdnet-12.19.02.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6964,
-      "iso": "2026-10-05T10:23:39",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7658,
+      "iso": "2026-10-05T12:18:56",
+      "time": "12:18",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-70-2026-10-05-birdnet-10.23.39.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-10-05-birdnet-12.18.56.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7716,
-      "iso": "2026-10-05T10:23:36",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8566,
+      "iso": "2026-10-05T12:18:53",
+      "time": "12:18",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-77-2026-10-05-birdnet-10.23.36.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-86-2026-10-05-birdnet-12.18.53.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6787,
-      "iso": "2026-10-05T10:23:27",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9185,
+      "iso": "2026-10-05T12:18:50",
+      "time": "12:18",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-68-2026-10-05-birdnet-10.23.27.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-92-2026-10-05-birdnet-12.18.50.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7616,
-      "iso": "2026-10-05T10:23:03",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8689,
+      "iso": "2026-10-05T12:18:47",
+      "time": "12:18",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-76-2026-10-05-birdnet-10.23.03.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-87-2026-10-05-birdnet-12.18.47.mp3"
     },
     {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6554,
-      "iso": "2026-10-05T10:23:00",
-      "time": "10:23",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7106,
+      "iso": "2026-10-05T12:18:02",
+      "time": "12:18",
       "date": "2026-10-05",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-66-2026-10-05-birdnet-10.23.00.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-71-2026-10-05-birdnet-12.18.02.mp3"
     },
     {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7102,
-      "iso": "2026-10-05T10:19:54",
-      "time": "10:19",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9143,
+      "iso": "2026-10-05T12:17:53",
+      "time": "12:17",
       "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-71-2026-10-05-birdnet-10.19.54.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-10-05-birdnet-12.17.53.mp3"
     }
   ]
 }
