@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-06T13:10:03-0600",
+  "generated_at": "2026-10-06T13:20:03-0600",
   "stats": {
-    "today_count": 35,
-    "today_species": 7,
-    "total": 2871
+    "today_count": 36,
+    "today_species": 8,
+    "total": 2872
   },
   "enviro": {
-    "temp_f": 87.9,
-    "humidity": 11.7,
-    "pressure": 826.8
+    "temp_f": 90.3,
+    "humidity": 11.4,
+    "pressure": 826.7
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.9183,
+      "iso": "2026-10-06T13:13:21",
+      "time": "13:13",
+      "date": "2026-10-06",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-92-2026-10-06-birdnet-13.13.21.mp3"
+    },
     {
       "com_name": "Steller's Jay",
       "sci_name": "Cyanocitta stelleri",
@@ -150,16 +160,6 @@
       "date": "2026-10-06",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-77-2026-10-06-birdnet-08.36.41.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.847,
-      "iso": "2026-10-06T08:36:35",
-      "time": "08:36",
-      "date": "2026-10-06",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-85-2026-10-06-birdnet-08.36.35.mp3"
     }
   ]
 }
