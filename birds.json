@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-10-06T07:10:04-0600",
+  "generated_at": "2026-10-06T07:20:03-0600",
   "stats": {
-    "today_count": 1,
-    "today_species": 1,
-    "total": 2837
+    "today_count": 5,
+    "today_species": 2,
+    "total": 2841
   },
   "enviro": {
-    "temp_f": 77.7,
-    "humidity": 18.5,
+    "temp_f": 77.5,
+    "humidity": 18.4,
     "pressure": 827.4
   },
   "detections": [
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.6652,
+      "iso": "2026-10-06T07:11:23",
+      "time": "07:11",
+      "date": "2026-10-06",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-67-2026-10-06-birdnet-07.11.23.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8114,
+      "iso": "2026-10-06T07:11:14",
+      "time": "07:11",
+      "date": "2026-10-06",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-81-2026-10-06-birdnet-07.11.14.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8211,
+      "iso": "2026-10-06T07:11:05",
+      "time": "07:11",
+      "date": "2026-10-06",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-82-2026-10-06-birdnet-07.11.05.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8791,
+      "iso": "2026-10-06T07:11:02",
+      "time": "07:11",
+      "date": "2026-10-06",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-88-2026-10-06-birdnet-07.11.02.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -120,46 +160,6 @@
       "date": "2026-10-05",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-68-2026-10-05-birdnet-16.58.34.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8688,
-      "iso": "2026-10-05T15:41:31",
-      "time": "15:41",
-      "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-87-2026-10-05-birdnet-15.41.31.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7767,
-      "iso": "2026-10-05T15:41:13",
-      "time": "15:41",
-      "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-78-2026-10-05-birdnet-15.41.13.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6596,
-      "iso": "2026-10-05T15:28:39",
-      "time": "15:28",
-      "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-66-2026-10-05-birdnet-15.28.39.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7489,
-      "iso": "2026-10-05T15:28:33",
-      "time": "15:28",
-      "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-75-2026-10-05-birdnet-15.28.33.mp3"
     }
   ]
 }
