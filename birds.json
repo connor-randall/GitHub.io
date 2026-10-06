@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-06T12:50:03-0600",
+  "generated_at": "2026-10-06T13:00:03-0600",
   "stats": {
-    "today_count": 34,
-    "today_species": 6,
-    "total": 2870
+    "today_count": 35,
+    "today_species": 7,
+    "total": 2871
   },
   "enviro": {
-    "temp_f": 91.1,
-    "humidity": 12.1,
-    "pressure": 827.1
+    "temp_f": 89.3,
+    "humidity": 12.0,
+    "pressure": 826.9
   },
   "detections": [
+    {
+      "com_name": "Steller's Jay",
+      "sci_name": "Cyanocitta stelleri",
+      "confidence": 0.7031,
+      "iso": "2026-10-06T12:51:59",
+      "time": "12:51",
+      "date": "2026-10-06",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-06",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-85-2026-10-06-birdnet-08.36.35.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6862,
-      "iso": "2026-10-06T08:36:23",
-      "time": "08:36",
-      "date": "2026-10-06",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-69-2026-10-06-birdnet-08.36.23.mp3"
     }
   ]
 }
