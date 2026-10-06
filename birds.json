@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-06T07:00:04-0600",
+  "generated_at": "2026-10-06T07:10:04-0600",
   "stats": {
-    "today_count": 0,
-    "today_species": 0,
-    "total": 2836
+    "today_count": 1,
+    "today_species": 1,
+    "total": 2837
   },
   "enviro": {
-    "temp_f": 77.6,
-    "humidity": 18.9,
-    "pressure": 827.3
+    "temp_f": 77.7,
+    "humidity": 18.5,
+    "pressure": 827.4
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.733,
+      "iso": "2026-10-06T07:03:50",
+      "time": "07:03",
+      "date": "2026-10-06",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-73-2026-10-06-birdnet-07.03.50.mp3"
+    },
     {
       "com_name": "Green-winged Teal",
       "sci_name": "Anas crecca",
@@ -150,16 +160,6 @@
       "date": "2026-10-05",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips/Black-capped_Chickadee-75-2026-10-05-birdnet-15.28.33.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7693,
-      "iso": "2026-10-05T15:16:29",
-      "time": "15:16",
-      "date": "2026-10-05",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-77-2026-10-05-birdnet-15.16.29.mp3"
     }
   ]
 }
