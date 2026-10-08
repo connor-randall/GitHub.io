@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-08T11:20:03-0600",
+  "generated_at": "2026-10-08T11:30:04-0600",
   "stats": {
-    "today_count": 94,
-    "today_species": 6,
-    "total": 3301
+    "today_count": 95,
+    "today_species": 7,
+    "total": 3302
   },
   "enviro": {
-    "temp_f": 91.4,
-    "humidity": 12.5,
+    "temp_f": 92.5,
+    "humidity": 11.7,
     "pressure": 827.5
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.727,
+      "iso": "2026-10-08T11:29:20",
+      "time": "11:29",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-73-2026-10-08-birdnet-11.29.20.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-08",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-95-2026-10-08-birdnet-09.13.01.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7285,
-      "iso": "2026-10-08T09:12:55",
-      "time": "09:12",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-73-2026-10-08-birdnet-09.12.55.mp3"
     }
   ]
 }
