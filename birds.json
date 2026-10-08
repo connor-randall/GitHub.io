@@ -1,16 +1,96 @@
 {
-  "generated_at": "2026-10-08T12:00:03-0600",
+  "generated_at": "2026-10-08T12:10:03-0600",
   "stats": {
-    "today_count": 107,
-    "today_species": 9,
-    "total": 3314
+    "today_count": 115,
+    "today_species": 10,
+    "total": 3322
   },
   "enviro": {
     "temp_f": 92.3,
-    "humidity": 12.1,
-    "pressure": 827.2
+    "humidity": 12.0,
+    "pressure": 827.1
   },
   "detections": [
+    {
+      "com_name": "Steller's Jay",
+      "sci_name": "Cyanocitta stelleri",
+      "confidence": 0.8308,
+      "iso": "2026-10-08T12:04:58",
+      "time": "12:04",
+      "date": "2026-10-08",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9731,
+      "iso": "2026-10-08T12:02:13",
+      "time": "12:02",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-10-08-birdnet-12.02.13.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7483,
+      "iso": "2026-10-08T12:01:22",
+      "time": "12:01",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-75-2026-10-08-birdnet-12.01.22.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9286,
+      "iso": "2026-10-08T12:01:19",
+      "time": "12:01",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-93-2026-10-08-birdnet-12.01.19.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.7505,
+      "iso": "2026-10-08T12:00:37",
+      "time": "12:00",
+      "date": "2026-10-08",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-75-2026-10-08-birdnet-12.00.37.mp3"
+    },
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.6529,
+      "iso": "2026-10-08T12:00:16",
+      "time": "12:00",
+      "date": "2026-10-08",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-65-2026-10-08-birdnet-12.00.16.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.7367,
+      "iso": "2026-10-08T12:00:07",
+      "time": "12:00",
+      "date": "2026-10-08",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-74-2026-10-08-birdnet-12.00.07.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.7407,
+      "iso": "2026-10-08T12:00:01",
+      "time": "12:00",
+      "date": "2026-10-08",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-74-2026-10-08-birdnet-12.00.01.mp3"
+    },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
@@ -80,86 +160,6 @@
       "date": "2026-10-08",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-68-2026-10-08-birdnet-11.55.00.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6624,
-      "iso": "2026-10-08T11:48:33",
-      "time": "11:48",
-      "date": "2026-10-08",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-66-2026-10-08-birdnet-11.48.33.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6984,
-      "iso": "2026-10-08T11:32:59",
-      "time": "11:32",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-70-2026-10-08-birdnet-11.32.59.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6908,
-      "iso": "2026-10-08T11:32:53",
-      "time": "11:32",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-69-2026-10-08-birdnet-11.32.53.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.656,
-      "iso": "2026-10-08T11:32:41",
-      "time": "11:32",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-66-2026-10-08-birdnet-11.32.41.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.715,
-      "iso": "2026-10-08T11:32:02",
-      "time": "11:32",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-72-2026-10-08-birdnet-11.32.02.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.727,
-      "iso": "2026-10-08T11:29:20",
-      "time": "11:29",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-73-2026-10-08-birdnet-11.29.20.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7722,
-      "iso": "2026-10-08T10:37:07",
-      "time": "10:37",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-10-08-birdnet-10.37.07.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8028,
-      "iso": "2026-10-08T10:37:04",
-      "time": "10:37",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-80-2026-10-08-birdnet-10.37.04.mp3"
     }
   ]
 }
