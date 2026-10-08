@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-10-08T11:30:04-0600",
+  "generated_at": "2026-10-08T11:40:03-0600",
   "stats": {
-    "today_count": 95,
-    "today_species": 7,
-    "total": 3302
+    "today_count": 99,
+    "today_species": 8,
+    "total": 3306
   },
   "enviro": {
-    "temp_f": 92.5,
-    "humidity": 11.7,
-    "pressure": 827.5
+    "temp_f": 98.3,
+    "humidity": 10.0,
+    "pressure": 827.4
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6984,
+      "iso": "2026-10-08T11:32:59",
+      "time": "11:32",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-70-2026-10-08-birdnet-11.32.59.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6908,
+      "iso": "2026-10-08T11:32:53",
+      "time": "11:32",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-69-2026-10-08-birdnet-11.32.53.mp3"
+    },
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.656,
+      "iso": "2026-10-08T11:32:41",
+      "time": "11:32",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-66-2026-10-08-birdnet-11.32.41.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.715,
+      "iso": "2026-10-08T11:32:02",
+      "time": "11:32",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-72-2026-10-08-birdnet-11.32.02.mp3"
+    },
     {
       "com_name": "Mountain Chickadee",
       "sci_name": "Poecile gambeli",
@@ -120,46 +160,6 @@
       "date": "2026-10-08",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-80-2026-10-08-birdnet-09.36.45.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7524,
-      "iso": "2026-10-08T09:32:14",
-      "time": "09:32",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-75-2026-10-08-birdnet-09.32.14.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8356,
-      "iso": "2026-10-08T09:13:13",
-      "time": "09:13",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-84-2026-10-08-birdnet-09.13.13.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9047,
-      "iso": "2026-10-08T09:13:07",
-      "time": "09:13",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-90-2026-10-08-birdnet-09.13.07.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9464,
-      "iso": "2026-10-08T09:13:01",
-      "time": "09:13",
-      "date": "2026-10-08",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-95-2026-10-08-birdnet-09.13.01.mp3"
     }
   ]
 }
