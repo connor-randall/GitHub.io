@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-08T15:40:03-0600",
+  "generated_at": "2026-10-08T15:50:03-0600",
   "stats": {
-    "today_count": 140,
+    "today_count": 141,
     "today_species": 10,
-    "total": 3347
+    "total": 3348
   },
   "enviro": {
-    "temp_f": 93.3,
-    "humidity": 10.5,
+    "temp_f": 93.6,
+    "humidity": 10.7,
     "pressure": 824.9
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6537,
+      "iso": "2026-10-08T15:45:59",
+      "time": "15:45",
+      "date": "2026-10-08",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-65-2026-10-08-birdnet-15.45.59.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-08",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-81-2026-10-08-birdnet-12.29.24.mp3"
-    },
-    {
-      "com_name": "Steller's Jay",
-      "sci_name": "Cyanocitta stelleri",
-      "confidence": 0.7078,
-      "iso": "2026-10-08T12:28:09",
-      "time": "12:28",
-      "date": "2026-10-08",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": null
     }
   ]
 }
