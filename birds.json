@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-09T09:10:03-0600",
+  "generated_at": "2026-10-09T09:20:03-0600",
   "stats": {
-    "today_count": 84,
+    "today_count": 85,
     "today_species": 8,
-    "total": 3469
+    "total": 3470
   },
   "enviro": {
-    "temp_f": 77.7,
-    "humidity": 18.1,
+    "temp_f": 80.4,
+    "humidity": 17.2,
     "pressure": 824.7
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6808,
+      "iso": "2026-10-09T09:12:26",
+      "time": "09:12",
+      "date": "2026-10-09",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-68-2026-10-09-birdnet-09.12.26.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -150,16 +160,6 @@
       "date": "2026-10-09",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-90-2026-10-09-birdnet-08.26.20.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7623,
-      "iso": "2026-10-09T08:26:08",
-      "time": "08:26",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-76-2026-10-09-birdnet-08.26.08.mp3"
     }
   ]
 }
