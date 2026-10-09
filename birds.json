@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-09T13:00:03-0600",
+  "generated_at": "2026-10-09T13:10:03-0600",
   "stats": {
-    "today_count": 124,
+    "today_count": 126,
     "today_species": 11,
-    "total": 3509
+    "total": 3511
   },
   "enviro": {
-    "temp_f": 90.2,
-    "humidity": 9.8,
-    "pressure": 821.9
+    "temp_f": 91.5,
+    "humidity": 9.5,
+    "pressure": 821.7
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8472,
+      "iso": "2026-10-09T13:01:27",
+      "time": "13:01",
+      "date": "2026-10-09",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-85-2026-10-09-birdnet-13.01.27.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.796,
+      "iso": "2026-10-09T13:01:24",
+      "time": "13:01",
+      "date": "2026-10-09",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-80-2026-10-09-birdnet-13.01.24.mp3"
+    },
     {
       "com_name": "Northern Flicker",
       "sci_name": "Colaptes auratus",
@@ -140,26 +160,6 @@
       "date": "2026-10-09",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Blue_Jay-67-2026-10-09-birdnet-11.44.22.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6835,
-      "iso": "2026-10-09T11:37:45",
-      "time": "11:37",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-68-2026-10-09-birdnet-11.37.45.mp3"
-    },
-    {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.795,
-      "iso": "2026-10-09T11:37:33",
-      "time": "11:37",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-80-2026-10-09-birdnet-11.37.33.mp3"
     }
   ]
 }
