@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-09T07:50:03-0600",
+  "generated_at": "2026-10-09T08:00:03-0600",
   "stats": {
-    "today_count": 34,
-    "today_species": 6,
-    "total": 3419
+    "today_count": 35,
+    "today_species": 7,
+    "total": 3420
   },
   "enviro": {
-    "temp_f": 77.7,
-    "humidity": 17.9,
+    "temp_f": 75.5,
+    "humidity": 19.0,
     "pressure": 824.8
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.734,
+      "iso": "2026-10-09T07:57:48",
+      "time": "07:57",
+      "date": "2026-10-09",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-73-2026-10-09-birdnet-07.57.48.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-09",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-95-2026-10-09-birdnet-07.37.47.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.688,
-      "iso": "2026-10-09T07:37:38",
-      "time": "07:37",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-69-2026-10-09-birdnet-07.37.38.mp3"
     }
   ]
 }
