@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-10T07:20:04-0600",
+  "generated_at": "2026-10-10T07:30:03-0600",
   "stats": {
-    "today_count": 4,
-    "today_species": 2,
-    "total": 3525
+    "today_count": 6,
+    "today_species": 3,
+    "total": 3527
   },
   "enviro": {
-    "temp_f": 73.9,
-    "humidity": 18.9,
-    "pressure": 819.3
+    "temp_f": 74.7,
+    "humidity": 18.5,
+    "pressure": 819.2
   },
   "detections": [
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7896,
+      "iso": "2026-10-10T07:21:58",
+      "time": "07:21",
+      "date": "2026-10-10",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-79-2026-10-10-birdnet-07.21.58.mp3"
+    },
+    {
+      "com_name": "Red-tailed Hawk",
+      "sci_name": "Buteo jamaicensis",
+      "confidence": 0.7962,
+      "iso": "2026-10-10T07:20:58",
+      "time": "07:20",
+      "date": "2026-10-10",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Red-tailed_Hawk-80-2026-10-10-birdnet-07.20.58.mp3"
+    },
     {
       "com_name": "House Finch",
       "sci_name": "Haemorhous mexicanus",
@@ -140,26 +160,6 @@
       "date": "2026-10-09",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-85-2026-10-09-birdnet-13.29.23.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.873,
-      "iso": "2026-10-09T13:29:20",
-      "time": "13:29",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-87-2026-10-09-birdnet-13.29.20.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.8472,
-      "iso": "2026-10-09T13:01:27",
-      "time": "13:01",
-      "date": "2026-10-09",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-85-2026-10-09-birdnet-13.01.27.mp3"
     }
   ]
 }
