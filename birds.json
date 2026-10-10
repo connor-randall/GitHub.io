@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-10T12:00:04-0600",
+  "generated_at": "2026-10-10T12:10:03-0600",
   "stats": {
-    "today_count": 141,
+    "today_count": 142,
     "today_species": 10,
-    "total": 3662
+    "total": 3663
   },
   "enviro": {
-    "temp_f": 96.8,
-    "humidity": 10.6,
-    "pressure": 818.4
+    "temp_f": 87.2,
+    "humidity": 14.0,
+    "pressure": 818.2
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.685,
+      "iso": "2026-10-10T12:04:17",
+      "time": "12:04",
+      "date": "2026-10-10",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-68-2026-10-10-birdnet-12.04.17.mp3"
+    },
     {
       "com_name": "Black-capped Chickadee",
       "sci_name": "Poecile atricapillus",
@@ -150,16 +160,6 @@
       "date": "2026-10-10",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Blue_Jay-69-2026-10-10-birdnet-10.45.38.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6583,
-      "iso": "2026-10-10T10:45:14",
-      "time": "10:45",
-      "date": "2026-10-10",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-66-2026-10-10-birdnet-10.45.14.mp3"
     }
   ]
 }
