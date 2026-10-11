@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-11T07:50:03-0600",
+  "generated_at": "2026-10-11T08:00:03-0600",
   "stats": {
-    "today_count": 9,
+    "today_count": 10,
     "today_species": 5,
-    "total": 3737
+    "total": 3738
   },
   "enviro": {
-    "temp_f": 76.5,
-    "humidity": 23.2,
-    "pressure": 818.0
+    "temp_f": 74.2,
+    "humidity": 24.4,
+    "pressure": 818.1
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.6572,
+      "iso": "2026-10-11T07:59:51",
+      "time": "07:59",
+      "date": "2026-10-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-66-2026-10-11-birdnet-07.59.51.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-10",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-72-2026-10-10-birdnet-16.31.48.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6555,
-      "iso": "2026-10-10T16:30:27",
-      "time": "16:30",
-      "date": "2026-10-10",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-66-2026-10-10-birdnet-16.30.27.mp3"
     }
   ]
 }
