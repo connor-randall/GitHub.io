@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-11T07:20:03-0600",
+  "generated_at": "2026-10-11T07:30:03-0600",
   "stats": {
-    "today_count": 4,
-    "today_species": 2,
-    "total": 3732
+    "today_count": 5,
+    "today_species": 3,
+    "total": 3733
   },
   "enviro": {
-    "temp_f": 73.5,
-    "humidity": 24.9,
+    "temp_f": 74.8,
+    "humidity": 24.3,
     "pressure": 817.9
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7068,
+      "iso": "2026-10-11T07:25:34",
+      "time": "07:25",
+      "date": "2026-10-11",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-71-2026-10-11-birdnet-07.25.34.mp3"
+    },
     {
       "com_name": "Red-tailed Hawk",
       "sci_name": "Buteo jamaicensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-10",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-67-2026-10-10-birdnet-15.11.21.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8857,
-      "iso": "2026-10-10T15:11:18",
-      "time": "15:11",
-      "date": "2026-10-10",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-10-10-birdnet-15.11.18.mp3"
     }
   ]
 }
