@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-12T09:00:03-0600",
+  "generated_at": "2026-10-12T09:10:03-0600",
   "stats": {
-    "today_count": 88,
+    "today_count": 90,
     "today_species": 3,
-    "total": 3924
+    "total": 3926
   },
   "enviro": {
-    "temp_f": 83.8,
-    "humidity": 14.3,
-    "pressure": 819.3
+    "temp_f": 81.5,
+    "humidity": 15.2,
+    "pressure": 819.5
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.678,
+      "iso": "2026-10-12T09:07:44",
+      "time": "09:07",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-68-2026-10-12-birdnet-09.07.44.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.808,
+      "iso": "2026-10-12T09:02:02",
+      "time": "09:02",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-81-2026-10-12-birdnet-09.02.02.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -140,26 +160,6 @@
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-83-2026-10-12-birdnet-08.25.59.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8692,
-      "iso": "2026-10-12T08:25:56",
-      "time": "08:25",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-87-2026-10-12-birdnet-08.25.56.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8457,
-      "iso": "2026-10-12T08:25:53",
-      "time": "08:25",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-85-2026-10-12-birdnet-08.25.53.mp3"
     }
   ]
 }
