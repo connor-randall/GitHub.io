@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-12T14:40:03-0600",
+  "generated_at": "2026-10-12T14:50:03-0600",
   "stats": {
-    "today_count": 315,
+    "today_count": 338,
     "today_species": 12,
-    "total": 4151
+    "total": 4174
   },
   "enviro": {
-    "temp_f": 82.0,
+    "temp_f": 81.9,
     "humidity": 12.0,
     "pressure": 816.8
   },
@@ -14,152 +14,152 @@
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7232,
-      "iso": "2026-10-12T14:37:10",
-      "time": "14:37",
+      "confidence": 0.7027,
+      "iso": "2026-10-12T14:46:47",
+      "time": "14:46",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-72-2026-10-12-birdnet-14.37.10.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-10-12-birdnet-14.46.47.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.8582,
-      "iso": "2026-10-12T14:37:07",
-      "time": "14:37",
+      "confidence": 0.7918,
+      "iso": "2026-10-12T14:46:44",
+      "time": "14:46",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-86-2026-10-12-birdnet-14.37.07.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6876,
-      "iso": "2026-10-12T14:26:04",
-      "time": "14:26",
-      "date": "2026-10-12",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-69-2026-10-12-birdnet-14.26.04.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6933,
-      "iso": "2026-10-12T14:26:01",
-      "time": "14:26",
-      "date": "2026-10-12",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-69-2026-10-12-birdnet-14.26.01.mp3"
-    },
-    {
-      "com_name": "Green-winged Teal",
-      "sci_name": "Anas crecca",
-      "confidence": 0.6762,
-      "iso": "2026-10-12T14:14:09",
-      "time": "14:14",
-      "date": "2026-10-12",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Green-winged_Teal%2C_Port_Aransas%2C_Texas.jpg/330px-Green-winged_Teal%2C_Port_Aransas%2C_Texas.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Green-winged_Teal-68-2026-10-12-birdnet-14.14.09.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9503,
-      "iso": "2026-10-12T13:45:10",
-      "time": "13:45",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-95-2026-10-12-birdnet-13.45.10.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9624,
-      "iso": "2026-10-12T13:45:07",
-      "time": "13:45",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-96-2026-10-12-birdnet-13.45.07.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8725,
-      "iso": "2026-10-12T13:45:04",
-      "time": "13:45",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-87-2026-10-12-birdnet-13.45.04.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.909,
-      "iso": "2026-10-12T13:43:52",
-      "time": "13:43",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-10-12-birdnet-13.43.52.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9259,
-      "iso": "2026-10-12T13:41:55",
-      "time": "13:41",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-93-2026-10-12-birdnet-13.41.55.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8477,
-      "iso": "2026-10-12T13:35:27",
-      "time": "13:35",
-      "date": "2026-10-12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-85-2026-10-12-birdnet-13.35.27.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-79-2026-10-12-birdnet-14.46.44.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7385,
-      "iso": "2026-10-12T13:19:38",
-      "time": "13:19",
+      "confidence": 0.7118,
+      "iso": "2026-10-12T14:46:41",
+      "time": "14:46",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-74-2026-10-12-birdnet-13.19.38.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-71-2026-10-12-birdnet-14.46.41.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7977,
-      "iso": "2026-10-12T13:19:29",
-      "time": "13:19",
+      "confidence": 0.8431,
+      "iso": "2026-10-12T14:46:38",
+      "time": "14:46",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-80-2026-10-12-birdnet-13.19.29.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-84-2026-10-12-birdnet-14.46.38.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.8801,
-      "iso": "2026-10-12T13:19:02",
-      "time": "13:19",
+      "confidence": 0.9414,
+      "iso": "2026-10-12T14:46:35",
+      "time": "14:46",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-88-2026-10-12-birdnet-13.19.02.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-94-2026-10-12-birdnet-14.46.35.mp3"
     },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
-      "confidence": 0.7794,
-      "iso": "2026-10-12T13:18:56",
-      "time": "13:18",
+      "confidence": 0.6955,
+      "iso": "2026-10-12T14:44:56",
+      "time": "14:44",
       "date": "2026-10-12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-78-2026-10-12-birdnet-13.18.56.mp3"
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-10-12-birdnet-14.44.56.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9246,
+      "iso": "2026-10-12T14:44:50",
+      "time": "14:44",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-92-2026-10-12-birdnet-14.44.50.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7271,
+      "iso": "2026-10-12T14:44:47",
+      "time": "14:44",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-73-2026-10-12-birdnet-14.44.47.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8882,
+      "iso": "2026-10-12T14:44:38",
+      "time": "14:44",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-89-2026-10-12-birdnet-14.44.38.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9733,
+      "iso": "2026-10-12T14:44:35",
+      "time": "14:44",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-97-2026-10-12-birdnet-14.44.35.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8878,
+      "iso": "2026-10-12T14:43:23",
+      "time": "14:43",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-89-2026-10-12-birdnet-14.43.23.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7419,
+      "iso": "2026-10-12T14:42:23",
+      "time": "14:42",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-74-2026-10-12-birdnet-14.42.23.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7474,
+      "iso": "2026-10-12T14:42:11",
+      "time": "14:42",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-75-2026-10-12-birdnet-14.42.11.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8221,
+      "iso": "2026-10-12T14:42:08",
+      "time": "14:42",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-82-2026-10-12-birdnet-14.42.08.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9314,
+      "iso": "2026-10-12T14:41:29",
+      "time": "14:41",
+      "date": "2026-10-12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-93-2026-10-12-birdnet-14.41.29.mp3"
     }
   ]
 }
