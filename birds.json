@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-14T12:00:03-0600",
+  "generated_at": "2026-10-14T12:10:03-0600",
   "stats": {
-    "today_count": 10,
-    "today_species": 6,
-    "total": 4366
+    "today_count": 12,
+    "today_species": 7,
+    "total": 4368
   },
   "enviro": {
-    "temp_f": 59.6,
-    "humidity": 46.1,
-    "pressure": 824.6
+    "temp_f": 61.2,
+    "humidity": 44.6,
+    "pressure": 824.3
   },
   "detections": [
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.8242,
+      "iso": "2026-10-14T12:05:51",
+      "time": "12:05",
+      "date": "2026-10-14",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-82-2026-10-14-birdnet-12.05.51.mp3"
+    },
+    {
+      "com_name": "Blue Jay",
+      "sci_name": "Cyanocitta cristata",
+      "confidence": 0.8491,
+      "iso": "2026-10-14T12:05:48",
+      "time": "12:05",
+      "date": "2026-10-14",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Blue_Jay-85-2026-10-14-birdnet-12.05.48.mp3"
+    },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
@@ -140,26 +160,6 @@
       "date": "2026-10-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-79-2026-10-13-birdnet-18.27.30.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8517,
-      "iso": "2026-10-13T16:29:40",
-      "time": "16:29",
-      "date": "2026-10-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-85-2026-10-13-birdnet-16.29.40.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8895,
-      "iso": "2026-10-13T16:29:37",
-      "time": "16:29",
-      "date": "2026-10-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-10-13-birdnet-16.29.37.mp3"
     }
   ]
 }
