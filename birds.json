@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-15T09:10:03-0600",
+  "generated_at": "2026-10-15T09:20:04-0600",
   "stats": {
-    "today_count": 2,
-    "today_species": 1,
-    "total": 4406
+    "today_count": 3,
+    "today_species": 2,
+    "total": 4407
   },
   "enviro": {
-    "temp_f": 52.6,
-    "humidity": 48.7,
-    "pressure": 833.8
+    "temp_f": 55.3,
+    "humidity": 44.4,
+    "pressure": 834.2
   },
   "detections": [
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.707,
+      "iso": "2026-10-15T09:10:39",
+      "time": "09:10",
+      "date": "2026-10-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-71-2026-10-15-birdnet-09.10.39.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-87-2026-10-14-birdnet-15.58.30.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.6599,
-      "iso": "2026-10-14T14:55:35",
-      "time": "14:55",
-      "date": "2026-10-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-66-2026-10-14-birdnet-14.55.35.mp3"
     }
   ]
 }
