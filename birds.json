@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-15T09:50:03-0600",
+  "generated_at": "2026-10-15T10:00:03-0600",
   "stats": {
-    "today_count": 36,
+    "today_count": 37,
     "today_species": 6,
-    "total": 4440
+    "total": 4441
   },
   "enviro": {
-    "temp_f": 58.0,
-    "humidity": 39.3,
-    "pressure": 834.6
+    "temp_f": 62.6,
+    "humidity": 34.9,
+    "pressure": 834.7
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7325,
+      "iso": "2026-10-15T09:53:27",
+      "time": "09:53",
+      "date": "2026-10-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-73-2026-10-15-birdnet-09.53.27.mp3"
+    },
     {
       "com_name": "American Goldfinch",
       "sci_name": "Spinus tristis",
@@ -150,16 +160,6 @@
       "date": "2026-10-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-86-2026-10-15-birdnet-09.32.38.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9133,
-      "iso": "2026-10-15T09:32:32",
-      "time": "09:32",
-      "date": "2026-10-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-10-15-birdnet-09.32.32.mp3"
     }
   ]
 }
