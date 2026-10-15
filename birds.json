@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-10-14T18:20:03-0600",
+  "generated_at": "2026-10-14T18:30:03-0600",
   "stats": {
-    "today_count": 44,
+    "today_count": 48,
     "today_species": 9,
-    "total": 4400
+    "total": 4404
   },
   "enviro": {
-    "temp_f": 68.3,
-    "humidity": 36.1,
+    "temp_f": 68.4,
+    "humidity": 35.8,
     "pressure": 822.3
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6664,
+      "iso": "2026-10-14T18:25:24",
+      "time": "18:25",
+      "date": "2026-10-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-67-2026-10-14-birdnet-18.25.24.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8844,
+      "iso": "2026-10-14T18:25:18",
+      "time": "18:25",
+      "date": "2026-10-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-88-2026-10-14-birdnet-18.25.18.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7923,
+      "iso": "2026-10-14T18:20:51",
+      "time": "18:20",
+      "date": "2026-10-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-79-2026-10-14-birdnet-18.20.51.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8177,
+      "iso": "2026-10-14T18:20:33",
+      "time": "18:20",
+      "date": "2026-10-14",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-82-2026-10-14-birdnet-18.20.33.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -120,46 +160,6 @@
       "date": "2026-10-14",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-69-2026-10-14-birdnet-14.54.25.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.6662,
-      "iso": "2026-10-14T14:53:47",
-      "time": "14:53",
-      "date": "2026-10-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-67-2026-10-14-birdnet-14.53.47.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7346,
-      "iso": "2026-10-14T12:53:36",
-      "time": "12:53",
-      "date": "2026-10-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-73-2026-10-14-birdnet-12.53.36.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7959,
-      "iso": "2026-10-14T12:28:13",
-      "time": "12:28",
-      "date": "2026-10-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-80-2026-10-14-birdnet-12.28.13.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7827,
-      "iso": "2026-10-14T12:27:58",
-      "time": "12:27",
-      "date": "2026-10-14",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-78-2026-10-14-birdnet-12.27.58.mp3"
     }
   ]
 }
