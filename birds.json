@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-10-16T07:20:03-0600",
+  "generated_at": "2026-10-16T07:30:03-0600",
   "stats": {
-    "today_count": 7,
-    "today_species": 3,
-    "total": 4532
+    "today_count": 11,
+    "today_species": 4,
+    "total": 4536
   },
   "enviro": {
-    "temp_f": 53.4,
-    "humidity": 23.0,
-    "pressure": 844.1
+    "temp_f": 50.6,
+    "humidity": 25.0,
+    "pressure": 844.0
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.748,
+      "iso": "2026-10-16T07:25:07",
+      "time": "07:25",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-75-2026-10-16-birdnet-07.25.07.mp3"
+    },
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7408,
+      "iso": "2026-10-16T07:25:04",
+      "time": "07:25",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-74-2026-10-16-birdnet-07.25.04.mp3"
+    },
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.7238,
+      "iso": "2026-10-16T07:21:34",
+      "time": "07:21",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-72-2026-10-16-birdnet-07.21.34.mp3"
+    },
+    {
+      "com_name": "Downy Woodpecker",
+      "sci_name": "Dryobates pubescens",
+      "confidence": 0.8431,
+      "iso": "2026-10-16T07:20:55",
+      "time": "07:20",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Downy_Woodpecker-84-2026-10-16-birdnet-07.20.55.mp3"
+    },
     {
       "com_name": "Downy Woodpecker",
       "sci_name": "Dryobates pubescens",
@@ -120,46 +160,6 @@
       "date": "2026-10-15",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-81-2026-10-15-birdnet-18.11.11.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7127,
-      "iso": "2026-10-15T18:11:08",
-      "time": "18:11",
-      "date": "2026-10-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-71-2026-10-15-birdnet-18.11.08.mp3"
-    },
-    {
-      "com_name": "Downy Woodpecker",
-      "sci_name": "Dryobates pubescens",
-      "confidence": 0.7944,
-      "iso": "2026-10-15T17:56:07",
-      "time": "17:56",
-      "date": "2026-10-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Dryobates_pubescens_UL_03.jpg/330px-Dryobates_pubescens_UL_03.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Downy_Woodpecker-79-2026-10-15-birdnet-17.56.07.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7278,
-      "iso": "2026-10-15T17:08:07",
-      "time": "17:08",
-      "date": "2026-10-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-73-2026-10-15-birdnet-17.08.07.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9185,
-      "iso": "2026-10-15T17:06:58",
-      "time": "17:06",
-      "date": "2026-10-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-92-2026-10-15-birdnet-17.06.58.mp3"
     }
   ]
 }
