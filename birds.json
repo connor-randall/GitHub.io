@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-16T12:40:03-0600",
+  "generated_at": "2026-10-16T12:50:03-0600",
   "stats": {
-    "today_count": 138,
+    "today_count": 139,
     "today_species": 12,
-    "total": 4663
+    "total": 4664
   },
   "enviro": {
-    "temp_f": 64.7,
-    "humidity": 15.2,
-    "pressure": 841.5
+    "temp_f": 64.6,
+    "humidity": 15.3,
+    "pressure": 841.4
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7019,
+      "iso": "2026-10-16T12:48:43",
+      "time": "12:48",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-70-2026-10-16-birdnet-12.48.43.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-10-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-79-2026-10-16-birdnet-11.59.40.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.7976,
-      "iso": "2026-10-16T11:58:30",
-      "time": "11:58",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-80-2026-10-16-birdnet-11.58.30.mp3"
     }
   ]
 }
