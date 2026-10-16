@@ -1,16 +1,56 @@
 {
-  "generated_at": "2026-10-16T11:00:03-0600",
+  "generated_at": "2026-10-16T11:10:03-0600",
   "stats": {
-    "today_count": 99,
+    "today_count": 103,
     "today_species": 10,
-    "total": 4624
+    "total": 4628
   },
   "enviro": {
-    "temp_f": 63.2,
-    "humidity": 21.5,
-    "pressure": 843.0
+    "temp_f": 66.3,
+    "humidity": 19.0,
+    "pressure": 842.8
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8714,
+      "iso": "2026-10-16T11:04:18",
+      "time": "11:04",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-87-2026-10-16-birdnet-11.04.18.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9603,
+      "iso": "2026-10-16T11:04:15",
+      "time": "11:04",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-96-2026-10-16-birdnet-11.04.15.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9692,
+      "iso": "2026-10-16T11:04:12",
+      "time": "11:04",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-10-16-birdnet-11.04.12.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8512,
+      "iso": "2026-10-16T11:04:09",
+      "time": "11:04",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-85-2026-10-16-birdnet-11.04.09.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -120,46 +160,6 @@
       "date": "2026-10-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-81-2026-10-16-birdnet-10.18.18.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6501,
-      "iso": "2026-10-16T10:07:41",
-      "time": "10:07",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-65-2026-10-16-birdnet-10.07.41.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6578,
-      "iso": "2026-10-16T10:07:35",
-      "time": "10:07",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-66-2026-10-16-birdnet-10.07.35.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6691,
-      "iso": "2026-10-16T10:07:29",
-      "time": "10:07",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-10-16-birdnet-10.07.29.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7302,
-      "iso": "2026-10-16T10:00:56",
-      "time": "10:00",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-73-2026-10-16-birdnet-10.00.56.mp3"
     }
   ]
 }
