@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-10-16T09:50:03-0600",
+  "generated_at": "2026-10-16T10:00:03-0600",
   "stats": {
-    "today_count": 80,
+    "today_count": 81,
     "today_species": 8,
-    "total": 4605
+    "total": 4606
   },
   "enviro": {
-    "temp_f": 52.9,
-    "humidity": 27.5,
+    "temp_f": 53.5,
+    "humidity": 27.6,
     "pressure": 843.8
   },
   "detections": [
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.7928,
+      "iso": "2026-10-16T09:54:43",
+      "time": "09:54",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-79-2026-10-16-birdnet-09.54.43.mp3"
+    },
     {
       "com_name": "Black-billed Magpie",
       "sci_name": "Pica hudsonia",
@@ -150,16 +160,6 @@
       "date": "2026-10-16",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-82-2026-10-16-birdnet-09.23.09.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.8349,
-      "iso": "2026-10-16T09:23:00",
-      "time": "09:23",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-83-2026-10-16-birdnet-09.23.00.mp3"
     }
   ]
 }
