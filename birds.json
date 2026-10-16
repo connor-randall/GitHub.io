@@ -1,16 +1,116 @@
 {
-  "generated_at": "2026-10-16T10:40:03-0600",
+  "generated_at": "2026-10-16T10:50:03-0600",
   "stats": {
-    "today_count": 89,
-    "today_species": 9,
-    "total": 4614
+    "today_count": 99,
+    "today_species": 10,
+    "total": 4624
   },
   "enviro": {
-    "temp_f": 57.7,
-    "humidity": 25.1,
-    "pressure": 843.3
+    "temp_f": 58.4,
+    "humidity": 24.8,
+    "pressure": 843.2
   },
   "detections": [
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8328,
+      "iso": "2026-10-16T10:46:50",
+      "time": "10:46",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-83-2026-10-16-birdnet-10.46.50.mp3"
+    },
+    {
+      "com_name": "Common Raven",
+      "sci_name": "Corvus corax",
+      "confidence": 0.7599,
+      "iso": "2026-10-16T10:46:08",
+      "time": "10:46",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Corvus_corax_clarionensis%2C_Point_Reyes_National_Seashore.jpg/330px-Corvus_corax_clarionensis%2C_Point_Reyes_National_Seashore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Common_Raven-76-2026-10-16-birdnet-10.46.08.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.7102,
+      "iso": "2026-10-16T10:45:35",
+      "time": "10:45",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-71-2026-10-16-birdnet-10.45.35.mp3"
+    },
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.6914,
+      "iso": "2026-10-16T10:45:26",
+      "time": "10:45",
+      "date": "2026-10-16",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-69-2026-10-16-birdnet-10.45.26.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.6807,
+      "iso": "2026-10-16T10:44:23",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-68-2026-10-16-birdnet-10.44.23.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9287,
+      "iso": "2026-10-16T10:44:20",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-93-2026-10-16-birdnet-10.44.20.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.7819,
+      "iso": "2026-10-16T10:44:11",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-78-2026-10-16-birdnet-10.44.11.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8575,
+      "iso": "2026-10-16T10:44:08",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-86-2026-10-16-birdnet-10.44.08.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8929,
+      "iso": "2026-10-16T10:44:05",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-89-2026-10-16-birdnet-10.44.05.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.9427,
+      "iso": "2026-10-16T10:44:02",
+      "time": "10:44",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-94-2026-10-16-birdnet-10.44.02.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -60,106 +160,6 @@
       "date": "2026-10-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
       "audio": "bird-clips/Black-billed_Magpie-73-2026-10-16-birdnet-10.00.56.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8957,
-      "iso": "2026-10-16T10:00:50",
-      "time": "10:00",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-90-2026-10-16-birdnet-10.00.50.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8254,
-      "iso": "2026-10-16T10:00:44",
-      "time": "10:00",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-83-2026-10-16-birdnet-10.00.44.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8423,
-      "iso": "2026-10-16T10:00:38",
-      "time": "10:00",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-84-2026-10-16-birdnet-10.00.38.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.7928,
-      "iso": "2026-10-16T09:54:43",
-      "time": "09:54",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-79-2026-10-16-birdnet-09.54.43.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.7561,
-      "iso": "2026-10-16T09:49:10",
-      "time": "09:49",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-76-2026-10-16-birdnet-09.49.10.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.9651,
-      "iso": "2026-10-16T09:48:46",
-      "time": "09:48",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-97-2026-10-16-birdnet-09.48.46.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8547,
-      "iso": "2026-10-16T09:48:37",
-      "time": "09:48",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-85-2026-10-16-birdnet-09.48.37.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.73,
-      "iso": "2026-10-16T09:48:34",
-      "time": "09:48",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-73-2026-10-16-birdnet-09.48.34.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.7361,
-      "iso": "2026-10-16T09:33:12",
-      "time": "09:33",
-      "date": "2026-10-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-74-2026-10-16-birdnet-09.33.12.mp3"
-    },
-    {
-      "com_name": "Black-billed Magpie",
-      "sci_name": "Pica hudsonia",
-      "confidence": 0.8544,
-      "iso": "2026-10-16T09:28:21",
-      "time": "09:28",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
-      "audio": "bird-clips/Black-billed_Magpie-85-2026-10-16-birdnet-09.28.21.mp3"
     }
   ]
 }
