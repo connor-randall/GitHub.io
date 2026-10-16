@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-10-16T12:30:03-0600",
+  "generated_at": "2026-10-16T12:40:03-0600",
   "stats": {
-    "today_count": 136,
+    "today_count": 138,
     "today_species": 12,
-    "total": 4661
+    "total": 4663
   },
   "enviro": {
-    "temp_f": 62.9,
-    "humidity": 16.1,
-    "pressure": 841.7
+    "temp_f": 64.7,
+    "humidity": 15.2,
+    "pressure": 841.5
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9153,
+      "iso": "2026-10-16T12:35:45",
+      "time": "12:35",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-92-2026-10-16-birdnet-12.35.45.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8911,
+      "iso": "2026-10-16T12:33:00",
+      "time": "12:33",
+      "date": "2026-10-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-10-16-birdnet-12.33.00.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -140,26 +160,6 @@
       "date": "2026-10-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
       "audio": "bird-clips/Black-capped_Chickadee-80-2026-10-16-birdnet-11.58.30.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6528,
-      "iso": "2026-10-16T11:58:19",
-      "time": "11:58",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-65-2026-10-16-birdnet-11.58.19.mp3"
-    },
-    {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6521,
-      "iso": "2026-10-16T11:57:57",
-      "time": "11:57",
-      "date": "2026-10-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-65-2026-10-16-birdnet-11.57.57.mp3"
     }
   ]
 }
