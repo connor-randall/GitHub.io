@@ -9,9 +9,9 @@
 //
 // Tap anywhere to skip. Reduced motion gets a short fade to the death image.
 
-import { el } from "../ascii.js?v=c30f4a427c";
-import { showOverlay } from "./fx.js?v=c30f4a427c";
-import { startMist } from "./mist.js?v=c30f4a427c";
+import { el } from "../ascii.js?v=b6664395f3";
+import { onSkipDeath, showOverlay } from "./fx.js?v=b6664395f3";
+import { startMist } from "./mist.js?v=b6664395f3";
 
 const MIST = " .'`,:;-~=+*";
 const GLYPHS = "#%&@$*+=-:;.'~^";
@@ -105,13 +105,13 @@ export function playDeath(def, from = {}) {
         maxEyeFrac: 0.48,
       });
 
-      const finish = () => {
+      const finish = onSkipDeath(() => {
         mist.stop();
         overlay.classList.remove("death");
         overlay.style.removeProperty("--death-tint");
         mistEl.remove();
         close();
-      };
+      });
 
       (async () => {
         if (reduced) {

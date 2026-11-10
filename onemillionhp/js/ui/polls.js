@@ -2,11 +2,11 @@
 // until the timer runs out), see the counts once you've voted, and when a
 // poll ends with more than half YES it PASSES, with a one-time celebration.
 
-import * as api from "../api.js?v=c30f4a427c";
-import { bar, center, duration, el, fitArt, fmt } from "../ascii.js?v=c30f4a427c";
-import { now, state } from "../store.js?v=c30f4a427c";
-import { blockLetters } from "./aftermath.js?v=c30f4a427c";
-import { showError } from "./errors.js?v=c30f4a427c";
+import * as api from "../api.js?v=b6664395f3";
+import { ago, bar, center, duration, el, fitArt, fmt, holdHeight } from "../ascii.js?v=b6664395f3";
+import { now, state } from "../store.js?v=b6664395f3";
+import { blockLetters } from "./aftermath.js?v=b6664395f3";
+import { showError } from "./errors.js?v=b6664395f3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,6 +21,16 @@ let loading = false;
 let busy = false;
 /** @type {ReturnType<typeof setInterval> | undefined} */
 let ticker;
+const COMMENTS_MAX = 5; // per player per poll: server Game.POLL_COMMENTS_MAX
+const COMMENT_MAX = 300;
+/** Polls whose [ COMMENTS ] drop-down is open (kept across redraws). @type {Set<number>} */
+const openComments = new Set();
+/** Half-typed comments, by poll id (kept across redraws). @type {Map<number, string>} */
+const drafts = new Map();
+let commenting = false;
+/** A redraw skipped while typing a comment: done once you leave the box. */
+let redrawWaiting = false;
+const typingComment = () => Boolean(document.activeElement?.matches("#panel-polls .poll-comment-input"));
 
 /** @param {number} ms */
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -92,6 +102,101 @@ async function vote(poll, choice) {
     busy = false;
     render();
   }
+}
+
+/** Swap in the server's copy of one poll. @param {any} fresh */
+const replacePoll = (fresh) => (polls = polls.map((p) => (p.id === fresh.id ? fresh : p)));
+
+/** Post a comment (ticket #308). @param {any} poll @param {HTMLTextAreaElement} box */
+async function sendComment(poll, box) {
+  const text = box.value.trim();
+  if (commenting || !text) return;
+  commenting = true;
+  try {
+    replacePoll((await api.commentPoll(poll.id, text)).poll);
+    drafts.delete(poll.id);
+    box.blur();
+  } catch (e) {
+    showError(/** @type {Error} */ (e).message);
+    if (["COMMENTS_FULL", "POLL_CLOSED"].includes(/** @type {api.ApiError} */ (e).code ?? "")) loadPolls(true);
+  } finally {
+    commenting = false;
+    render();
+  }
+}
+
+/** Take down your own comment. @param {any} comment */
+async function dropComment(comment) {
+  if (commenting) return;
+  commenting = true;
+  try {
+    replacePoll((await api.deletePollComment(comment.id)).poll);
+  } catch (e) {
+    showError(/** @type {Error} */ (e).message);
+  } finally {
+    commenting = false;
+    render();
+  }
+}
+
+/** [ COMMENTS (n) ] drop-down under a poll, as under tickets: why people voted
+ * the way they did (ticket #308). @param {any} poll @param {boolean} closed */
+function commentsFold(poll, closed) {
+  /** @type {any[]} */
+  const list = poll.comments ?? [];
+  const fold = /** @type {HTMLDetailsElement} */ (el("details", "ticket-comments poll-comments"));
+  fold.open = openComments.has(poll.id);
+  const mine = list.filter((cm) => cm.mine).length;
+  const sum = el("summary", "inline-btn ticket-comments-sum", "");
+  const label = () => (sum.textContent = `[ COMMENTS (${list.length}) ${fold.open ? "\u25B4" : "\u25BE"} ]`);
+  label();
+  fold.append(sum);
+  fold.addEventListener("toggle", () => {
+    if (fold.open) openComments.add(poll.id);
+    else openComments.delete(poll.id);
+    label();
+  });
+  const body = el("div", "ticket-comments-body");
+  if (!list.length) body.append(el("div", "dim", "> no comments yet."));
+  for (const cm of list) {
+    const row = el("div", `ticket-comment${cm.mine ? " mine" : ""}`);
+    const meta = el("div", "ticket-comment-meta");
+    meta.append(el("span", "ticket-by", cm.name), el("span", "dim", ` · ${ago(now() - cm.created_at)} ago`));
+    if (cm.mine) {
+      const del = /** @type {HTMLButtonElement} */ (el("button", "inline-btn ticket-delete", "[ DELETE ]"));
+      del.type = "button";
+      del.title = "take your comment down";
+      del.addEventListener("click", () => dropComment(cm));
+      meta.append(" ", del);
+    }
+    row.append(meta, el("div", "ticket-text", cm.body));
+    body.append(row);
+  }
+  if (closed) body.append(el("div", "dim ticket-vote-hint", "> ended: comments are closed."));
+  else if (mine >= COMMENTS_MAX) body.append(el("div", "dim ticket-vote-hint", `> you've left ${COMMENTS_MAX} comments here: that's the limit.`));
+  else if (!state.me?.name_chosen) body.append(el("div", "dim ticket-vote-hint", "> make your account first (hit [ ATTACK ]) to comment."));
+  else {
+    const form = el("form", "ticket-comment-form");
+    const box = /** @type {HTMLTextAreaElement} */ (el("textarea", "designer-input ticket-comment-input poll-comment-input"));
+    box.rows = 2;
+    box.maxLength = COMMENT_MAX;
+    box.placeholder = `why did you vote that way? (${COMMENTS_MAX - mine} left)`;
+    box.value = drafts.get(poll.id) ?? "";
+    box.addEventListener("input", () => drafts.set(poll.id, box.value));
+    box.addEventListener("blur", () => setTimeout(() => {
+      if (redrawWaiting && !typingComment() && visible()) render();
+    }, 0));
+    const send = /** @type {HTMLButtonElement} */ (el("button", "inline-btn", "[ POST ]"));
+    send.type = "submit";
+    form.append(box, send);
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendComment(poll, box);
+    });
+    body.append(form);
+  }
+  fold.append(body);
+  return fold;
 }
 
 /** A YES / NO result row: ``YES [████░░░░] 67%  12``. @param {string} label @param {number} n @param {number} total @param {boolean} mine */
@@ -175,6 +280,7 @@ function card(poll) {
       requestAnimationFrame(() => fitArt(stamp, 13));
     }
   }
+  c.append(commentsFold(poll, closed));
   return c;
 }
 
@@ -207,15 +313,36 @@ async function celebrate(c, stamp, lines) {
 
 function render() {
   const host = $("panel-polls");
+  if (typingComment()) { // a redraw would take the keyboard away mid-sentence
+    redrawWaiting = true;
+    return;
+  }
+  redrawWaiting = false;
   if (!state.content) {
     host.replaceChildren(el("div", "dim", "> connecting..."));
     return;
   }
+  holdHeight(host);
   const parts = [el("div", "panel-h", "POLLS")];
   if (!polls.length) parts.push(el("div", "dim bag-note", "> no polls right now. check back later."));
   for (const p of polls) parts.push(card(p));
   host.replaceChildren(...parts);
   startTicker();
+  const go = focusId && host.querySelector(`.poll[data-id="${focusId}"]`);
+  if (go) {
+    focusId = 0;
+    go.scrollIntoView({ behavior: "smooth", block: "center" });
+    go.classList.add("celebrate");
+    setTimeout(() => go.classList.remove("celebrate"), 600);
+  }
+}
+
+/** A "poll #N" link in chat (ticket #326): scroll to it once the tab draws. */
+let focusId = 0;
+/** @param {number} id */
+export function showPoll(id) {
+  focusId = id;
+  if (visible()) render();
 }
 
 /** While the tab is open: count down each second, and when a poll's time

@@ -6,6 +6,20 @@
 <title>ONE MILLION HP</title>
 <meta name="description" content="Everyone on the internet is fighting the same boss. It has one million HP.">
 <meta name="theme-color" content="#0b0a08">
+<!-- Link previews (Reddit, Discord, X, iMessage...). Crawlers need absolute URLs. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ONE MILLION HP">
+<meta property="og:title" content="ONE MILLION HP">
+<meta property="og:description" content="One boss, one million HP. Everyone hits the same boss. A free browser game.">
+<meta property="og:url" content="https://onemillionhp.com/">
+<meta property="og:image" content="https://onemillionhp.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="POPPY, an ASCII boss, next to a one-million-HP health bar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ONE MILLION HP">
+<meta name="twitter:description" content="One boss, one million HP. Everyone hits the same boss. A free browser game.">
+<meta name="twitter:image" content="https://onemillionhp.com/img/og.png">
 <!-- API origin. Empty = same origin (the game server serves this page).
      tools/publish_web.py rewrites it for the copy hosted on conradrandy.com. -->
 <meta name="omhp-api" content="https://world.conradrandy.com">
@@ -13,30 +27,40 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=c30f4a427c">
+<link rel="stylesheet" href="css/style.css?v=b6664395f3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0a08'/%3E%3Ctext x='8' y='12.5' font-family='monospace' font-size='12' font-weight='bold' fill='%23ffb000' text-anchor='middle'%3E%25%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <!-- Dark cover from the first frame: new visitors see the intro mist first,
      returning players see it fade into the game once it's ready. -->
 <div id="curtain" class="curtain" aria-hidden="true"></div>
+<button id="wev-drop" class="wev-drop" type="button" hidden></button>
 <div class="crt" aria-hidden="true"></div>
-<pre id="mist-bg" class="mist-bg" aria-hidden="true"></pre>
+<canvas id="mist-bg" class="mist-bg" aria-hidden="true"></canvas>
 <div id="shake">
 <main id="app" class="app">
+  <div id="ban-banner" class="ban-banner box" role="alert" hidden></div>
 
   <header class="top box">
-    <pre class="logo logo-wide art" aria-label="ONE MILLION HP"></pre>
-    <pre class="logo logo-stack art" aria-hidden="true"></pre>
+    <div class="logo-wrap">
+      <pre class="logo logo-wide art" aria-label="ONE MILLION HP"></pre>
+      <pre class="logo logo-stack art" aria-hidden="true"></pre>
+    </div>
     <div class="statusline" id="statusline">
       <span id="st-boss">BOSS #---</span>
       <span class="sep">::</span>
-      <span id="st-online" title="terminals connected">- ONLINE</span>
+      <button id="st-online" class="btn-text online-btn" type="button" title="see who's online">[- ONLINE]</button>
       <span class="sep">::</span>
-      <span id="st-link" class="link-dot">LINK ....</span>
+      <span id="st-link" class="link-dot off" role="img" aria-label="connecting" title="connecting...">●</span>
       <span class="sep">::</span>
-      <button id="snd" class="btn-text" type="button" aria-pressed="false">[SND:OFF]</button>
+      <button id="acct" class="btn-text acct-btn" type="button">[LOG IN]</button>
+      <span id="daily-wrap" hidden><span class="sep">::</span>
+      <button id="daily-btn" class="btn-text daily-btn" type="button">[DAILY]</button></span>
+      <span id="shards-wrap" hidden><span class="sep">::</span>
+      <button id="st-shards" class="btn-text shard-tag" type="button" title="your shards: open the shop">&lt;&gt; 0</button></span>
     </div>
+    <!-- World event panel: covers the whole box while an event runs (same size, nothing shifts). -->
+    <div id="wev" class="wev" aria-live="polite" hidden></div>
   </header>
 
   <div class="columns">
@@ -48,10 +72,12 @@
             <pre id="boss-freeze-fx" class="boss-scroll-fx boss-freeze-fx" aria-hidden="true"></pre>
             <pre id="boss-treasure-fx" class="boss-scroll-fx boss-treasure-fx" aria-hidden="true"></pre>
             <pre id="boss-poison-fx" class="boss-scroll-fx boss-poison-fx" aria-hidden="true"></pre>
+            <pre id="ult-world-fx" class="boss-scroll-fx ult-world-fx" aria-hidden="true"></pre>
+            <pre id="wev-fx" class="wev-fx" aria-hidden="true" hidden></pre>
             <pre id="boss-art" class="boss-art art" aria-hidden="true"></pre>
             <div id="popups" class="popups" aria-hidden="true"></div>
           </div>
-          <div id="boss-effects" class="active-effects" aria-live="polite" hidden></div>
+          <div id="boss-effects" class="active-effects" aria-live="polite"></div>
           <h1 class="boss-name" id="boss-name">........</h1>
           <div class="boss-sub" id="boss-sub"></div>
           <div class="taunt" id="taunt" aria-live="off"></div>
@@ -64,11 +90,13 @@
               <span class="hp-pct" id="hp-pct">(---%)</span>
             </div>
             <div class="phase" id="phase">PHASE -</div>
+            <button id="boss-ranks" class="btn-text boss-ranks" type="button">[ THIS BOSS'S LEADERBOARD ]</button>
           </div>
         </div>
         <div id="boss-dead" hidden></div>
       </div>
 
+      <div id="coach" class="box coach" aria-live="polite" hidden></div>
       <div id="fight" class="box fight">
         <div class="box-title">FIGHT</div>
         <div class="controls">
@@ -76,13 +104,21 @@
             <span class="br">[</span> A T T A C K <span class="br">]</span>
           </button>
           <div class="pips" id="pips" aria-live="polite">ATTACKS -/-</div>
+          <div class="fight-crits" id="fight-crits" aria-live="polite" hidden></div>
           <div class="reset-in dim" id="reset-in"></div>
 
           <button id="btn-ult" class="btn-big btn-ult" type="button" disabled>
-            <span class="br">[</span> N O  S C R O L L <span class="br">]</span>
+            <span class="br">[</span> U L T I M A T E <span class="br">]</span>
           </button>
-          <div class="ult-warn" id="ult-warn">SCROLLS DROP FROM ATTACKS</div>
-          <div class="keys dim">keys: [A]/[SPACE] attack &middot; [S] scroll</div>
+          <div class="ult-warn" id="ult-warn">RECHARGES EVERY MINUTE</div>
+          <button id="btn-ult-info" class="ult-info" type="button" hidden>[ ? WHAT DOES MY ULT DO ]</button>
+
+          <button id="btn-scroll" class="btn-big btn-scroll" type="button" disabled>
+            <span class="br">[</span> N O &nbsp;S C R O L L <span class="br">]</span>
+          </button>
+          <div class="ult-warn scroll-warn" id="scroll-warn">BUY SCROLLS IN THE SHOP</div>
+          <div class="loadout-quick" id="loadout-quick" hidden></div>
+          <div class="keys dim" id="fight-keys">keys: [A]/[SPACE] attack &middot; [U] ultimate &middot; [S] scroll &middot; [1]-[3] loadout</div>
         </div>
         <div class="lasthit">
           <div>YOUR LAST HIT <span id="last-hit" class="val">--</span></div>
@@ -97,45 +133,172 @@
     </section>
 
     <section class="col-side box" aria-label="Panels">
-      <nav class="tabs" id="tabs" role="tablist">
-        <button role="tab" data-tab="feed" aria-selected="true">[ FEED ]</button>
-        <button role="tab" data-tab="player">[ YOU ]</button>
-        <button role="tab" data-tab="bag">[ BAG ]</button>
-        <button role="tab" data-tab="shop">[ SHOP ]</button>
-        <button role="tab" data-tab="ranks">[ RANKS ]</button>
-        <button role="tab" data-tab="history">[ HISTORY ]</button>
-        <button role="tab" data-tab="polls">[ POLLS ]</button>
-        <button role="tab" data-tab="designer">[ DESIGN ]</button>
+      <!-- Tabs: two direct ones, the rest in category menus (tabs.js). Every
+           panel button keeps role=tab + data-tab, wherever it sits. -->
+      <nav class="tabs" id="tabs" aria-label="Panels">
+        <div class="tab-group" data-group="feed">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="FEED">[FEED ▾]</button>
+          <div class="tab-menu" hidden>
+            <button role="tab" data-tab="feed" aria-selected="true">[ ATTACKS ]</button>
+            <button role="tab" data-tab="chat">[ CHAT ]</button>
+            <button role="tab" data-tab="both">[ FEED + CHAT ]</button>
+            <button role="tab" data-tab="dms">[ MESSAGES ]</button>
+          </div>
+        </div>
+        <!-- [ EVENTS ] (2026-11-06): the limited-time event (limited.py / ui/limited.js). -->
+        <div class="tab-group" data-group="limited">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="EVENTS">[EVENTS ▾]</button>
+          <div class="tab-menu" hidden>
+            <!-- the event's countdown, only here (ui/limited.js) -->
+            <div id="limited-timer" class="limited-timer" aria-live="off" hidden></div>
+            <button role="tab" data-tab="city">[ CITY ]</button>
+          </div>
+        </div>
+        <div class="tab-group" data-group="events">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="WORLD">[WORLD ▾]</button>
+          <div class="tab-menu" hidden>
+            <button role="tab" data-tab="forge" hidden>[ THE FORGE ]</button>
+            <button role="tab" data-tab="blacksmith">[ BLACKSMITH ]</button>
+            <button role="tab" data-tab="shop">[ SHOP ]</button>
+            <button role="tab" data-tab="auction">[ AUCTION HOUSE ]</button>
+          </div>
+        </div>
+        <div class="tab-group" data-group="you">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="YOU">[YOU ▾]</button>
+          <div class="tab-menu" hidden>
+            <button role="tab" data-tab="player">[ PROFILE ]</button>
+            <button role="tab" data-tab="inventory">[ INVENTORY ]</button>
+            <button role="tab" data-tab="bag">[ BAG ]</button>
+            <button role="tab" data-tab="collection">[ COLLECTION ]</button>
+            <button role="tab" data-tab="achievements">[ ACHIEVEMENTS ]</button>
+            <button role="tab" data-tab="stats">[ STATS ]</button>
+            <button role="tab" data-tab="prestige">[ PRESTIGE ]</button>
+            <button role="tab" data-tab="clan">[ CLAN ]</button>
+          </div>
+        </div>
+        <div class="tab-group" data-group="world">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="LEADERBOARD">[LEADERBOARD ▾]</button>
+          <div class="tab-menu" hidden>
+            <button role="tab" data-tab="ranks">[ RANKS ]</button>
+            <button role="tab" data-tab="history">[ HISTORY ]</button>
+            <button role="tab" data-tab="clanranks">[ CLANS ]</button>
+            <button role="tab" data-tab="hof">[ HALL OF FAME ]</button>
+          </div>
+        </div>
+        <div class="tab-group" data-group="hall">
+          <button class="tab-cat" type="button" aria-haspopup="true" aria-expanded="false" data-label="GAME">[GAME ▾]</button>
+          <div class="tab-menu" hidden>
+            <!-- Sub-menus (tabs.js): tap a heading to open its list. -->
+            <button role="tab" data-tab="bounty" class="tab-hot">[ SPREAD THE WORD ]</button>
+            <a class="tab-link tab-coffee" id="coffee-link" href="https://ko-fi.com/conradrandy" target="_blank" rel="noopener"><span class="coffee-sign" aria-hidden="true">$</span> BUY ME A COFFEE <span class="coffee-sign" aria-hidden="true">$</span></a>
+            <div class="tab-sub">
+              <button class="tab-subcat" type="button" aria-expanded="false" data-label="COMMUNITY">COMMUNITY &#9656;</button>
+              <div class="tab-submenu" hidden>
+                <button role="tab" data-tab="polls">[ POLLS ]</button>
+                <button role="tab" data-tab="tickets">[ TICKETS ]</button>
+                <button role="tab" data-tab="designer">[ DESIGN A BOSS ]</button>
+                <button role="tab" data-tab="bossvote">[ VOTE ON BOSSES ]</button>
+                <a class="tab-link" href="https://discord.gg/qTVj9B7BU" target="_blank" rel="noopener">[ DISCORD ]</a>
+                <a class="tab-link" href="https://1mhp.fyi/?view=table" target="_blank" rel="noopener">[ WIKI ]</a>
+              </div>
+            </div>
+            <div class="tab-sub">
+              <button class="tab-subcat" type="button" aria-expanded="false" data-label="HELP">HELP &#9656;</button>
+              <div class="tab-submenu" hidden>
+                <button class="tab-link" type="button" id="tutorial-replay">[ TUTORIAL ]</button>
+                <button role="tab" data-tab="changelog">[ CHANGELOG ]</button>
+                <button role="tab" data-tab="rarities">[ RARITIES ]</button>
+                <a class="tab-link" href="privacy.html" target="_blank" rel="noopener">[ PRIVACY ]</a>
+                <a class="tab-link" href="terms.html" target="_blank" rel="noopener">[ TERMS ]</a>
+              </div>
+            </div>
+            <button role="tab" data-tab="settings">[ SETTINGS ]</button>
+          </div>
+        </div>
       </nav>
       <div class="panel" id="panel-feed" role="tabpanel">
         <div id="feed-effects" class="active-effects feed-effects" aria-live="polite" hidden></div>
         <div id="pinned" class="pinned feed" hidden></div>
-        <div class="panel-h">RECENT ATTACKS <span class="blink">_</span></div>
+        <div class="panel-h feed-h"><span>RECENT ATTACKS <span class="blink">_</span></span><span id="feed-filter" class="feed-dd"></span></div>
         <div class="feed-wrap">
           <button id="feed-jump" class="feed-jump" type="button" hidden>[ ^ JUMP TO TOP ]</button>
           <ol id="feed" class="feed" aria-live="polite"></ol>
+          <pre id="feed-fog" class="feed-fog" aria-hidden="true" hidden></pre>
+          <pre id="feed-rain" class="feed-rain" aria-hidden="true" hidden></pre>
         </div>
       </div>
+      <div class="panel" id="panel-chat" role="tabpanel" hidden>
+        <section class="chat" id="chat" aria-label="chat">
+          <div class="panel-h chat-h">CHAT <span class="blink">_</span></div>
+          <ol id="chat-list" class="chat-list" aria-live="polite"></ol>
+          <form id="chat-form" class="chat-form" autocomplete="off">
+            <span class="chat-prompt">&gt;</span>
+            <input id="chat-input" maxlength="200" placeholder="say something..." aria-label="chat message" enterkeyhint="send">
+            <button class="btn-text" type="submit">[SEND]</button>
+          </form>
+          <div id="chat-note" class="chat-note dim" aria-live="polite"></div>
+        </section>
+      </div>
+      <div class="panel" id="panel-city" role="tabpanel" hidden></div>
       <div class="panel" id="panel-player" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-inventory" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-collection" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-achievements" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-stats" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-prestige" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-clan" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-clanranks" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-hof" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-dms" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-changelog" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-rarities" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-bounty" role="tabpanel" hidden></div>
+      <!-- [ SETTINGS ] (ticket #179): sound / effects / shake, moved out of the top bar. -->
+      <div class="panel" id="panel-settings" role="tabpanel" hidden>
+        <div class="panel-h">SETTINGS</div>
+        <div class="settings-row">
+          <button id="snd" class="btn-text" type="button" aria-pressed="false">[SND:OFF]</button>
+          <span class="dim">sound effects and music</span>
+        </div>
+        <div class="settings-row">
+          <button id="fx" class="btn-text" type="button" title="effects: LOW keeps the background still and stops the glows (for slower computers)">[FX:FULL]</button>
+          <span class="dim">effects: LOW keeps the background still and stops the glows (for slower computers)</span>
+        </div>
+        <div class="settings-row">
+          <button id="shake-btn" class="btn-text" type="button" aria-pressed="true" title="screen shake on hits, crits and big moments">[SHAKE:ON]</button>
+          <span class="dim">screen shake on hits, crits and big moments</span>
+        </div>
+        <div class="settings-row">
+          <button id="full-alert" class="btn-text" type="button" aria-pressed="false">[FULL ALERT:OFF]</button>
+          <span class="dim">a chime when your attacks fill up (even with sound off), plus a desktop notification if your browser allows it. a hidden tab always flashes ATTACKS FULL in its title</span>
+        </div>
+        <div class="dim bag-note">&gt; auto-stash lives in YOU &gt; INVENTORY and BAG, auto-sell in WORLD &gt; SHOP. these settings are saved in this browser.</div>
+      </div>
       <div class="panel" id="panel-bag" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-blacksmith" role="tabpanel" hidden></div>
       <div class="panel" id="panel-shop" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-auction" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-forge" role="tabpanel" hidden></div>
       <div class="panel" id="panel-ranks" role="tabpanel" hidden></div>
       <div class="panel" id="panel-history" role="tabpanel" hidden></div>
       <div class="panel" id="panel-polls" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-bossvote" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-tickets" role="tabpanel" hidden></div>
       <div class="panel" id="panel-designer" role="tabpanel" hidden></div>
     </section>
   </div>
 
   <footer class="foot dim">
     <p id="rules-line">every attack, on every terminal, hits the same boss. attacks recharge over time.</p>
-    <p class="err" id="err" role="alert"></p>
     <p><a class="admin-link" href="admin.html">[admin]</a></p>
   </footer>
 </main>
 </div>
 
 <div id="overlay" class="overlay" hidden></div>
-<script type="module" src="js/main.js?v=c30f4a427c"></script>
+<script type="module" src="js/main.js?v=b6664395f3"></script>
   <div id="notices" class="notices" aria-live="assertive"></div>
+  <!-- Errors pop up on top of everything, overlays included (ticket #158). -->
+  <p class="err" id="err" role="alert"></p>
 </body>
 </html>

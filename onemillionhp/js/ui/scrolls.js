@@ -1,10 +1,10 @@
-import * as api from "../api.js?v=c30f4a427c";
-import { center, centerBlock, el, fitArt } from "../ascii.js?v=c30f4a427c";
-import { SCROLLS, applyBoss, emit, mergeFeed, state } from "../store.js?v=c30f4a427c";
-import { showError } from "./errors.js?v=c30f4a427c";
-import { addFreshEvents } from "./feed.js?v=c30f4a427c";
-import { showOverlay } from "./fx.js?v=c30f4a427c";
-import { bossHealEffect } from "./boss.js?v=c30f4a427c";
+import * as api from "../api.js?v=b6664395f3";
+import { center, centerBlock, el, fitArt } from "../ascii.js?v=b6664395f3";
+import { SCROLLS, applyBoss, emit, mergeFeed, state } from "../store.js?v=b6664395f3";
+import { showError } from "./errors.js?v=b6664395f3";
+import { addFreshEvents } from "./feed.js?v=b6664395f3";
+import { showOverlay } from "./fx.js?v=b6664395f3";
+import { bossHealEffect } from "./boss.js?v=b6664395f3";
 
 /** @param {any} def @param {number} count */
 function menuCard(def, count) {
@@ -25,8 +25,8 @@ function menuCard(def, count) {
   ].join("\n");
 }
 
-/** @param {string} id @param {boolean} [found] */
-export function scrollReveal(id, found = false) {
+/** @param {string} id @param {boolean} [found] @param {string} [heading] */
+export function scrollReveal(id, found = false, heading) {
   const def = SCROLLS[id];
   if (!def) return Promise.resolve();
   return showOverlay((inner, close) => {
@@ -35,8 +35,10 @@ export function scrollReveal(id, found = false) {
     const pre = el("pre", "art scroll-art");
     pre.textContent = [...centerBlock(def.art, 34), "", center(def.name, 34)].join("\n");
     pre.dataset.cols = "34";
-    const title = el("div", "scroll-title", found ? "SCROLL FOUND" : "SCROLL READY");
+    const title = el("div", "scroll-title", heading ?? (found ? "SCROLL FOUND" : "SCROLL READY"));
     const note = el("div", "flavor", def.description);
+    const limits = el("ul", "scroll-limits");
+    limits.append(...(def.limits ?? []).map((/** @type {string} */ l) => el("li", "", l)));
     const actions = el("div", "actions");
     const use = /** @type {HTMLButtonElement} */ (el("button", "scroll-use", "[ DEPLOY SCROLL ]"));
     use.addEventListener("click", async () => {
@@ -57,7 +59,7 @@ export function scrollReveal(id, found = false) {
     const later = el("button", "", "[ SAVE FOR LATER ]");
     later.addEventListener("click", close);
     actions.append(use, later);
-    inner.append(title, pre, note, actions);
+    inner.append(title, pre, note, limits, actions);
     fitArt(pre, 16);
   }, { mustChoose: true });
 }

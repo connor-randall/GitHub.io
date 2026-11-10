@@ -12,8 +12,8 @@
 <meta name="omhp-canonical" content="https://onemillionhp.com">
 <!-- Font is self-hosted (web/fonts): no third-party requests, so Safari's
      private-mode tracker protection has nothing to flag. -->
-<link rel="stylesheet" href="css/style.css?v=c30f4a427c">
-<link rel="stylesheet" href="css/admin.css?v=c30f4a427c">
+<link rel="stylesheet" href="css/style.css?v=b6664395f3">
+<link rel="stylesheet" href="css/admin.css?v=b6664395f3">
 </head>
 <body>
 <div class="crt" aria-hidden="true"></div>
@@ -32,8 +32,43 @@
   </form>
 
   <div id="panel" hidden>
-    <pre id="status" class="adm-status"></pre>
+    <div id="status" class="adm-status"></div>
     <label class="announce-toggle"><input type="checkbox" id="announce" checked> announce my actions in the feed as ***ADMIN***</label>
+
+    <!-- Built by admin-nav.js: one tab per group of sections, the "needs you"
+         counts, and a jump box that opens any section by name. -->
+    <div class="admin-sticky">
+      <nav id="admin-tabs" class="admin-tabs" role="tablist" aria-label="admin sections"></nav>
+      <div class="admin-tools">
+        <div class="admin-jump">
+          <label for="jump">&gt; JUMP</label>
+          <input id="jump" type="search" placeholder="anything: 2x, meow, tickets, give shards...  ( / )" autocomplete="off">
+        </div>
+        <!-- The player you're working on: it fills every empty PLAYER box, and [ CARD ] shows them. -->
+        <div class="admin-current">
+          <label for="cur-player">&gt; PLAYER</label>
+          <input id="cur-player" list="players" placeholder="name or id" autocomplete="off">
+          <button id="cur-open" class="inline-btn" type="button">[ CARD ]</button>
+          <button id="cur-clear" class="btn-text" type="button" title="forget this player">[x]</button>
+        </div>
+      </div>
+    </div>
+    <div id="player-card" class="player-card" hidden></div>
+    <section id="admin-home" class="adm admin-home" aria-label="needs you and every section"></section>
+
+    <section class="adm">
+      <details class="fold" data-fold="health">
+        <summary><h2>[ SERVER HEALTH ] <span id="health-badge" class="health-badge"></span></h2></summary>
+        <p class="hint">is the game keeping up? LOOP LAG is the one players feel: the game runs on one thread, so
+          every request waits behind a slow one (under 100ms is fine). RESPONSE TIME p95 = 95% of requests were at
+          least this fast. checking costs next to nothing: it's worked out only while this is open (every 10 s).</p>
+        <div class="suspect-bar">
+          <button id="health-refresh" class="inline-btn" type="button">[ REFRESH ]</button>
+          <span id="health-when" class="hint"></span>
+        </div>
+        <pre id="health-report" class="health-report">open this to check.</pre>
+      </details>
+    </section>
 
     <section class="adm admin-power" aria-label="Quick player refills">
       <h2>[ THE REFILL STATION ]</h2>
@@ -53,7 +88,117 @@
 |       /_/  READY      |
 +=======================+</span></button>
         </form>
+        <form data-action="spam_party" class="spam-party">
+          <button class="power-button spam" aria-label="Shard rain and refill everyone every 2 seconds"><span aria-hidden="true">+=======================+
+|  &gt;&gt; SPAM PARTY &lt;&lt;     |
+| * &lt;&gt; SHARD RAIN &lt;&gt; *  |
+|  + REFILLS EVERY 2s   |
++=======================+</span></button>
+          <p class="hint">starts a SHARD RAIN (replacing any running event) and refills everyone online every 2 seconds
+            until it ends. ignores PLAYER.</p>
+        </form>
       </div>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="suspects">
+      <summary><h2>[ SUSPECTS ] <span id="suspect-count" class="suspect-count"></span></h2></summary>
+        <div class="suspect-bar">
+          <button id="suspect-scan" class="inline-btn" type="button">[ SCAN NOW ]</button>
+          <span id="suspect-when" class="hint"></span>
+        </div>
+        <p class="hint">players from the last 24h, the worst first. the server re-checks every 10 minutes. every
+          flag has a MODE (SETTINGS below): OFF = ignored, WATCH = listed here only, CAPTCHA = they get a quick ASCII
+          check (at most once an hour each; an auto-clicker can't solve it), BAN = banned on the spot, but only while
+          AUTO-BAN is on. WHITELISTED players are still listed but never get a captcha and are never banned by any of
+          this. CLICKS: how their attacks were clicked (m mouse, t touch, k keys, x other) :: SPOT = share of mouse /
+          touch clicks on their single most common pixel (people are scattered; auto-clickers ~100%) :: MOVED = share of
+          mouse clicks with the mouse moving first :: FAKE = clicks the browser says a script made :: BROWSER = accounts
+          that attacked from this browser today :: LINKS = lockstep (bursts start within 1s of a linked account's, again
+          and again) and funnels (auction sales with an account on the same network or browser).</p>
+        <div id="bot-stats" class="bot-stats"></div>
+        <details class="fold bot-sub">
+          <summary><h3>[ SETTINGS ]</h3></summary>
+          <div id="bot-settings" class="bot-settings"><span class="hint">open [ SUSPECTS ] to load.</span></div>
+        </details>
+        <details class="fold bot-sub">
+          <summary><h3>[ WHITELIST ] <span id="bot-wl-count" class="hint"></span></h3></summary>
+          <p class="hint">never sent a captcha, never banned by the bot scan or by missed captchas. a ban by hand still works.</p>
+          <form id="bot-wl-form" class="suspect-bar">
+            <input name="player" placeholder="name or id" required>
+            <button class="inline-btn" type="submit">[ ADD ]</button>
+          </form>
+          <div id="bot-whitelist"></div>
+        </details>
+        <div class="suspect-scroll">
+          <table class="suspect-table">
+            <thead><tr><th>FLAGS</th><th>PLAYER</th><th>ATTACKS</th><th>HOURS</th><th>NO BREAK</th><th>TIMING</th><th>NET</th><th title="attack clicks refused because they had none left">EMPTY</th><th title="attacks landed under 1s after being refused">INSTANT</th><th title="input types of their attacks">CLICKS</th><th title="share of mouse/touch clicks on their most common pixel">SPOT</th><th title="share of mouse clicks with the mouse moving first">MOVED</th><th title="clicks the browser says a script made">FAKE</th><th title="accounts that attacked from this browser">BROWSER</th><th>LINKS</th><th>CAPTCHA</th><th></th></tr></thead>
+            <tbody id="suspect-rows"><tr><td colspan="17" class="hint">open this or press SCAN NOW.</td></tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="banned">
+        <summary><h2>[ BANNED ] <span id="banned-count" class="hint"></span></h2></summary>
+        <p class="hint">every banned player, newest ban first. AUTO (captcha) = too many missed captchas; AUTO (bot scan) = a flag set to BAN; ADMIN = banned by hand
+          (bans from before Oct 10 show no date). SAME NETWORK lists other accounts made from their network:
+          a fresh one right after the ban is usually the same person. [ UNBAN ] (click twice) lets them play again
+          and resets their captcha strikes; their bag, shards and stats are untouched.</p>
+        <div class="suspect-bar"><button id="banned-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+        <div class="suspect-scroll">
+          <table class="suspect-table">
+            <thead><tr><th>PLAYER</th><th>BANNED</th><th>WHY</th><th>ATTACKS</th><th>DAMAGE</th><th>CAPTCHA</th><th>SAME NETWORK</th><th></th></tr></thead>
+            <tbody id="banned-rows"><tr><td colspan="8" class="hint">open this to load.</td></tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="reports">
+        <summary><h2>[ REPORTS ] <span id="report-count" class="suspect-count"></span></h2></summary>
+        <p class="hint">players reported by other players (the [!] on a chat line, [ REPORT ] in the online list),
+          grouped by who was reported, most reported first. a chat report keeps a copy of the message. [ DONE ] = you
+          dealt with it, [ DISMISS ] = nothing wrong; both close every open report on that player. each player can
+          send 10 reports a day.</p>
+        <div class="suspect-bar"><button id="report-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+        <div id="report-list" class="appeal-list"><span class="hint">open this to load.</span></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="bounties">
+        <summary><h2>[ BOUNTIES ] <span id="bounty-count" class="suspect-count"></span></h2></summary>
+        <p class="hint">GAME &gt; SPREAD THE WORD: players' posts about the game on any site, new ones first.
+          open the link, check it's really about the game and theirs, type in its likes ([ SET LIKES ]), then
+          [ PAY ]: the player gets the rate below for every upvote / like since the last payment, so a post can be
+          paid again as it climbs. [ REJECT ] = never paid. the NOTE box is optional and shows on their screen.
+          reddit posts: [ CHECK UPVOTES ] reads their score (and author) for you, once there's an app key
+          (OMHP_REDDIT_CLIENT_ID / _SECRET in the server's .env, from a free "script" app at
+          reddit.com/prefs/apps); until then type those in too.</p>
+        <div class="suspect-bar">
+          <button id="bounty-refresh" class="inline-btn" type="button">[ REFRESH ]</button>
+          <button id="bounty-check" class="inline-btn" type="button">[ CHECK UPVOTES ]</button>
+          <form id="bounty-rate-form" class="inline-form">
+            <label>shards per upvote / like <input name="rate" type="number" step="0.01" min="0" max="1000" size="6"></label>
+            <button class="inline-btn" type="submit">[ SET ]</button>
+          </form>
+        </div>
+        <div id="bounty-list" class="appeal-list"><span class="hint">open this to load.</span></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="appeals">
+        <summary><h2>[ APPEALS ] <span id="appeal-count" class="suspect-count"></span></h2></summary>
+        <p class="hint">banned players asking to be let back in, open ones first. [ ACCEPT ] unbans them on the spot
+          (captcha strikes start over); [ DENY ] keeps the ban and they can try again a day later. the REPLY box is
+          optional and shows on their screen either way.</p>
+        <div class="suspect-bar"><button id="appeal-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+        <div id="appeal-list" class="appeal-list"><span class="hint">open this to load.</span></div>
+      </details>
     </section>
 
     <section class="adm">
@@ -136,6 +281,80 @@
     </section>
 
     <section class="adm">
+      <details class="fold" data-fold="chat">
+      <summary><h2>[ CHAT ]</h2> <span class="fold-hint" id="chat-hint"></span></summary>
+      <p class="hint">the chat under the game's feed. named players only, one message every 2 s, 200 characters.
+        words the name filter blocks are starred out automatically. only the newest 300 messages are kept.
+        [ DELETE ] takes a message off every screen right away; BAN (<button type="button" class="inline-btn xref" data-goto="players">[ PLAYERS ]</button>) stops someone chatting.</p>
+      <div id="chat-admin-list" class="chat-admin-list"></div>
+      <button type="button" class="inline-btn danger" id="chat-clear">[ CLEAR ALL CHAT ]</button>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="dms">
+      <summary><h2>[ MESSAGES ]</h2> <span class="fold-hint" id="dms-hint"></span></summary>
+      <p class="hint">private messages between players. type a player to see everyone they've messaged, then open a
+        conversation to read all of it. LATEST is the newest 100 from anyone (click a row to open that conversation).
+        filtered like chat; players can BLOCK each other. [ DELETE ] removes a message from both sides.</p>
+      <div class="suspect-bar"><button id="dms-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+      <form id="dms-search" class="dms-search">
+        <label>PLAYER <input name="player" list="players" required placeholder="name"></label>
+        <button class="inline-btn">[ LOOK ]</button>
+      </form>
+      <div id="dms-player"></div>
+      <div id="dms-thread"></div>
+      <div class="market-h">LATEST</div>
+      <div id="dms-admin-list" class="chat-admin-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="clans">
+      <summary><h2>[ CLANS ]</h2> <span class="fold-hint" id="clans-hint"></span></summary>
+      <p class="hint">players found a clan for 1,000 shards (joining is free). its brackets + colour go around its
+        members' badges. click a clan's name to fold it open: its members, who was kicked and its CLAN CHAT
+        (members only in the game); click again to fold it up. [ BREAK UP ] deletes the clan and its chat (a bad name, say): no refund.</p>
+      <div class="suspect-bar"><button id="clans-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+      <div id="clans-admin-list" class="chat-admin-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="tickets">
+      <summary><h2>[ TICKETS ] <span id="ticket-count" class="suspect-count"></span></h2></summary>
+      <label>SHOW
+        <select id="ticket-filter" aria-label="which tickets">
+          <option value="open">new + in progress</option>
+          <option value="all">all</option>
+          <option value="new">new</option>
+          <option value="in_progress">in progress</option>
+          <option value="completed">completed</option>
+          <option value="skipped">skipped</option>
+        </select>
+      </label>
+      <label>TYPE
+        <select id="ticket-kind-filter" aria-label="which type of tickets">
+          <option value="all">all</option>
+          <option value="issue">issues</option>
+          <option value="feature">features</option>
+        </select>
+      </label>
+      <label>SORT
+        <select id="ticket-sort" aria-label="sort tickets">
+          <option value="votes">most votes</option>
+          <option value="num_asc">number: #1 first</option>
+          <option value="num_desc">number: newest first</option>
+        </select>
+      </label>
+      <p class="hint">players file these as an ISSUE (something broken) or a FEATURE (an idea) in the [ TICKETS ] tab, change the type if they picked wrong (named players, one a minute each) and +1 the ones they
+        want (+N = votes; SORT picks most voted or by ticket number). the status and note
+        show on the ticket for everyone; changes here are never announced in the feed. delete spam.</p>
+      <div id="ticket-list" class="ticket-admin-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
       <details class="fold" data-fold="boss">
       <summary><h2>[ BOSS ]</h2></summary>
       <div class="preview-death">
@@ -175,9 +394,157 @@
     </section>
 
     <section class="adm">
+      <details class="fold" data-fold="events">
+      <summary><h2>[ WORLD EVENTS ]</h2></summary>
+      <pre id="event-status" class="hint">-</pre>
+      <form data-action="start_event">
+        <label>EVENT <select name="kind" id="event-kind"></select></label>
+        <button class="inline-btn">[ START NOW ]</button>
+        <button class="inline-btn" data-override="stop_event" formnovalidate>[ STOP CURRENT ]</button>
+        <p class="hint">starts it right away for everyone (replaces one that's running). SECOND WIND is armed instead:
+          the next killing blow brings the boss back with 5% HP.</p>
+      </form>
+      <form data-action="event_settings">
+        <label><input type="checkbox" name="enabled" id="event-enabled"> RANDOM EVENTS ON</label>
+        <label>EVERY <input name="min_gap" id="event-min" type="number" min="1" max="600" step="1" required></label>
+        <label>TO <input name="max_gap" id="event-max" type="number" min="1" max="600" step="1" required> MINUTES</label>
+        <button class="inline-btn">[ SAVE ]</button>
+        <p class="hint">the director starts a random one after each gap (never two at once, never the same twice in a row,
+          not in a boss's first 2 minutes). bosses also have a 1 in 20 chance of a SECOND WIND by themselves.</p>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="hall-of-fame">
+      <summary><h2>[ HALL OF FAME + WHISKERS ]</h2></summary>
+      <p class="hint">HALL OF FAME posts a card in CHAT: the boss's first phase on a tiny pedestal, how long it lasted (or
+        has lasted, if it's still up), fighters and hits, and everyone who healed it (most HP first). leave BOSS # empty
+        for the current boss.</p>
+      <form data-action="post_hof">
+        <label>BOSS # <input name="seq" type="number" min="1" step="1" placeholder="current"></label>
+        <label><input name="quiet" type="checkbox"> QUIETLY (HALL OF FAME only, no CHAT line)</label>
+        <button class="inline-btn danger">[ POST HALL OF FAME IN CHAT ]</button>
+      </form>
+      <p class="hint">WHISKERS (≈= twitching, purple, "Fought the immortal cat") goes to EVERYONE who hit or healed that
+        boss, online or not (banned players skipped). the first press makes the badge and LOCKS it to that boss: nobody
+        who didn't fight it can ever be given it (this button for another boss and [ BADGES ] GIVE both refuse). press
+        again later to catch anyone who fought it since; nobody gets it twice.</p>
+      <form data-action="give_whiskers">
+        <label>BOSS # <input name="seq" type="number" min="1" step="1" placeholder="current"></label>
+        <button class="inline-btn danger">[ GIVE WHISKERS TO EVERYONE WHO HIT OR HEALED IT ]</button>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="meow-mode">
+      <summary><h2>[ MEOW MODE ]</h2></summary>
+      <p class="hint">while it's on, every CHAT message comes out as (meow), whatever was typed (DMs and clan chat are
+        untouched). turning it on or off posts the news in CHAT. stays on through restarts until you turn it off.</p>
+      <form data-action="meow_mode_on">
+        <button class="inline-btn danger" data-safe>[ TURN ON MEOW MODE ]</button>
+        <button class="inline-btn" data-override="meow_mode_off" formnovalidate>[ TURN IT OFF ]</button>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="limited-event">
+      <summary><h2>[ EVENTS TAB ]</h2></summary>
+      <p class="hint">the limited-time event in the [EVENTS] menu. starting it puts a countdown at the top of every
+        page (default 72 hours). when it runs out, or you stop it, the strip counts down to the next event
+        (7 days later unless you say otherwise): the plan is a new event every ~10 days. the timer is display only:
+        the event's tab keeps working when it hits zero.</p>
+      <form data-action="start_limited">
+        <label>NAME <input name="name" value="THE CITY" maxlength="40"></label>
+        <label>TAB <select name="tab"><option value="city">CITY</option></select></label>
+        <label>HOURS <input name="hours" type="number" min="1" max="720" step="any" value="72" required></label>
+        <button class="inline-btn" data-safe>[ START THE EVENT ]</button>
+      </form>
+      <form data-action="stop_limited">
+        <label>NEXT EVENT IN <input name="next_days" type="number" min="0" max="60" step="any" value="7"> DAYS</label>
+        <button class="inline-btn danger">[ END IT NOW ]</button>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="double-damage">
+      <summary><h2>[ 2X DAMAGE ]</h2></summary>
+      <p class="hint">every hit (normal and ultimate) does double damage until you turn it off. every open page lights up
+        with ASCII fire and hits show [2X] in the feed. it stays on through restarts and new bosses.</p>
+      <form data-action="double_damage_on">
+        <button class="inline-btn danger" data-safe>[ TURN ON 2X DAMAGE ]</button>
+        <button class="inline-btn" data-override="double_damage_off" formnovalidate>[ TURN IT OFF ]</button>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="cutscenes">
+      <summary><h2>[ CUTSCENES ]</h2></summary>
+      <h3>THE CAT WILL FALL</h3>
+      <p class="hint">a tiny cat walks on, sits down, then "THE CAT WILL FALL" sweeps in with the new-boss letters and
+        "2X DAMAGE ACTIVATING IN 10:00" counts down under it. plays full-screen on every open page; players can
+        close it with [ GET READY ]. display only: when the countdown ends, turn on <button type="button" class="inline-btn xref" data-goto="double-damage">[ 2X DAMAGE ]</button> yourself. nothing is saved.</p>
+      <form data-action="cutscene_catfall">
+        <label>COUNTDOWN <input name="seconds" type="number" min="5" max="3600" step="1" value="600"> SECONDS (600 = 10 MIN)</label>
+        <button class="inline-btn danger">[ PLAY FOR EVERYONE ]</button>
+        <a class="inline-btn" href="./#preview-catfall" target="_blank" rel="noopener">[ PREVIEW ON MY SCREEN ]</a>
+      </form>
+      <p class="hint">more: the forge teaser is under <button type="button" class="inline-btn xref" data-goto="forge">[ THE FORGE ]</button>; a boss's death plays from LIVE &gt;
+        [ BOSS ] (PREVIEW DEATH).</p>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="forge">
+      <summary><h2>[ THE FORGE ]</h2> <span class="fold-hint" id="forge-hint"></span></summary>
+      <p class="hint">players pour shards into the SOVEREIGN pieces (1,000,000 each) until they're forged. while it's
+        CLOSED the tab and the Sovereign items are hidden from everyone and every pour is refused. opening (or
+        closing) it reaches every open page within a few seconds.</p>
+      <pre id="forge-status" class="hint">-</pre>
+      <form data-action="open_forge">
+        <button class="inline-btn danger" data-safe>[ OPEN THE FORGE ]</button>
+        <button class="inline-btn" data-override="close_forge" formnovalidate>[ CLOSE IT ]</button>
+      </form>
+      <p class="hint">TEASER: plays the forge scene (fog, the smith at the anvil, sparks) full-screen on every open
+        page, with your line typed out instead of a name and an item. it can't be skipped (about 13 seconds). works
+        while the forge is closed; nothing is saved. leave the line empty for "SOMETHING IS BEING FORGED...".</p>
+      <form data-action="forge_teaser">
+        <label>LINE <input name="message" maxlength="80" placeholder="SOMETHING IS BEING FORGED..."></label>
+        <button class="inline-btn danger">[ SEND TEASER TO EVERYONE ]</button>
+      </form>
+      </details>
+    </section>
+    <section class="adm">
       <details class="fold" data-fold="boss-designs">
-      <summary><h2>[ BOSS SUBMISSIONS ]</h2></summary>
-      <p class="hint">APPROVE freezes a copy of the design and adds it to the queue under [ BOSS ]. DENY returns it to the artist for editing.</p>
+      <summary><h2>[ BOSS SUBMISSIONS ] <span id="design-count" class="suspect-count"></span></h2></summary>
+      <p class="hint">APPROVE freezes a copy of the design and adds it to the queue under <button type="button" class="inline-btn xref" data-goto="boss">[ BOSS ]</button>. DENY returns it to the artist for editing.</p>
+      <form data-action="discord_boss_post" class="discord-boss-form">
+        <label>POST TO DISCORD
+          <select name="mode" id="discord-boss-mode" aria-label="when boss designs go to Discord">
+            <option value="submit">on submit (then its verdict)</option>
+            <option value="approve">only once approved</option>
+            <option value="off">off</option>
+          </select>
+        </label>
+        <button class="inline-btn">[ SAVE ]</button>
+        <p class="hint">cards go to the #boss-submissions webhook (OMHP_DISCORD_BOSS_WEBHOOK in the server's .env) and are
+          edited when you APPROVE / DENY. changing this never posts older designs.</p>
+      </form>
+      <form data-action="design_vote_settings" class="discord-boss-form">
+        <label><input type="checkbox" name="enabled" id="design-vote-on"> SEND EVERY PENDING DESIGN TO VOTE</label>
+        <label>MIN VOTES <input type="number" name="min_votes" id="design-vote-min" min="1" max="10000" step="1"></label>
+        <button class="inline-btn">[ SAVE ]</button>
+        <p class="hint">[ GO TO VOTE ] on a design puts it to the players (GAME &gt; COMMUNITY &gt; VOTE ON BOSSES), who
+          see its PHASE I frame and name, not the artist. 24 hours later: at least MIN VOTES and more than half YES =
+          APPROVE + QUEUE, otherwise DENY; fewer votes = back here, pending, for you (GO TO VOTE again restarts it).
+          ticking the box sends every pending design, new ones included, automatically. you can still approve / deny
+          by hand any time.</p>
+      </form>
+      <div id="unique-proposals"></div>
       <div id="boss-design-library" class="boss-design-library"></div>
       <div id="boss-design-list" class="boss-design-list"></div>
       </details>
@@ -208,6 +575,13 @@
         <button class="inline-btn danger">[ BAN ]</button>
         <button class="inline-btn" data-override="unban">[ UNBAN ]</button>
       </form>
+      <form data-action="push_captcha">
+        <label>PLAYER <input name="player" required list="players"></label>
+        <button class="inline-btn">[ PUSH CAPTCHA ]</button>
+        <button class="inline-btn" data-override="clear_captcha">[ CLEAR ]</button>
+        <p class="hint">"ARE YOU HUMAN?" pops up on their screen: click the matching ASCII face. their attacks are
+          blocked until they solve it (it waits for them if they're offline). results show under <button type="button" class="inline-btn xref" data-goto="suspects">[ SUSPECTS ]</button>.</p>
+      </form>
       <form data-action="clean_names" data-confirm>
         <button class="inline-btn danger">[ CLEAN UP NAMES ]</button>
         <span class="hint">renames anyone whose name breaks the filter to WANDERER_####, feed history included</span>
@@ -218,18 +592,94 @@
     </section>
 
     <section class="adm">
+      <details class="fold" data-fold="accounts">
+        <summary><h2>[ ACCOUNTS ]</h2></summary>
+        <p class="hint">every named player: their username (= in-game name) and whether they've set a password.
+          passwords are never stored, only a one-way scrambled hash, so nobody (admin included) can read them.
+          a player who forgot theirs: [ RESET ] gives them a temporary one to log in with, then they change it.</p>
+        <form data-action="reset_password">
+          <label>PLAYER <input name="player" required list="players"></label>
+          <label>NEW PASSWORD <input name="password" placeholder="(random)" maxlength="128" autocomplete="off"></label>
+          <button class="inline-btn">[ RESET PASSWORD ]</button>
+        </form>
+        <form id="acct-search-form">
+          <label>PLAYER <input id="acct-search" placeholder="name or ID" type="search"></label>
+          <button class="inline-btn">[ SEARCH / REFRESH ]</button>
+        </form>
+        <p id="acct-summary" class="hint" aria-live="polite"></p>
+        <p id="acct-result" class="acct-result" aria-live="polite"></p>
+        <div class="shard-scroll">
+          <table class="shard-table">
+            <thead><tr><th scope="col">USERNAME</th><th scope="col">PASSWORD</th><th scope="col">JOINED</th><th scope="col"></th></tr></thead>
+            <tbody id="acct-rows"></tbody>
+          </table>
+        </div>
+        <div class="shard-pages"><button id="acct-prev" class="inline-btn" type="button">[ &lt; PREVIOUS ]</button><button id="acct-next" class="inline-btn" type="button">[ NEXT &gt; ]</button></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="achievements">
+        <summary><h2>[ ACHIEVEMENTS ]</h2></summary>
+        <p class="hint">who has unlocked what, and how many shards achievements have paid out.
+          progress is saved when a player's game loads, so players who haven't been on since achievements
+          launched don't show up yet. [ VIEW ] brings one player up to date and lists all 60.</p>
+        <p id="ach-totals" class="ach-totals" aria-live="polite"></p>
+        <form id="ach-search-form" class="gal-controls">
+          <label>PLAYER <input id="ach-search" placeholder="name or ID" type="search" list="players"></label>
+          <label>SORT <select id="ach-sort">
+            <option value="unlocked">most unlocked</option>
+            <option value="waiting">most shards waiting</option>
+            <option value="claimed">most shards claimed</option>
+            <option value="recent">latest unlock</option>
+          </select></label>
+          <button class="inline-btn">[ SEARCH / REFRESH ]</button>
+        </form>
+        <p id="ach-summary" class="hint" aria-live="polite"></p>
+        <div class="shard-scroll">
+          <table class="shard-table">
+            <thead><tr><th scope="col">PLAYER</th><th scope="col">UNLOCKED</th><th scope="col">CLAIMED</th><th scope="col">SHARDS PAID</th><th scope="col">WAITING</th><th scope="col">LAST UNLOCK</th><th scope="col"></th></tr></thead>
+            <tbody id="ach-rows"></tbody>
+          </table>
+        </div>
+        <div class="shard-pages"><button id="ach-prev" class="inline-btn" type="button">[ &lt; PREVIOUS ]</button><button id="ach-next" class="inline-btn" type="button">[ NEXT &gt; ]</button></div>
+        <div id="ach-player" class="ach-player"></div>
+        <h3 class="gal-subhead">EACH ACHIEVEMENT</h3>
+        <div class="gal-controls">
+          <label>CATEGORY <select id="ach-cat"><option value="">all</option></select></label>
+          <label>SORT <select id="ach-list-sort">
+            <option value="list">list order</option>
+            <option value="most">most unlocked</option>
+            <option value="fewest">fewest unlocked</option>
+            <option value="shards">biggest reward</option>
+          </select></label>
+        </div>
+        <div class="shard-scroll">
+          <table class="shard-table">
+            <thead><tr><th scope="col">ACHIEVEMENT</th><th scope="col">NEEDS</th><th scope="col">SHARDS</th><th scope="col">UNLOCKED</th><th scope="col">CLAIMED</th></tr></thead>
+            <tbody id="ach-list"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="adm">
       <details class="fold" data-fold="badges">
       <summary><h2>[ BADGES ]</h2></summary>
       <form data-action="create_badge" class="badge-make">
         <label>TITLE <input name="title" maxlength="24" required placeholder="BETA TESTER"></label>
         <label>SAYS <input name="description" maxlength="60" placeholder="was here in week one"></label>
         <label>COLOUR <input name="color" type="color" value="#ffb000"></label>
-        <label>SYMBOL <input name="symbol" maxlength="1" value="*" class="badge-symbol-input"></label>
+        <label>SYMBOL <input name="symbol" maxlength="6" value="*" class="badge-symbol-input badge-glyph"></label>
         <label><input name="rainbow" type="checkbox"> RAINBOW</label>
+        <label><input name="flash" type="checkbox"> FLASH WITH <input name="color2" type="color" value="#ffffff"></label>
         <button class="inline-btn">[ MAKE BADGE ]</button>
         <pre id="badge-preview" class="badge-preview-box"></pre>
+        <div id="badge-symbols" class="badge-symbols"></div>
         <p class="hint">makes a badge you hand out yourself (below). it shows by their name like the earned ones; they
-          can pick it in [ YOU ]. SAYS is the line in its hover box. SYMBOL is one character (* by default).</p>
+          can pick it in [ YOU ]. SAYS is the line in its hover box. SYMBOL is 1 to 6 characters (* by default):
+          click the grid to add one, and more than one animates through them (or pick an ANIMATION). FLASH swaps
+          between COLOUR and the second colour (not with RAINBOW).</p>
       </form>
       <form data-action="give_badge">
         <label>PLAYER <input name="player" required list="players"></label>
@@ -237,27 +687,60 @@
         <button class="inline-btn">[ GIVE ]</button>
         <button class="inline-btn" data-override="take_badge">[ TAKE AWAY ]</button>
       </form>
+      <form data-action="give_badge_all" class="give-badge-all">
+        <label>BADGE <select name="badge_id" id="badge-pick-all" required></select></label>
+        <label>MIN ATTACKS <input name="min_attacks" type="number" min="1" value="1" class="num-sm"></label>
+        <label>ACTIVE IN LAST <input name="days" type="number" min="1" placeholder="any" class="num-sm"> DAYS</label>
+        <button class="inline-btn danger">[ GIVE TO EVERYONE ]</button>
+        <p class="hint">gives the badge to every real player at once: named, not banned, with at least MIN ATTACKS
+          attacks (and an attack in the last N days, if you fill that in). players who already have it are skipped.</p>
+      </form>
       <div id="badge-list" class="badge-admin-list"></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="relics">
+      <summary><h2>[ BOSS RELICS ]</h2> <span class="fold-hint" id="relic-hint"></span></summary>
+      <p class="hint">one signature item per boss (BOSS UNIQUE). drops only from hitting that boss, about 1 attack
+        in 1,000,000, never from chests, can't be sold. give one from <button type="button" class="inline-btn xref" data-goto="items">[ ITEMS &amp; BOXES ]</button> (rarity: boss unique).</p>
+      <label class="relic-filter"><input type="checkbox" id="relic-found-only"> FOUND ONLY</label>
+      <div id="relic-list" class="relic-list"></div>
       </details>
     </section>
 
     <section class="adm" id="gallery">
       <details class="fold" data-fold="items">
       <summary><h2>[ ITEMS &amp; BOXES ]</h2></summary>
-      <div class="gal-controls">
+      <div class="gal-controls gal-target">
         <label>GIVE TO <input id="gal-player" list="players" placeholder="player name or id"></label>
-        <label>RARITY <select id="gal-rarity"><option value="">all</option></select></label>
-        <label>SLOT <select id="gal-slot"><option value="">all</option><option value="weapon">weapon</option><option value="charm">charm</option></select></label>
-        <label>SEARCH <input id="gal-search" placeholder="name or effect"></label>
-        <label>SORT <select id="gal-sort"><option value="rarity">rarity</option><option value="owned">most owned</option><option value="unowned">nobody has it</option></select></label>
+        <label><input type="checkbox" id="gal-everyone"> EVERYONE ONLINE</label>
+        <span class="hint">every [ GIVE ] below goes to this target. everyone online pops it up on their screen.</span>
       </div>
-      <div class="gal-boxes" id="gal-boxes"></div>
-      <div id="gal-scroll-lock"></div>
-      <h3 class="gal-subhead">SCROLLS</h3>
-      <p class="hint">Gift scrolls here even while random scroll rewards are locked.</p>
-      <div class="gal-boxes gal-scrolls" id="gal-scrolls"></div>
-      <div class="gal-count dim" id="gal-count"></div>
-      <div class="gal-grid" id="gal-grid"></div>
+      <div class="chips gal-tabs">
+        <button type="button" class="chip" data-gal-tab="boxes">[ BOXES ]</button>
+        <button type="button" class="chip" data-gal-tab="scrolls">[ SCROLLS ]</button>
+        <button type="button" class="chip" data-gal-tab="items">[ ITEMS ]</button>
+      </div>
+      <div data-gal-pane="boxes">
+        <div class="gal-boxes" id="gal-boxes"></div>
+      </div>
+      <div data-gal-pane="scrolls" hidden>
+        <p class="hint" id="gal-scroll-note"></p>
+        <div class="gal-boxes gal-scrolls" id="gal-scrolls"></div>
+      </div>
+      <div data-gal-pane="items" hidden>
+        <div class="gal-controls">
+          <label>RARITY <select id="gal-rarity"><option value="">all</option></select></label>
+          <label>SLOT <select id="gal-slot"><option value="">all</option></select></label>
+          <label>EFFECT <select id="gal-effect"><option value="">any</option></select></label>
+          <label>SEARCH <input id="gal-search" placeholder="name or effect"></label>
+          <label>SORT <select id="gal-sort"><option value="rarity">rarity</option><option value="owned">most owned</option><option value="unowned">nobody has it</option></select></label>
+        </div>
+        <div class="gal-count dim" id="gal-count"></div>
+        <div class="gal-list" id="gal-grid"></div>
+        <button type="button" class="inline-btn" id="gal-more" hidden>[ SHOW MORE ]</button>
+      </div>
       </details>
     </section>
 
@@ -284,11 +767,66 @@
         <p class="hint">every hit rolls between the two numbers (before gear bonuses). a boss has 1,000,000 HP.</p>
       </form>
       <form data-action="set_tuning">
+        <label>ULT TIMER (SECONDS) <input name="ult_recharge" type="number" min="5" max="86400"></label>
+        <button class="inline-btn">[ SAVE ULT TIMER ]</button>
+        <p class="hint">how long each player's ultimate takes to come back after they use it (60 = once a minute,
+          3600 = once an hour). applies right away, including to ultimates already recharging (they get the
+          difference added or taken off). RECHARGE ULTIMATES makes everyone's ready now.</p>
+      </form>
+      <form data-action="set_tuning">
         <label>SHOP PAYS x <input name="shard_mult" type="number" min="0.1" max="20" step="0.1"></label>
         <label>SHOP BOXES COST x <input name="box_price_mult" type="number" min="0.1" max="20" step="0.1"></label>
         <button class="inline-btn">[ SAVE SHOP ]</button>
         <p class="hint">PAYS x2 = selling gives double shards. COST x0.5 = boxes half price (a sale). 1 = normal.</p>
       </form>
+      <form data-action="set_tuning">
+        <label>CHEST ATTACKS + CRITS / DAY <input name="chest_combat_per_day" type="number" min="0" max="10000000"></label>
+        <button class="inline-btn">[ SAVE CHEST LIMIT ]</button>
+        <p class="hint">most attacks + guaranteed-crit charges one player gets from chests per UTC day (ticket #346).
+          past it, a chest that rolls attacks or crits pays 1 shard each instead (item / scroll odds unchanged). 0 = no limit. default 500.</p>
+      </form>
+      <form data-action="set_box_prices" id="box-prices">
+        <div class="hint">CHEST PRICES (shards). an exact price overrides SHOP BOXES COST x for that chest; 0 = back to default.</div>
+        <div id="box-price-rows" class="box-price-rows"></div>
+        <div class="hint">SCROLL PRICES (shards). 0 = back to default. only scrolls switched on in the odds are sold.</div>
+        <div id="scroll-price-rows" class="box-price-rows"></div>
+        <button class="inline-btn">[ SAVE SHOP PRICES ]</button>
+      </form>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="daily">
+      <summary><h2>[ DAILY REWARDS ]</h2> <span class="fold-hint" id="daily-hint"></span></summary>
+      <p class="hint">what players get for logging in. the first day someone opens is DAY 1, the next day they come back
+        is DAY 2 (missed days don't reset it); after DAY 30 it starts over. players only see the days they've opened
+        and the next few (set below); every other day is a [?]. one claim per day (a new day starts at midnight
+        Mountain time), named players only. changes apply to the next claim (past claims keep what they gave).</p>
+      <div class="daily-add">
+        <label>PLAYERS CAN SEE THE NEXT <input id="daily-peek" type="number" min="0" max="29" class="num-sm"> DAYS</label>
+        <button type="button" class="inline-btn" id="daily-peek-save">[ SAVE ]</button>
+        <span class="hint">0 = only today's [?]. saves on its own (not with SAVE 30 DAYS).</span>
+      </div>
+      <div class="daily-add">
+        <label>ADD <select id="daily-kind">
+          <option value="shards">shards</option><option value="box">chest</option>
+          <option value="item">item</option><option value="scroll">scroll</option></select></label>
+        <label id="daily-what-box">CHEST <select id="daily-box"></select></label>
+        <label id="daily-what-scroll" hidden>SCROLL <select id="daily-scroll"></select></label>
+        <label id="daily-what-item" hidden>ITEM <input id="daily-item" list="daily-items" placeholder="item name"></label>
+        <datalist id="daily-items"></datalist>
+        <label id="daily-amount-wrap">AMOUNT <input id="daily-amount" type="number" min="1" max="1000000" value="1" class="num-sm"></label>
+        <label>TO DAY <select id="daily-day"></select></label>
+        <button type="button" class="inline-btn" id="daily-add-btn">[ + ADD ]</button>
+      </div>
+      <p class="hint">click a day to aim ADD at it. up to 4 gifts per day; [x] removes one.</p>
+      <div id="daily-days" class="daily-days"></div>
+      <div class="daily-save">
+        <button type="button" class="inline-btn" id="daily-save">[ SAVE 30 DAYS ]</button>
+        <button type="button" class="inline-btn" id="daily-undo">[ UNDO EDITS ]</button>
+        <button type="button" class="inline-btn danger" id="daily-reset">[ RESET TO DEFAULT ]</button>
+        <span class="hint" id="daily-dirty"></span>
+      </div>
       </details>
     </section>
 
@@ -303,17 +841,55 @@
     </section>
 
     <section class="adm">
+      <details class="fold" data-fold="auction">
+        <summary><h2>[ AUCTION HOUSE ] <span id="auction-count" class="hint"></span></h2></summary>
+        <p class="hint">every open listing and the latest sales. [ CANCEL ] (click twice) takes a listing down and gives
+          the unsold copies back to the seller: for scam prices or a listing that breaks the rules. sales can't be undone
+          here. the house keeps a cut of every sale (a shard sink).</p>
+        <div class="suspect-bar">
+          <button id="auction-refresh" class="inline-btn" type="button">[ REFRESH ]</button>
+          <input id="auction-search" type="search" placeholder="filter by item or seller" autocomplete="off">
+          <span id="auction-totals" class="hint"></span>
+        </div>
+        <div id="auction-body" class="market-body"><p class="hint">open this to load.</p></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="city">
+        <summary><h2>[ CITY ] <span id="city-count" class="hint"></span></h2></summary>
+        <p class="hint">what the players are building, read only: a building's rewards are paid by the donations
+          themselves, so nothing here changes them.</p>
+        <div class="suspect-bar"><button id="city-refresh" class="inline-btn" type="button">[ REFRESH ]</button></div>
+        <div id="city-body" class="market-body"><p class="hint">open this to load.</p></div>
+      </details>
+    </section>
+
+    <section class="adm">
+      <details class="fold" data-fold="referrals">
+        <summary><h2>[ REFERRALS ] <span id="referral-count" class="hint"></span></h2></summary>
+        <p class="hint">who used whose share code. the friend gets shards at once; the code's owner only once the
+          friend has really played. FLAGS: never played (the owner wasn't paid: often an account made just for the
+          code) :: several codes from one network :: made on the owner's own network. a family or school can share a
+          network, so look before you ban.</p>
+        <div class="suspect-bar"><button id="referral-refresh" class="inline-btn" type="button">[ REFRESH ]</button>
+          <label><input id="referral-flagged" type="checkbox"> flagged only</label></div>
+        <div id="referral-body" class="market-body"><p class="hint">open this to load.</p></div>
+      </details>
+    </section>
+
+    <section class="adm">
       <details class="fold" data-fold="danger">
       <summary><h2>[ DANGER ]</h2></summary>
-      <form data-action="reset_leaderboards" data-confirm>
+      <form data-action="reset_leaderboards" data-confirm data-type-confirm="WIPE">
         <button class="inline-btn danger">[ WIPE LEADERBOARDS ]</button>
         <span class="hint">zeroes everyone's damage/hits/crits (and levels)</span>
       </form>
-      <form data-action="reset_items" data-confirm>
+      <form data-action="reset_items" data-confirm data-type-confirm="WIPE">
         <button class="inline-btn danger">[ WIPE ALL ITEMS ]</button>
         <span class="hint">empties every bag</span>
       </form>
-      <form data-action="wipe_everything" data-confirm>
+      <form data-action="wipe_everything" data-confirm data-type-confirm="WIPE">
         <button class="inline-btn danger">[ WIPE EVERYTHING ]</button>
         <span class="hint">all players, items, history. boss #001 respawns.</span>
       </form>
@@ -332,8 +908,13 @@
     </section>
   </div>
 
-  <ol id="log" class="adm-log" aria-live="polite"></ol>
+  <details class="adm-log-fold" data-fold="log">
+    <summary>[ ACTION LOG ] <span class="hint">everything you did this visit, newest first</span></summary>
+    <ol id="log" class="adm-log"></ol>
+  </details>
+  <!-- The latest result, always on screen (admin.js log()). -->
+  <div id="adm-toast" class="adm-toast" role="status" aria-live="polite" hidden></div>
 </main>
-<script type="module" src="js/admin.js?v=c30f4a427c"></script>
+<script type="module" src="js/admin.js?v=b6664395f3"></script>
 </body>
 </html>

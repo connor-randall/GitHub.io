@@ -1,7 +1,10 @@
 // The boss: art per phase, HP bar, globals, reactions and the death screen.
 
-import { bar, box, center, duration, el, fmt, setArt } from "../ascii.js?v=c30f4a427c";
-import { bossDef, bossText, now, state } from "../store.js?v=c30f4a427c";
+import { bar, box, center, duration, el, fitArt, fmt, holdHeight, setArt, widthOf } from "../ascii.js?v=b6664395f3";
+import { bossDef, bossText, now, state } from "../store.js?v=b6664395f3";
+import { fogHp } from "./worldevent.js?v=b6664395f3";
+import { shake, ultBanner } from "./fx.js?v=b6664395f3";
+import * as sound from "../sound.js?v=b6664395f3";
 
 const $ = (/** @type {string} */ id) => /** @type {HTMLElement} */ (document.getElementById(id));
 
@@ -9,6 +12,9 @@ const artEl = $("boss-art");
 let lastHp = -1;
 let lastPhase = 0;
 let lastSeq = 0;
+// Ticket #353: a resize (phones fire one whenever scrolling hides the address
+// bar) must redraw the art without looking like the boss went a phase deeper.
+let redrawArt = false;
 let hurtUntil = 0;
 /** @type {ReturnType<typeof setTimeout> | undefined} */
 let hurtTimer;
@@ -20,11 +26,29 @@ function phaseDef() {
   return def.phases.find((/** @type {any} */ p) => p.phase === b.phase) ?? def.phases[0];
 }
 
+/** Pad a frame to the phase's box: as many lines as its tallest frame and
+ * as wide as its widest, so swapping to the hurt frame (often a line taller
+ * or a few columns wider) never resizes the art or shoves the page around.
+ * @param {any} ph @param {readonly string[]} lines @returns {{lines: string[], cols: number}} */
+function boxed(ph, lines) {
+  const frames = [ph.art, ph.hurt_art ?? ph.art];
+  const rows = Math.max(...frames.map((f) => f.length));
+  const cols = Math.max(...frames.map(widthOf));
+  const out = lines.map((l) => l.replace(/\s+$/, "").padEnd(cols));
+  while (out.length < rows) out.push(" ".repeat(cols));
+  return { lines: out, cols };
+}
+
 function drawArt() {
   const ph = phaseDef();
   if (!ph) return;
   const hurt = performance.now() < hurtUntil;
-  setArt(artEl, hurt ? ph.hurt_art : ph.art, 13);
+  const frame = boxed(ph, hurt ? ph.hurt_art ?? ph.art : ph.art);
+  setArt(artEl, frame.lines, 13);
+  // setArt sizes the text to the visible width; size it to the box instead
+  // so every frame of the phase gets the same font size.
+  artEl.dataset.cols = String(frame.cols);
+  fitArt(artEl, 13);
   artEl.classList.toggle("phase-2", ph.phase === 2);
   artEl.classList.toggle("phase-3", ph.phase >= 3);
   // Some bosses have their own colour (GLORBO is blue).
@@ -116,13 +140,24 @@ function hpCells() {
   return Math.max(12, Math.min(40, Math.floor(w / 9.2) - 2));
 }
 
+/** Write text only when it changed: the panel redraws every second, and an
+ * unchanged write still makes the browser recheck the page.
+ * @param {Element} node @param {string} text */
+function setText(node, text) {
+  if (node.textContent !== text) node.textContent = text;
+}
+/** @param {HTMLElement} node @param {boolean} hidden */
+function setHidden(node, hidden) {
+  if (node.hidden !== hidden) node.hidden = hidden;
+}
+
 export function renderBoss() {
   const b = state.boss;
   const def = b && bossDef(b.def_id);
   if (!b || !def) return;
   const num = `BOSS #${String(b.seq).padStart(3, "0")}`;
-  $("st-boss").textContent = num;
-  $("boss-num").textContent = num;
+  setText($("st-boss"), num);
+  setText($("boss-num"), num);
 
   const dead = b.status === "defeated";
   if (dead && !$("boss-alive").hidden && lastSeq === b.seq) {
@@ -130,21 +165,39 @@ export function renderBoss() {
     const ph = phaseDef();
     deathFrom = { seq: b.seq, rect: artEl.getBoundingClientRect(), lines: ph ? ph.art : null };
   }
-  $("boss-alive").hidden = dead;
-  $("boss-dead").hidden = !dead;
-  $("fight").hidden = dead;
+  // Swapping the live boss for the death box: hold the panel's height for a
+  // moment so the page under a phone's scroll position doesn't shrink and jump.
+  if ($("boss-dead").hidden === dead) holdHeight($("boss"));
+  setHidden($("boss-alive"), dead);
+  setHidden($("boss-dead"), !dead);
+  setHidden($("fight"), dead);
   if (dead) {
     renderDeath(b, def);
     return;
   }
 
-  $("boss-name").textContent = b.name;
-  $("boss-sub").textContent = b.subtitle;
-  if (b.phase !== lastPhase || b.seq !== lastSeq) {
+  setText($("boss-name"), b.name);
+  setText($("boss-sub"), b.subtitle);
+  if (redrawArt && b.phase === lastPhase && b.seq === lastSeq) {
+    redrawArt = false;
+    drawArt();
+  } else if (b.phase !== lastPhase || b.seq !== lastSeq) {
+    redrawArt = false;
+    // The same boss going deeper (not a reload, not a new boss): a beat everyone
+    // shares. It uses the see-through banner layer, so nobody's fight is paused.
+    const deeper = b.seq === lastSeq && b.phase > lastPhase;
     lastPhase = b.phase;
     lastSeq = b.seq; // a new boss always redraws, even in the same phase number
     drawArt();
     startTaunts();
+    if (deeper) {
+      const ph = phaseDef();
+      const line = ph?.taunts?.[0] ? bossText(ph.taunts[0]) : "";
+      ultBanner(`${b.name} :: ${ph?.label ?? `PHASE ${b.phase}`}`, line ? [line] : [], "#", "", 1800);
+      shake("l");
+      sound.phase();
+      hurt(600);
+    }
   }
   const frac = b.hp / b.max_hp;
   const poisoned = Boolean(b.effects?.poison_until && now() < b.effects.poison_until);
@@ -152,30 +205,47 @@ export function renderBoss() {
   artEl.classList.toggle("poisoned", poisoned);
   artEl.classList.toggle("frozen", frozen);
   const hpBar = $("hp-bar");
-  hpBar.textContent = "HP " + bar(frac, hpCells());
-  hpBar.classList.toggle("low", frac <= 0.1);
+  // FOG: the readout lies (or hides) for a few minutes.
+  const fog = fogHp();
+  setText(hpBar, "HP " + (fog && fog.frac === null ? "[" + "?".repeat(hpCells()) + "]" : bar(fog ? fog.frac ?? frac : frac, hpCells())));
+  hpBar.classList.toggle("low", !fog && frac <= 0.1);
+  hpBar.classList.toggle("fogged", Boolean(fog));
   const hpNow = $("hp-now");
-  hpNow.textContent = fmt(b.hp);
+  setText(hpNow, fog ? fog.now : fmt(b.hp));
   if (lastHp >= 0 && b.hp < lastHp) {
     hpNow.classList.remove("tick");
     void hpNow.offsetWidth;
     hpNow.classList.add("tick");
   }
   lastHp = b.hp;
-  $("hp-max").textContent = fmt(b.max_hp);
-  $("hp-pct").textContent = `(${(frac * 100).toFixed(frac < 0.01 ? 3 : 2)}%)`;
+  setText($("hp-max"), fmt(b.max_hp));
+  setText($("hp-pct"), fog ? fog.pct : `(${(frac * 100).toFixed(frac < 0.01 ? 3 : 2)}%)`);
   const phase = $("phase");
   const ph = phaseDef();
-  phase.textContent = ph?.label ?? `PHASE ${b.phase}`;
+  setText(phase, ph?.label ?? `PHASE ${b.phase}`);
   phase.classList.toggle("p3", b.phase >= 3);
-  $("g-attacks").textContent = fmt(b.total_attacks);
-  $("g-damage").textContent = fmt(b.total_damage);
-  $("g-players").textContent = fmt(b.unique_players);
+  setText($("g-attacks"), fmt(b.total_attacks));
+  setText($("g-damage"), fmt(b.total_damage));
+  setText($("g-players"), fmt(b.unique_players));
 }
 
-/** @param {any} b @param {any} def */
+/** What the death box shows; it's only rebuilt when this changes. */
+let deathKey = "";
+
+/** The death box, built once per dead boss (and on resize). Rebuilding it every
+ * second emptied it for an instant, the page got shorter, and phones scrolled. The
+ * countdown in it ticks on its own (tickNextBoss).
+ * @param {any} b @param {any} def */
 function renderDeath(b, def) {
   const host = $("boss-dead");
+  const key = [b.seq, b.name, b.killer_name, b.total_damage, b.total_attacks, b.unique_players, b.defeated_at,
+    window.innerWidth].join("|");
+  if (key === deathKey && host.childElementCount) {
+    tickNextBoss();
+    return;
+  }
+  deathKey = key;
+  holdHeight(host);
   const W = 37;
   const banner = [
     "#".repeat(W),
@@ -232,7 +302,7 @@ export function startTaunts() {
 
 /** Re-render on resize (bar width depends on it). */
 window.addEventListener("resize", () => {
-  lastPhase = 0;
+  redrawArt = true;
   renderBoss();
 });
 
@@ -242,10 +312,10 @@ export function tickNextBoss() {
   const b = state.boss;
   if (!node || !b) return;
   if (!b.next_at) {
-    node.textContent = "";
+    setText(node, "");
     return;
   }
   const left = Math.max(0, Math.round(b.next_at - now()));
   const m = Math.floor(left / 60), sec = String(left % 60).padStart(2, "0");
-  node.textContent = left > 0 ? `ARRIVES IN ${m}:${sec}` : "IT'S HERE...";
+  setText(node, left > 0 ? `ARRIVES IN ${m}:${sec}` : "IT'S HERE...");
 }

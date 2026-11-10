@@ -18,8 +18,21 @@ if (!pageReady) {
   window.addEventListener("load", () => setTimeout(() => (pageReady = true), 120), { once: true });
 }
 
+/** The font a <canvas> mist draws with: the element's own CSS font. @param {HTMLElement} host */
+const canvasFont = (host) => {
+  const cs = getComputedStyle(host);
+  return `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+};
+
 /** Measure one monospace cell in the given element's font. @param {HTMLElement} host */
 function cellSize(host) {
+  if (host instanceof HTMLCanvasElement) {
+    const ctx = /** @type {CanvasRenderingContext2D} */ (host.getContext("2d"));
+    ctx.font = canvasFont(host);
+    const cs = getComputedStyle(host);
+    const size = parseFloat(cs.fontSize) || 12;
+    return { w: ctx.measureText("M".repeat(20)).width / 20 || 7, h: parseFloat(cs.lineHeight) || size * 1.15 };
+  }
   const probe = document.createElement("span");
   probe.textContent = "M".repeat(20);
   probe.style.setProperty("visibility", "hidden");
@@ -31,7 +44,9 @@ function cellSize(host) {
 }
 
 /**
- * @param {HTMLElement} pre  full-screen <pre>
+ * @param {HTMLElement} pre  full-screen <pre>, or a <canvas>: the same characters drawn as
+ *   pixels at 1x (no text layout, no hi-DPI raster: far cheaper for the
+ *   always-on background)
  * @param {{eye: () => DOMRect | null, ambient?: boolean, fps?: number, maxEyeFrac?: number,
  *          active?: () => boolean, eyeScale?: () => number, density?: () => number,
  *          fill?: () => number}} opts
@@ -49,6 +64,8 @@ export function startMist(pre, opts) {
   const small = window.innerWidth < 700;
   const fps = Math.min(opts.fps ?? 18, small ? 12 : 18);
   const ambient = Boolean(opts.ambient);
+  const canvas = pre instanceof HTMLCanvasElement ? pre : null;
+  const ctx = canvas?.getContext("2d") ?? null;
   let cell = cellSize(pre);
   let cols = 0, rows = 0;
   // Phones resize the viewport as the address bar hides/shows while
@@ -63,13 +80,19 @@ export function startMist(pre, opts) {
     cell = cellSize(pre);
     cols = Math.ceil(w / cell.w) + 1;
     rows = Math.max(newRows, Math.ceil(window.innerHeight / cell.h) + 1);
+    if (canvas) {
+      canvas.width = Math.ceil(w);
+      canvas.height = Math.ceil(rows * cell.h);
+      canvas.style.width = `${canvas.width}px`;
+      canvas.style.height = `${canvas.height}px`;
+    }
   };
   resize();
   window.addEventListener("resize", resize);
 
   const t0 = performance.now();
   let raf = 0;
-  let last = 0;
+  let timer = 0;
   let stopped = false;
   /** Dissipation: 0 = normal, 1 = blown away. */
   let gone = 0;
@@ -89,8 +112,10 @@ export function startMist(pre, opts) {
     const fade = 1 - gone;
     ripples = ripples.filter((p) => t - p.t < 2.5);
 
-    let out = "";
+    /** @type {string[]} */
+    const lines = [];
     for (let y = 0; y < rows; y++) {
+      let out = "";
       for (let x = 0; x < cols; x++) {
         const dx = (x - cx) / rx;
         const dy = (y - cy) / ry;
@@ -128,25 +153,39 @@ export function startMist(pre, opts) {
         const val = Math.max(0, ((n / 3 + 1) / 2) * weight * fade * 1.35 * thick - 0.12);
         out += RAMP[Math.min(RAMP.length - 1, Math.floor(val * RAMP.length))];
       }
-      out += "\n";
+      lines.push(out);
     }
-    pre.textContent = out;
+    if (canvas && ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = canvasFont(canvas);
+      ctx.fillStyle = getComputedStyle(canvas).color; // follows the phase tint (and its fade)
+      ctx.textBaseline = "top";
+      lines.forEach((line, y) => ctx.fillText(line, 0, y * cell.h));
+    } else {
+      pre.textContent = lines.join("\n");
+    }
   };
 
+  // Wake only when a frame is due (a timer), then draw on the next animation
+  // frame. Polling requestAnimationFrame 60 times a second to skip most of
+  // them kept the whole page producing 60 frames a second for nothing.
+  const schedule = () => {
+    timer = window.setTimeout(() => (raf = requestAnimationFrame(frame)), 1000 / fps);
+  };
   const frame = (/** @type {number} */ now) => {
     if (stopped || !pre.isConnected) return stop();
-    raf = requestAnimationFrame(frame);
     // Don't compete with the page while it's still loading, and don't draw
     // mist nobody can see.
-    if (!pageReady || (opts.active && !opts.active())) return;
-    if (now - last < 1000 / fps) return;
-    last = now;
-    render(now);
-    if (reduced && !ripples.length && gone === 0) cancelAnimationFrame(raf); // one still frame
+    if (pageReady && (!opts.active || opts.active())) {
+      render(now);
+      if (reduced && !ripples.length && gone === 0) return; // one still frame
+    }
+    schedule();
   };
 
   const stop = () => {
     stopped = true;
+    clearTimeout(timer);
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", resize);
   };
@@ -177,6 +216,7 @@ export function startMist(pre, opts) {
             resolve();
           }
         };
+        clearTimeout(timer);
         cancelAnimationFrame(raf);
         requestAnimationFrame(step);
       });

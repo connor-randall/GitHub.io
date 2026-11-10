@@ -2,14 +2,15 @@
 // own damage and rank, the top fighters), then the next boss makes its entrance.
 // Shown once per boss per browser, including to people who come back later.
 
-import * as api from "../api.js?v=c30f4a427c";
-import { center, duration, el, fmt, padL } from "../ascii.js?v=c30f4a427c";
-import { bossDef, now, state } from "../store.js?v=c30f4a427c";
-import { nextBossDef, nextBossScreen } from "./aftermath.js?v=c30f4a427c";
-import { badgeTag, badgeWidth } from "./badges.js?v=c30f4a427c";
-import { deathOrigin } from "./boss.js?v=c30f4a427c";
-import { playDeath } from "./deathfx.js?v=c30f4a427c";
-import { shake, showOverlay } from "./fx.js?v=c30f4a427c";
+import * as api from "../api.js?v=b6664395f3";
+import { center, duration, el, fmt, padL, padR } from "../ascii.js?v=b6664395f3";
+import { bossDef, now, state } from "../store.js?v=b6664395f3";
+import { nextBossAfter, nextBossScreen } from "./aftermath.js?v=b6664395f3";
+import { badgeTag, badgeWidth, nameStar } from "./badges.js?v=b6664395f3";
+import { deathOrigin } from "./boss.js?v=b6664395f3";
+import { playDeath } from "./deathfx.js?v=b6664395f3";
+import { SKIP_DEATH, onSkipDeath, shake, showOverlay } from "./fx.js?v=b6664395f3";
+import { drawGraph, graphCols } from "./hpgraph.js?v=b6664395f3";
 
 const SEEN_KEY = "omhp.seen_death";
 const W = 40;
@@ -34,22 +35,45 @@ function markSeen(seq) {
 
 let running = false;
 
+/** [ SKIP ] in the corner for the whole ceremony: ends it at once, back to the game.
+ * @returns {{skipped: () => boolean, remove: () => void}} */
+function skipButton() {
+  let skipped = false;
+  const b = /** @type {HTMLButtonElement} */ (el("button", "ceremony-skip", "[ SKIP ]"));
+  b.type = "button";
+  b.title = "skip the rest and go back to the game";
+  b.addEventListener("click", (e) => {
+    e.stopPropagation();
+    skipped = true;
+    b.remove();
+    document.dispatchEvent(new Event(SKIP_DEATH));
+  });
+  document.body.append(b);
+  return { skipped: () => skipped, remove: () => b.remove() };
+}
+
 /** Show the ceremony for a dead boss, once. @param {any} boss */
 export async function maybeShowDeath(boss) {
   if (!boss || boss.status !== "defeated" || running || !state.me || seen(boss.seq)) return;
   running = true;
   markSeen(boss.seq);
+  const skip = skipButton();
   try {
     const def = bossDef(boss.def_id);
     const results = api.getBossResults(boss.seq); // fetch while the animation plays
+    const graph = api.getBossGraph(boss.seq, graphCols(W + 6)).catch(() => null);
     if (def) await playDeath({ ...def, name: boss.name }, deathOrigin(boss.seq) ?? {});
+    if (skip.skipped()) return;
     const res = await results;
-    await defeatScreen(res);
-    const next = nextBossDef(boss.def_id);
+    if (skip.skipped()) return;
+    await defeatScreen(res, graph);
+    if (skip.skipped()) return;
+    const next = nextBossAfter(boss);
     if (res.boss.next_at && next) await nextBossScreen(next, res.boss.next_at);
   } catch {
     /* the regular death screen still shows everything */
   } finally {
+    skip.remove();
     running = false;
   }
 }
@@ -75,12 +99,29 @@ export async function previewDeath(bossId) {
         unique_players: 42, started_at: t - 3 * 3600, defeated_at: t, next_at: t + 60 },
       me: { damage: 12_345, rank: 7 },
       top: names.map((name, i) => ({ name, player_id: `preview-${i}`, damage: 120_000 - i * 17_000 })),
-    });
-    const next = nextBossDef(def.id);
+      last_hits: names.map((name, i) => ({ name, player_id: `preview-${i}`, ultimate: i === 2, crit: i === 1,
+        damage: 400 + i * 137, killing_blow: i === 0, at: t - i * 0.7 })),
+    }, Promise.resolve(sampleGraph(def.name, graphCols(W + 6))));
+    const next = state.boss?.next_definition; // whoever really is up next
     if (next) await nextBossScreen(next, now() + 60);
   } finally {
     running = false;
   }
+}
+
+/** A made-up fight for the admin's preview: steady hits, one heal, one poison.
+ * @param {string} name @param {number} cols */
+function sampleGraph(name, cols) {
+  let hp = 1_000_000;
+  const points = Array.from({ length: cols }, (_, i) => {
+    const hits = Math.round(20 + 18 * Math.sin(i / 3) + (i > cols * 0.8 ? 40 : 0));
+    hp = Math.max(0, hp - hits * 600);
+    const heal = i === Math.floor(cols * 0.45) ? 100_000 : 0;
+    const poison = i === Math.floor(cols * 0.65) ? 10_000 : 0;
+    hp = Math.min(1_000_000, hp + heal - poison);
+    return { hp: i === cols - 1 ? 0 : hp, hits, ...(heal ? { heal } : {}), ...(poison ? { poison } : {}) };
+  });
+  return { name, max_hp: 1_000_000, status: "defeated", seconds: 3 * 3600, points };
 }
 
 /** Lines appear one after another. @param {HTMLElement} pre @param {Node[]} lines @param {number} step */
@@ -93,8 +134,8 @@ function reveal(pre, lines, step) {
   });
 }
 
-/** @param {any} res */
-function defeatScreen(res) {
+/** @param {any} res @param {Promise<any>} [graph] the HP graph, if it loads */
+function defeatScreen(res, graph) {
   const b = res.boss;
   const me = res.me;
   const text = (/** @type {string} */ s, cls = "") => el("span", cls, s);
@@ -111,6 +152,22 @@ function defeatScreen(res) {
     text(`TIME ALIVE    ${duration((b.defeated_at ?? b.started_at) - b.started_at)}`),
     text(" "),
   ];
+  // The last few attacks, kill first: who missed it by THAT much.
+  const hits = res.last_hits ?? [];
+  if (hits.length) {
+    lines.push(text(`LAST HITS ${"-".repeat(W - 10)}`, "dim"));
+    const end = b.defeated_at ?? hits[0].at;
+    for (const h of hits) {
+      const when = h.killing_blow ? "KILL" : `-${Math.max(0, end - h.at).toFixed(1)}s`;
+      const right = `${h.ultimate ? "ULT " : ""}${h.crit ? "CRIT " : ""}${fmt(h.damage)}`;
+      const left = `${padR(when, 7)}${h.name} `;
+      const dots = ".".repeat(Math.max(1, W - left.length - right.length - 1));
+      const mine = h.player_id === state.me?.id;
+      lines.push(text(`${left}${dots} ${right}${mine ? " <" : ""}`,
+        mine ? "cer-me" : h.killing_blow ? "cer-kill" : ""));
+    }
+    lines.push(text(" "));
+  }
   if (me && me.rank) {
     const pct = b.total_damage ? ((100 * me.damage) / b.total_damage).toFixed(me.damage / b.total_damage < 0.01 ? 2 : 1) : "0";
     lines.push(text(`YOU DEALT ${fmt(me.damage)} DAMAGE (${pct}% of it)`, "cer-you"));
@@ -127,7 +184,7 @@ function defeatScreen(res) {
     const mine = r.player_id === state.me?.id;
     const line = text("", mine ? "cer-me" : i === 0 ? "cer-first" : "");
     const tag = badgeTag(r.badges, r.player_id);
-    line.append(num, ...(tag ? [tag, " "] : []), `${r.name} ${dots} ${n}${mine ? " <" : ""}`);
+    line.append(num, ...(tag ? [tag, " "] : []), ...nameStar(r.badges), r.name, ...nameStar(r.badges), ` ${dots} ${n}${mine ? " <" : ""}`);
     lines.push(line);
   });
   shake("l");
@@ -137,9 +194,15 @@ function defeatScreen(res) {
       const pre = el("pre", "cer-board");
       inner.append(pre);
       reveal(pre, lines, 90);
+      // The fight's HP graph draws itself once the scoreboard is up.
+      const graphHost = el("div", "hp-graph-host cer-graph");
+      inner.append(graphHost);
+      graph?.then((g) => {
+        if (g) setTimeout(() => graphHost.isConnected && void drawGraph(graphHost, g), 200 + lines.length * 90);
+      });
       const actions = el("div", "actions");
       const next = el("button", "", "[ NEXT ]");
-      next.addEventListener("click", close);
+      next.addEventListener("click", onSkipDeath(close));
       actions.append(next);
       inner.append(actions);
       setTimeout(() => next.focus({ preventScroll: true }), 300);

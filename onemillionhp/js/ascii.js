@@ -1,25 +1,25 @@
 // ASCII helpers: boxes, bars, big digits, fitting art to its container.
 
 export const LOGO_WIDE = [
-  "  ___  _  _ ___   __  __ ___ _    _    ___  ___  _  _   _  _ ___ ",
-  " / _ \\| \\| | __| |  \\/  |_ _| |  | |  |_ _|/ _ \\| \\| | | || | _ \\",
-  "| (_) | .` | _|  | |\\/| || || |__| |__ | || (_) | .` | | __ |  _/",
-  " \\___/|_|\\_|___| |_|  |_|___|____|____|___|\\___/|_|\\_| |_||_|_|  ",
+  "  ___  _  _ ___   __  __ ___ _    _    ___   ___  _  _   _  _ ___ ",
+  " / _ \\| \\| | __| |  \\/  |_ _| |  | |  |_ _| / _ \\| \\| | | || | _ \\",
+  "| (_) | .` | _|  | |\\/| || || |__| |__ | | | (_) | .` | | __ |  _/",
+  " \\___/|_|\\_|___| |_|  |_|___|____|____|___| \\___/|_|\\_| |_||_|_|  ",
 ];
 
 export const LOGO_STACK = [
-  "            ___  _  _ ___",
-  "           / _ \\| \\| | __|",
-  "          | (_) | .` | _|",
-  "           \\___/|_|\\_|___|",
-  " __  __ ___ _    _    ___  ___  _  _",
-  "|  \\/  |_ _| |  | |  |_ _|/ _ \\| \\| |",
-  "| |\\/| || || |__| |__ | || (_) | .` |",
-  "|_|  |_|___|____|____|___|\\___/|_|\\_|",
-  "              _  _ ___",
-  "             | || | _ \\",
-  "             | __ |  _/",
-  "             |_||_|_|",
+  "             ___  _  _ ___",
+  "            / _ \\| \\| | __|",
+  "           | (_) | .` | _|",
+  "            \\___/|_|\\_|___|",
+  " __  __ ___ _    _    ___   ___  _  _",
+  "|  \\/  |_ _| |  | |  |_ _| / _ \\| \\| |",
+  "| |\\/| || || |__| |__ | | | (_) | .` |",
+  "|_|  |_|___|____|____|___| \\___/|_|\\_|",
+  "               _  _ ___",
+  "              | || | _ \\",
+  "              | __ |  _/",
+  "              |_||_|_|",
 ];
 
 /**
@@ -35,6 +35,9 @@ export const RARITY_STYLE = {
   legendary: { h: "#", v: "#", c: "#", deco: ["## ", " ##"] },
   mythic:    { h: "@", v: "@", c: "@", deco: ["@@ ", " @@"] },
   godly:     { h: "=", v: "$", c: "$", deco: ["$$ ", " $$"] },
+  ascended:  { h: "=", v: "^", c: "+", deco: ["<^ ", " ^>"] },
+  sovereign: { h: "=", v: "|", c: "$", deco: ["<$ ", " $>"] },
+  boss_unique: { h: "=", v: "!", c: "*", deco: ["<! ", " !>"] },
 };
 
 /** @param {number} n */
@@ -131,6 +134,33 @@ export function bigText(text) {
   return rows.map((r) => r.replace(/\s+$/, ""));
 }
 
+// 3-row seven-segment digits for the damage numbers that float off the boss.
+const SEGS = {
+  "0": [" _ ", "| |", "|_|"],
+  "1": ["  ", " |", " |"],
+  "2": [" _ ", " _|", "|_ "],
+  "3": [" _ ", " _|", " _|"],
+  "4": ["   ", "|_|", "  |"],
+  "5": [" _ ", "|_ ", " _|"],
+  "6": [" _ ", "|_ ", "|_|"],
+  "7": [" _ ", "  |", "  |"],
+  "8": [" _ ", "|_|", "|_|"],
+  "9": [" _ ", "|_|", " _|"],
+  ",": [" ", " ", ","],
+  "-": ["   ", " _ ", "   "],
+};
+
+/** @param {string} text digits, commas and "-" @returns {string[]} */
+export function segText(text) {
+  const rows = ["", "", ""];
+  for (const ch of text) {
+    const g = SEGS[/** @type {keyof typeof SEGS} */ (ch)];
+    if (!g) continue;
+    for (let r = 0; r < 3; r++) rows[r] += g[r] + " ";
+  }
+  return rows.map((r) => r.slice(0, -1));
+}
+
 /**
  * Size a <pre> of ASCII art so its widest line fits the container, capped
  * at maxPx. Monospace advance ~0.6em for JetBrains Mono.
@@ -141,6 +171,7 @@ export function fitArt(pre, maxPx = 14) {
   const parent = pre.parentElement;
   if (!parent || !cols) return;
   const avail = parent.clientWidth;
+  if (!avail) return; // in a hidden panel: sized when it's drawn again
   const px = Math.max(5, Math.min(maxPx, avail / (cols * 0.602)));
   pre.style.setProperty("font-size", px.toFixed(2) + "px");
 }
@@ -151,6 +182,36 @@ export function setArt(pre, lines, maxPx) {
   pre.dataset.cols = String(widthOf(lines));
   if (maxPx) pre.dataset.max = String(maxPx);
   fitArt(pre, maxPx ?? (Number(pre.dataset.max) || 14));
+}
+
+/** setArt for many blocks at once: every text first, then every width read,
+ * then every font size. Calling setArt one by one makes each width read wait
+ * for a fresh layout of the whole page (one layout per block).
+ * @param {[HTMLElement, readonly string[]][]} blocks @param {number} maxPx */
+export function setArts(blocks, maxPx) {
+  for (const [pre, lines] of blocks) {
+    pre.textContent = lines.join("\n");
+    pre.dataset.cols = String(widthOf(lines));
+    pre.dataset.max = String(maxPx);
+  }
+  const sizes = blocks.map(([pre]) => {
+    const cols = Number(pre.dataset.cols);
+    const avail = pre.parentElement?.clientWidth ?? 0;
+    return cols && avail ? Math.max(5, Math.min(maxPx, avail / (cols * 0.602))) : 0;
+  });
+  blocks.forEach(([pre], i) => {
+    if (sizes[i]) pre.style.setProperty("font-size", sizes[i].toFixed(2) + "px");
+  });
+}
+
+/** About to redraw a panel whose art is drawn a frame later: keep its
+ * current height until then. Otherwise the page is briefly shorter, the
+ * browser pulls the scroll up, and Safari never puts it back.
+ * @param {HTMLElement} host */
+export function holdHeight(host) {
+  if (host.hidden || !host.childElementCount) return;
+  host.style.minHeight = `${host.offsetHeight}px`;
+  requestAnimationFrame(() => requestAnimationFrame(() => host.style.removeProperty("min-height")));
 }
 
 /** Refit every art block when the viewport changes. */
@@ -200,4 +261,11 @@ export function ago(secs) {
   if (s < 3600) return Math.floor(s / 60) + "m";
   if (s < 86400) return Math.floor(s / 3600) + "h";
   return Math.floor(s / 86400) + "d";
+}
+
+/** "2026-11-05" in the player's own time zone (toLocaleDateString gave US-style
+ * 11/5/2026 to everyone). @param {number} secs unix seconds */
+export function ymd(secs) {
+  const d = new Date(secs * 1000);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }

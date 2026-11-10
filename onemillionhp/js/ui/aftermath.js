@@ -1,9 +1,9 @@
 // After the death scoreboard: a nervous little monologue, typed out, then
 // the next boss's name slammed across the whole screen in big block letters.
 
-import { el } from "../ascii.js?v=c30f4a427c";
-import { bossDef, now, state } from "../store.js?v=c30f4a427c";
-import { shake, showOverlay } from "./fx.js?v=c30f4a427c";
+import { el } from "../ascii.js?v=b6664395f3";
+import { bossDef, now, state } from "../store.js?v=b6664395f3";
+import { onSkipDeath, shake, showOverlay } from "./fx.js?v=b6664395f3";
 
 const LINES = ["Yay we did it.....", "uh guys do you hear that?.......", "Its right behind me isnt it?"];
 
@@ -55,17 +55,59 @@ function wrap(name, max) {
   return out;
 }
 
-/** The boss after ``defId`` (next number up), like the server picks it. @param {string} defId */
-export function nextBossDef(defId) {
-  if (state.boss?.def_id === defId && state.boss.next_definition) return state.boss.next_definition;
-  const cur = bossDef(defId);
-  const later = (state.content?.bosses ?? []).filter((/** @type {any} */ b) => cur && b.number > cur.number);
-  return later.sort((/** @type {any} */ a, /** @type {any} */ b) => a.number - b.number)[0] ?? null;
+/** The boss that comes (or came) after the defeated ``dead``, exactly as the
+ * server picks it (manual queue, then the random plan or the numbered order).
+ * The next boss arrives 60 s after a kill, often while the ceremony is still
+ * playing, so once it's live, use the live boss itself; until then the
+ * server's latest ``next_definition`` (refreshed if the admin reorders the
+ * queue). Never guess by boss number: that ignores the queue.
+ * @param {any} dead  the defeated boss's snapshot */
+export function nextBossAfter(dead) {
+  const live = state.boss;
+  if (live && live.seq === dead.seq + 1) {
+    const def = live.definition ?? bossDef(live.def_id);
+    return def ? { ...def, name: live.name } : null;
+  }
+  if (live && live.seq === dead.seq) return live.next_definition ?? null;
+  return dead.next_definition ?? null;
 }
 
 /** @param {number} ms */
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const SCRAMBLE = "#%&@$*+=:;";
+
+/** @typedef {{back: HTMLElement, front: HTMLElement}} Layer */
+
+/** One block of big letters in ``stage``: the letters, and a dark copy
+ * offset behind them for depth. @param {HTMLElement} stage @param {string} cls */
+export function stackLayer(stage, cls) {
+  const wrapEl = el("div", `stack ${cls}`);
+  const back = el("pre", "stack-shadow");
+  const front = el("pre", "stack-front");
+  wrapEl.append(back, front);
+  stage.append(wrapEl);
+  return { back, front };
+}
+
+/** Block letters sweep in left to right, scrambling as they land.
+ * @param {Layer} pre @param {string[]} lines @param {number} ms @param {() => boolean} fast */
+export async function stampLetters(pre, lines, ms, fast) {
+  const w = Math.max(...lines.map((l) => l.length));
+  const at = lines.map((l) => [...l].map((_, x) => x / w + Math.random() * 0.12));
+  const start = performance.now();
+  for (;;) {
+    const p = fast() ? 2 : (performance.now() - start) / ms;
+    const text = lines
+      .map((l, y) => [...l].map((ch, x) => (ch === " " || at[y][x] <= p - 0.12 ? ch
+        : at[y][x] <= p ? SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)] : " ")).join(""))
+      .join("\n");
+    pre.front.textContent = text;
+    pre.back.textContent = text;
+    if (p >= 1.24) break;
+    await new Promise((r) => requestAnimationFrame(r));
+  }
+  pre.front.textContent = pre.back.textContent = lines.join("\n"); // fully settled
+}
 
 /**
  * The monologue + "<NEXT BOSS> HAS APPEARED!" screen.
@@ -88,11 +130,11 @@ export function nextBossScreen(next, nextAt) {
       talk.append(cursor);
       inner.append(talk);
 
-      const finish = () => {
+      const finish = onSkipDeath(() => {
         overlay.classList.remove("aftermath");
         overlay.style.removeProperty("--next-tint");
         close();
-      };
+      });
 
       (async () => {
         // 1. The monologue, typed. Dots crawl.
@@ -107,11 +149,9 @@ export function nextBossScreen(next, nextAt) {
           if (!fast) await sleep(i === LINES.length - 1 ? 1100 : 750);
         }
 
-        // 2. It's right behind you.
+        // 2. It's right behind you (a shake; the white flash was too bright).
         shake("l");
-        overlay.classList.add("flash");
         await sleep(fast ? 60 : 180);
-        overlay.classList.remove("flash");
         talk.remove();
         if (next.tint) overlay.style.setProperty("--next-tint", next.tint);
 
@@ -126,16 +166,7 @@ export function nextBossScreen(next, nextAt) {
         const px = Math.max(5, Math.min(30, (window.innerWidth * 0.92) / (cols * 0.6), (window.innerHeight * 0.62) / rows));
         const stage = el("div", "appeared");
         stage.style.fontSize = `${px}px`;
-        // Each block of letters is two layers: the letters, and a dark copy
-        // offset behind them for depth.
-        const layer = (/** @type {string} */ cls) => {
-          const wrapEl = el("div", `stack ${cls}`);
-          const back = el("pre", "stack-shadow");
-          const front = el("pre", "stack-front");
-          wrapEl.append(back, front);
-          stage.append(wrapEl);
-          return { back, front };
-        };
+        const layer = (/** @type {string} */ cls) => stackLayer(stage, cls);
         const nameLayers = nameLines.map(() => layer("appeared-name"));
         const tailLayers = tail.map(() => layer("appeared-tail"));
         const count = el("div", "panic-count", "");
@@ -145,24 +176,8 @@ export function nextBossScreen(next, nextAt) {
         inner.append(stage, count, actions);
 
         // 3. Block letters sweep in left to right, scrambling as they land.
-        /** @param {{back: HTMLElement, front: HTMLElement}} pre @param {string[]} lines @param {number} ms */
-        const stamp = async (pre, lines, ms) => {
-          const w = Math.max(...lines.map((l) => l.length));
-          const at = lines.map((l) => [...l].map((_, x) => x / w + Math.random() * 0.12));
-          const start = performance.now();
-          for (;;) {
-            const p = fast ? 2 : (performance.now() - start) / ms;
-            const text = lines
-              .map((l, y) => [...l].map((ch, x) => (ch === " " || at[y][x] <= p - 0.12 ? ch
-                : at[y][x] <= p ? SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)] : " ")).join(""))
-              .join("\n");
-            pre.front.textContent = text;
-            pre.back.textContent = text;
-            if (p >= 1.24) break;
-            await new Promise((r) => requestAnimationFrame(r));
-          }
-          pre.front.textContent = pre.back.textContent = lines.join("\n"); // fully settled
-        };
+        const stamp = (/** @type {Layer} */ pre, /** @type {string[]} */ lines, /** @type {number} */ ms) =>
+          stampLetters(pre, lines, ms, () => fast);
         for (const [i, lines] of nameLines.entries()) await stamp(nameLayers[i], lines, 1100 / nameLines.length);
         shake("s");
         await sleep(fast ? 0 : 250);

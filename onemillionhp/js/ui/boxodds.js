@@ -3,8 +3,8 @@
 // each, rarities in their item colours. Numbers come from the server (the
 // admin's odds included).
 
-import { RARITY_STYLE, el } from "../ascii.js?v=c30f4a427c";
-import { rarityById, state } from "../store.js?v=c30f4a427c";
+import { RARITY_STYLE, el } from "../ascii.js?v=b6664395f3";
+import { boxById, rarityById, state } from "../store.js?v=b6664395f3";
 
 /** @type {HTMLElement | null} */
 let tip = null;
@@ -12,12 +12,15 @@ let tip = null;
 let tipFor = null;
 let pointerAt = 0; // a tap focuses the picture and then clicks it: let the click decide
 
-/** 48% / 9.6% / 0.12% / 0.012% @param {number} p 0..1 */
+/** 48% / 9.6% / 0.12% / 0.012% / <0.001%, rounded to two significant
+ * digits (at most), trailing zeros dropped. @param {number} p 0..1 */
 function pct(p) {
   const v = p * 100;
-  if (v >= 1) return `${v.toFixed(1)}%`;
-  if (v >= 0.1) return `${v.toFixed(2)}%`;
-  return `${v.toFixed(3)}%`;
+  if (v <= 0) return "0%";
+  if (v < 0.001) return "<0.001%";
+  if (v >= 99.95) return "100%";
+  const digits = v >= 10 ? 0 : v >= 1 ? 1 : Math.min(3, 1 - Math.floor(Math.log10(v)));
+  return `${Number(v.toFixed(digits))}%`;
 }
 
 /** Name of a non-item reward. @param {any} r */
@@ -25,6 +28,8 @@ function rewardName(r) {
   if (r.kind === "attacks") return `+${r.amount} ATTACK${r.amount === 1 ? "" : "S"}`;
   if (r.kind === "next_crit") return `${r.amount} CRIT CHARGE${r.amount === 1 ? "" : "S"}`;
   if (r.kind === "ultimate") return "ULTIMATE RECHARGE";
+  if (r.kind === "scroll") return "A RANDOM SCROLL";
+  if (r.kind === "box") return `A ${(boxById(r.box)?.name ?? "CHEST").toUpperCase()}`;
   return r.kind.toUpperCase();
 }
 
@@ -84,6 +89,15 @@ function show(art) {
   const top = below + box.height > window.innerHeight - 8 ? Math.max(8, r.top - box.height - 6) : below;
   tip.style.left = `${left}px`;
   tip.style.top = `${top}px`;
+}
+
+/** New odds arrived: redraw the odds box if one is showing. */
+export function refreshOddsTip() {
+  if (!tipFor || !tip || tip.hidden) return;
+  // The panel was redrawn: find the same box's new picture.
+  const art = /** @type {HTMLElement | null} */ (document.querySelector(`[data-box-odds="${tipFor.dataset.boxOdds}"]`));
+  if (art) show(art);
+  else hide();
 }
 
 function hide() {

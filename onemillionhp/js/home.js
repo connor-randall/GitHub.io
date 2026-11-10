@@ -4,7 +4,7 @@
 // browsers never send to any server, so players keep their name, items and
 // stats across the move. Empty = no forwarding.
 
-import { adoptToken, currentToken } from "./api.js?v=c30f4a427c";
+import { adoptToken, currentToken } from "./api.js?v=b6664395f3";
 
 export const CANONICAL = (() => {
   const v = document.querySelector('meta[name="omhp-canonical"]')?.getAttribute("content")?.trim();
@@ -14,11 +14,11 @@ export const CANONICAL = (() => {
 const isLocal = () => /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 
 /** Send this visitor to the official address. Returns true if leaving.
- * @param {"game" | "admin"} page */
+ * @param {"game" | "admin" | "library"} page */
 export function forwardToCanonical(page) {
   if (!CANONICAL || isLocal() || location.origin === CANONICAL) return false;
   const token = page === "game" ? currentToken() : null;
-  const path = page === "admin" ? "/admin" : "/";
+  const path = page === "admin" ? "/admin" : page === "library" ? "/library" : "/";
   location.replace(CANONICAL + path + (token ? `#claim=${encodeURIComponent(token)}` : ""));
   return true;
 }

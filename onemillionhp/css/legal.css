@@ -1,0 +1,13 @@
+/* Privacy Policy / Terms of Service (web/privacy.html, web/terms.html): plain
+   reading pages in the game's look. No game scripts run on them. */
+.legal { max-width: 760px; font-size: 14px; line-height: 1.65; }
+.legal a { color: var(--amber); }
+.legal a:hover { color: var(--fg); }
+.legal-title { font-size: 18px; letter-spacing: .2em; margin: 8px 0 4px; }
+.legal-meta { color: var(--dim); font-size: 12px; margin: 16px 0 4px; }
+.legal h2 { font-size: 15px; letter-spacing: .08em; color: var(--amber); margin: 26px 0 8px; }
+.legal p, .legal li { color: var(--fg); }
+.legal ul { padding-left: 22px; margin: 8px 0; }
+.legal li { margin: 4px 0; }
+.legal code { color: var(--amber); }
+.legal-foot { margin: 32px 0 24px; color: var(--dim); font-size: 12px; }

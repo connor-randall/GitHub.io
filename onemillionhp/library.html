@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ONE MILLION HP LIBRARY</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0a08">
+<!-- Same API origin rule as index.html; tools/publish_web.py rewrites it. -->
+<meta name="omhp-api" content="https://world.conradrandy.com">
+<!-- Official address; other copies forward here (tools/build_web.py --canonical). -->
+<meta name="omhp-canonical" content="https://onemillionhp.com">
+<link rel="stylesheet" href="css/style.css?v=b6664395f3">
+<link rel="stylesheet" href="css/library.css?v=b6664395f3">
+</head>
+<body>
+<div class="crt" aria-hidden="true"></div>
+<!-- The read-only catalogue for the wiki: every item and chest, built only
+     from the public /api/content data (nothing a player couldn't fetch). -->
+<main class="app library">
+  <header class="top">
+    <pre class="rule">=====================================</pre>
+    <h1 class="library-title">ONE MILLION HP :: LIBRARY</h1>
+    <div class="statusline"><a href="./">&lt; back to the fight</a><span class="sep">::</span><span id="library-count" class="dim">loading...</span></div>
+    <pre class="rule">=====================================</pre>
+  </header>
+
+  <nav class="library-tabs" aria-label="sections">
+    <button type="button" class="library-tab" data-view="items" aria-pressed="true">[ ITEMS ]</button>
+    <button type="button" class="library-tab" data-view="boxes" aria-pressed="false">[ CHESTS ]</button>
+    <button type="button" class="library-tab" data-view="events" aria-pressed="false">[ EVENTS ]</button>
+    <button type="button" id="library-download" class="library-tab">[ DOWNLOAD JSON ]</button>
+  </nav>
+
+  <section id="library-items">
+    <div class="library-filters">
+      <input id="library-search" type="search" placeholder="search names, flavor, stats..." autocomplete="off" spellcheck="false">
+      <select id="library-slot" aria-label="slot"><option value="">ALL SLOTS</option></select>
+      <select id="library-rarity" aria-label="rarity"><option value="">ALL RARITIES</option></select>
+      <select id="library-theme" aria-label="theme"><option value="">ALL THEMES</option></select>
+      <select id="library-source" aria-label="where it comes from">
+        <option value="">ANY SOURCE</option>
+        <option value="drops">DROPS FROM ATTACKS</option>
+        <option value="chest">CHESTS ONLY</option>
+        <option value="boss">ONE BOSS ONLY</option>
+        <option value="city">CITY REWARDS</option>
+      </select>
+    </div>
+    <div id="library-shown" class="dim library-shown"></div>
+    <div id="library-grid" class="library-grid"></div>
+  </section>
+
+  <section id="library-events" hidden>
+    <p class="dim">World events: short surprises during a fight, one at a time. When they're switched on, one starts
+      every 15-30 minutes or so (never the same one twice in a row, never in a boss's first 2 minutes).</p>
+    <div id="library-event-list" class="library-events"></div>
+  </section>
+
+  <section id="library-boxes" hidden>
+    <p class="dim">What each chest can give, and the chance of each when you open one.</p>
+    <div id="library-box-list" class="library-grid"></div>
+  </section>
+</main>
+<script type="module" src="js/library.js?v=b6664395f3"></script>
+</body>
+</html>
