@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-11-15T08:10:03-0700",
+  "generated_at": "2026-11-15T08:20:03-0700",
   "stats": {
-    "today_count": 62,
+    "today_count": 93,
     "today_species": 4,
-    "total": 4808
+    "total": 4839
   },
   "enviro": {
-    "temp_f": 51.8,
-    "humidity": 41.8,
-    "pressure": 826.7
+    "temp_f": 52.1,
+    "humidity": 41.1,
+    "pressure": 826.8
   },
   "detections": [
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7725,
-      "iso": "2026-11-15T08:06:48",
-      "time": "08:06",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6884,
+      "iso": "2026-11-15T08:16:46",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-77-2026-11-15-birdnet-08.06.48.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-11-15-birdnet-08.16.46.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7259,
-      "iso": "2026-11-15T08:06:36",
-      "time": "08:06",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7832,
+      "iso": "2026-11-15T08:16:22",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-73-2026-11-15-birdnet-08.06.36.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-78-2026-11-15-birdnet-08.16.22.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6805,
-      "iso": "2026-11-15T08:05:51",
-      "time": "08:05",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8668,
+      "iso": "2026-11-15T08:16:16",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-68-2026-11-15-birdnet-08.05.51.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-87-2026-11-15-birdnet-08.16.16.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6867,
-      "iso": "2026-11-15T08:05:45",
-      "time": "08:05",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9552,
+      "iso": "2026-11-15T08:16:13",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-69-2026-11-15-birdnet-08.05.45.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-96-2026-11-15-birdnet-08.16.13.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8735,
-      "iso": "2026-11-15T08:05:00",
-      "time": "08:05",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9511,
+      "iso": "2026-11-15T08:16:10",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-87-2026-11-15-birdnet-08.05.00.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-95-2026-11-15-birdnet-08.16.10.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7856,
-      "iso": "2026-11-15T08:04:57",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9376,
+      "iso": "2026-11-15T08:16:07",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-79-2026-11-15-birdnet-08.04.57.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-11-15-birdnet-08.16.07.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8615,
-      "iso": "2026-11-15T08:04:45",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8822,
+      "iso": "2026-11-15T08:16:01",
+      "time": "08:16",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-86-2026-11-15-birdnet-08.04.45.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-88-2026-11-15-birdnet-08.16.01.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7896,
-      "iso": "2026-11-15T08:04:39",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9383,
+      "iso": "2026-11-15T08:15:58",
+      "time": "08:15",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-79-2026-11-15-birdnet-08.04.39.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-11-15-birdnet-08.15.58.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6672,
-      "iso": "2026-11-15T08:04:36",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6772,
+      "iso": "2026-11-15T08:15:52",
+      "time": "08:15",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-67-2026-11-15-birdnet-08.04.36.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-68-2026-11-15-birdnet-08.15.52.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8132,
-      "iso": "2026-11-15T08:04:30",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9355,
+      "iso": "2026-11-15T08:15:40",
+      "time": "08:15",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-81-2026-11-15-birdnet-08.04.30.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-11-15-birdnet-08.15.40.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7066,
-      "iso": "2026-11-15T08:04:24",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8245,
+      "iso": "2026-11-15T08:15:37",
+      "time": "08:15",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-71-2026-11-15-birdnet-08.04.24.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-82-2026-11-15-birdnet-08.15.37.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8983,
-      "iso": "2026-11-15T08:04:21",
-      "time": "08:04",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9532,
+      "iso": "2026-11-15T08:15:16",
+      "time": "08:15",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-90-2026-11-15-birdnet-08.04.21.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-95-2026-11-15-birdnet-08.15.16.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.7278,
-      "iso": "2026-11-15T08:03:33",
-      "time": "08:03",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7827,
+      "iso": "2026-11-15T08:14:55",
+      "time": "08:14",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-73-2026-11-15-birdnet-08.03.33.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-78-2026-11-15-birdnet-08.14.55.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.6588,
-      "iso": "2026-11-15T08:01:36",
-      "time": "08:01",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9171,
+      "iso": "2026-11-15T08:14:49",
+      "time": "08:14",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-66-2026-11-15-birdnet-08.01.36.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-92-2026-11-15-birdnet-08.14.49.mp3"
     },
     {
-      "com_name": "Mountain Chickadee",
-      "sci_name": "Poecile gambeli",
-      "confidence": 0.8573,
-      "iso": "2026-11-15T08:01:18",
-      "time": "08:01",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.7424,
+      "iso": "2026-11-15T08:14:46",
+      "time": "08:14",
       "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
-      "audio": "bird-clips/Mountain_Chickadee-86-2026-11-15-birdnet-08.01.18.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-74-2026-11-15-birdnet-08.14.46.mp3"
     }
   ]
 }
