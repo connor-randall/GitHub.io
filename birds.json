@@ -1,16 +1,66 @@
 {
-  "generated_at": "2026-11-15T11:00:03-0700",
+  "generated_at": "2026-11-15T11:10:03-0700",
   "stats": {
-    "today_count": 140,
+    "today_count": 145,
     "today_species": 8,
-    "total": 4886
+    "total": 4891
   },
   "enviro": {
-    "temp_f": 96.3,
-    "humidity": 11.5,
-    "pressure": 827.0
+    "temp_f": 78.2,
+    "humidity": 18.1,
+    "pressure": 826.8
   },
   "detections": [
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8689,
+      "iso": "2026-11-15T11:01:48",
+      "time": "11:01",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-87-2026-11-15-birdnet-11.01.48.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7761,
+      "iso": "2026-11-15T11:01:39",
+      "time": "11:01",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-78-2026-11-15-birdnet-11.01.39.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7547,
+      "iso": "2026-11-15T11:01:36",
+      "time": "11:01",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-75-2026-11-15-birdnet-11.01.36.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7836,
+      "iso": "2026-11-15T11:01:18",
+      "time": "11:01",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-78-2026-11-15-birdnet-11.01.18.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.9019,
+      "iso": "2026-11-15T11:01:15",
+      "time": "11:01",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-15-birdnet-11.01.15.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -110,56 +160,6 @@
       "date": "2026-11-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-11-15-birdnet-10.34.01.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.6727,
-      "iso": "2026-11-15T10:33:58",
-      "time": "10:33",
-      "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-67-2026-11-15-birdnet-10.33.58.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.824,
-      "iso": "2026-11-15T10:33:49",
-      "time": "10:33",
-      "date": "2026-11-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-82-2026-11-15-birdnet-10.33.49.mp3"
-    },
-    {
-      "com_name": "Brown Creeper",
-      "sci_name": "Certhia americana",
-      "confidence": 0.745,
-      "iso": "2026-11-15T10:29:58",
-      "time": "10:29",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Brown_Creeper-74-2026-11-15-birdnet-10.29.58.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.8999,
-      "iso": "2026-11-15T10:29:10",
-      "time": "10:29",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-15-birdnet-10.29.10.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.9459,
-      "iso": "2026-11-15T10:29:01",
-      "time": "10:29",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-95-2026-11-15-birdnet-10.29.01.mp3"
     }
   ]
 }
