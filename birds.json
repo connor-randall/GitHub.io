@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-15T09:50:03-0700",
+  "generated_at": "2026-11-15T10:00:03-0700",
   "stats": {
     "today_count": 102,
     "today_species": 7,
     "total": 4848
   },
   "enviro": {
-    "temp_f": 78.7,
-    "humidity": 20.0,
+    "temp_f": 77.7,
+    "humidity": 20.7,
     "pressure": 827.2
   },
   "detections": [
