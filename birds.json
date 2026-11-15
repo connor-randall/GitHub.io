@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-15T10:10:03-0700",
+  "generated_at": "2026-11-15T10:20:03-0700",
   "stats": {
-    "today_count": 117,
+    "today_count": 118,
     "today_species": 7,
-    "total": 4863
+    "total": 4864
   },
   "enviro": {
-    "temp_f": 85.6,
-    "humidity": 15.9,
-    "pressure": 827.2
+    "temp_f": 103.5,
+    "humidity": 9.7,
+    "pressure": 827.4
   },
   "detections": [
+    {
+      "com_name": "Mountain Chickadee",
+      "sci_name": "Poecile gambeli",
+      "confidence": 0.8454,
+      "iso": "2026-11-15T10:14:42",
+      "time": "10:14",
+      "date": "2026-11-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mountain_Chickadee_Sandia_Mountains.jpg/330px-Mountain_Chickadee_Sandia_Mountains.jpg",
+      "audio": "bird-clips/Mountain_Chickadee-85-2026-11-15-birdnet-10.14.42.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -150,16 +160,6 @@
       "date": "2026-11-15",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-85-2026-11-15-birdnet-10.07.32.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6586,
-      "iso": "2026-11-15T10:07:20",
-      "time": "10:07",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-66-2026-11-15-birdnet-10.07.20.mp3"
     }
   ]
 }
