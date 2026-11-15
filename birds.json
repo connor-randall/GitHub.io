@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-11-15T10:40:03-0700",
+  "generated_at": "2026-11-15T10:50:03-0700",
   "stats": {
-    "today_count": 133,
+    "today_count": 136,
     "today_species": 8,
-    "total": 4879
+    "total": 4882
   },
   "enviro": {
-    "temp_f": 102.2,
-    "humidity": 10.4,
-    "pressure": 827.4
+    "temp_f": 101.2,
+    "humidity": 9.9,
+    "pressure": 827.3
   },
   "detections": [
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.7172,
+      "iso": "2026-11-15T10:46:44",
+      "time": "10:46",
+      "date": "2026-11-15",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-72-2026-11-15-birdnet-10.46.44.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8418,
+      "iso": "2026-11-15T10:40:14",
+      "time": "10:40",
+      "date": "2026-11-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-84-2026-11-15-birdnet-10.40.14.mp3"
+    },
+    {
+      "com_name": "Black-billed Magpie",
+      "sci_name": "Pica hudsonia",
+      "confidence": 0.8548,
+      "iso": "2026-11-15T10:40:08",
+      "time": "10:40",
+      "date": "2026-11-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BlackBilledMagpie.jpg/330px-BlackBilledMagpie.jpg",
+      "audio": "bird-clips/Black-billed_Magpie-85-2026-11-15-birdnet-10.40.08.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -130,36 +160,6 @@
       "date": "2026-11-15",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-15-birdnet-10.28.46.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7895,
-      "iso": "2026-11-15T10:28:43",
-      "time": "10:28",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-79-2026-11-15-birdnet-10.28.43.mp3"
-    },
-    {
-      "com_name": "Brown Creeper",
-      "sci_name": "Certhia americana",
-      "confidence": 0.6509,
-      "iso": "2026-11-15T10:26:27",
-      "time": "10:26",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Brown_Creeper-65-2026-11-15-birdnet-10.26.27.mp3"
-    },
-    {
-      "com_name": "Brown Creeper",
-      "sci_name": "Certhia americana",
-      "confidence": 0.7329,
-      "iso": "2026-11-15T10:26:00",
-      "time": "10:26",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Brown_Creeper-73-2026-11-15-birdnet-10.26.00.mp3"
     }
   ]
 }
