@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-15T12:30:03-0700",
+  "generated_at": "2026-11-15T12:40:03-0700",
   "stats": {
-    "today_count": 154,
-    "today_species": 8,
-    "total": 4900
+    "today_count": 155,
+    "today_species": 9,
+    "total": 4901
   },
   "enviro": {
-    "temp_f": 70.3,
-    "humidity": 22.4,
-    "pressure": 825.9
+    "temp_f": 66.6,
+    "humidity": 24.2,
+    "pressure": 825.8
   },
   "detections": [
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7366,
+      "iso": "2026-11-15T12:36:15",
+      "time": "12:36",
+      "date": "2026-11-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-74-2026-11-15-birdnet-12.36.15.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -150,16 +160,6 @@
       "date": "2026-11-15",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-15-birdnet-11.01.15.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.8987,
-      "iso": "2026-11-15T10:59:18",
-      "time": "10:59",
-      "date": "2026-11-15",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-15-birdnet-10.59.18.mp3"
     }
   ]
 }
