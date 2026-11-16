@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-11-16T08:50:03-0700",
+  "generated_at": "2026-11-16T09:00:03-0700",
   "stats": {
-    "today_count": 73,
-    "today_species": 7,
-    "total": 4990
+    "today_count": 118,
+    "today_species": 8,
+    "total": 5035
   },
   "enviro": {
-    "temp_f": 70.7,
-    "humidity": 18.6,
-    "pressure": 827.3
+    "temp_f": 74.0,
+    "humidity": 17.7,
+    "pressure": 827.2
   },
   "detections": [
     {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.6571,
-      "iso": "2026-11-16T08:46:08",
-      "time": "08:46",
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6586,
+      "iso": "2026-11-16T08:58:18",
+      "time": "08:58",
       "date": "2026-11-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-66-2026-11-16-birdnet-08.46.08.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.6706,
-      "iso": "2026-11-16T08:40:38",
-      "time": "08:40",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-67-2026-11-16-birdnet-08.40.38.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.8046,
-      "iso": "2026-11-16T08:29:40",
-      "time": "08:29",
-      "date": "2026-11-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-80-2026-11-16-birdnet-08.29.40.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6649,
-      "iso": "2026-11-16T08:16:24",
-      "time": "08:16",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-66-2026-11-16-birdnet-08.16.24.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6858,
-      "iso": "2026-11-16T08:15:48",
-      "time": "08:15",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-69-2026-11-16-birdnet-08.15.48.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.7235,
-      "iso": "2026-11-16T08:15:33",
-      "time": "08:15",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-72-2026-11-16-birdnet-08.15.33.mp3"
-    },
-    {
-      "com_name": "Blue Jay",
-      "sci_name": "Cyanocitta cristata",
-      "confidence": 0.6755,
-      "iso": "2026-11-16T08:15:00",
-      "time": "08:15",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Blue_jay_in_PP_%2830960%29.jpg/330px-Blue_jay_in_PP_%2830960%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Blue_Jay-68-2026-11-16-birdnet-08.15.00.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-66-2026-11-16-birdnet-08.58.18.mp3"
     },
     {
       "com_name": "Black-capped Chickadee",
       "sci_name": "Poecile atricapillus",
-      "confidence": 0.6629,
-      "iso": "2026-11-16T08:09:00",
-      "time": "08:09",
+      "confidence": 0.8304,
+      "iso": "2026-11-16T08:58:09",
+      "time": "08:58",
       "date": "2026-11-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-66-2026-11-16-birdnet-08.09.00.mp3"
+      "audio": "bird-clips/Black-capped_Chickadee-83-2026-11-16-birdnet-08.58.09.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8828,
+      "iso": "2026-11-16T08:57:27",
+      "time": "08:57",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-88-2026-11-16-birdnet-08.57.27.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6866,
+      "iso": "2026-11-16T08:57:15",
+      "time": "08:57",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-69-2026-11-16-birdnet-08.57.15.mp3"
+    },
+    {
+      "com_name": "American Crow",
+      "sci_name": "Corvus brachyrhynchos",
+      "confidence": 0.7087,
+      "iso": "2026-11-16T08:56:03",
+      "time": "08:56",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg",
+      "audio": "bird-clips/American_Crow-71-2026-11-16-birdnet-08.56.03.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7152,
+      "iso": "2026-11-16T08:55:48",
+      "time": "08:55",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-72-2026-11-16-birdnet-08.55.48.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6827,
+      "iso": "2026-11-16T08:55:33",
+      "time": "08:55",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-68-2026-11-16-birdnet-08.55.33.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.6822,
+      "iso": "2026-11-16T08:55:30",
+      "time": "08:55",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-68-2026-11-16-birdnet-08.55.30.mp3"
+    },
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.7473,
+      "iso": "2026-11-16T08:55:27",
+      "time": "08:55",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-75-2026-11-16-birdnet-08.55.27.mp3"
     },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
-      "confidence": 0.8426,
-      "iso": "2026-11-16T08:07:00",
-      "time": "08:07",
+      "confidence": 0.9101,
+      "iso": "2026-11-16T08:55:21",
+      "time": "08:55",
       "date": "2026-11-16",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-84-2026-11-16-birdnet-08.07.00.mp3"
+      "audio": "bird-clips/Red-breasted_Nuthatch-91-2026-11-16-birdnet-08.55.21.mp3"
     },
     {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6583,
-      "iso": "2026-11-16T08:02:51",
-      "time": "08:02",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8964,
+      "iso": "2026-11-16T08:55:18",
+      "time": "08:55",
       "date": "2026-11-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-66-2026-11-16-birdnet-08.02.51.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-90-2026-11-16-birdnet-08.55.18.mp3"
     },
     {
-      "com_name": "Black-capped Chickadee",
-      "sci_name": "Poecile atricapillus",
-      "confidence": 0.6579,
-      "iso": "2026-11-16T08:02:30",
-      "time": "08:02",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8951,
+      "iso": "2026-11-16T08:55:15",
+      "time": "08:55",
       "date": "2026-11-16",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
-      "audio": "bird-clips/Black-capped_Chickadee-66-2026-11-16-birdnet-08.02.30.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-90-2026-11-16-birdnet-08.55.15.mp3"
     },
     {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7348,
-      "iso": "2026-11-16T08:01:30",
-      "time": "08:01",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6869,
+      "iso": "2026-11-16T08:55:09",
+      "time": "08:55",
       "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-73-2026-11-16-birdnet-08.01.30.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-11-16-birdnet-08.55.09.mp3"
     },
     {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7175,
-      "iso": "2026-11-16T08:01:24",
-      "time": "08:01",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8196,
+      "iso": "2026-11-16T08:55:06",
+      "time": "08:55",
       "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-72-2026-11-16-birdnet-08.01.24.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-82-2026-11-16-birdnet-08.55.06.mp3"
     },
     {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6722,
-      "iso": "2026-11-16T08:01:11",
-      "time": "08:01",
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.9445,
+      "iso": "2026-11-16T08:55:00",
+      "time": "08:55",
       "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-67-2026-11-16-birdnet-08.01.11.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.6707,
-      "iso": "2026-11-16T08:00:56",
-      "time": "08:00",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-67-2026-11-16-birdnet-08.00.56.mp3"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-94-2026-11-16-birdnet-08.55.00.mp3"
     }
   ]
 }
