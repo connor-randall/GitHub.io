@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-16T08:20:03-0700",
+  "generated_at": "2026-11-16T08:30:03-0700",
   "stats": {
-    "today_count": 70,
+    "today_count": 71,
     "today_species": 6,
-    "total": 4987
+    "total": 4988
   },
   "enviro": {
-    "temp_f": 65.4,
-    "humidity": 22.3,
-    "pressure": 827.3
+    "temp_f": 73.0,
+    "humidity": 18.7,
+    "pressure": 827.4
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.8046,
+      "iso": "2026-11-16T08:29:40",
+      "time": "08:29",
+      "date": "2026-11-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-80-2026-11-16-birdnet-08.29.40.mp3"
+    },
     {
       "com_name": "Blue Jay",
       "sci_name": "Cyanocitta cristata",
@@ -150,16 +160,6 @@
       "date": "2026-11-16",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-67-2026-11-16-birdnet-07.59.35.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.7501,
-      "iso": "2026-11-16T07:59:26",
-      "time": "07:59",
-      "date": "2026-11-16",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-75-2026-11-16-birdnet-07.59.26.mp3"
     }
   ]
 }
