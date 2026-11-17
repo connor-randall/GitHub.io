@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T13:30:03-0700",
+  "generated_at": "2026-11-17T13:40:08-0700",
   "stats": {
-    "today_count": 150,
-    "today_species": 10,
-    "total": 5349
+    "today_count": 151,
+    "today_species": 11,
+    "total": 5350
   },
   "enviro": {
-    "temp_f": 68.0,
-    "humidity": 18.7,
-    "pressure": 817.1
+    "temp_f": 69.9,
+    "humidity": 18.1,
+    "pressure": 816.9
   },
   "detections": [
+    {
+      "com_name": "Belted Kingfisher",
+      "sci_name": "Megaceryle alcyon",
+      "confidence": 0.6544,
+      "iso": "2026-11-17T13:32:29",
+      "time": "13:32",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/BeltedKingfisherJG_Male.jpg/330px-BeltedKingfisherJG_Male.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Belted_Kingfisher-65-2026-11-17-birdnet-13.32.29.mp3"
+    },
     {
       "com_name": "Red-tailed Hawk",
       "sci_name": "Buteo jamaicensis",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-68-2026-11-17-birdnet-09.25.36.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6717,
-      "iso": "2026-11-17T09:25:00",
-      "time": "09:25",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-09.25.00.mp3"
     }
   ]
 }
