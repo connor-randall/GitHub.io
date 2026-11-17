@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T15:10:03-0700",
+  "generated_at": "2026-11-17T15:20:03-0700",
   "stats": {
-    "today_count": 151,
-    "today_species": 11,
-    "total": 5350
+    "today_count": 152,
+    "today_species": 12,
+    "total": 5351
   },
   "enviro": {
-    "temp_f": 71.6,
-    "humidity": 17.7,
-    "pressure": 815.7
+    "temp_f": 69.1,
+    "humidity": 18.4,
+    "pressure": 815.6
   },
   "detections": [
+    {
+      "com_name": "Pine Siskin",
+      "sci_name": "Spinus pinus",
+      "confidence": 0.704,
+      "iso": "2026-11-17T15:10:23",
+      "time": "15:10",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Carduelis_pinus_CT7.jpg/330px-Carduelis_pinus_CT7.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Pine_Siskin-70-2026-11-17-birdnet-15.10.23.mp3"
+    },
     {
       "com_name": "Belted Kingfisher",
       "sci_name": "Megaceryle alcyon",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-69-2026-11-17-birdnet-09.25.45.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.6774,
-      "iso": "2026-11-17T09:25:36",
-      "time": "09:25",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-68-2026-11-17-birdnet-09.25.36.mp3"
     }
   ]
 }
