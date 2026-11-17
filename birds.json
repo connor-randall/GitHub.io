@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-11-17T07:40:03-0700",
+  "generated_at": "2026-11-17T07:50:03-0700",
   "stats": {
-    "today_count": 51,
-    "today_species": 5,
-    "total": 5250
+    "today_count": 54,
+    "today_species": 6,
+    "total": 5253
   },
   "enviro": {
-    "temp_f": 56.4,
-    "humidity": 25.5,
-    "pressure": 821.0
+    "temp_f": 56.1,
+    "humidity": 25.9,
+    "pressure": 821.1
   },
   "detections": [
+    {
+      "com_name": "Townsend's Solitaire",
+      "sci_name": "Myadestes townsendi",
+      "confidence": 0.8911,
+      "iso": "2026-11-17T07:44:30",
+      "time": "07:44",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/TownsendsSolitaire.jpg/330px-TownsendsSolitaire.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
+    {
+      "com_name": "Townsend's Solitaire",
+      "sci_name": "Myadestes townsendi",
+      "confidence": 0.9267,
+      "iso": "2026-11-17T07:43:09",
+      "time": "07:43",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/TownsendsSolitaire.jpg/330px-TownsendsSolitaire.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
+    {
+      "com_name": "Townsend's Solitaire",
+      "sci_name": "Myadestes townsendi",
+      "confidence": 0.7718,
+      "iso": "2026-11-17T07:42:27",
+      "time": "07:42",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/TownsendsSolitaire.jpg/330px-TownsendsSolitaire.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -130,36 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Northern_Flicker-72-2026-11-17-birdnet-07.09.43.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.6946,
-      "iso": "2026-11-17T07:09:37",
-      "time": "07:09",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-69-2026-11-17-birdnet-07.09.37.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.7477,
-      "iso": "2026-11-17T07:08:10",
-      "time": "07:08",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-75-2026-11-17-birdnet-07.08.10.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8898,
-      "iso": "2026-11-17T07:03:57",
-      "time": "07:03",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-89-2026-11-17-birdnet-07.03.57.mp3"
     }
   ]
 }
