@@ -1,165 +1,165 @@
 {
-  "generated_at": "2026-11-17T09:20:03-0700",
+  "generated_at": "2026-11-17T09:30:04-0700",
   "stats": {
-    "today_count": 121,
+    "today_count": 147,
     "today_species": 9,
-    "total": 5320
+    "total": 5346
   },
   "enviro": {
-    "temp_f": 65.5,
-    "humidity": 23.5,
-    "pressure": 820.5
+    "temp_f": 65.4,
+    "humidity": 23.4,
+    "pressure": 820.4
   },
   "detections": [
     {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.7185,
-      "iso": "2026-11-17T09:06:50",
-      "time": "09:06",
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.7175,
+      "iso": "2026-11-17T09:26:54",
+      "time": "09:26",
       "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-72-2026-11-17-birdnet-09.06.50.mp3"
-    },
-    {
-      "com_name": "American Goldfinch",
-      "sci_name": "Spinus tristis",
-      "confidence": 0.7148,
-      "iso": "2026-11-17T08:43:10",
-      "time": "08:43",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
-      "audio": "bird-clips/American_Goldfinch-71-2026-11-17-birdnet-08.43.10.mp3"
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-72-2026-11-17-birdnet-09.26.54.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6744,
-      "iso": "2026-11-17T08:39:39",
-      "time": "08:39",
+      "confidence": 0.7766,
+      "iso": "2026-11-17T09:26:36",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-08.39.39.mp3"
+      "audio": "bird-clips/Spotted_Towhee-78-2026-11-17-birdnet-09.26.36.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7272,
-      "iso": "2026-11-17T08:39:06",
-      "time": "08:39",
+      "confidence": 0.6643,
+      "iso": "2026-11-17T09:26:33",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-08.39.06.mp3"
+      "audio": "bird-clips/Spotted_Towhee-66-2026-11-17-birdnet-09.26.33.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6766,
-      "iso": "2026-11-17T08:38:54",
-      "time": "08:38",
+      "confidence": 0.7819,
+      "iso": "2026-11-17T09:26:24",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-68-2026-11-17-birdnet-08.38.54.mp3"
+      "audio": "bird-clips/Spotted_Towhee-78-2026-11-17-birdnet-09.26.24.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.8689,
-      "iso": "2026-11-17T08:38:51",
-      "time": "08:38",
+      "confidence": 0.7207,
+      "iso": "2026-11-17T09:26:15",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-87-2026-11-17-birdnet-08.38.51.mp3"
+      "audio": "bird-clips/Spotted_Towhee-72-2026-11-17-birdnet-09.26.15.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7569,
-      "iso": "2026-11-17T08:38:48",
-      "time": "08:38",
+      "confidence": 0.8154,
+      "iso": "2026-11-17T09:26:12",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-76-2026-11-17-birdnet-08.38.48.mp3"
+      "audio": "bird-clips/Spotted_Towhee-82-2026-11-17-birdnet-09.26.12.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7217,
-      "iso": "2026-11-17T08:38:45",
-      "time": "08:38",
+      "confidence": 0.8487,
+      "iso": "2026-11-17T09:26:09",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-72-2026-11-17-birdnet-08.38.45.mp3"
+      "audio": "bird-clips/Spotted_Towhee-85-2026-11-17-birdnet-09.26.09.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6913,
-      "iso": "2026-11-17T08:38:42",
-      "time": "08:38",
+      "confidence": 0.7947,
+      "iso": "2026-11-17T09:26:03",
+      "time": "09:26",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-69-2026-11-17-birdnet-08.38.42.mp3"
+      "audio": "bird-clips/Spotted_Towhee-79-2026-11-17-birdnet-09.26.03.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6842,
-      "iso": "2026-11-17T08:38:33",
-      "time": "08:38",
+      "confidence": 0.7315,
+      "iso": "2026-11-17T09:25:51",
+      "time": "09:25",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-68-2026-11-17-birdnet-08.38.33.mp3"
+      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.25.51.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6687,
-      "iso": "2026-11-17T08:38:24",
-      "time": "08:38",
+      "confidence": 0.688,
+      "iso": "2026-11-17T09:25:45",
+      "time": "09:25",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-08.38.24.mp3"
+      "audio": "bird-clips/Spotted_Towhee-69-2026-11-17-birdnet-09.25.45.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7818,
-      "iso": "2026-11-17T08:38:06",
-      "time": "08:38",
+      "confidence": 0.6774,
+      "iso": "2026-11-17T09:25:36",
+      "time": "09:25",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-78-2026-11-17-birdnet-08.38.06.mp3"
+      "audio": "bird-clips/Spotted_Towhee-68-2026-11-17-birdnet-09.25.36.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7029,
-      "iso": "2026-11-17T08:37:57",
-      "time": "08:37",
+      "confidence": 0.6717,
+      "iso": "2026-11-17T09:25:00",
+      "time": "09:25",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-70-2026-11-17-birdnet-08.37.57.mp3"
+      "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-09.25.00.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.6999,
-      "iso": "2026-11-17T08:37:54",
-      "time": "08:37",
+      "confidence": 0.8295,
+      "iso": "2026-11-17T09:24:36",
+      "time": "09:24",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-70-2026-11-17-birdnet-08.37.54.mp3"
+      "audio": "bird-clips/Spotted_Towhee-83-2026-11-17-birdnet-09.24.36.mp3"
     },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
-      "confidence": 0.7631,
-      "iso": "2026-11-17T08:37:51",
-      "time": "08:37",
+      "confidence": 0.7337,
+      "iso": "2026-11-17T09:24:21",
+      "time": "09:24",
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-76-2026-11-17-birdnet-08.37.51.mp3"
+      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.24.21.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.7319,
+      "iso": "2026-11-17T09:24:18",
+      "time": "09:24",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.24.18.mp3"
     }
   ]
 }
