@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T09:40:03-0700",
+  "generated_at": "2026-11-17T09:50:03-0700",
   "stats": {
-    "today_count": 148,
+    "today_count": 149,
     "today_species": 9,
-    "total": 5347
+    "total": 5348
   },
   "enviro": {
-    "temp_f": 67.8,
-    "humidity": 22.7,
-    "pressure": 820.4
+    "temp_f": 66.4,
+    "humidity": 21.9,
+    "pressure": 820.3
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6933,
+      "iso": "2026-11-17T09:43:28",
+      "time": "09:43",
+      "date": "2026-11-17",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-69-2026-11-17-birdnet-09.43.28.mp3"
+    },
     {
       "com_name": "Townsend's Solitaire",
       "sci_name": "Myadestes townsendi",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-83-2026-11-17-birdnet-09.24.36.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7337,
-      "iso": "2026-11-17T09:24:21",
-      "time": "09:24",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.24.21.mp3"
     }
   ]
 }
