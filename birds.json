@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T09:30:04-0700",
+  "generated_at": "2026-11-17T09:40:03-0700",
   "stats": {
-    "today_count": 147,
+    "today_count": 148,
     "today_species": 9,
-    "total": 5346
+    "total": 5347
   },
   "enviro": {
-    "temp_f": 65.4,
-    "humidity": 23.4,
+    "temp_f": 67.8,
+    "humidity": 22.7,
     "pressure": 820.4
   },
   "detections": [
+    {
+      "com_name": "Townsend's Solitaire",
+      "sci_name": "Myadestes townsendi",
+      "confidence": 0.6751,
+      "iso": "2026-11-17T09:33:46",
+      "time": "09:33",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/TownsendsSolitaire.jpg/330px-TownsendsSolitaire.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.24.21.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7319,
-      "iso": "2026-11-17T09:24:18",
-      "time": "09:24",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-73-2026-11-17-birdnet-09.24.18.mp3"
     }
   ]
 }
