@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T09:00:03-0700",
+  "generated_at": "2026-11-17T09:10:03-0700",
   "stats": {
-    "today_count": 120,
-    "today_species": 8,
-    "total": 5319
+    "today_count": 121,
+    "today_species": 9,
+    "total": 5320
   },
   "enviro": {
-    "temp_f": 63.9,
-    "humidity": 24.0,
+    "temp_f": 64.5,
+    "humidity": 23.7,
     "pressure": 820.6
   },
   "detections": [
+    {
+      "com_name": "House Finch",
+      "sci_name": "Haemorhous mexicanus",
+      "confidence": 0.7185,
+      "iso": "2026-11-17T09:06:50",
+      "time": "09:06",
+      "date": "2026-11-17",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
+      "audio": "bird-clips/House_Finch-72-2026-11-17-birdnet-09.06.50.mp3"
+    },
     {
       "com_name": "American Goldfinch",
       "sci_name": "Spinus tristis",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-76-2026-11-17-birdnet-08.37.51.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.8369,
-      "iso": "2026-11-17T08:37:45",
-      "time": "08:37",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-84-2026-11-17-birdnet-08.37.45.mp3"
     }
   ]
 }
