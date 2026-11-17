@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T08:40:03-0700",
+  "generated_at": "2026-11-17T08:50:03-0700",
   "stats": {
-    "today_count": 119,
-    "today_species": 7,
-    "total": 5318
+    "today_count": 120,
+    "today_species": 8,
+    "total": 5319
   },
   "enviro": {
-    "temp_f": 61.5,
-    "humidity": 25.0,
-    "pressure": 820.8
+    "temp_f": 63.0,
+    "humidity": 24.7,
+    "pressure": 820.7
   },
   "detections": [
+    {
+      "com_name": "American Goldfinch",
+      "sci_name": "Spinus tristis",
+      "confidence": 0.7148,
+      "iso": "2026-11-17T08:43:10",
+      "time": "08:43",
+      "date": "2026-11-17",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg/330px-Carduelis_tristis_-Michigan%2C_USA_-male-8.jpg",
+      "audio": "bird-clips/American_Goldfinch-71-2026-11-17-birdnet-08.43.10.mp3"
+    },
     {
       "com_name": "Spotted Towhee",
       "sci_name": "Pipilo maculatus",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-84-2026-11-17-birdnet-08.37.45.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.7455,
-      "iso": "2026-11-17T08:37:36",
-      "time": "08:37",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-75-2026-11-17-birdnet-08.37.36.mp3"
     }
   ]
 }
