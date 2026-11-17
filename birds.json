@@ -1,16 +1,96 @@
 {
-  "generated_at": "2026-11-17T07:10:04-0700",
+  "generated_at": "2026-11-17T07:20:03-0700",
   "stats": {
-    "today_count": 41,
-    "today_species": 4,
-    "total": 5240
+    "today_count": 49,
+    "today_species": 5,
+    "total": 5248
   },
   "enviro": {
-    "temp_f": 56.2,
-    "humidity": 25.1,
-    "pressure": 820.9
+    "temp_f": 55.9,
+    "humidity": 25.3,
+    "pressure": 821.0
   },
   "detections": [
+    {
+      "com_name": "Northern Flicker",
+      "sci_name": "Colaptes auratus",
+      "confidence": 0.773,
+      "iso": "2026-11-17T07:19:19",
+      "time": "07:19",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Northern_Flicker-77-2026-11-17-birdnet-07.19.19.mp3"
+    },
+    {
+      "com_name": "Brown Creeper",
+      "sci_name": "Certhia americana",
+      "confidence": 0.6802,
+      "iso": "2026-11-17T07:13:22",
+      "time": "07:13",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Brown_Creeper-68-2026-11-17-birdnet-07.13.22.mp3"
+    },
+    {
+      "com_name": "Spotted Towhee",
+      "sci_name": "Pipilo maculatus",
+      "confidence": 0.6689,
+      "iso": "2026-11-17T07:13:19",
+      "time": "07:13",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-07.13.19.mp3"
+    },
+    {
+      "com_name": "Brown Creeper",
+      "sci_name": "Certhia americana",
+      "confidence": 0.7963,
+      "iso": "2026-11-17T07:13:07",
+      "time": "07:13",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Brown_Creeper-80-2026-11-17-birdnet-07.13.07.mp3"
+    },
+    {
+      "com_name": "White-breasted Nuthatch",
+      "sci_name": "Sitta carolinensis",
+      "confidence": 0.8503,
+      "iso": "2026-11-17T07:11:07",
+      "time": "07:11",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/White-breasted_Nuthatch-85-2026-11-17-birdnet-07.11.07.mp3"
+    },
+    {
+      "com_name": "Brown Creeper",
+      "sci_name": "Certhia americana",
+      "confidence": 0.7859,
+      "iso": "2026-11-17T07:11:04",
+      "time": "07:11",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Brown_Creeper-79-2026-11-17-birdnet-07.11.04.mp3"
+    },
+    {
+      "com_name": "Brown Creeper",
+      "sci_name": "Certhia americana",
+      "confidence": 0.8986,
+      "iso": "2026-11-17T07:10:34",
+      "time": "07:10",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Brown_Creeper-90-2026-11-17-birdnet-07.10.34.mp3"
+    },
+    {
+      "com_name": "Brown Creeper",
+      "sci_name": "Certhia americana",
+      "confidence": 0.7246,
+      "iso": "2026-11-17T07:10:07",
+      "time": "07:10",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png/330px-Brown_creeper_%28Certhia_americana%29_in_Center_City%2C_Philadelphia%2C_PA%2C_USA.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Brown_Creeper-72-2026-11-17-birdnet-07.10.07.mp3"
+    },
     {
       "com_name": "Northern Flicker",
       "sci_name": "Colaptes auratus",
@@ -80,86 +160,6 @@
       "date": "2026-11-17",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-75-2026-11-17-birdnet-06.59.39.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8126,
-      "iso": "2026-11-17T06:59:36",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-81-2026-11-17-birdnet-06.59.36.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9325,
-      "iso": "2026-11-17T06:59:33",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-93-2026-11-17-birdnet-06.59.33.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.8314,
-      "iso": "2026-11-17T06:59:30",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-83-2026-11-17-birdnet-06.59.30.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9501,
-      "iso": "2026-11-17T06:59:24",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-95-2026-11-17-birdnet-06.59.24.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.9032,
-      "iso": "2026-11-17T06:59:18",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-90-2026-11-17-birdnet-06.59.18.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.758,
-      "iso": "2026-11-17T06:59:12",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-76-2026-11-17-birdnet-06.59.12.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.7726,
-      "iso": "2026-11-17T06:59:03",
-      "time": "06:59",
-      "date": "2026-11-17",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-77-2026-11-17-birdnet-06.59.03.mp3"
-    },
-    {
-      "com_name": "Northern Flicker",
-      "sci_name": "Colaptes auratus",
-      "confidence": 0.8668,
-      "iso": "2026-11-17T06:58:57",
-      "time": "06:58",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg/330px-Northern_yellow-shafted_flicker_male_%2833737%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Northern_Flicker-87-2026-11-17-birdnet-06.58.57.mp3"
     }
   ]
 }
