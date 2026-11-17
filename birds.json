@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-17T11:40:03-0700",
+  "generated_at": "2026-11-17T11:50:03-0700",
   "stats": {
-    "today_count": 149,
-    "today_species": 9,
-    "total": 5348
+    "today_count": 150,
+    "today_species": 10,
+    "total": 5349
   },
   "enviro": {
-    "temp_f": 78.7,
-    "humidity": 14.6,
+    "temp_f": 73.3,
+    "humidity": 15.5,
     "pressure": 818.4
   },
   "detections": [
+    {
+      "com_name": "Red-tailed Hawk",
+      "sci_name": "Buteo jamaicensis",
+      "confidence": 0.6838,
+      "iso": "2026-11-17T11:41:55",
+      "time": "11:41",
+      "date": "2026-11-17",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": "bird-clips/Red-tailed_Hawk-68-2026-11-17-birdnet-11.41.55.mp3"
+    },
     {
       "com_name": "Red-breasted Nuthatch",
       "sci_name": "Sitta canadensis",
@@ -150,16 +160,6 @@
       "date": "2026-11-17",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/Spotted_Towhee-67-2026-11-17-birdnet-09.25.00.mp3"
-    },
-    {
-      "com_name": "Spotted Towhee",
-      "sci_name": "Pipilo maculatus",
-      "confidence": 0.8295,
-      "iso": "2026-11-17T09:24:36",
-      "time": "09:24",
-      "date": "2026-11-17",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Spotted_Towhee_%2832684403303%29.jpg/330px-Spotted_Towhee_%2832684403303%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/Spotted_Towhee-83-2026-11-17-birdnet-09.24.36.mp3"
     }
   ]
 }
