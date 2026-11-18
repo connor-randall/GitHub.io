@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-11-18T07:20:03-0700",
+  "generated_at": "2026-11-18T07:30:03-0700",
   "stats": {
-    "today_count": 43,
-    "today_species": 2,
-    "total": 5396
+    "today_count": 46,
+    "today_species": 3,
+    "total": 5399
   },
   "enviro": {
-    "temp_f": 51.8,
-    "humidity": 17.8,
-    "pressure": 819.8
+    "temp_f": 58.4,
+    "humidity": 16.4,
+    "pressure": 819.9
   },
   "detections": [
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.6538,
+      "iso": "2026-11-18T07:29:28",
+      "time": "07:29",
+      "date": "2026-11-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-65-2026-11-18-birdnet-07.29.28.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.833,
+      "iso": "2026-11-18T07:29:10",
+      "time": "07:29",
+      "date": "2026-11-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-83-2026-11-18-birdnet-07.29.10.mp3"
+    },
+    {
+      "com_name": "Red-breasted Nuthatch",
+      "sci_name": "Sitta canadensis",
+      "confidence": 0.8409,
+      "iso": "2026-11-18T07:24:58",
+      "time": "07:24",
+      "date": "2026-11-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
+      "audio": "bird-clips/Red-breasted_Nuthatch-84-2026-11-18-birdnet-07.24.58.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -130,36 +160,6 @@
       "date": "2026-11-18",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "audio": "bird-clips/White-breasted_Nuthatch-72-2026-11-18-birdnet-06.58.44.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.9039,
-      "iso": "2026-11-18T06:58:35",
-      "time": "06:58",
-      "date": "2026-11-18",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-90-2026-11-18-birdnet-06.58.35.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.9547,
-      "iso": "2026-11-18T06:58:29",
-      "time": "06:58",
-      "date": "2026-11-18",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-95-2026-11-18-birdnet-06.58.29.mp3"
-    },
-    {
-      "com_name": "White-breasted Nuthatch",
-      "sci_name": "Sitta carolinensis",
-      "confidence": 0.8683,
-      "iso": "2026-11-18T06:58:26",
-      "time": "06:58",
-      "date": "2026-11-18",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/White-breasted_nuthatch_%2826471%29.jpg/330px-White-breasted_nuthatch_%2826471%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "audio": "bird-clips/White-breasted_Nuthatch-87-2026-11-18-birdnet-06.58.26.mp3"
     }
   ]
 }
