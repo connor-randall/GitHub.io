@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-18T15:30:05-0700",
+  "generated_at": "2026-11-18T15:40:08-0700",
   "stats": {
-    "today_count": 93,
-    "today_species": 7,
-    "total": 5446
+    "today_count": 94,
+    "today_species": 8,
+    "total": 5447
   },
   "enviro": {
     "temp_f": 68.8,
-    "humidity": 10.2,
+    "humidity": 10.3,
     "pressure": 822.9
   },
   "detections": [
+    {
+      "com_name": "Steller's Jay",
+      "sci_name": "Cyanocitta stelleri",
+      "confidence": 0.6681,
+      "iso": "2026-11-18T15:31:15",
+      "time": "15:31",
+      "date": "2026-11-18",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Steller%27s_Jay_flagstaff_arizona.jpg/330px-Steller%27s_Jay_flagstaff_arizona.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "audio": null
+    },
     {
       "com_name": "American Crow",
       "sci_name": "Corvus brachyrhynchos",
@@ -150,16 +160,6 @@
       "date": "2026-11-18",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
       "audio": "bird-clips/House_Finch-93-2026-11-18-birdnet-10.32.13.mp3"
-    },
-    {
-      "com_name": "House Finch",
-      "sci_name": "Haemorhous mexicanus",
-      "confidence": 0.9131,
-      "iso": "2026-11-18T10:32:10",
-      "time": "10:32",
-      "date": "2026-11-18",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/House_finch_%2833688%292.jpg/330px-House_finch_%2833688%292.jpg",
-      "audio": "bird-clips/House_Finch-91-2026-11-18-birdnet-10.32.10.mp3"
     }
   ]
 }
