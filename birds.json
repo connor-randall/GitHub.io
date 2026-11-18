@@ -1,16 +1,26 @@
 {
-  "generated_at": "2026-11-18T09:50:03-0700",
+  "generated_at": "2026-11-18T10:00:04-0700",
   "stats": {
-    "today_count": 74,
-    "today_species": 4,
-    "total": 5427
+    "today_count": 75,
+    "today_species": 5,
+    "total": 5428
   },
   "enviro": {
-    "temp_f": 71.5,
-    "humidity": 12.1,
+    "temp_f": 73.2,
+    "humidity": 11.4,
     "pressure": 821.0
   },
   "detections": [
+    {
+      "com_name": "Black-capped Chickadee",
+      "sci_name": "Poecile atricapillus",
+      "confidence": 0.8216,
+      "iso": "2026-11-18T09:51:55",
+      "time": "09:51",
+      "date": "2026-11-18",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Poecile-atricapilla-001.jpg/330px-Poecile-atricapilla-001.jpg",
+      "audio": "bird-clips/Black-capped_Chickadee-82-2026-11-18-birdnet-09.51.55.mp3"
+    },
     {
       "com_name": "White-breasted Nuthatch",
       "sci_name": "Sitta carolinensis",
@@ -150,16 +160,6 @@
       "date": "2026-11-18",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
       "audio": "bird-clips/Red-breasted_Nuthatch-96-2026-11-18-birdnet-09.07.58.mp3"
-    },
-    {
-      "com_name": "Red-breasted Nuthatch",
-      "sci_name": "Sitta canadensis",
-      "confidence": 0.972,
-      "iso": "2026-11-18T09:07:55",
-      "time": "09:07",
-      "date": "2026-11-18",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Red-breasted_Nuthatch_%2848859254972%29.jpg/330px-Red-breasted_Nuthatch_%2848859254972%29.jpg",
-      "audio": "bird-clips/Red-breasted_Nuthatch-97-2026-11-18-birdnet-09.07.55.mp3"
     }
   ]
 }
